@@ -1,21 +1,77 @@
-# FS-App-Template
+# Nostalgia
 
-## Setup
+## Team Members:
 
-- just clone this
-- rm -rf .git
-- git init
-- git add .
-- git commit -m 'first commit'
-- set up origin on github
+Scott Lucas, Gary White, Samuel Labastille, and Michelle Un
 
+## Features
+
+**Vision:** Nostalgia builds community by creating a platform where families and friends can stitch together artifacts, stories, and connections to create memories.
+
+**Features:**
+
+- **MVP Features**
+  - Users
+    - [ ] Users can create account
+    - [ ] Users can login
+    - [ ] Users can update their bio
+    - [ ] Users can manage the communities they belong to and the artifacts they’ve submitted
+    - [ ] Users can connect with other users
+    - [ ] Users can disconnect from other users
+    - [ ] Relationships to other users
+    - [ ] Select communities to join
+    - [ ] Users can see content from friend’s communities
+    - [ ] Users can belong to two types: general, admin
+  - Community
+    - [ ] Admin can create a new community
+    - [ ] Users can invite other users to join the community
+    - [ ] Users can request to join a community (admin can approve)
+    - [ ] Communities are public but some posts can be private to the community
+    - [ ] Categorize communities based on geography
+  - Artifacts
+    - [ ] Users can add artifacts with images, stories, descriptions
+    - [ ] Users can edit artifacts
+    - [ ] Users can delete artifacts
+  - Posts
+    - [ ] User can submit artifacts to their communities
+    - [ ] Users can comment on posts
+    - [ ] Users can like posts
+    - [ ] Users can change posts to be private or public to the community
+    - [ ] User who added post can edit or delete posts
+- **Bonus Features**
+  - Posts:
+    - [ ] Expand artifacts to other categories (art, music)
+    - [ ] Ability to include video content
+    - [ ] Leverage Recipes API
+
+## Views
+
+- Community View - Chronological view of community’s artifacts
+
+  - Can contain relationships across users
+  - Displays content specific to the community
+  - Can see chronological view
+  - Ability to see detailed and high level chronological view
+  - Filterable on categories?
+
+- Global View - Current view of what’s happening across communities in currently
+  - Displays content for all users
+  - Content is public to users
+  - Filterable on categories?
+
+## Wireframes
+
+Add wireframes here
+
+## Design
+
+Add database schemas
 
 ## Customize
 
 Now that you've got the code, follow these steps to get acclimated:
 
-* Update project name and description in `package.json`, this is your database
-
+- Update project name and description in `package.json`, this is your database
 
 ## Start
 
