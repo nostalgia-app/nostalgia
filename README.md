@@ -18,9 +18,7 @@ Scott Lucas, Gary White, Samuel Labastille, and Michelle Un
     - [ ] Users can manage the communities they belong to and the artifacts they’ve submitted
     - [ ] Users can connect with other users
     - [ ] Users can disconnect from other users
-    - [ ] Relationships to other users
-    - [ ] Select communities to join
-    - [ ] Users can see content from friend’s communities
+    - [ ] Users can select communities to join
     - [ ] Users can belong to two types: general, admin
   - Community
     - [ ] Admin can create a new community
@@ -37,6 +35,7 @@ Scott Lucas, Gary White, Samuel Labastille, and Michelle Un
     - [ ] Users can comment on posts
     - [ ] Users can like posts
     - [ ] Users can change posts to be private or public to the community
+    - [ ] Users can see content from friend’s communities
     - [ ] User who added post can edit or delete posts
 - **Bonus Features**
   - Posts:
