@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Community },
+  models: { Community, User_Community, User },
 } = require("../db");
 module.exports = router;
 
@@ -8,7 +8,7 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const communities = await Community.findAll();
-    res.json(communities);
+    res.send(communities);
   } catch (err) {
     next(err);
   }
@@ -18,7 +18,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const communities = await Community.findByPk(req.params.id);
-    res.json(communities);
+    res.send(communities);
   } catch (err) {
     next(err);
   }
@@ -49,6 +49,20 @@ router.delete("/:id", async (req, res, next) => {
     const community = await Community.findByPk(req.params.id);
     await community.destroy();
     res.send(community);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/communities/:id/users
+router.get("/:id/users", async (req, res, next) => {
+  try {
+    // Returns all users in a specific community
+    const usersInCommunity = await Community.findAll({
+      where: { id: req.params.id },
+      include: { model: User_Community, include: User },
+    });
+    res.send(usersInCommunity);
   } catch (err) {
     next(err);
   }
