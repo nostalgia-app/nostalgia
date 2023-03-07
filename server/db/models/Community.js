@@ -16,21 +16,42 @@ const Community = db.define("community", {
     },
   },
   bio: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  address: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  location: {
+  city: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
-  image: {
+  state: {
     type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  zipCode: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  imageUrl: {
+    type: Sequelize.TEXT,
   },
 });
 
