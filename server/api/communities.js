@@ -46,8 +46,9 @@ router.put("/:id", async (req, res, next) => {
 // DELETE /api/communities/:id
 router.delete("/:id", async (req, res, next) => {
   try {
-    const communityToDelete = await Community.findByPk(req.params.id);
-    res.send(await communityToDelete.destroy());
+    const community = await Community.findByPk(req.params.id);
+    await community.destroy();
+    res.send(community);
   } catch (err) {
     next(err);
   }
