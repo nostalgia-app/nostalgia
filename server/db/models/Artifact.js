@@ -44,7 +44,6 @@ const Artifact = db.define('artifact', {
     type: Sequelize.STRING,
     allowNull: true,
     validate: {
-      notEmpty: true,
       isUrl: true,
     },
   },
