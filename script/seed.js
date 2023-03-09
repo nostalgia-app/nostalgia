@@ -13,6 +13,28 @@ async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
   console.log('db synced!');
 
+  // Creating Users
+  const users = await Promise.all([
+    User.create({
+      username: 'cody',
+      password: '123',
+      firstName: 'Cody',
+      lastName: 'Code',
+      age: 27,
+      location: 'New York, NY',
+      bio: 'Hey man, my name is Cody.',
+    }),
+    User.create({
+      username: 'murphy',
+      password: '123',
+      firstName: 'Murphy',
+      lastName: 'McMurphy',
+      age: 98,
+      location: 'Dublin, Ireland',
+      bio: "I'm looking for a guy named Cody. Is he here?",
+    }),
+  ]);
+
   // Creating Communities
   const communities = await Promise.all([
     Community.create({
@@ -72,38 +94,11 @@ async function seed() {
       communityId: communities[2].id,
     }),
   ]);
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
 
+  console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded successfully`);
 
-  console.log('db synced!');
-
-  // Creating Users
-  const users = await Promise.all([
-    User.create({
-      username: 'cody',
-      password: '123',
-      firstName: 'Cody',
-      lastName: 'Code',
-      age: 27,
-      location: 'New York, NY',
-      bio: 'Hey man, my name is Cody.',
-    }),
-    User.create({
-      username: 'murphy',
-      password: '123',
-      firstName: 'Murphy',
-      lastName: 'McMurphy',
-      age: 98,
-      location: 'Dublin, Ireland',
-      bio: "I'm looking for a guy named Cody. Is he here?",
-    }),
-  ]);
-
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
   return {
     users: {
       cody: users[0],

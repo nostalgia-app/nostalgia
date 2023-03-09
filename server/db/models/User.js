@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require('sequelize');
-const { UUIDV4 } = require('sequelize');
 
 const SALT_ROUNDS = 5;
 
@@ -47,21 +46,6 @@ const User = db.define(
       type: STRING,
     },
   },
-  {
-    hooks: {
-      async beforeCreate(user) {
-        // console.log(user);
-        // console.log('-----------');
-        const newUser = user.dataValues;
-        // console.log(newUser);
-        newUser.password = await bcrypt.hash(newUser.password, 8);
-        // console.log(
-        //   await bcrypt.compareSync(user.dataValues.password, newUser.password)
-        // );
-        // console.log(newUser.password);
-      },
-    },
-  }
 );
 
 module.exports = User;
