@@ -4,6 +4,7 @@ const db = require("./db");
 
 const User = require("./models/User");
 const Community = require("./models/Community");
+const Artifact = require("./models/Artifact");
 const User_Community = require("./models/User_Community");
 
 //associations could go here!
@@ -15,6 +16,11 @@ User.hasMany(User_Community);
 User_Community.belongsTo(User);
 Community.hasMany(User_Community);
 User_Community.belongsTo(Community);
+
+Artifact.belongsTo(Community);
+Community.hasMany(Artifact);
+User.hasMany(Artifact);
+Artifact.belongsTo(User);
 
 module.exports = {
   db,
