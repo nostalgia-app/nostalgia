@@ -62,7 +62,7 @@ app.put('/:id', async (req, res, next) => {
 });
 
 //Delete an Artifact
-router.delete('/:id', async (req, res, next) => {
+app.delete('/:id', async (req, res, next) => {
   try {
     const artifact = await Artifact.findByPk(req.params.id);
     await artifact.destroy();
