@@ -4,65 +4,46 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const axios = require('axios');
 const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require('sequelize');
-const { UUIDV4 } = require('sequelize');
 
 const SALT_ROUNDS = 5;
 
-const User = db.define(
-  'user',
-  {
-    id: {
-      type: UUID,
-      primaryKey: true,
-      defaultValue: UUIDV4,
-    },
-    username: {
-      type: STRING,
-      unique: true,
-      allowNull: false,
-    },
-    password: {
-      type: STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    firstName: {
-      type: STRING,
-    },
-    lastName: {
-      type: STRING,
-    },
-    age: {
-      type: INTEGER,
-    },
-    location: {
-      type: STRING,
-    },
-    bio: {
-      type: TEXT,
-    },
-    profilePic: {
-      type: STRING,
+const User = db.define('user', {
+  id: {
+    type: UUID,
+    primaryKey: true,
+    defaultValue: UUIDV4,
+  },
+  username: {
+    type: STRING,
+    unique: true,
+    allowNull: false,
+  },
+  password: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
     },
   },
-  {
-    hooks: {
-      async beforeCreate(user) {
-        // console.log(user);
-        // console.log('-----------');
-        const newUser = user.dataValues;
-        // console.log(newUser);
-        newUser.password = await bcrypt.hash(newUser.password, 8);
-        // console.log(
-        //   await bcrypt.compareSync(user.dataValues.password, newUser.password)
-        // );
-        // console.log(newUser.password);
-      },
-    },
-  }
-);
+  firstName: {
+    type: STRING,
+  },
+  lastName: {
+    type: STRING,
+  },
+  age: {
+    type: INTEGER,
+  },
+  location: {
+    type: STRING,
+  },
+  bio: {
+    type: TEXT,
+  },
+  profilePic: {
+    type: STRING,
+  },
+});
 
 module.exports = User;
 
