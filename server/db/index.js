@@ -20,6 +20,7 @@ module.exports = {
   db,
   models: {
     User,
+    Artifact,
     Community,
     User_Community,
   },
