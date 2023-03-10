@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import Communities from "./Communities";
+import CommunitiesGrid from "./CommunitiesGrid";
 
 /**
  * COMPONENT
@@ -11,7 +11,7 @@ export const Home = (props) => {
   return (
     <div>
       <h3>Welcome, {username}</h3>
-      <Communities />
+      <CommunitiesGrid />
     </div>
   );
 };
