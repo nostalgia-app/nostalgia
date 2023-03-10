@@ -32,7 +32,7 @@ const AuthForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(authenticate({ userName: userName, password: password }));
+    dispatch(authenticate(userName, password, 'login'));
   };
 
   return (
