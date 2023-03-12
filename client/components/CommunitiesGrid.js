@@ -18,7 +18,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useForm } from "react-hook-form";
 
 const CommunitiesGrid = () => {
-  const { communities, geographies } = useSelector((state) => state);
+  const { communities, geographies, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCommunities());
@@ -46,7 +46,9 @@ const CommunitiesGrid = () => {
 
   const onSubmit = (data, event) => {
     event.preventDefault();
-    dispatch(addCommunity(data));
+    const community = { ...data, adminId: auth.id };
+    console.log(community);
+    dispatch(addCommunity(community));
     reset();
   };
 
@@ -64,9 +66,11 @@ const CommunitiesGrid = () => {
   return (
     <div>
       <h1>Communities</h1>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Add New Community
-      </Button>
+      {auth.id && (
+        <Button variant="outlined" onClick={handleClickOpen}>
+          Add New Community
+        </Button>
+      )}
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel>State</InputLabel>
