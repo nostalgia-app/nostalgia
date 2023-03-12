@@ -27,7 +27,6 @@ const _addCommunity = (community) => ({
 
 export const setCommunities = () => {
   return async (dispatch) => {
-    console.log("thunk");
     try {
       const res = await axios.get("/api/communities");
       const communities = res.data;

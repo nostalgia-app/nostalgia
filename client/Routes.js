@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
-import { CommunitiesGrid } from "./components/CommunitiesGrid";
-import { CommunityPage } from "./components/CommunityPage";
+import CommunitiesGrid from "./components/CommunitiesGrid";
+import CommunityPage from "./components/CommunityPage";
 import { me } from "./store";
 
 /**
@@ -23,16 +23,16 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Redirect to="/home" />
-            <Route path="/communities" element={CommunitiesGrid} />
+            <Route exact path="/communities" element={CommunitiesGrid} />
             <Route path="/communities/:id" component={CommunityPage} />
+            <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route exact path="/" component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/communities" component={CommunitiesGrid} />
+            <Route exact path="/communities" component={CommunitiesGrid} />
             <Route path="/communities/:id" component={CommunityPage} />
           </Switch>
         )}
