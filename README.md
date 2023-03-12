@@ -23,7 +23,7 @@ Scott Lucas, Gary White, Samuel Labastille, and Michelle Un
     - [ ] Users can invite other users to join the community
     - [ ] Users can request to join a community (admin can approve)
     - [ ] Communities are public but some posts can be private to the community
-    - [ ] Categorize communities based on geography
+    - [x] Categorize communities based on geography
   - Artifacts
     - [ ] Users can add artifacts with images, stories, descriptions
     - [ ] Users can edit artifacts
