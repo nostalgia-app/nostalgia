@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Community, User_Community },
+  models: { User, Community, User_Community, Artifact, Comment },
 } = require('../server/db');
 
 /**
@@ -99,6 +99,22 @@ async function seed() {
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded successfully`);
 
+  const artifact = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[1].id,
+      name:"Samuel"
+    })
+
+  ])
+
+  const comment = await Promise.all([
+    Comment.create({
+        artifactId: artifact[0].id,
+        userId: users[0].id,
+        comment: "DEFAULT COMMENT YESSA"
+      })
+  ])
   return {
     users: {
       cody: users[0],
@@ -109,6 +125,12 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
+    artifact:{
+      samuel: artifact[0]
+    },
+    comment:{
+      com1: comment[0]
+    }
   };
 }
 
