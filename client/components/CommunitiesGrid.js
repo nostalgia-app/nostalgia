@@ -40,13 +40,14 @@ const CommunitiesGrid = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data, event) => {
-    console.log(data);
     event.preventDefault();
     dispatch(addCommunity(data));
+    reset();
   };
 
   // Filter Category
