@@ -15,7 +15,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Menu } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 const CommunitiesGrid = () => {
   const { communities, geographies } = useSelector((state) => state);
@@ -27,13 +27,26 @@ const CommunitiesGrid = () => {
     dispatch(setGeography());
   }, []);
 
-  // Add Community Form
+  // Add Community Dialog
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // Add Community Form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data, event) => {
+    console.log(data);
+    event.preventDefault();
+    dispatch(addCommunity(data));
   };
 
   // Filter Category
@@ -76,41 +89,95 @@ const CommunitiesGrid = () => {
         </FormControl>
       </Box>
       <Grid container spacing={2}>
-        {location
-          ? communities.length > 0
+        {communities.length > 0 &&
+          (location
             ? communities
                 .filter((community) => community.state.includes(location))
                 .map((community) => (
                   <CommunityCard key={community.id} community={community} />
                 ))
-            : "loading"
-          : communities.length > 0
-          ? communities.map((community) => (
-              <CommunityCard key={community.id} community={community} />
-            ))
-          : "loading"}
+            : communities.map((community) => (
+                <CommunityCard key={community.id} community={community} />
+              )))}
       </Grid>
+
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogTitle>Add Community</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              To add a new community, provide a bio, location, and upload an
+              image.
+            </DialogContentText>
+
+            <TextField
+              autoFocus
+              margin="dense"
+              name="name"
+              {...register("name")}
+              label="Community Name"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              name="bio"
+              {...register("bio")}
+              label="Bio"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              name="address"
+              {...register("address")}
+              label="Address"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              name="city"
+              {...register("city")}
+              label="City"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              name="state"
+              {...register("state")}
+              label="State"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              name="zipCode"
+              {...register("zipCode")}
+              label="Zipcode"
+              type="text"
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose} type="submit">
+              Submit
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </div>
   );

@@ -37,12 +37,12 @@ export const setCommunities = () => {
   };
 };
 
-export const addCommunity = (community) => {
+export const addCommunity = (newComm) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post("/api/communities/", community);
+      const res = await axios.post("/api/communities/", newComm);
       const community = res.data;
-      dispatch(addCommunity(community));
+      dispatch(_addCommunity(community));
     } catch (error) {
       console.log(error);
     }
@@ -52,12 +52,12 @@ export const addCommunity = (community) => {
 /**
  * REDUCER
  */
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case SET_COMMUNITIES:
       return action.communities;
     case ADD_COMMUNITY:
-      return action.communities;
+      return [...state, action.community];
     default:
       return state;
   }
