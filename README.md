@@ -16,32 +16,32 @@ Scott Lucas, Gary White, Samuel Labastille, and Michelle Un
     - [ ] Users can login
     - [ ] Users can update their bio
     - [ ] Users can manage the communities they belong to and the artifacts they’ve submitted
-    - [ ] Users can connect with other users
-    - [ ] Users can disconnect from other users
     - [ ] Users can select communities to join
     - [ ] Users can belong to two types: general, admin
   - Community
-    - [ ] Admin can create a new community
+    - [x] Users can create a new community
     - [ ] Users can invite other users to join the community
     - [ ] Users can request to join a community (admin can approve)
     - [ ] Communities are public but some posts can be private to the community
-    - [ ] Categorize communities based on geography
+    - [x] Categorize communities based on geography
   - Artifacts
     - [ ] Users can add artifacts with images, stories, descriptions
     - [ ] Users can edit artifacts
     - [ ] Users can delete artifacts
-  - Posts
     - [ ] User can submit artifacts to their communities
-    - [ ] Users can comment on posts
-    - [ ] Users can like posts
-    - [ ] Users can change posts to be private or public to the community
-    - [ ] Users can see content from friend’s communities
+    - [ ] Users can comment on artifacts
+    - [ ] Users can like artifacts
+    - [ ] Users can change artifacts to be private or public to the community
     - [ ] User who added post can edit or delete posts
 - **Bonus Features**
-  - Posts:
+  - Users
+    - [ ] Users can connect with other users
+    - [ ] Users can disconnect from other users
+  - Artifacts:
     - [ ] Expand artifacts to other categories (art, music)
     - [ ] Ability to include video content
     - [ ] Leverage Recipes API
+    - [ ] Users can see content from friend’s communities
 
 ## Views
 
