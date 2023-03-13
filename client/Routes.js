@@ -42,6 +42,8 @@ class Routes extends Component {
         {/* {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route exact path="/communities" element={CommunitiesGrid} />
+            <Route path="/communities/:id" component={CommunityPage} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -49,6 +51,8 @@ class Routes extends Component {
             <Route path="/" exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route exact path="/communities" component={CommunitiesGrid} />
+            <Route path="/communities/:id" component={CommunityPage} />
           </Switch>
         )} */}
       </div>

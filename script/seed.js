@@ -119,8 +119,14 @@ async function seed() {
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
 
+  console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded successfully`);
+
+  // console.log('db synced!');
+
+  // console.log(`seeded ${users.length} users`);
+  // console.log(`seeded successfully`);
 
   console.log('db synced!');
 

@@ -4,8 +4,18 @@ import thunkMiddleware from 'redux-thunk';
 import auth from './auth';
 import user from './user';
 import image from './image';
+import communities from './communities';
+import community from './community';
+import geographies from './geographies';
 
-const reducer = combineReducers({ auth, user, image });
+const reducer = combineReducers({
+  auth,
+  communities,
+  community,
+  geographies,
+  user,
+  image,
+});
 const middleware = applyMiddleware(
   thunkMiddleware,
   createLogger({ collapsed: true })
@@ -13,6 +23,10 @@ const middleware = applyMiddleware(
 const store = createStore(reducer, middleware);
 
 export default store;
+
 export * from './auth';
 export * from './user';
 export * from './image';
+export * from './communities';
+export * from './community';
+export * from './geographies';
