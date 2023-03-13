@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const sequelize = require("sequelize");
 const {
   models: { Community, User_Community, User },
 } = require("../db");
@@ -8,6 +9,18 @@ module.exports = router;
 router.get("/", async (req, res, next) => {
   try {
     const communities = await Community.findAll();
+    res.send(communities);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/communities/geography
+router.get("/geography", async (req, res, next) => {
+  try {
+    const communities = await Community.findAll({
+      attributes: [[sequelize.fn("DISTINCT", sequelize.col("state")), "state"]],
+    });
     res.send(communities);
   } catch (err) {
     next(err);
