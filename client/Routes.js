@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/users/AuthForm';
-import Home from './components/Home';
+import { Login, Signup } from './components/users/Login';
+import { Home } from './components/Home';
 import { me } from './store';
-import CommunitiesGrid from './components/communities/CommunitiesGrid';
+import CommunityList from './components/communities/CommunityList';
 import CommunityDetails from './components/communities/CommunityDetails';
 import CreateUser from './components/users/CreateUSer';
 import UpdateUser from './components/users/UpdateUser';
 import UserDetails from './components/users/UserDetails';
-import Users from './components/users/Users';
+import Users from './components/users/UsersList';
+import ArtifactList from './components/artifacts/ArtifactList';
+import ArtifactDetails from './components/artifacts/ArtifactDetails';
 
 /**
  * COMPONENT
@@ -24,13 +26,18 @@ class Routes extends Component {
 
     return (
       <div>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/users" component={Users} />
         <Route exact path="/users/:id" component={UserDetails} />
         <Route exact path="/create-user" component={CreateUser} />
         <Route exact path="/update-user" component={UpdateUser} />
-        <Route exact path="/communities" component={CommunitiesGrid} />
-        <Route exact path="/communities-details" component={CommunityDetails} />
+        <Route exact path="/communities" component={CommunityList} />
+        <Route exact path="/communities/:id" component={CommunityDetails} />
+        <Route exact path="/artifacts" component={ArtifactList} />
+        <Route exact path="/artifacts/:id" component={ArtifactDetails} />
+
+        {/* <Route exact path="/communities-details" component={CommunityDetails} /> */}
+        <Route exact path="/login" component={Login} />
 
         {/* {isLoggedIn ? (
           <Switch>

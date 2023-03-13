@@ -40,9 +40,6 @@ const User = db.define('user', {
   bio: {
     type: TEXT,
   },
-  profilePic: {
-    type: STRING,
-  },
 });
 
 module.exports = User;

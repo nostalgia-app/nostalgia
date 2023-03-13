@@ -1,34 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Typography, Grid } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+// import { fetchCommunity } from '../../store';
+import { Container, Typography } from '@material-ui/core';
 
 const CommunityDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchCommunity(id));
+  }, []);
+
+  const community = useSelector(state => state.community.community);
+
   return (
-    <div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}></div>
-      <Container>
-        <Typography variant="h2" align="center" gutterBottom>
-          Community Details
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          justifyContent="center"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            border: '2pt solid blue',
-          }}
-        >
-          <Grid item style={{ border: '2pt solid green', margin: '10px' }}>
-            Image or Header box/row
-          </Grid>
-          <Grid item style={{ border: '2pt solid orange', margin: '10px' }}>
-            Content goes here...
-          </Grid>
-        </Grid>
-      </Container>
-    </div>
+    // Page is wrapp in a container to start - keeps things spaced clean
+    <Container>
+      <Typography align="center" variant="h3" component="h1" gutterBottom>
+        Community Details
+      </Typography>
+      <Typography variant="h5" gutterBottom>
+        {community.name}
+      </Typography>
+      <Typography variant="h6">{community.bio}</Typography>
+    </Container>
   );
 };
 
