@@ -50,5 +50,34 @@ router.post('/:artifactId/:userId', async(req,res,next)=>{
     }
 })
 //edit a comment
+router.put('/:id', async(req,res,next)=>{
+  try {
+      
+      await Comment.update(req.body, {
+        where:{
+          id: req.params.id
+        }
+      })
+      newComment = Comment.findByPk(req.params.id)
+      res.send(newComment)
+      
+  } catch (error) {
+      res.status(500).json({
+          message: "ERROR EDITING THIS COMMENT",
+          error: error.message
+      })
+  }
+})
 
 //delete a commment
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deletedComment = await Comment.findByPk(req.params.id)
+    await deletedComment.destroy()
+    res.json(deletedComment);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'Error deleting the comment', error: err.message });
+  }
+});
