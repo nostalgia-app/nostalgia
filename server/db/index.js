@@ -1,15 +1,16 @@
 //this is the access point for all things database related!
 
-const db = require("./db");
+const db = require('./db');
 
 const User = require("./models/User");
 const Community = require("./models/Community");
 const Artifact = require("./models/Artifact");
 const User_Community = require("./models/User_Community");
 const Comment = require("./models/Comment")
+const Image = require('./models/Image');
 
 //associations could go here!
-Community.belongsTo(User, { foreignKey: "adminId" });
+Community.belongsTo(User, { foreignKey: 'adminId' });
 Community.belongsToMany(User, { through: User_Community });
 User.belongsToMany(Community, { through: User_Community });
 
@@ -35,6 +36,7 @@ module.exports = {
     Artifact,
     Community,
     User_Community,
-    Comment
+    Comment,
+    Image,
   },
 };

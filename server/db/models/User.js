@@ -7,46 +7,40 @@ const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require('sequelize');
 
 const SALT_ROUNDS = 5;
 
-const User = db.define(
-  'user',
-  {
-    id: {
-      type: UUID,
-      primaryKey: true,
-      defaultValue: UUIDV4,
-    },
-    username: {
-      type: STRING,
-      unique: true,
-      allowNull: false,
-    },
-    password: {
-      type: STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    firstName: {
-      type: STRING,
-    },
-    lastName: {
-      type: STRING,
-    },
-    age: {
-      type: INTEGER,
-    },
-    location: {
-      type: STRING,
-    },
-    bio: {
-      type: TEXT,
-    },
-    profilePic: {
-      type: STRING,
+const User = db.define('user', {
+  id: {
+    type: UUID,
+    primaryKey: true,
+    defaultValue: UUIDV4,
+  },
+  username: {
+    type: STRING,
+    unique: true,
+    allowNull: false,
+  },
+  password: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
     },
   },
-);
+  firstName: {
+    type: STRING,
+  },
+  lastName: {
+    type: STRING,
+  },
+  age: {
+    type: INTEGER,
+  },
+  location: {
+    type: STRING,
+  },
+  bio: {
+    type: TEXT,
+  },
+});
 
 module.exports = User;
 
@@ -77,9 +71,13 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
+    const verify = await jwt.verify(token, process.env.JWT);
+    console.log(verify);
     const { id } = await jwt.verify(token, process.env.JWT);
-    const user = User.findByPk(id);
+    const user = await User.findByPk(id);
+    console.log('user', user);
     if (!user) {
+      console.log('check....');
       throw 'nooo';
     }
     return user;
