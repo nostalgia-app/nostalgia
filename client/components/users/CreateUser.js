@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createNewUser } from '../../store';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createNewUser, fetchUsers } from '../../store';
+import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Button, Container, Typography, Grid } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
@@ -8,29 +10,26 @@ import TextField from '@mui/material/TextField';
 const CreateUser = () => {
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [age, setAge] = useState('');
-  // const [location, setLocation] = useState('');
-  // const [bio, setBio] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(
       createNewUser({
+        firstName: firstName,
+        lastName: lastName,
         username: userName,
         password: password,
-        // firstName: firstName,
-        // lastName: lastName,
-        // age: age,
-        // location: location,
-        // bio: bio,
       })
     );
+
     console.log('new user created');
+    history.push('/users-success');
   };
 
   return (
@@ -44,18 +43,6 @@ const CreateUser = () => {
           style={{ display: 'flex', flexDirection: 'column' }}
         >
           <TextField
-            onChange={e => setUserName(e.target.value)}
-            label="Username"
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
-            onChange={e => setPassword(e.target.value)}
-            label="Password"
-            margin="normal"
-            variant="outlined"
-          />
-          {/* <TextField
             onChange={e => setFirstName(e.target.value)}
             label="First Name"
             margin="normal"
@@ -68,25 +55,17 @@ const CreateUser = () => {
             variant="outlined"
           />
           <TextField
-            onChange={e => setAge(e.target.value)}
-            label="Age"
+            onChange={e => setUserName(e.target.value)}
+            label="Username"
             margin="normal"
             variant="outlined"
           />
           <TextField
-            onChange={e => setLocation(e.target.value)}
-            label="Location"
+            onChange={e => setPassword(e.target.value)}
+            label="Password"
             margin="normal"
             variant="outlined"
           />
-          <TextField
-            onChange={e => setBio(e.target.value)}
-            label="Bio"
-            margin="normal"
-            variant="outlined"
-            multiline
-            rows={5}
-          /> */}
           <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>

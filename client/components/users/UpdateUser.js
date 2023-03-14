@@ -8,9 +8,8 @@ import TextField from '@mui/material/TextField';
 const UpdateUser = ({ user }) => {
   const dispatch = useDispatch();
 
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-
+  const [age, setAge] = useState('');
+  const [location, setLocation] = useState('');
   const [bio, setBio] = useState('');
 
   const handleSubmit = e => {
@@ -18,16 +17,19 @@ const UpdateUser = ({ user }) => {
     dispatch(
       updateUser({
         id: user.id,
+        age: age,
+        location: location,
         bio: bio,
       })
     );
     console.log('user account updated');
+    window.location.reload();
   };
 
   return (
     <>
       <Container>
-        <Typography variant="h6">Update Bio</Typography>
+        <Typography variant="h6">Update Account</Typography>
         {/* <Grid> */}
         <Grid item xs={12} sm={8} md={6}>
           <form
@@ -35,8 +37,20 @@ const UpdateUser = ({ user }) => {
             style={{ display: 'flex', flexDirection: 'column' }}
           >
             <TextField
+              onChange={e => setAge(e.target.value)}
+              label="Age"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              onChange={e => setLocation(e.target.value)}
+              label="Location"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
               onChange={e => setBio(e.target.value)}
-              label="update your bio"
+              label="Bio"
               margin="normal"
               variant="outlined"
               multiline

@@ -29,16 +29,27 @@ const UserDetails = () => {
       <Typography variant="h4" gutterBottom>
         {user.firstName} {user.lastName}
       </Typography>
-      <Typography variant="h5" gutterBottom>
-        {user.location}
-      </Typography>
-      <Typography paragraph gutterBottom>
-        {user.age} years old
-      </Typography>
+      <div style={{ border: '2pt solid blue', marginTop: '20px' }}>
+        <Typography variant="h5" gutterBottom>
+          {user.location}
+        </Typography>
+      </div>
+      <div style={{ border: '2pt solid blue', marginTop: '20px' }}>
+        <Typography variant="h5" gutterBottom>
+          {user.age} years old
+        </Typography>
+      </div>
 
-      <Grid>
-        <UpdateUser user={user} />
-      </Grid>
+      <div style={{ border: '2pt solid blue', marginTop: '20px' }}>
+        <Typography variant="h5" paragraph gutterBottom>
+          {user.bio}
+        </Typography>
+      </div>
+      <div style={{ border: '2pt solid blue', marginTop: '20px' }}>
+        <Grid>
+          <UpdateUser user={user} />
+        </Grid>
+      </div>
     </Container>
   );
 };
