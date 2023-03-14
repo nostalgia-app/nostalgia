@@ -1,11 +1,11 @@
 const express = require('express')
-const app = express.Router()
+const router = express.Router()
 const { Artifact } = require('../db');
 
-module.exports = app;
+module.exports = router;
 
 //Get all artifacts
-app.get('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const artifacts = await Artifact.findAll()
     res.send(artifacts);
@@ -18,7 +18,7 @@ app.get('/', async (req, res, next) => {
 });
 
 //Get single artifact
-app.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const artifact = await Artifact.findByPk(req.params.id);
     res.send(artifact);
@@ -31,7 +31,7 @@ app.get('/:id', async (req, res, next) => {
 });
 
 //Create an artifact
-app.post('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const artifact = await Artifact.create(req.body);
     res.send(artifact);
@@ -44,7 +44,7 @@ app.post('/', async (req, res, next) => {
 });
 
 //Edit an artifact
-app.put('/:id', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     await Artifact.update(req.body, {
       where: {
@@ -62,7 +62,7 @@ app.put('/:id', async (req, res, next) => {
 });
 
 //Delete an Artifact
-app.delete('/:id', async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const artifact = await Artifact.findByPk(req.params.id);
     await artifact.destroy();
