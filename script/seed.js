@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Community, User_Community },
+  models: { User, Community, User_Community, Image },
 } = require('../server/db');
 
 /**
@@ -95,10 +95,43 @@ async function seed() {
     }),
   ]);
 
+  const images = await Promise.all([
+    Image.create({
+      title: 'Uncle & Aunt',
+      description: 'description of image 1',
+      fileName: 'bostonFamily.jpeg',
+      likes: 0,
+    }),
+    Image.create({
+      title: 'Charity Race',
+      description: 'description of image 2',
+      fileName: 'charityRace.jpg',
+      likes: 0,
+    }),
+    Image.create({
+      title: 'Grandpa',
+      description: 'description of image 3',
+      fileName: 'grandpa.jpeg',
+      likes: 0,
+    }),
+  ]);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded successfully`);
 
+  // console.log('db synced!');
+
+  // console.log(`seeded ${users.length} users`);
+  // console.log(`seeded successfully`);
+
+  console.log('db synced!');
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
   return {
     users: {
       cody: users[0],
@@ -108,6 +141,11 @@ async function seed() {
       comm1: communities[0],
       comm2: communities[1],
       comm3: communities[2],
+    },
+    images: {
+      image1: images[0],
+      image2: images[1],
+      image3: images[3],
     },
   };
 }

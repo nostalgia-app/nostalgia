@@ -15,12 +15,12 @@ nav a {
   margin: 1em;
 }
 
-form div {
-  margin: 1em;
-  display: inline-block;
-}
-
 #communityCardImg {
   width: 200px;
   height: 200px;
 }
+
+/* form div {
+  margin: 1em;
+  display: inline-block;
+} */
