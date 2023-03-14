@@ -1,17 +1,17 @@
-import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Typography, makeStyles, AppBar, Toolbar } from '@material-ui/core';
-import { format } from 'date-fns';
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Typography, makeStyles, AppBar, Toolbar } from "@material-ui/core";
+// import { format } from 'date-fns';
 
-const useStyles = makeStyles(theme => {
+const useStyles = makeStyles((theme) => {
   return {
     // root: {
     //   display: 'flex',
     // },
     page: {
       marginTop: 80,
-      background: 'white',
-      width: '100%',
+      background: "white",
+      width: "100%",
       // padding: theme.spacing(3),
     },
     appbar: {
