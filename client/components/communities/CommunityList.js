@@ -1,7 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { addCommunity, setCommunities, setGeography } from "../../store";
+import {
+  addCommunity,
+  setCommunities,
+  setGeography,
+  createNewImage,
+} from "../../store";
 import CommunityCard from "./CommunityCard";
 
 import {
@@ -32,7 +37,8 @@ const CommunityList = () => {
   }, []);
 
   // Add Community Dialog
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [file, setFile] = useState();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,7 +56,10 @@ const CommunityList = () => {
 
   const onSubmit = (data, event) => {
     event.preventDefault();
-    const community = { ...data, adminId: auth.id };
+    // const imgFile = new FormData();
+    // imgFile.append("file", file);
+    // dispatch(createNewImage(imgFile));
+    const community = { ...data, adminId: auth.id, imageUrl: imgFile.path };
     dispatch(addCommunity(community));
     reset();
   };
@@ -186,6 +195,16 @@ const CommunityList = () => {
               type="text"
               fullWidth
               variant="standard"
+            />
+            <TextField
+              type="file"
+              name="imageUrl"
+              accept=".jpg, .jpeg, .png"
+              variant="outlined"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                setFile(file);
+              }}
             />
           </DialogContent>
           <DialogActions>

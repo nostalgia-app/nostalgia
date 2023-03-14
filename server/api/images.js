@@ -1,13 +1,13 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
   models: { Image },
-} = require('../db');
+} = require("../db");
 
-const path = require('path');
-const multer = require('multer');
+const path = require("path");
+const multer = require("multer");
 
 // GET ALL
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const images = await Image.findAll();
     res.send(images);
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // GET SINGLE (including all users & artifacts)
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     let image = await Image.findByPk(req.params.id);
     res.send(image);
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res, next) => {
 
 const storageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
-    cb(null, 'public/artifactUploads');
+    cb(null, "public/artifactUploads");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -41,10 +41,10 @@ const upload = multer({
 });
 
 // CREATE NEW
-router.post('/single', upload.single('file'), async (req, res, next) => {
+router.post("/single", upload.single("file"), async (req, res, next) => {
   try {
     const file = req.file;
-    console.log(file);
+    console.log("post", req.file);
     const image = await Image.create({
       title: req.body.title,
       description: req.body.description,
@@ -58,7 +58,7 @@ router.post('/single', upload.single('file'), async (req, res, next) => {
 });
 
 // UPDATE
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const image = await Image.findByPk(req.params.id);
     await image.update(req.body);
