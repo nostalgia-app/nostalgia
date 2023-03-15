@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Image },
+  models: { UserPic },
 } = require('../db');
 
 const path = require('path');
@@ -9,8 +9,8 @@ const multer = require('multer');
 // GET ALL
 router.get('/', async (req, res, next) => {
   try {
-    const images = await Image.findAll();
-    res.send(images);
+    const userPics = await UserPic.findAll();
+    res.send(userPics);
   } catch (ex) {
     next(ex);
   }
@@ -19,8 +19,8 @@ router.get('/', async (req, res, next) => {
 // GET SINGLE (including all users & artifacts)
 router.get('/:id', async (req, res, next) => {
   try {
-    let image = await Image.findByPk(req.params.id);
-    res.send(image);
+    let userPic = await UserPic.findByPk(req.params.id);
+    res.send(userPic);
   } catch (ex) {
     next(ex);
   }
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res, next) => {
 
 const storageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
-    cb(null, 'public/artifactUploads');
+    cb(null, 'public/userPicUploads');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -45,25 +45,11 @@ router.post('/single', upload.single('file'), async (req, res, next) => {
   try {
     const file = req.file;
     console.log(file);
-    const image = await Image.create({
-      title: req.body.title,
-      description: req.body.description,
+    const userPic = await UserPic.create({
       fileName: req.file.filename,
-      likes: req.file.likes,
       userId: req.body.userId,
     });
-    res.send(image);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// UPDATE
-router.put('/:id', async (req, res, next) => {
-  try {
-    const image = await Image.findByPk(req.params.id);
-    await image.update(req.body);
-    res.json(image);
+    res.send(userPic);
   } catch (err) {
     next(err);
   }

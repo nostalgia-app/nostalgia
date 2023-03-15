@@ -2,14 +2,46 @@ import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchImage, updateImage } from '../../store';
-import { Container, Typography, Grid, Card, Button } from '@material-ui/core';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  Button,
+  TextField,
+} from '@material-ui/core';
 
 // IMAGES DATA HAS BEEN USED FOR TESTING UPLOADS - REPLACE WITH ARTIFACT DATA
+
+const exampleComments = [
+  {
+    id: 1,
+    comment: 'this is an example comment',
+    likes: 3,
+  },
+  {
+    id: 2,
+    comment: 'this is an example comment',
+    likes: 5,
+  },
+  {
+    id: 3,
+    comment: 'this is an example comment',
+    likes: 7,
+  },
+];
+
+// target data above
+// 2 attributes needed for 'createComment' below - artifact.id and user.id
+// ask Sam for store thunks
 
 const ArtifactDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
+  console.log('this is the artifact id', id);
+
+  const { auth } = useSelector(state => state);
+  console.log('this is the current users id', auth.id);
 
   useEffect(() => {
     dispatch(fetchImage(id));
@@ -19,6 +51,7 @@ const ArtifactDetails = () => {
   const handleClick = () => {
     console.log('image liked');
     dispatch(updateImage({ id: image.id, likes: image.likes + 1 }));
+    window.location.reload();
   };
 
   const { image } = useSelector(state => state.image);
@@ -73,7 +106,56 @@ const ArtifactDetails = () => {
                   Like
                 </Button>
               </div>
+              {/* 
+              /
+              /
+              /
+              /
+              */}
               <div style={{ paddingTop: 10 }}>{image.likes}</div>
+            </div>
+            <div
+              style={{ border: '2pt solid blue', height: '95%', padding: 5 }}
+            >
+              <form>
+                <div
+                  style={{
+                    border: '2pt solid green',
+                    marginTop: 10,
+                    marginBottom: 10,
+                  }}
+                >
+                  <TextField
+                    style={{ width: '100%' }}
+                    // onChange={e => setBio(e.target.value)}
+                    label="post a comment"
+                    margin="normal"
+                    variant="outlined"
+                    multiline
+                    minRows={5}
+                  />
+                  <button>POST</button>
+                </div>
+              </form>
+
+              <div style={{ border: '2pt solid green' }}>
+                Comments
+                {exampleComments.map(comment => {
+                  return (
+                    <div
+                      key={comment.id}
+                      style={{
+                        border: '1pt solid rgb(241, 241, 241)',
+                        padding: 5,
+                        margin: 10,
+                      }}
+                    >
+                      <span>{comment.comment}</span> -
+                      <span>Likes: {comment.likes}</span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

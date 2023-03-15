@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser, fetchUsers } from '../../store';
-import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 import { Button, Container, Typography, Grid } from '@material-ui/core';

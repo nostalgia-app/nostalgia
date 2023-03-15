@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { createRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import history from './history';
 import store from './store';
 import App from './App';
-//const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('app'));
 
-ReactDOM.render(
+root.render(
   <Provider store={store}>
     <Router history={history}>
       <App />
     </Router>
-  </Provider>, document.getElementById('app')
+  </Provider>
 );

@@ -29,9 +29,7 @@ const Success = () => {
       <Typography variant="h5" align="center">
         Welcome to the Nostalgia community! Please select an option below.
       </Typography>
-      Let's give them two options... Once on the Account page they can complete
-      all data in account, and also upload an Avatar/profile pic. Can we make
-      this an all in one update form?
+
       <div
         style={{
           backgroundColor: 'rgb(241, 241, 241)',

@@ -2,7 +2,15 @@
 
 const {
   db,
-  models: { User, Community, User_Community, Artifact, Comment, Image  },
+  models: {
+    User,
+    Community,
+    User_Community,
+    Artifact,
+    Comment,
+    Image,
+    UserPic,
+  },
 } = require('../server/db');
 
 /**
@@ -23,6 +31,7 @@ async function seed() {
       age: 27,
       location: 'New York, NY',
       bio: 'Hey man, my name is Cody.',
+      profilePic: 'grandpa.jpeg',
     }),
     User.create({
       username: 'murphy',
@@ -32,6 +41,7 @@ async function seed() {
       age: 98,
       location: 'Dublin, Ireland',
       bio: "I'm looking for a guy named Cody. Is he here?",
+      profilePic: 'grandpa.jpeg',
     }),
   ]);
 
@@ -115,6 +125,10 @@ async function seed() {
       likes: 0,
     }),
   ]);
+  const userPics = await Promise.all([
+    UserPic.create({ fileName: 'concert.jpg' }),
+    UserPic.create({ fileName: 'youngFamily.jpg' }),
+  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
@@ -127,18 +141,17 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[1].id,
-      name:"Samuel"
-    })
-
-  ])
+      name: 'Samuel',
+    }),
+  ]);
 
   const comment = await Promise.all([
     Comment.create({
-        artifactId: artifact[0].id,
-        userId: users[0].id,
-        comment: "DEFAULT COMMENT YESSA"
-      })
-  ])
+      artifactId: artifact[0].id,
+      userId: users[0].id,
+      comment: 'DEFAULT COMMENT YESSA',
+    }),
+  ]);
   return {
     users: {
       cody: users[0],
@@ -149,16 +162,20 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
-    artifact:{
-      samuel: artifact[0]
+    artifact: {
+      samuel: artifact[0],
     },
-    comment:{
-      com1: comment[0]
+    comment: {
+      com1: comment[0],
     },
-      images: {
+    images: {
       image1: images[0],
       image2: images[1],
       image3: images[3],
+    },
+    userPics: {
+      userPic1: userPics[0],
+      userPic2: userPics[1],
     },
   };
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 // import CommunitiesGrid from "./CommunitiesGrid";
 
 export const Home = props => {

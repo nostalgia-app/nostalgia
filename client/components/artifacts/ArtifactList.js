@@ -17,6 +17,7 @@ const ArtifactList = () => {
   }, []);
   const imageData = useSelector(state => state.image);
   const images = imageData.images;
+  console.log(images);
 
   return (
     // Page is wrapp in a container - clean spacing

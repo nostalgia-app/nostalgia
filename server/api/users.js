@@ -3,6 +3,9 @@ const {
   models: { User },
 } = require('../db');
 
+const path = require('path');
+const multer = require('multer');
+
 // GET ALL
 router.get('/', async (req, res, next) => {
   try {
@@ -38,6 +41,36 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+const storageEngine = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, 'public/profilePicUploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storageEngine,
+  limits: { fileSize: 10000000 },
+});
+
+// new way
+// UPDATE USER
+// router.put('/:id', upload.single('file'), async (req, res, next) => {
+//   try {
+//     const file = req.file;
+//     console.log(file);
+//     const user = await User.findByPk(req.params.id);
+//     await user.update(req.body);
+//     res.json(user);
+//     res.send(file);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// First way
 // UPDATE USER
 router.put('/:id', async (req, res, next) => {
   try {
