@@ -40,6 +40,7 @@ router.get("/:id", async (req, res, next) => {
 // POST /api/communities
 router.post("/", async (req, res, next) => {
   try {
+    console.log("comm", req.body);
     res.status(201).send(await Community.create(req.body));
   } catch (err) {
     next(err);

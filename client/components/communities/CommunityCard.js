@@ -1,27 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Card, CardHeader, CardContent } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  Container,
+  Card,
+  CardHeader,
+  CardContent,
+  CardMedia,
+  Button,
+  Grid,
+  CardActionArea,
+  Typography,
+  Box,
+} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
-const CommunityCard = ({ community }) => {
+const CommunityCard = (props) => {
+  const { community } = props;
+
+  const history = useHistory();
+  const routeChange = () => {
+    let path = `/communities/${community.id}`;
+    history.push(path);
+  };
+
   return (
-    // card is wrapped in container to start - clean spacing
-    // always try to use standard card elements: Header, Media, Content
-    // card is wrapped in 'Link' to individual details page
-
-    <Container>
-      {/* <Link to={`/communities/${community.id}`}> */}
+    <Grid item zeroMinWidth key={community.id}>
       <Card
         elevation={3}
-        style={{ color: 'black', padding: 10, marginLeft: 20, width: '95%' }}
+        style={{
+          color: "black",
+          padding: 10,
+          marginLeft: 20,
+          width: 350,
+          height: 350,
+        }}
       >
-        <CardHeader title={community.name} />
-        <CardMedia>Media section is good for images...</CardMedia>
+        <CardActionArea>
+          <Link to={`/communities/${community.id}`}>
+            <CardMedia
+              src={community.imageUrl}
+              component="img"
+              height="250"
+              width="250"
+              sx={{ padding: "1em 1em 0 1em" }}
+            />
+            <Typography align="center" style={{ overflowWrap: "break-word" }}>
+              {community.name}
+            </Typography>
+          </Link>
+        </CardActionArea>
         <CardContent>
-          Content seciond is good for text, buttons etc.
+          <Box display="flex" justifyContent="space-around" alignItems="center">
+            <Button variant="contained" sx={{ borderRadius: 50 }}>
+              Join
+            </Button>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: 50 }}
+              onClick={routeChange}
+            >
+              Learn
+            </Button>
+          </Box>
         </CardContent>
       </Card>
-      {/* </Link> */}
-    </Container>
+    </Grid>
   );
 };
 
