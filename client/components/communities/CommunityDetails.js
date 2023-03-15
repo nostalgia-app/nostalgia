@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { setCommunity } from "../../store";
 import { useHistory } from "react-router-dom";
+import ArtifactUpload from "../artifacts/ArtifactUpload";
 
 const CommunityDetails = () => {
   const { id } = useParams();
@@ -64,6 +65,7 @@ const CommunityDetails = () => {
         <Typography variant="h5" gutterBottom></Typography>
         <Typography variant="h6">{community.bio}</Typography>
       </Card>
+      <ArtifactUpload />
     </Container>
   );
 };
