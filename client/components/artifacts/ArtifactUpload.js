@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createNewImage } from '../../store';
-import { TextField, Button, Grid, Container } from '@material-ui/core';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { createNewImage } from "../../store";
+import { TextField, Button, Grid, Container } from "@material-ui/core";
 
 const ArtifactUpload = () => {
   //
@@ -11,31 +11,32 @@ const ArtifactUpload = () => {
   const [description, setDescription] = useState();
   const [file, setFile] = useState();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append('title', title);
-    data.append('description', description);
-    data.append('file', file);
+    data.append("title", title);
+    data.append("description", description);
+    data.append("file", file);
     dispatch(createNewImage(data));
-    console.log('uploaded');
+    console.log(data);
+    console.log("uploaded");
   };
   return (
     // Page is wrapped in a container to start - keeps things spaced clean
-    <Container style={{ display: 'flex', marginBottom: 30, width: '30%' }}>
+    <Container style={{ display: "flex", marginBottom: 30, width: "30%" }}>
       <Grid>
         <form
           onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
+          style={{ display: "flex", flexDirection: "column" }}
         >
           <TextField
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             label="artifact name"
             margin="normal"
             variant="outlined"
           />
           <TextField
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             label="description"
             margin="normal"
             variant="outlined"
@@ -47,7 +48,7 @@ const ArtifactUpload = () => {
             type="file"
             accept=".jpg, .jpeg, .png"
             variant="outlined"
-            onChange={e => {
+            onChange={(e) => {
               const file = e.target.files[0];
               setFile(file);
               console.log(file);
