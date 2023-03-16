@@ -1,11 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImage, updateImage } from '../../store';
+import {
+  fetchImage,
+  updateImage,
+  fetchComments,
+  createComment,
+} from '../../store';
 import {
   Container,
   Typography,
-  Grid,
   Card,
   Button,
   TextField,
@@ -13,39 +17,39 @@ import {
 
 // IMAGES DATA HAS BEEN USED FOR TESTING UPLOADS - REPLACE WITH ARTIFACT DATA
 
-const exampleComments = [
-  {
-    id: 1,
-    comment: 'this is an example comment',
-    likes: 3,
-  },
-  {
-    id: 2,
-    comment: 'this is an example comment',
-    likes: 5,
-  },
-  {
-    id: 3,
-    comment: 'this is an example comment',
-    likes: 7,
-  },
-];
-
-// target data above
-// 2 attributes needed for 'createComment' below - artifact.id and user.id
-// ask Sam for store thunks
-
 const ArtifactDetails = () => {
+  const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log('this is the artifact id', id);
+  // console.log(id);
+  // console.log(auth);
 
-  const { auth } = useSelector(state => state);
-  console.log('this is the current users id', auth.id);
-
+  // IMAGES
   useEffect(() => {
     dispatch(fetchImage(id));
   }, []);
+  const { image } = useSelector(state => state.image);
+
+  // COMMENTS
+  const [commentContent, setCommentContent] = useState('');
+  useEffect(() => {
+    dispatch(fetchComments());
+  }, []);
+  const { comments } = useSelector(state => state.comment);
+  // const comments = data.comments;
+
+  const postComment = e => {
+    e.preventDefault();
+
+    console.log(commentContent);
+    dispatch(
+      createComment({
+        data: commentContent,
+        artifactId: id,
+        userId: auth.id,
+      })
+    );
+  };
 
   // update - increment 'likes' by 1 each click
   const handleClick = () => {
@@ -53,9 +57,6 @@ const ArtifactDetails = () => {
     dispatch(updateImage({ id: image.id, likes: image.likes + 1 }));
     window.location.reload();
   };
-
-  const { image } = useSelector(state => state.image);
-  console.log(image.likes);
 
   // wide row format - image 70% / content 30% - content contains description, like button and likes. We can place additional stats here, icons etc.
   return (
@@ -117,7 +118,7 @@ const ArtifactDetails = () => {
             <div
               style={{ border: '2pt solid blue', height: '95%', padding: 5 }}
             >
-              <form>
+              <form onSubmit={postComment}>
                 <div
                   style={{
                     border: '2pt solid green',
@@ -127,7 +128,7 @@ const ArtifactDetails = () => {
                 >
                   <TextField
                     style={{ width: '100%' }}
-                    // onChange={e => setBio(e.target.value)}
+                    onChange={e => setCommentContent(e.target.value)}
                     label="post a comment"
                     margin="normal"
                     variant="outlined"
@@ -140,7 +141,7 @@ const ArtifactDetails = () => {
 
               <div style={{ border: '2pt solid green' }}>
                 Comments
-                {exampleComments.map(comment => {
+                {comments.map(comment => {
                   return (
                     <div
                       key={comment.id}

@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 const { Artifact } = require('../db');
 
 module.exports = router;
@@ -7,7 +7,7 @@ module.exports = router;
 //Get all artifacts
 router.get('/', async (req, res, next) => {
   try {
-    const artifacts = await Artifact.findAll()
+    const artifacts = await Artifact.findAll();
     res.send(artifacts);
   } catch (err) {
     res.status(500).json({
@@ -20,6 +20,7 @@ router.get('/', async (req, res, next) => {
 //Get single artifact
 router.get('/:id', async (req, res, next) => {
   try {
+    console.log(typeof req.params.id);
     const artifact = await Artifact.findByPk(req.params.id);
     res.send(artifact);
   } catch (err) {
@@ -54,9 +55,9 @@ router.put('/:id', async (req, res, next) => {
     const artifact = await Artifact.findByPk(req.params.id);
     res.json(artifact);
   } catch (err) {
-    res.status(500).json({ 
-      message: "Error updating artifact", 
-      error: err.message
+    res.status(500).json({
+      message: 'Error updating artifact',
+      error: err.message,
     });
   }
 });

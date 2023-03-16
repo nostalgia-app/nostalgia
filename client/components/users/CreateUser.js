@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser, fetchUsers } from '../../store';
 import { useHistory } from 'react-router-dom';
 
-import { Button, Container, Typography, Grid } from '@material-ui/core';
+import { Button, Typography, Grid } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 
 const CreateUser = () => {

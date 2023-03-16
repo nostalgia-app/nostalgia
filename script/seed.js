@@ -2,15 +2,7 @@
 
 const {
   db,
-  models: {
-    User,
-    Community,
-    User_Community,
-    Artifact,
-    Comment,
-    Image,
-    UserPic,
-  },
+  models: { User, Community, User_Community, Artifact, Comment, Image },
 } = require('../server/db');
 
 /**
@@ -125,10 +117,6 @@ async function seed() {
       likes: 0,
     }),
   ]);
-  const userPics = await Promise.all([
-    UserPic.create({ fileName: 'concert.jpg' }),
-    UserPic.create({ fileName: 'youngFamily.jpg' }),
-  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
@@ -172,10 +160,6 @@ async function seed() {
       image1: images[0],
       image2: images[1],
       image3: images[3],
-    },
-    userPics: {
-      userPic1: userPics[0],
-      userPic2: userPics[1],
     },
   };
 }

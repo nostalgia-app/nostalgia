@@ -1,27 +1,29 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Comment = db.define(
-  "comment",
-  {
-    id: {
-      type: Sequelize.UUID,
-      primaryKey: true,
-      defaultValue: Sequelize.UUIDV4,
+const Comment = db.define('comment', {
+  id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    defaultValue: Sequelize.UUIDV4,
+  },
+  comment: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
     },
-   comment : {
-      type: Sequelize.TEXT,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-      //defaultValue:"default for testing purposes"
-    },
-    likes: {
-      type: Sequelize.INTEGER,
-      defaultValue: 0
-    },
-  }
-);
+  },
+  // artifactId: {
+  //   type: Sequelize.STRING,
+  // },
+  // userId: {
+  //   type: Sequelize.STRING,
+  // },
+  likes: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+});
 
 module.exports = Comment;
