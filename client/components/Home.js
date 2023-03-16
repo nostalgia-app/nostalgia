@@ -1,10 +1,10 @@
-import React from 'react';
-import { Container, Typography, Grid, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { Container, Typography, Grid, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 // import CommunitiesGrid from "./CommunitiesGrid";
 
-export const Home = props => {
+export const Home = (props) => {
   const { username } = props;
 
   return (
@@ -26,8 +26,8 @@ export const Home = props => {
       {/* Basic button row - modifed to link to whatever needed */}
       <div
         style={{
-          backgroundColor: 'rgb(241, 241, 241)',
-          borderRadius: '.25rem',
+          backgroundColor: "rgb(241, 241, 241)",
+          borderRadius: ".25rem",
           marginTop: 30,
         }}
       >
@@ -43,6 +43,13 @@ export const Home = props => {
             <Link to="/artifacts">
               <Button variant="contained" size="large" color="secondary">
                 ARTIFACTS
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link to="/friends">
+              <Button variant="contained" size="large" color="secondary">
+                Friends
               </Button>
             </Link>
           </Grid>

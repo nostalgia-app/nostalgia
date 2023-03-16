@@ -1,12 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
-import thunkMiddleware from 'redux-thunk';
-import auth from './auth';
-import user from './user';
-import image from './image';
-import communities from './communities';
-import community from './community';
-import geographies from './geographies';
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
+import thunkMiddleware from "redux-thunk";
+import auth from "./auth";
+import user from "./user";
+import image from "./image";
+import communities from "./communities";
+import community from "./community";
+import geographies from "./geographies";
+import friends from "./friends";
 
 const reducer = combineReducers({
   auth,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   geographies,
   user,
   image,
+  friends,
 });
 const middleware = applyMiddleware(
   thunkMiddleware,
@@ -24,9 +26,10 @@ const store = createStore(reducer, middleware);
 
 export default store;
 
-export * from './auth';
-export * from './user';
-export * from './image';
-export * from './communities';
-export * from './community';
-export * from './geographies';
+export * from "./auth";
+export * from "./user";
+export * from "./image";
+export * from "./communities";
+export * from "./community";
+export * from "./geographies";
+export * from "./friends";

@@ -1,17 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/users/Login';
-import { Home } from './components/Home';
-import { me } from './store';
-import CommunityList from './components/communities/CommunityList';
-import CommunityDetails from './components/communities/CommunityDetails';
-import CreateUser from './components/users/CreateUSer';
-import UpdateUser from './components/users/UpdateUser';
-import UserDetails from './components/users/UserDetails';
-import Users from './components/users/UsersList';
-import ArtifactList from './components/artifacts/ArtifactList';
-import ArtifactDetails from './components/artifacts/ArtifactDetails';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Login, Signup } from "./components/users/Login";
+import { Home } from "./components/Home";
+import { me } from "./store";
+import CommunityList from "./components/communities/CommunityList";
+import CommunityDetails from "./components/communities/CommunityDetails";
+import CreateUser from "./components/users/CreateUSer";
+import UpdateUser from "./components/users/UpdateUser";
+import UserDetails from "./components/users/UserDetails";
+import UsersList from "./components/users/UsersList";
+import Friends from "./components/friends/friendsList";
+import ArtifactList from "./components/artifacts/ArtifactList";
+import ArtifactDetails from "./components/artifacts/ArtifactDetails";
+import FriendList from "./components/friends/friendsList";
 
 /**
  * COMPONENT
@@ -27,8 +29,9 @@ class Routes extends Component {
     return (
       <div>
         <Route exact path="/" component={Home} />
-        <Route exact path="/users" component={Users} />
+        <Route exact path="/users" component={UsersList} />
         <Route exact path="/users/:id" component={UserDetails} />
+        <Route exact path="/friends" component={UsersList} />
         <Route exact path="/create-user" component={CreateUser} />
         <Route exact path="/update-user" component={UpdateUser} />
         <Route exact path="/communities" component={CommunityList} />
@@ -36,7 +39,6 @@ class Routes extends Component {
         <Route exact path="/artifacts" component={ArtifactList} />
         <Route exact path="/artifacts/:id" component={ArtifactDetails} />
 
-        {/* <Route exact path="/communities-details" component={CommunityDetails} /> */}
         <Route exact path="/login" component={Login} />
 
         {/* {isLoggedIn ? (
@@ -63,7 +65,7 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
@@ -71,7 +73,7 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());

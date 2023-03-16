@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import UserCard from './UserCard';
-import { fetchUsers } from '../../store';
-import { Container, Typography, Grid } from '@material-ui/core';
+import React from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import UserCard from "./UserCard";
+import { fetchUsers } from "../../store";
+import { Container, Typography, Grid } from "@material-ui/core";
 
 const Users = () => {
   //
@@ -14,13 +14,13 @@ const Users = () => {
     dispatch(fetchUsers());
   }, []);
   //
-  const { users } = useSelector(state => state.user);
-  const { auth } = useSelector(state => state);
+  const { users } = useSelector((state) => state.user);
+  const { auth } = useSelector((state) => state);
 
   if (auth.id) {
-    console.log('true');
+    console.log("true");
   } else {
-    console.log('false');
+    console.log("false");
   }
   console.log(auth.id);
 
@@ -29,12 +29,12 @@ const Users = () => {
     <Container>
       {/* Start the actual page content with a basic title */}
       <Typography align="center" variant="h3" component="h1" gutterBottom>
-        User List
+        Find a Friend
       </Typography>
 
       {/* Set Grid and Map through the data - use card component to render */}
       <Grid container spacing={2}>
-        {users.map(user => {
+        {users.map((user) => {
           return (
             <Grid item key={user.id} xs={12} md={12}>
               <UserCard user={user} />

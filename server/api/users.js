@@ -49,17 +49,4 @@ router.put("/:id", async (req, res, next) => {
   }
 });
 
-// GET /api/users/:id/friends
-// Retrieves all friends for a specified user
-router.get("/:id/friends", async (req, res, next) => {
-  try {
-    const friends = await User_Friend.findAll({
-      where: { userId: req.params.id },
-    });
-    res.json(friends);
-  } catch (err) {
-    next(err);
-  }
-});
-
 module.exports = router;

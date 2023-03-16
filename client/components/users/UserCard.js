@@ -1,6 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Card, CardHeader, makeStyles, Container } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import {
+  Card,
+  CardHeader,
+  makeStyles,
+  Container,
+  CardMedia,
+  CardActionArea,
+  Button,
+} from "@material-ui/core";
 
 const UserCard = ({ user }) => {
   return (
@@ -10,8 +18,20 @@ const UserCard = ({ user }) => {
 
     <Container>
       <Link to={`/users/${user.id}`}>
-        <Card elevation={3} style={{ color: 'black' }}>
+        <Card elevation={3} style={{ color: "black" }}>
+          <CardMedia
+            src={user.imageUrl}
+            component="img"
+            height="100"
+            width="100"
+            align="left"
+          />
           <CardHeader title={user.username} />
+          <CardActionArea>
+            <Button variant="contained" sx={{ borderRadius: 50 }}>
+              Add Friend
+            </Button>
+          </CardActionArea>
         </Card>
       </Link>
     </Container>

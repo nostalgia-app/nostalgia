@@ -3,6 +3,20 @@ const {
   models: { User_Friend },
 } = require("../db");
 
+// GET /api/friends/
+// Retrieves all friends for a specified user
+router.get("/", async (req, res, next) => {
+  try {
+    // const friends = await User_Friend.findAll({
+    //   where: { userId: req.params.id },
+    // });
+    const friends = await User_Friend.findAll();
+    res.json(friends);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // POST /api/friends
 // To add a few friend
 router.post("/", async (req, res, next) => {
