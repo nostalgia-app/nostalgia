@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -6,27 +6,32 @@ import {
   CardHeader,
   CardMedia,
   CardContent,
+  CardActions,
+  Button,
 } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { removeArtifact } from '../../store';
 
 const ArtifactCard = ({ artifact }) => {
-  return (
-    // card is wrapped in container to start - clean spacing
-    // always try to use standard card elements: Header, Media, Content
-    // card is wrapped in 'Link' to individual details page
+  const dispatch = useDispatch();
 
+  return (
     <Container style={{ display: 'flex', flexDirection: 'column' }}>
-      <Link to={`/artifacts/${artifact.id}`}>
         <Card
           elevation={3}
           style={{ color: 'black', padding: 10, marginLeft: 20, width: '95%' }}
         >
           <CardHeader title={artifact.name} />
-          <CardMedia style={{ display: 'flex', justifyContent: 'center' }}>
-            <img src={`.././public/artifactUploads/${artifact.fileName}`}></img>
-          </CardMedia>
+          <Link to={`/artifacts/${artifact.id}`}>
+            <CardMedia style={{ display: 'flex', justifyContent: 'center' }}>
+              <img src={`.././public/artifactUploads/${artifact.fileName}`}></img>
+            </CardMedia>
+          </Link>
           <CardContent>{artifact.description ? artifact.description : ''}</CardContent>
+          <CardActions>
+            <Button size="small" onClick={() => dispatch(removeArtifact(artifact))}>Remove</Button>
+          </CardActions>
         </Card>
-      </Link>
     </Container>
   );
 };

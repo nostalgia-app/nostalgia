@@ -24,12 +24,26 @@ export const createArtifact = (data, communityId) => {
   }
 }
 
+export const removeArtifact = (artifact) => {
+  return async (dispatch) => {
+    try {
+      const { id } = artifact;
+      await axios.delete(`/api/artifacts/${id}`);
+      dispatch({ type: "REMOVE_ARTIFACT", id });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export default function (state = [], action) {
   switch (action.type) {
     case "SET_ARTIFACTS":
       return action.artifacts;
     case "CREATE_ARTIFACT":
       return [...state, action.artifact];
+    case "REMOVE_ARTIFACT":
+      return state.filter((artifact) => artifact.id !== action.id);
     default:
       return state;
   }
