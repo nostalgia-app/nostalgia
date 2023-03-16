@@ -111,11 +111,12 @@ const upload = multer({
 
 router.post("/:id/artifacts", upload.single("file"), async (req, res, next) => {
   try {
+    const community = await Community.findByPk(req.params.id);
     const artifact = await Artifact.create({
       name: req.body.name,
       description: req.body.description,
       fileName: req.file.filename,
-      communityId: req.body.communityId,
+      communityId: community.id,
       userId: req.body.userId,
     });
     res.send(artifact);
