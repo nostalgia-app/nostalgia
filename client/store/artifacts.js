@@ -12,10 +12,10 @@ export const setArtifacts = (id) => {
   }
 }
 
-export const createArtifact = (data) => {
+export const createArtifact = (data, communityId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post(`/api/communities/${data.communityId}/artifacts`, data);
+      const res = await axios.post(`/api/communities/${communityId}/artifacts`, data);
       const artifact = res.data;
       dispatch({ type: "CREATE_ARTIFACT", artifact });
     } catch (error) {
