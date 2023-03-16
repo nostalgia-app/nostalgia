@@ -97,24 +97,27 @@ async function seed() {
     }),
   ]);
 
-  const images = await Promise.all([
-    Image.create({
-      title: 'Uncle & Aunt',
+  const artifacts = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: 'Uncle & Aunt',
       description: 'description of image 1',
       fileName: 'bostonFamily.jpeg',
-      likes: 0,
     }),
-    Image.create({
-      title: 'Charity Race',
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: 'Charity Race',
       description: 'description of image 2',
       fileName: 'charityRace.jpg',
-      likes: 0,
     }),
-    Image.create({
-      title: 'Grandpa',
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: 'Grandpa',
       description: 'description of image 3',
       fileName: 'grandpa.jpeg',
-      likes: 0,
     }),
   ]);
 
@@ -140,6 +143,13 @@ async function seed() {
       comment: 'DEFAULT COMMENT YESSA',
     }),
   ]);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${communities.length} communities`);
+  console.log(`seeded ${artifacts.length} artifacts`);
+  console.log(`seeded ${comment.length} comments`);
+  console.log(`seeded successfully`);
+
   return {
     users: {
       cody: users[0],
@@ -150,17 +160,20 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
-    artifact: {
-      samuel: artifact[0],
+
+    artifacts: {
+      artifact1: artifacts[0],
+      artifact2: artifacts[1],
+      artifact3: artifacts[2],
     },
     comment: {
       com1: comment[0],
     },
-    images: {
-      image1: images[0],
-      image2: images[1],
-      image3: images[3],
-    },
+    // images: {
+    //   image1: images[0],
+    //   image2: images[1],
+    //   image3: images[3],
+    // },
   };
 }
 

@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const sequelize = require("sequelize");
 const {
-  models: { Community, User_Community, User },
+  models: { Community, User_Community, User, Artifact },
 } = require("../db");
-module.exports = router;
+const path = require("path");
+const multer = require("multer");
 
 // GET /api/communities
 router.get("/", async (req, res, next) => {
@@ -40,6 +41,7 @@ router.get("/:id", async (req, res, next) => {
 // POST /api/communities
 router.post("/", async (req, res, next) => {
   try {
+    console.log("comm", req.body);
     res.status(201).send(await Community.create(req.body));
   } catch (err) {
     next(err);
@@ -80,3 +82,47 @@ router.get("/:id/users", async (req, res, next) => {
     next(err);
   }
 });
+
+// GET /api/communities/:id/artifacts
+router.get("/:id/artifacts", async (req, res, next) => {
+  try {
+    const artifacts = await Artifact.findAll({
+      where: { communityId: req.params.id },
+    });
+    res.send(artifacts);
+  } catch (err) {
+    next(err);
+  }
+});
+
+const storageEngine = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, "public/artifactUploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storageEngine,
+  limits: { fileSize: 10000000 },
+});
+
+router.post("/:id/artifacts", upload.single("file"), async (req, res, next) => {
+  try {
+    const community = await Community.findByPk(req.params.id);
+    const artifact = await Artifact.create({
+      name: req.body.name,
+      description: req.body.description,
+      fileName: req.file.filename,
+      communityId: community.id,
+      userId: req.body.userId,
+    });
+    res.send(artifact);
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;

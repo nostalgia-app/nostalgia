@@ -7,20 +7,6 @@ const Artifact = db.define('artifact', {
     primaryKey: true,
     defaultValue: Sequelize.UUIDV4,
   },
-  userId: {
-    type: Sequelize.UUID,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  communityId: {
-    type: Sequelize.UUID,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
   name: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -40,12 +26,9 @@ const Artifact = db.define('artifact', {
     type: Sequelize.TEXT,
     allowNull: true,
   },
-  imageUrl: {
+  fileName: {
     type: Sequelize.STRING,
     allowNull: true,
-    validate: {
-      isUrl: true,
-    },
   },
   likes: {
     type: Sequelize.INTEGER,

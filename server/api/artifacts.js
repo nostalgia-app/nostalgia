@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Artifact } = require('../db');
 
-module.exports = router;
-
 //Get all artifacts
 router.get('/', async (req, res, next) => {
   try {
@@ -75,3 +73,5 @@ router.delete('/:id', async (req, res, next) => {
     });
   }
 });
+
+module.exports = router;
