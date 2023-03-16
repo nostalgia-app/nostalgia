@@ -24,10 +24,9 @@ export const createArtifact = (data, communityId) => {
   }
 }
 
-export const removeArtifact = (artifact) => {
+export const removeArtifact = (id) => {
   return async (dispatch) => {
     try {
-      const { id } = artifact;
       await axios.delete(`/api/artifacts/${id}`);
       dispatch({ type: "REMOVE_ARTIFACT", id });
     } catch (error) {

@@ -29,7 +29,7 @@ const ArtifactCard = ({ artifact }) => {
           </Link>
           <CardContent>{artifact.description ? artifact.description : ''}</CardContent>
           <CardActions>
-            <Button size="small" onClick={() => dispatch(removeArtifact(artifact))}>Remove</Button>
+            <Button size="small" onClick={() => dispatch(removeArtifact(artifact.id))}>Remove</Button>
           </CardActions>
         </Card>
     </Container>
