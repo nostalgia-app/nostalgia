@@ -3,6 +3,22 @@ const router = express.Router();
 const {models:{User_Community}} = require('../db')
 module.exports = router
 
+//20cd5978-2105-4c23-a115-16ab44162f39 - cody
+//Find a all of a User's Communities
+router.get('/:id', async (req, res, next) => {
+  try {
+    const userCommunityyy = await User_Community.findAll({
+      where: { userId: req.params.id },
+    });
+    res.send(userCommunityyy);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'Error getting the users community', error: err.message });
+  }
+});
+
+
 //Join a community
 router.post('/:communityId/:userId', async (req, res, next) => {
     try {
