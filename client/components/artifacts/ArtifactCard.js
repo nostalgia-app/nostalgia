@@ -8,23 +8,23 @@ import {
   CardContent,
 } from '@material-ui/core';
 
-const ArtifactCard = ({ image }) => {
+const ArtifactCard = ({ artifact }) => {
   return (
     // card is wrapped in container to start - clean spacing
     // always try to use standard card elements: Header, Media, Content
     // card is wrapped in 'Link' to individual details page
 
     <Container style={{ display: 'flex', flexDirection: 'column' }}>
-      <Link to={`/artifacts/${image.id}`}>
+      <Link to={`/artifacts/${artifact.id}`}>
         <Card
           elevation={3}
           style={{ color: 'black', padding: 10, marginLeft: 20, width: '95%' }}
         >
-          <CardHeader title={image.title} />
+          <CardHeader title={artifact.name} />
           <CardMedia style={{ display: 'flex', justifyContent: 'center' }}>
-            <img src={`.././public/artifactUploads/${image.fileName}`}></img>
+            <img src={`.././public/artifactUploads/${artifact.fileName}`}></img>
           </CardMedia>
-          <CardContent>{image.description}</CardContent>
+          <CardContent>{artifact.description ? artifact.description : ''}</CardContent>
         </Card>
       </Link>
     </Container>
