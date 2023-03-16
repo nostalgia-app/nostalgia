@@ -6,6 +6,8 @@ import {
   setCommunities,
   setGeography,
   createNewImage,
+  addUserToCommunity,
+  setUserCommunities
 } from "../../store";
 import CommunityCard from "./CommunityCard";
 
@@ -27,13 +29,16 @@ import {
 } from "@material-ui/core";
 
 const CommunityList = () => {
-  const { communities, geographies, auth } = useSelector((state) => state);
+  const { communities, geographies, auth,userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
   useEffect(() => {
     dispatch(setGeography());
+  }, []);
+  useEffect(() => {
+    dispatch(setUserCommunities());
   }, []);
 
   // Add Community Dialog

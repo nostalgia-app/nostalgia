@@ -2,10 +2,7 @@ import axios from 'axios'
 import Community from './community'
 
 //STATE
-const initialState = {
-    userCommunities : [],
-    //userCommunity : {}
-}
+
 
 //ACTION TYPES
 //const SET_USERCOMMUNITY = "SET_USERCOMMUNITY"
@@ -22,19 +19,19 @@ export const _setUserCommunities = userCommunities => ({
     type: SET_USERCOMMUNITIES,
     userCommunities,        
     });
-export const _addUserCommunity = userCommunity => ({
+export const _addUserCommunity = userCommunities => ({
     type: ADD_USERCOMMUNITY,
-    userCommunity,
+    userCommunities,
     });
-export const _deleteUserCommunity = userCommunity => ({
+export const _deleteUserCommunity = userCommunites => ({
     type: DELETE_USERCOMMUNITY,
-    userCommunity,
+    userCommunities,
     });
 
 
 
 //get all of a user's communities
-export const setCommunities = (user) => {
+export const setUserCommunities = (user) => {
     return async (dispatch) => {
       try {
         const res = await axios.get(`/api/userCommunity/${user}`);
@@ -46,19 +43,29 @@ export const setCommunities = (user) => {
     };
   };
 
-
-
 //add user to a community
-export const addUserToCommunity =(user)=>{
+export const addUserToCommunity =(commId,userId)=>{
     return async (dispatch) => {
         try {
-        const res = await axios.post("/api/communities/:id", newComm);
+        const res = await axios.post(`/api/communities/${commId}${userId}` );
         const community = res.data;
-        dispatch(_addCommunity(community));
+        dispatch(_addUserCommunity(community));
         } catch (error) {
         console.log(error);
         }
     };
     };
 
+    export default function (state = [], action) {
+        switch (action.type) {
+        
+        case SET_USERCOMMUNITIES:
+            return action.userCommunity;
+        case ADD_USERCOMMUNITY:
+            return action.userCommunity;
+          
+          default:
+            return state;
+        }
+      }
    

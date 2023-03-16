@@ -7,6 +7,7 @@ import image from './image';
 import communities from './communities';
 import community from './community';
 import geographies from './geographies';
+import userCommunity from './user_communities'
 
 const reducer = combineReducers({
   auth,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   geographies,
   user,
   image,
+  userCommunity
 });
 const middleware = applyMiddleware(
   thunkMiddleware,
@@ -30,3 +32,4 @@ export * from './image';
 export * from './communities';
 export * from './community';
 export * from './geographies';
+export * from './user_communities'
