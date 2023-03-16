@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchImage, updateImage } from '../../store';
+// import { fetchImage, updateImage } from '../../store';
 import { Container, Typography, Grid, Card, Button } from '@material-ui/core';
 
 // IMAGES DATA HAS BEEN USED FOR TESTING UPLOADS - REPLACE WITH ARTIFACT DATA
