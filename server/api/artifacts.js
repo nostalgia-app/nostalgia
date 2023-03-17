@@ -59,7 +59,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-//Delete an Artifact
+//Delete an artifact
 router.delete('/:id', async (req, res, next) => {
   try {
     const artifact = await Artifact.findAll({

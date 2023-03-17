@@ -35,6 +35,18 @@ export const removeArtifact = (id) => {
   }
 }
 
+export const updateArtifact = (data) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/artifacts/${data.id}`, data);
+      const artifact = res.data;
+      dispatch({ type: "UPDATE_ARTIFACT", artifact });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
 export default function (state = [], action) {
   switch (action.type) {
     case "SET_ARTIFACTS":
@@ -43,6 +55,8 @@ export default function (state = [], action) {
       return [...state, action.artifact];
     case "REMOVE_ARTIFACT":
       return state.filter((artifact) => artifact.id !== action.id);
+    case "UPDATE_ARTIFACT":
+      return state.map((a) => a.id === action.artifact.id ? action.artifact : a);
     default:
       return state;
   }
