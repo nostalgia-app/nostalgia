@@ -10,7 +10,7 @@ export const setArtifacts = (id) => {
       console.log(error);
     }
   }
-}
+};
 
 export const createArtifact = (data, communityId) => {
   return async (dispatch) => {
@@ -22,7 +22,7 @@ export const createArtifact = (data, communityId) => {
       console.log(error);
     }
   }
-}
+};
 
 export const removeArtifact = (id) => {
   return async (dispatch) => {
@@ -33,7 +33,7 @@ export const removeArtifact = (id) => {
       console.log(error);
     }
   }
-}
+};
 
 export const updateArtifact = (data) => {
   return async (dispatch) => {
@@ -45,19 +45,32 @@ export const updateArtifact = (data) => {
       console.log(error);
     }
   }
-}
+};
 
-export default function (state = [], action) {
+const initialState = {
+  artifacts: [],
+  artifact: {},
+};
+
+export default function (state = initialState, action) {
   switch (action.type) {
     case "SET_ARTIFACTS":
-      return action.artifacts;
+      return { ...state, artifacts: action.artifacts };
     case "CREATE_ARTIFACT":
-      return [...state, action.artifact];
+      return { ...state, artifacts: [action.artifact, ...state.artifacts] };
     case "REMOVE_ARTIFACT":
-      return state.filter((artifact) => artifact.id !== action.id);
+      return {
+        ...state,
+        artifacts: state.artifacts.filter((artifact) => artifact.id !== action.id),
+      };
     case "UPDATE_ARTIFACT":
-      return state.map((a) => a.id === action.artifact.id ? action.artifact : a);
+      return {
+        artifacts: state.artifacts.map((a) =>
+          a.id === action.artifact.id ? action.artifact : a
+        ),
+        artifact: action.artifact,
+      };
     default:
       return state;
   }
-}
+};
