@@ -77,22 +77,22 @@ async function seed() {
       userId: users[0].id,
       communityId: communities[0].id,
     }),
-    User_Community.create({
-      userId: users[1].id,
-      communityId: communities[0].id,
-    }),
-    User_Community.create({
-      userId: users[0].id,
-      communityId: communities[1].id,
-    }),
-    User_Community.create({
-      userId: users[1].id,
-      communityId: communities[1].id,
-    }),
-    User_Community.create({
-      userId: users[1].id,
-      communityId: communities[2].id,
-    }),
+    // User_Community.create({
+    //   userId: users[1].id,
+    //   communityId: communities[0].id,
+    // }),
+    // User_Community.create({
+    //   userId: users[0].id,
+    //   communityId: communities[1].id,
+    // }),
+    // User_Community.create({
+    //   userId: users[1].id,
+    //   communityId: communities[1].id,
+    // }),
+    // User_Community.create({
+    //   userId: users[1].id,
+    //   communityId: communities[2].id,
+    // }),
   ]);
 
   const images = await Promise.all([

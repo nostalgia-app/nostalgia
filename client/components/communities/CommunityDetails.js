@@ -19,7 +19,7 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setCommunity(id));
   }, [id]);
-
+  
   const history = useHistory();
   const routeChange = () => {
     let path = `/communities/`;

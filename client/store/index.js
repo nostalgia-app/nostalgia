@@ -7,7 +7,7 @@ import image from './image';
 import communities from './communities';
 import community from './community';
 import geographies from './geographies';
-import userCommunity from './user_communities'
+import userCommunity from './userCommunities'
 
 const reducer = combineReducers({
   auth,
@@ -32,4 +32,4 @@ export * from './image';
 export * from './communities';
 export * from './community';
 export * from './geographies';
-export * from './user_communities'
+export * from './userCommunities'

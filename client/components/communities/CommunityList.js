@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { Link, useParams } from 'react-router-dom';
+
 import {
   addCommunity,
   setCommunities,
+  setUserCommunities,
   setGeography,
+  me,
   createNewImage,
   addUserToCommunity,
-  setUserCommunities
 } from "../../store";
 import CommunityCard from "./CommunityCard";
 
@@ -29,8 +32,15 @@ import {
 } from "@material-ui/core";
 
 const CommunityList = () => {
-  const { communities, geographies, auth,userCommunities } = useSelector((state) => state);
+  const { communities, geographies, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
+  //const { auth.id } = useParams();//
+  console.log("this is id", auth.id)
+  console.log("this is usercommunities", userCommunities)
+
+  useEffect(()=>{
+    dispatch(me())
+  }, [])
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
@@ -38,7 +48,7 @@ const CommunityList = () => {
     dispatch(setGeography());
   }, []);
   useEffect(() => {
-    dispatch(setUserCommunities());
+    dispatch(setUserCommunities(auth.id));
   }, []);
 
   // Add Community Dialog
@@ -68,6 +78,17 @@ const CommunityList = () => {
     dispatch(addCommunity(community));
     reset();
   };
+  const addUserCommunity = (comm, user) => {
+   //event.preventDefault();
+    // const imgFile = new FormData();
+    // imgFile.append("file", file);
+    // dispatch(createNewImage(imgFile));
+    //const userComm = { ...data,  };
+    dispatch(addUserToCommunity(comm,user));
+    //reset();
+  };
+  console.log('adding the user object')
+  //addUserCommunity(communities[0], auth.id)
 
   // Filter Category
   const [location, setLocation] = React.useState("");

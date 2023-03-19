@@ -15,15 +15,15 @@ const DELETE_USERCOMMUNITY = "DELETE_USERCOMMUNITY"
 //     type: SET_USERCOMMUNITY,
 //     userCommunity,
 //     });
-export const _setUserCommunities = userCommunities => ({
+export const _setUserCommunities = userCommunity => ({
     type: SET_USERCOMMUNITIES,
-    userCommunities,        
+    userCommunity,        
     });
 export const _addUserCommunity = userCommunities => ({
     type: ADD_USERCOMMUNITY,
     userCommunities,
     });
-export const _deleteUserCommunity = userCommunites => ({
+export const _deleteUserCommunity = userCommunities => ({
     type: DELETE_USERCOMMUNITY,
     userCommunities,
     });
@@ -36,7 +36,7 @@ export const setUserCommunities = (user) => {
       try {
         const res = await axios.get(`/api/userCommunity/${user}`);
         const communities = res.data;
-        dispatch(_setCommunities(communities));
+        dispatch(_setUserCommunities(communities));
       } catch (error) {
         console.log(error);
       }
@@ -61,8 +61,8 @@ export const addUserToCommunity =(commId,userId)=>{
         
         case SET_USERCOMMUNITIES:
             return action.userCommunity;
-        case ADD_USERCOMMUNITY:
-            return action.userCommunity;
+         case ADD_USERCOMMUNITY:
+             return [...state, action.userCommunity]
           
           default:
             return state;
