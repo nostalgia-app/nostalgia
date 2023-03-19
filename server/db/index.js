@@ -7,7 +7,6 @@ const Community = require("./models/Community");
 const Artifact = require("./models/Artifact");
 const User_Community = require("./models/User_Community");
 const Comment = require("./models/Comment");
-const Image = require("./models/Image");
 const User_Friend = require("./models/User_Friend");
 
 //associations could go here!
@@ -50,7 +49,6 @@ module.exports = {
     Community,
     User_Community,
     Comment,
-    Image,
     User_Friend,
   },
 };
