@@ -2,15 +2,7 @@
 
 const {
   db,
-  models: {
-    User,
-    Community,
-    User_Community,
-    Artifact,
-    Comment,
-    Image,
-    User_Friend,
-  },
+  models: { User, Community, User_Community, Artifact, Comment, User_Friend },
 } = require("../server/db");
 
 /**
@@ -31,6 +23,8 @@ async function seed() {
       age: 27,
       location: "New York, NY",
       bio: "Hey man, my name is Cody.",
+      imageUrl:
+        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?cs=srgb&dl=pexels-italo-melo-2379004.jpg&fm=jpg",
     }),
     User.create({
       username: "murphy",
@@ -40,6 +34,8 @@ async function seed() {
       age: 98,
       location: "Dublin, Ireland",
       bio: "I'm looking for a guy named Cody. Is he here?",
+      imageUrl:
+        "https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=",
     }),
     User.create({
       username: "sally",
@@ -49,6 +45,8 @@ async function seed() {
       age: 50,
       location: "Raleigh, North Carolina",
       bio: "Hi, I'm Sally!",
+      imageUrl:
+        "https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=",
     }),
     User.create({
       username: "bob",
@@ -58,6 +56,8 @@ async function seed() {
       age: 60,
       location: "Tampa, Florida",
       bio: "Hi, I'm Bob!",
+      imageUrl:
+        "https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=",
     }),
     User.create({
       username: "mike",
@@ -67,6 +67,8 @@ async function seed() {
       age: 30,
       location: "Chicago, Illinois",
       bio: "Hi, I'm Mike!",
+      imageUrl:
+        "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     }),
     User.create({
       username: "sarah",
@@ -76,6 +78,8 @@ async function seed() {
       age: 45,
       location: "Atlanta, Georgia",
       bio: "Hi, I'm Sarah!",
+      imageUrl:
+        "https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg",
     }),
   ]);
 
@@ -139,6 +143,38 @@ async function seed() {
     }),
   ]);
 
+  const artifacts = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: "Uncle & Aunt",
+      description: "description of image 1",
+      fileName: "bostonFamily.jpeg",
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: "Charity Race",
+      description: "description of image 2",
+      fileName: "charityRace.jpg",
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: "Grandpa",
+      description: "description of image 3",
+      fileName: "grandpa.jpeg",
+    }),
+  ]);
+
+  const comment = await Promise.all([
+    Comment.create({
+      artifactId: artifacts[0].id,
+      userId: users[0].id,
+      comment: "DEFAULT COMMENT YESSA",
+    }),
+  ]);
+
   const users_friends = await Promise.all([
     User_Friend.create({
       userId: users[0].id,
@@ -186,71 +222,12 @@ async function seed() {
     }),
   ]);
 
-  const images = await Promise.all([
-    Image.create({
-      title: "Uncle & Aunt",
-      description: "description of image 1",
-      fileName: "bostonFamily.jpeg",
-      likes: 0,
-    }),
-    Image.create({
-      title: "Charity Race",
-      description: "description of image 2",
-      fileName: "charityRace.jpg",
-      likes: 0,
-    }),
-    Image.create({
-      title: "Grandpa",
-      description: "description of image 3",
-      fileName: "grandpa.jpeg",
-      likes: 0,
-    }),
-  ]);
-
-  const artifact = await Promise.all([
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[1].id,
-      name: "Samuel",
-    }),
-  ]);
-
-  const artifacts = await Promise.all([
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[0].id,
-      name: "Uncle & Aunt",
-      description: "description of image 1",
-      fileName: "bostonFamily.jpeg",
-    }),
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[0].id,
-      name: "Charity Race",
-      description: "description of image 2",
-      fileName: "charityRace.jpg",
-    }),
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[0].id,
-      name: "Grandpa",
-      description: "description of image 3",
-      fileName: "grandpa.jpeg",
-    }),
-  ]);
-
-  const comment = await Promise.all([
-    Comment.create({
-      artifactId: artifact[0].id,
-      userId: users[0].id,
-      comment: "DEFAULT COMMENT YESSA",
-    }),
-  ]);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
+  console.log(`seeded ${users_communities.length} users communities`);
   console.log(`seeded ${artifacts.length} artifacts`);
   console.log(`seeded ${comment.length} comments`);
-  console.log(`seeded ${users_friends.length} friends`);
+  console.log(`seeded ${users_friends.length} users friends`);
   console.log(`seeded successfully`);
 
   return {

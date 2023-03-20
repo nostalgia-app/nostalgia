@@ -15,13 +15,6 @@ const FriendList = () => {
   const { users } = useSelector((state) => state.user);
   const { auth } = useSelector((state) => state);
 
-  if (auth.id) {
-    console.log("true");
-  } else {
-    console.log("false");
-  }
-  console.log(auth.id);
-
   return (
     <Container>
       <Typography align="center" variant="h3" component="h1" gutterBottom>
@@ -30,7 +23,11 @@ const FriendList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {users.map((user) => {
-          return <FriendCard user={user} />;
+          return (
+            <Grid item zeroMinWidth key={user.id}>
+              <FriendCard key={user.id} user={user} />
+            </Grid>
+          );
         })}
       </Grid>
     </Container>

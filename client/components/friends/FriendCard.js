@@ -1,20 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardHeader, CardMedia, Grid, Button } from "@material-ui/core";
+import {
+  Card,
+  CardMedia,
+  CardActionArea,
+  Button,
+  Typography,
+  CardActions,
+} from "@material-ui/core";
 
 const FriendCard = ({ user }) => {
   return (
-    <Grid item zeroMinWidth key={user.id}>
-      <Card
-        elevation={3}
-        style={{
-          color: "black",
-          padding: 10,
-          marginLeft: 20,
-          width: 200,
-          height: 200,
-        }}
-      >
+    <Card
+      elevation={3}
+      style={{
+        color: "black",
+        padding: 10,
+        marginLeft: 20,
+        width: 200,
+        height: 200,
+      }}
+    >
+      <CardActionArea>
         <Link to={`/friends/${user.id}`}>
           <CardMedia
             src={user.imageUrl}
@@ -23,13 +30,17 @@ const FriendCard = ({ user }) => {
             width="150"
             sx={{ padding: "1em 1em 0 1em" }}
           />
-          <CardHeader title={user.username} />
+          <Typography align="center" style={{ overflowWrap: "break-word" }}>
+            {user.firstName + " " + user.lastName}
+          </Typography>
         </Link>
-        <Button variant="contained" sx={{ borderRadius: 50 }}>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary">
           Add Friend
         </Button>
-      </Card>
-    </Grid>
+      </CardActions>
+    </Card>
   );
 };
 
