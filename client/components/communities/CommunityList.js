@@ -65,14 +65,24 @@ const CommunityList = () => {
   };
 
   // Filter Category
-  const [location, setLocation] = React.useState("");
+  const [state, setstate] = useState({
+    query: "",
+    list: [],
+  });
 
-  const handleChange = (event) => {
-    setLocation(event.target.value);
-  };
-
-  const resetValue = () => {
-    setLocation("");
+  const handleChange = (e) => {
+    const results = communities.filter((community) => {
+      if (e.target.value === "") return community;
+      return (
+        community.state.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        community.city.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        community.address.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    });
+    setstate({
+      query: e.target.value,
+      list: results,
+    });
   };
 
   return (
@@ -94,28 +104,33 @@ const CommunityList = () => {
 
       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
         <FormControl fullWidth>
-          <InputLabel>State</InputLabel>
-          <Select
-            value={location}
-            label="State"
-            defaultValue={location}
+          <TextField
+            value={state.query}
+            type="search"
+            label="Location"
             onChange={handleChange}
-          >
-            {geographies.length > 0 ? (
-              geographies.map((geography) => (
-                <MenuItem key={geography.state} value={geography.state}>
-                  {geography.state}
-                </MenuItem>
-              ))
-            ) : (
-              <MenuItem>No Items to Select</MenuItem>
-            )}
-          </Select>
-          <Button onClick={resetValue}>Clear Filter</Button>
+          ></TextField>
         </FormControl>
       </Box>
+
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-        {communities.length > 0 &&
+        {state.query === ""
+          ? communities.map((community) => {
+              return (
+                <Grid item zeroMinWidth key={community.id}>
+                  <CommunityCard key={community.id} community={community} />
+                </Grid>
+              );
+            })
+          : state.list.map((community) => {
+              return (
+                <Grid item zeroMinWidth key={community.id}>
+                  <CommunityCard key={community.id} community={community} />
+                </Grid>
+              );
+            })}
+
+        {/* {communities.length > 0 &&
           (location
             ? communities
                 .filter((community) => community.state.includes(location))
@@ -124,7 +139,7 @@ const CommunityList = () => {
                 ))
             : communities.map((community) => (
                 <CommunityCard key={community.id} community={community} />
-              )))}
+              )))} */}
       </Grid>
 
       <Dialog open={open} onClose={handleClose}>
