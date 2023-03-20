@@ -11,7 +11,8 @@ import ArtifactUpload from './ArtifactUpload';
 const ArtifactList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { auth, artifacts } = useSelector(state => state);
+  const { auth } = useSelector(state => state);
+  const { artifacts } = useSelector((state) => state.artifacts);
 
   useEffect(() => {
     dispatch(setArtifacts(id));

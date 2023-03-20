@@ -61,12 +61,16 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-//Delete an Artifact
+//Delete an artifact
 router.delete('/:id', async (req, res, next) => {
   try {
-    const artifact = await Artifact.findByPk(req.params.id);
-    await artifact.destroy();
-    res.send(artifact);
+    const artifact = await Artifact.findAll({
+      where: {
+        id: req.params.id,
+      },
+    });
+    await Artifact.destroy({ where: { id: req.params.id } });
+    res.json(artifact[0]);
   } catch (err) {
     res.status(500).json({
       message: 'Error deleting the specified artifact',

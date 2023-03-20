@@ -40,48 +40,56 @@ export const createArtifact = (data, communityId) => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 };
 
-export const removeArtifact = artifact => {
-  return async dispatch => {
+export const removeArtifact = (id) => {
+  return async (dispatch) => {
     try {
-      const { id } = artifact;
       await axios.delete(`/api/artifacts/${id}`);
       dispatch({ type: 'REMOVE_ARTIFACT', id });
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 };
 
-// UPDATE
-export const updateArtifact = artifact => {
-  return async dispatch => {
-    const { data: updated } = await axios.put(
-      `/api/artifacts/${artifact.id}`,
-      artifact
-    );
-    dispatch({ type: 'UPDATE_ARTIFACT', updated });
-  };
+export const updateArtifact = (data) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/artifacts/${data.id}`, data);
+      const artifact = res.data;
+      dispatch({ type: "UPDATE_ARTIFACT", artifact });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
-export default function (state = [], action) {
+const initialState = {
+  artifacts: [],
+  artifact: {},
+};
+
+export default function (state = initialState, action) {
   switch (action.type) {
-    case 'SET_ARTIFACTS':
-      return action.artifacts;
-    case 'FETCH_ARTIFACT':
-      return action.artifact;
-    case 'CREATE_ARTIFACT':
-      return [...state, action.artifact];
-    case 'REMOVE_ARTIFACT':
-      return state.filter(artifact => artifact.id !== action.id);
-    case 'UPDATE_ARTIFACT':
-      return state.artifacts.map(artifact =>
-        artifact.id === action.artifact.id ? action.artifact : artifact
-      );
-
+    case "SET_ARTIFACTS":
+      return { ...state, artifacts: action.artifacts };
+    case "CREATE_ARTIFACT":
+      return { ...state, artifacts: [action.artifact, ...state.artifacts] };
+    case "REMOVE_ARTIFACT":
+      return {
+        ...state,
+        artifacts: state.artifacts.filter((artifact) => artifact.id !== action.id),
+      };
+    case "UPDATE_ARTIFACT":
+      return {
+        artifacts: state.artifacts.map((a) =>
+          a.id === action.artifact.id ? action.artifact : a
+        ),
+        artifact: action.artifact,
+      };
     default:
       return state;
   }
-}
+};
