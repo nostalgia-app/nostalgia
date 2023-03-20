@@ -7,6 +7,7 @@ const Community = require('./models/Community');
 const Artifact = require('./models/Artifact');
 const User_Community = require('./models/User_Community');
 const Comment = require('./models/Comment');
+const ProfilePic = require('./models/ProfilePic');
 
 //associations could go here!
 Community.belongsTo(User, { foreignKey: 'adminId' });
@@ -36,5 +37,6 @@ module.exports = {
     Community,
     User_Community,
     Comment,
+    ProfilePic,
   },
 };

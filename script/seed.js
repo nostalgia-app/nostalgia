@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Community, User_Community, Artifact, Comment, Image },
+  models: { User, Community, User_Community, Artifact, Comment, ProfilePic },
 } = require('../server/db');
 
 /**
@@ -101,22 +101,25 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Uncle & Aunt',
-      description: 'description of image 1',
+      name: 'Uncle Jess & Aunt Tammy',
+      description:
+        'This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family',
       fileName: 'bostonFamily.jpeg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
       name: 'Charity Race',
-      description: 'description of image 2',
+      description:
+        'We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!',
       fileName: 'charityRace.jpg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Grandpa',
-      description: 'description of image 3',
+      name: 'Grandpa George',
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
       fileName: 'grandpa.jpeg',
     }),
   ]);
@@ -136,13 +139,13 @@ async function seed() {
     }),
   ]);
 
-  const comment = await Promise.all([
-    Comment.create({
-      artifactId: artifact[0].id,
-      userId: users[0].id,
-      comment: 'DEFAULT COMMENT YESSA',
-    }),
-  ]);
+  // const comment = await Promise.all([
+  //   Comment.create({
+  //     artifactId: artifact[0].id,
+  //     userId: users[0].id,
+  //     comment: 'DEFAULT COMMENT YESSA',
+  //   }),
+  // ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
@@ -166,14 +169,6 @@ async function seed() {
       artifact2: artifacts[1],
       artifact3: artifacts[2],
     },
-    comment: {
-      com1: comment[0],
-    },
-    // images: {
-    //   image1: images[0],
-    //   image2: images[1],
-    //   image3: images[3],
-    // },
   };
 }
 

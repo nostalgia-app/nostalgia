@@ -1,29 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Typography, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 // import { connect } from 'react-redux';
 // import CommunitiesGrid from "./CommunitiesGrid";
+import { fetchProfilePics } from '../store';
 
 export const Home = props => {
   const { username } = props;
+  const dispatch = useDispatch();
+  const { auth } = useSelector(state => state);
 
   return (
-    // Page is wrapp in a container to start - keeps things spaced clean
     <Container>
-      {/* Start the actual page content with a basic title */}
-      <Typography align="center" variant="h3" component="h1" gutterBottom>
-        Home Heading
+      <Typography variant="h4" component="h1" gutterBottom>
+        nost•tal•gia -
       </Typography>
-      <Typography align="center" gutterBottom>
+      <Typography variant="h6" component="h1" gutterBottom>
+        a wistful desire to return in thought or in fact to a former time in
+        one's life, to one's home or homeland, or to one's family and friends: a
+        sentimental yearning for the happiness of a former place or time:
+      </Typography>
+      <br></br>
+      {/* <Typography align="center" gutterBottom>
         Welcome {username}
-      </Typography>
-      <Typography variant="h5" align="center">
+      </Typography> */}
+      <Typography variant="h6">
         Nostalgia builds community by creating a platform where families and
         friends can stitch together artifacts, stories, and connections to
         create memories.
       </Typography>
 
-      {/* Basic button row - modifed to link to whatever needed */}
       <div
         style={{
           backgroundColor: 'rgb(241, 241, 241)',
@@ -47,12 +54,13 @@ export const Home = props => {
             </Link>
           </Grid>
           <Grid item>
-            <Button variant="contained" size="large" color="secondary">
-              MY ACCOUNT
-            </Button>
+            <Link to={auth.id ? `/users/${auth.id}` : '/login'}>
+              <Button variant="contained" size="large" color="secondary">
+                MY ACCOUNT
+              </Button>
+            </Link>
           </Grid>
         </Grid>
-        {/* <CommunitiesGrid /> */}
       </div>
     </Container>
   );

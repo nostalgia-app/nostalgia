@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Artifact } = require('../db');
+const {
+  models: { Artifact },
+} = require('../db');
 
 //Get all artifacts
 router.get('/', async (req, res, next) => {
@@ -18,7 +20,6 @@ router.get('/', async (req, res, next) => {
 //Get single artifact
 router.get('/:id', async (req, res, next) => {
   try {
-    console.log(typeof req.params.id);
     const artifact = await Artifact.findByPk(req.params.id);
     res.send(artifact);
   } catch (err) {

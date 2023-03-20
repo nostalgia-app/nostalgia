@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const {
-  models: { User },
+  models: { User, ProfilePic },
 } = require('../db');
-
 const path = require('path');
 const multer = require('multer');
 
@@ -41,6 +40,17 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// UPDATE USER
+router.put('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user.update(req.body);
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
 const storageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
     cb(null, 'public/profilePicUploads');
@@ -53,33 +63,6 @@ const storageEngine = multer.diskStorage({
 const upload = multer({
   storage: storageEngine,
   limits: { fileSize: 10000000 },
-});
-
-// new way
-// UPDATE USER
-// router.put('/:id', upload.single('file'), async (req, res, next) => {
-//   try {
-//     const file = req.file;
-//     console.log(file);
-//     const user = await User.findByPk(req.params.id);
-//     await user.update(req.body);
-//     res.json(user);
-//     res.send(file);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
-// First way
-// UPDATE USER
-router.put('/:id', async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.id);
-    await user.update(req.body);
-    res.json(user);
-  } catch (err) {
-    next(err);
-  }
 });
 
 module.exports = router;

@@ -1,59 +1,69 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../../store';
 import { Link } from 'react-router-dom';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
+import {
+  Container,
+  Typography,
+  Grid,
+  Button,
+  makeStyles,
+} from '@material-ui/core';
+
+const useStyles = makeStyles({
+  mainBanner: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  button: {
+    marginBottom: 20,
+    fontSize: 24,
+  },
+});
 
 const Success = () => {
-  const dispatch = useDispatch();
-  //
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
-  //
-  const { users } = useSelector(state => state.user);
-  console.log(users);
-  const newUser = users[users.length - 1];
-  if (newUser) {
-    console.log(newUser.id);
-  }
-  return (
-    // card is wrapped in container to start - clean spacing
-    // always try to use standard card elements: Header, Media, Content
-    // card is wrapped in 'Link' to individual details page
+  const classes = useStyles();
 
+  const dispatch = useDispatch();
+
+  const { auth } = useSelector(state => state);
+  console.log(auth);
+
+  return (
     <Container>
-      <Typography variant="h2" align="center">
+      <Typography variant="h3" align="center" gutterBottom>
         Success!
       </Typography>
-      <Typography variant="h5" align="center">
+
+      <Typography variant="h5" align="center" gutterBottom>
         Welcome to the Nostalgia community! Please select an option below.
       </Typography>
 
-      <div
-        style={{
-          backgroundColor: 'rgb(241, 241, 241)',
-          borderRadius: '.25rem',
-          marginTop: 30,
-        }}
-      >
-        <Grid container spacing={3} justifyContent="center">
-          <Grid item>
-            <Link to={`/users/${newUser?.id}`}>
-              <Button variant="contained" size="large" color="secondary">
-                TAKE ME TO MY ACCOUNT
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link to="/communities">
-              <Button variant="contained" size="large" color="secondary">
-                I WANT TO EXPLORE COMMUNITIES
-              </Button>
-            </Link>
-          </Grid>
-        </Grid>
-      </div>
+      <Grid className={classes.mainBanner}>
+        <Link to={`/users/${auth.id}/details`}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            size="large"
+            color="secondary"
+          >
+            TAKE ME TO MY ACCOUNT
+          </Button>
+        </Link>
+
+        <Link to="/communities">
+          <Button
+            className={classes.button}
+            variant="contained"
+            size="large"
+            color="secondary"
+          >
+            I WANT TO EXPLORE COMMUNITIES
+          </Button>
+        </Link>
+      </Grid>
     </Container>
   );
 };

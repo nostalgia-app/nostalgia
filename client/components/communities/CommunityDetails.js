@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setArtifacts } from '../../store';
 import {
   Container,
   Typography,
@@ -8,14 +9,14 @@ import {
   Card,
   CardMedia,
   Box,
-} from "@material-ui/core";
-import { setCommunity } from "../../store";
-import { useHistory } from "react-router-dom";
-import ArtifactList from "../artifacts/ArtifactList";
+} from '@material-ui/core';
+import { setCommunity } from '../../store';
+import { useHistory } from 'react-router-dom';
+import ArtifactList from '../artifacts/ArtifactList';
 
 const CommunityDetails = () => {
   const { id } = useParams();
-  const { community } = useSelector((state) => state);
+  const { community } = useSelector(state => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCommunity(id));
@@ -27,12 +28,18 @@ const CommunityDetails = () => {
     history.push(path);
   };
 
+  useEffect(() => {
+    dispatch(setArtifacts(id));
+  }, []);
+  const { artifacts } = useSelector(state => state);
+  console.log(artifacts);
+
   return (
     <Container>
       <Card
         elevation={3}
         style={{
-          color: "black",
+          color: 'black',
           padding: 30,
         }}
       >
@@ -66,7 +73,7 @@ const CommunityDetails = () => {
         <Typography variant="h6">{community.bio}</Typography>
       </Card>
       <Box sx={{ mt: 5 }}>
-        <ArtifactList />
+        <ArtifactList artifacts={artifacts} />
       </Box>
     </Container>
   );

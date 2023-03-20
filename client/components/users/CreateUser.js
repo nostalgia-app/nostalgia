@@ -3,10 +3,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createNewUser, fetchUsers } from '../../store';
 import { useHistory } from 'react-router-dom';
 
-import { Button, Typography, Grid } from '@material-ui/core';
+import {
+  Container,
+  Button,
+  Typography,
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
 import TextField from '@mui/material/TextField';
 
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
+
 const CreateUser = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -26,51 +45,48 @@ const CreateUser = () => {
         password: password,
       })
     );
-
-    console.log('new user created');
-    history.push('/users-success');
+    history.push('/login');
   };
 
   return (
-    <>
-      <Typography variant="h3" component="h1" gutterBottom>
-        Create An Account
+    <Container className={classes.container}>
+      <Typography variant="h5" gutterBottom>
+        Please create an account
       </Typography>
-      <Grid item xs={12} sm={8} md={6}>
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          <TextField
-            onChange={e => setFirstName(e.target.value)}
-            label="First Name"
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
-            onChange={e => setLastName(e.target.value)}
-            label="Last Name"
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
-            onChange={e => setUserName(e.target.value)}
-            label="Username"
-            margin="normal"
-            variant="outlined"
-          />
-          <TextField
-            onChange={e => setPassword(e.target.value)}
-            label="Password"
-            margin="normal"
-            variant="outlined"
-          />
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </form>
+      <Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <form className={classes.form} onSubmit={handleSubmit}>
+            <TextField
+              onChange={e => setFirstName(e.target.value)}
+              label="First Name"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              onChange={e => setLastName(e.target.value)}
+              label="Last Name"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              onChange={e => setUserName(e.target.value)}
+              label="Username"
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              onChange={e => setPassword(e.target.value)}
+              label="Password"
+              margin="normal"
+              variant="outlined"
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </form>
+        </Grid>
       </Grid>
-    </>
+    </Container>
   );
 };
 
