@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
 import { authenticate } from '../../store';
+import { useHistory } from 'react-router-dom';
 
 import {
   Button,
@@ -13,6 +14,11 @@ import {
 import TextField from '@mui/material/TextField';
 
 const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   form: {
     display: 'flex',
     flexDirection: 'column',
@@ -24,7 +30,10 @@ const useStyles = makeStyles({
  */
 const AuthForm = props => {
   const classes = useStyles();
+  const history = useHistory();
+
   const dispatch = useDispatch();
+
   const { name, displayName, error } = props;
 
   const [userName, setUserName] = useState('');
@@ -33,12 +42,15 @@ const AuthForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authenticate(userName, password, 'login'));
+    history.push('/users-success');
   };
 
   return (
     <>
-      <Container style={{ margin: '10px' }}>
-        <Typography variant="h3">Log in</Typography>
+      <Container className={classes.container} style={{ margin: '10px' }}>
+        <Typography variant="h5">
+          Please confirm your username and passowrd to login.
+        </Typography>
 
         <Grid item xs={12} sm={8} md={6}>
           <form className={classes.form} onSubmit={handleSubmit} name={name}>

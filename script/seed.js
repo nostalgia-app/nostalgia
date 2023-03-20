@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Community, User_Community, Artifact, Comment, Image  },
+  models: { User, Community, User_Community, Artifact, Comment, ProfilePic },
 } = require('../server/db');
 
 /**
@@ -23,6 +23,7 @@ async function seed() {
       age: 27,
       location: 'New York, NY',
       bio: 'Hey man, my name is Cody.',
+      profilePic: 'grandpa.jpeg',
     }),
     User.create({
       username: 'murphy',
@@ -32,6 +33,7 @@ async function seed() {
       age: 98,
       location: 'Dublin, Ireland',
       bio: "I'm looking for a guy named Cody. Is he here?",
+      profilePic: 'grandpa.jpeg',
     }),
   ]);
 
@@ -99,33 +101,51 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Uncle & Aunt',
-      description: 'description of image 1',
+      name: 'Uncle Jess & Aunt Tammy',
+      description:
+        'This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family',
       fileName: 'bostonFamily.jpeg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
       name: 'Charity Race',
-      description: 'description of image 2',
+      description:
+        'We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!',
       fileName: 'charityRace.jpg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Grandpa',
-      description: 'description of image 3',
+      name: 'Grandpa George',
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
       fileName: 'grandpa.jpeg',
     }),
   ]);
 
-  const comment = await Promise.all([
-    Comment.create({
-        artifactId: artifacts[0].id,
-        userId: users[0].id,
-        comment: "DEFAULT COMMENT YESSA"
-      })
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded successfully`);
+
+  console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${communities.length} communities`);
+  console.log(`seeded successfully`);
+
+  const artifact = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[1].id,
+      name: 'Samuel',
+    }),
   ]);
+
+  // const comment = await Promise.all([
+  //   Comment.create({
+  //     artifactId: artifact[0].id,
+  //     userId: users[0].id,
+  //     comment: 'DEFAULT COMMENT YESSA',
+  //   }),
+  // ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
@@ -143,13 +163,11 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
-    artifacts:{
+
+    artifacts: {
       artifact1: artifacts[0],
       artifact2: artifacts[1],
       artifact3: artifacts[2],
-    },
-    comment:{
-      com1: comment[0]
     },
   };
 }

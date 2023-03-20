@@ -1,8 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Box, Typography, TextField, Button, Grid, Container } from "@material-ui/core";
-import { createArtifact } from "../../store";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Grid,
+  Container,
+} from '@material-ui/core';
+import { createArtifact } from '../../store';
 
 const ArtifactUpload = () => {
   const dispatch = useDispatch();
@@ -12,14 +19,14 @@ const ArtifactUpload = () => {
   const [description, setDescription] = useState();
   const [file, setFile] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const data = new FormData();
     const communityId = id;
-    data.append("name", name);
-    data.append("description", description);
-    data.append("userId", auth.id);
-    data.append("file", file);
+    data.append('name', name);
+    data.append('description', description);
+    data.append('userId', auth.id);
+    data.append('file', file);
     dispatch(createArtifact(data, communityId));
   };
 
@@ -40,7 +47,7 @@ const ArtifactUpload = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
                 required
                 fullWidth
                 variant="outlined"
@@ -51,7 +58,7 @@ const ArtifactUpload = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={e => setDescription(e.target.value)}
                 fullWidth
                 variant="outlined"
                 id="description"
@@ -61,7 +68,7 @@ const ArtifactUpload = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                onChange={(e) => {
+                onChange={e => {
                   const file = e.target.files[0];
                   setFile(file);
                 }}

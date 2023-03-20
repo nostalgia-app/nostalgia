@@ -14,38 +14,12 @@ const ArtifactList = () => {
   const { auth } = useSelector(state => state);
   const { artifacts } = useSelector((state) => state.artifacts);
 
-  // pulled image data
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
-
   return (
     // Page is wrapp in a container - clean spacing
     <Container>
-      {/* Start the actual page content with a basic title */}
-      {/* <Typography align="center" variant="h3" component="h1" gutterBottom>
-        Artifact List
-      </Typography> */}
-
-      {/*
-      /search field - search logic commented out at bottom, implemented when data ready
-      */}
-
-      {/* <div style={{ marginLeft: 35, marginBottom: 20 }}>
-        <form>
-          <TextField
-            onChange={e => setSearch(e.target.value)}
-            label="search artifacts"
-            variant="outlined"
-            color="primary"
-          ></TextField>
-        </form>
-      </div> */}
-
-      {/* 
-      / Log-in protected ArtifactUpload component placed in it's own Grid
-      */}
-
       {auth.id ? (
         <Grid>
           <ArtifactUpload />

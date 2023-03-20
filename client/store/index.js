@@ -6,7 +6,9 @@ import user from './user';
 import communities from './communities';
 import community from './community';
 import geographies from './geographies';
+import comment from './comments';
 import artifacts from './artifacts';
+import profilePics from './profilePics';
 
 const reducer = combineReducers({
   auth,
@@ -15,6 +17,8 @@ const reducer = combineReducers({
   community,
   geographies,
   user,
+  comment,
+  profilePics,
 });
 
 const middleware = applyMiddleware(
@@ -31,4 +35,6 @@ export * from './user';
 export * from './communities';
 export * from './community';
 export * from './geographies';
+export * from './comments';
 export * from './artifacts';
+export * from './profilePics';
