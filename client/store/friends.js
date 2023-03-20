@@ -32,7 +32,7 @@ const _deleteFriend = (id) => ({
 export const setFriends = (id) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/friends`);
+      const res = await axios.get(`/api/userfriends/user/${id}`);
       const friends = res.data;
       dispatch(_setFriends(friends));
     } catch (error) {
@@ -44,7 +44,7 @@ export const setFriends = (id) => {
 export const addFriend = (newFriend) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post("/api/friends/", newFriend);
+      const res = await axios.post("/api/userfriends/", newFriend);
       const friend = res.data;
       dispatch(_addFriend(friend));
     } catch (error) {
@@ -53,10 +53,10 @@ export const addFriend = (newFriend) => {
   };
 };
 
-export const deleteFriend = (id) => {
+export const deleteFriend = (deleteFriend) => {
   return async (dispatch) => {
     try {
-      const res = await axios.delete(`/api/friends/${friendDeleteId}`);
+      const res = await axios.delete(`/api/userfriends/`, deleteFriend);
       const friend = res.data;
       dispatch(_deleteFriend(friend));
     } catch (error) {

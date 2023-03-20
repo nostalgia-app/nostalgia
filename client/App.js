@@ -57,7 +57,7 @@ const App = () => {
       >
         <Link to="/">Home</Link>
         <Link to="/findfriends">Find Friends</Link>
-        <Link to="/friends">My Friends</Link>
+        <Link to="/myfriends">My Friends</Link>
         <Link to="/communities">Communities</Link>
         <Link to="/create-user">Create Account</Link>
         <Link to="/artifacts">Artifacts</Link>

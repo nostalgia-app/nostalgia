@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import {
-  addCommunity,
-  setCommunities,
-  setGeography,
-  createNewImage,
-} from "../../store";
+import { addCommunity, setCommunities, setGeography } from "../../store";
 import CommunityCard from "./CommunityCard";
 
 import {
@@ -27,13 +22,10 @@ import {
 } from "@material-ui/core";
 
 const CommunityList = () => {
-  const { communities, geographies, auth } = useSelector((state) => state);
+  const { communities, auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCommunities());
-  }, []);
-  useEffect(() => {
-    dispatch(setGeography());
   }, []);
 
   // Add Community Dialog

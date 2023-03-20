@@ -5,7 +5,6 @@ import auth from "./auth";
 import user from "./user";
 import communities from "./communities";
 import community from "./community";
-import geographies from "./geographies";
 import artifacts from "./artifacts";
 import friends from "./friends";
 
@@ -14,7 +13,6 @@ const reducer = combineReducers({
   artifacts,
   communities,
   community,
-  geographies,
   user,
   friends,
 });
@@ -32,6 +30,5 @@ export * from "./auth";
 export * from "./user";
 export * from "./communities";
 export * from "./community";
-export * from "./geographies";
 export * from "./artifacts";
 export * from "./friends";

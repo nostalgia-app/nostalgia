@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { fetchUser } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { Container, Typography, Button, Grid } from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import { Container, Typography, Box } from "@material-ui/core";
 
 const FriendProfile = () => {
   let params = useParams();
@@ -22,6 +22,16 @@ const FriendProfile = () => {
       <Typography align="center" variant="h3" component="h1" gutterBottom>
         Friend Profile
       </Typography>
+      <Box
+        component="img"
+        sx={{
+          height: 350,
+          width: 300,
+          maxHeight: { xs: 350, md: 250 },
+          maxWidth: { xs: 300, md: 167 },
+        }}
+        src={user.imageUrl}
+      />
       <Typography variant="h4" gutterBottom>
         {user.firstName} {user.lastName}
       </Typography>

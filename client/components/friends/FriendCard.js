@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Card,
   CardMedia,
@@ -8,8 +9,20 @@ import {
   Typography,
   CardActions,
 } from "@material-ui/core";
+import { addFriend, deleteFriend } from "../../store";
 
 const FriendCard = ({ user }) => {
+  const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const handleAddClick = (userId, friendId) => {
+    dispatch(addFriend({ userId: userId, friendId: friendId }));
+  };
+
+  const handleRemovelick = (userId, friendId) => {
+    dispatch(deleteFriend({ userId: userId, friendId: friendId }));
+  };
+
   return (
     <Card
       elevation={3}
@@ -36,8 +49,19 @@ const FriendCard = ({ user }) => {
         </Link>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => handleAddClick(auth.id, user.id)}
+        >
           Add Friend
+        </Button>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => handleRemovelick(auth.id, user.id)}
+        >
+          Remove Friend
         </Button>
       </CardActions>
     </Card>

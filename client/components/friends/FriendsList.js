@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import FriendCard from "./FriendCard";
-import { fetchUsers } from "../../store";
+import { fetchUsers, setFriends } from "../../store";
 import {
   Container,
   Typography,
@@ -10,19 +11,22 @@ import {
   TextField,
   Box,
   FormControl,
-  InputLabel,
-  Button,
 } from "@material-ui/core";
 
-const FriendList = () => {
+const FriendsList = () => {
   const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.user);
+  const { auth } = useSelector((state) => state);
+  const { friends } = useSelector((state) => state);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
 
-  const { users } = useSelector((state) => state.user);
-  const { auth } = useSelector((state) => state);
+  useEffect(() => {
+    dispatch(setFriends(auth.id));
+  }, [auth]);
 
   // Filter friends
   const [state, setstate] = useState({
@@ -41,13 +45,12 @@ const FriendList = () => {
       query: e.target.value,
       list: results,
     });
-    console.log(state.query, state.list);
   };
 
   return (
     <Container>
       <Typography align="center" variant="h3" component="h1" gutterBottom>
-        Find a Friend
+        Friends
       </Typography>
 
       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
@@ -63,17 +66,17 @@ const FriendList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? users.map((user) => {
+          ? users?.map((user) => {
               return (
                 <Grid item zeroMinWidth key={user.id}>
-                  <FriendCard key={user.id} user={user} />
+                  <FriendCard key={user.id} user={user} pathname={pathname} />
                 </Grid>
               );
             })
-          : state.list.map((user) => {
+          : state.list?.map((user) => {
               return (
                 <Grid item zeroMinWidth key={user.id}>
-                  <FriendCard key={user.id} user={user} />
+                  <FriendCard key={user.id} user={user} pathname={pathname} />
                 </Grid>
               );
             })}
@@ -82,4 +85,4 @@ const FriendList = () => {
   );
 };
 
-export default FriendList;
+export default FriendsList;

@@ -1,23 +1,9 @@
 const router = require("express").Router();
 const {
-  models: { User_Friend },
+  models: { User_Friend, User },
 } = require("../db");
 
-// GET /api/friends/
-// Retrieves all friends for a specified user
-router.get("/", async (req, res, next) => {
-  try {
-    // const friends = await User_Friend.findAll({
-    //   where: { userId: req.params.id },
-    // });
-    const friends = await User_Friend.findAll();
-    res.json(friends);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// POST /api/friends
+// POST /api/userfriends
 // To add a few friend
 router.post("/", async (req, res, next) => {
   try {
@@ -28,11 +14,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-// POST /api/friends
+// POST /api/userfriends
 // To remove a friend
 router.delete("/:id", async (req, res, next) => {
   try {
-    const friend = await User_Friend.findByPk(req.params.id);
+    const friend = await User_Friend.findAll({
+      where: { userId: req.body.userId, friendId: req.body.userId },
+    });
     await friend.destroy();
     res.send(friend);
   } catch (err) {

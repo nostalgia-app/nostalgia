@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const {
+  db,
   models: { User, User_Friend },
 } = require("../db");
 
@@ -8,9 +9,6 @@ router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: { exclude: ["password"] },
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
     });
     res.json(users);
   } catch (err) {
@@ -44,6 +42,25 @@ router.put("/:id", async (req, res, next) => {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
     res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/users/userfriends/user/:id
+// Retrieves all users with friend status for the current user
+router.get("/userfriends/user/:id", async (req, res, next) => {
+  try {
+    const friends = await User.findAll({
+      include: [
+        {
+          model: User_Friend,
+          where: { userId: req.params.id },
+          required: false,
+        },
+      ],
+    });
+    res.json(friends);
   } catch (err) {
     next(err);
   }

@@ -40,6 +40,7 @@ User.belongsToMany(User, {
   foreignKey: "friendId",
 });
 User.hasMany(User_Friend);
+User_Friend.belongsTo(User);
 
 module.exports = {
   db,
