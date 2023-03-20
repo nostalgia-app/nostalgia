@@ -1,8 +1,29 @@
 import React, { useState } from 'react';
-import { Typography, Button, Dialog, DialogActions } from '@material-ui/core';
+import {
+  Container,
+  Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  makeStyles,
+} from '@material-ui/core';
+
+const useStyles = makeStyles({
+  container: {
+    padding: 30,
+    border: '5pt solid rgb(246, 246, 246)',
+  },
+  text: {
+    padding: 10,
+    margin: 10,
+  },
+});
 
 const DialogBox = ({ user }) => {
+  const classes = useStyles();
+
   const [dialog, setDialog] = useState(true);
+
   const closeDialog = () => {
     setDialog(false);
   };
@@ -10,27 +31,26 @@ const DialogBox = ({ user }) => {
     <>
       {!user.age || !user.location || !user.bio ? (
         <Dialog open={dialog}>
-          <Typography
-            variant="h4"
-            align="center"
-            gutterBottom
-            style={{ color: 'black', padding: 20 }}
-          >
-            Welcome to your account portal!
-          </Typography>
-          <Typography paragraph align="center">
-            Please take a moment to let us know a little more about you.
-          </Typography>
-          <Typography paragraph align="center">
-            1. Populate your additional account info with the form.
-          </Typography>
-          <Typography paragraph align="center">
-            2. Upload a profile pic.
-          </Typography>
+          <Container className={classes.container}>
+            <Typography className={classes.text} variant="h4" align="center">
+              Welcome to your account portal!
+            </Typography>
+            <Typography className={classes.text} paragraph align="center">
+              Please take a moment and click the "EDIT PROFILE" button..
+            </Typography>
+            <Typography className={classes.text} variant="h6" align="center">
+              1. Populate your account info with the form.
+            </Typography>
+            <Typography className={classes.text} variant="h6" align="center">
+              2. Upload a profile pic.
+            </Typography>
 
-          <DialogActions>
-            <Button onClick={closeDialog}>Close</Button>
-          </DialogActions>
+            <DialogActions className={classes.text}>
+              <Button variant="outlined" onClick={closeDialog}>
+                Close
+              </Button>
+            </DialogActions>
+          </Container>
         </Dialog>
       ) : (
         <span></span>

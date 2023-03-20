@@ -8,7 +8,7 @@ import { fetchProfilePics } from '../store';
 
 export const Home = props => {
   const { username } = props;
-  const dispatch = useDispatch();
+
   const { auth } = useSelector(state => state);
 
   return (
@@ -37,31 +37,7 @@ export const Home = props => {
           borderRadius: '.25rem',
           marginTop: 30,
         }}
-      >
-        <Grid container spacing={3} justifyContent="center">
-          <Grid item>
-            <Link to="/communities">
-              <Button variant="contained" size="large" color="secondary">
-                COMMUNITIES
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link to="/artifacts">
-              <Button variant="contained" size="large" color="secondary">
-                ARTIFACTS
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item>
-            <Link to={auth.id ? `/users/${auth.id}` : '/login'}>
-              <Button variant="contained" size="large" color="secondary">
-                MY ACCOUNT
-              </Button>
-            </Link>
-          </Grid>
-        </Grid>
-      </div>
+      ></div>
     </Container>
   );
 };

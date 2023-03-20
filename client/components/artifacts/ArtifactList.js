@@ -12,6 +12,7 @@ const ArtifactList = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { auth, artifacts } = useSelector(state => state);
+
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);

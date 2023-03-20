@@ -25,11 +25,9 @@ const useStyles = makeStyles({
 
 const Success = () => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
 
   const { auth } = useSelector(state => state);
-  console.log(auth);
 
   return (
     <Container>
@@ -42,7 +40,7 @@ const Success = () => {
       </Typography>
 
       <Grid className={classes.mainBanner}>
-        <Link to={`/users/${auth.id}/details`}>
+        <Link to={`/users/${auth.id}`}>
           <Button
             className={classes.button}
             variant="contained"

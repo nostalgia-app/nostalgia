@@ -29,9 +29,8 @@ const useStyles = makeStyles({
  * COMPONENT
  */
 const AuthForm = props => {
-  const history = useHistory();
-
   const classes = useStyles();
+  const history = useHistory();
 
   const dispatch = useDispatch();
 

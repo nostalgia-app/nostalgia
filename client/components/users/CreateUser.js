@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 const CreateUser = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const history = useHistory();
 
   const [firstName, setFirstName] = useState('');

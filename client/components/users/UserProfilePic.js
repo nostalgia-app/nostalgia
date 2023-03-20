@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { Container, Card, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -10,7 +9,9 @@ const useStyles = makeStyles({
   card: {
     backgroundColor: 'rgb(234, 234, 234)',
   },
-
+  profilePic: {
+    height: 400,
+  },
   gridItem: {
     border: '2pt solid grey',
     borderRadius: '.25rem',
@@ -22,18 +23,21 @@ const useStyles = makeStyles({
 const UserProfilePic = ({ user }) => {
   const classes = useStyles();
 
-  const dispatch = useDispatch();
-
   return (
     <Container className={classes.mediaContainer}>
       <Card elevation={1} className={classes.card}>
-        <div style={{ maxHeight: 350, maxWidth: 300, backgroundSize: 'cover' }}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          className={classes.profilePic}
+        >
           {user.profilePic ? (
             <img src={`.././public/profilePicUploads/${user.profilePic}`}></img>
           ) : (
             <span></span>
           )}
-        </div>
+        </Grid>
       </Card>
     </Container>
   );

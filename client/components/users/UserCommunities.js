@@ -15,11 +15,12 @@ const useStyles = makeStyles({
   },
   image: {
     marginRight: 5,
+    maxWidth: '50px',
   },
   name: {
     marginLeft: 5,
     margin: 'auto',
-    fontSize: 18,
+    fontSize: 14,
   },
 });
 

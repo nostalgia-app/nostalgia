@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, makeStyles, Container } from '@material-ui/core';
+import { Card, CardHeader, Container } from '@material-ui/core';
 
 const UserCard = ({ user }) => {
   return (
