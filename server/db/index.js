@@ -2,21 +2,13 @@
 
 const db = require("./db");
 
-<<<<<<< HEAD
 const User = require("./models/User");
 const Community = require("./models/Community");
 const Artifact = require("./models/Artifact");
 const User_Community = require("./models/User_Community");
 const Comment = require("./models/Comment");
+const ProfilePic = require("./models/ProfilePic");
 const User_Friend = require("./models/User_Friend");
-=======
-const User = require('./models/User');
-const Community = require('./models/Community');
-const Artifact = require('./models/Artifact');
-const User_Community = require('./models/User_Community');
-const Comment = require('./models/Comment');
-const ProfilePic = require('./models/ProfilePic');
->>>>>>> main
 
 //associations could go here!
 Community.belongsTo(User, { foreignKey: "adminId" });
@@ -37,7 +29,6 @@ Comment.belongsTo(Artifact);
 Artifact.hasMany(Comment);
 Comment.belongsTo(User);
 User.hasMany(Comment);
-<<<<<<< HEAD
 
 User.belongsToMany(User, {
   through: User_Friend,
@@ -51,8 +42,6 @@ User.belongsToMany(User, {
 });
 User.hasMany(User_Friend);
 User_Friend.belongsTo(User, { foreignKey: "friendId" });
-=======
->>>>>>> main
 
 module.exports = {
   db,
@@ -62,10 +51,7 @@ module.exports = {
     Community,
     User_Community,
     Comment,
-<<<<<<< HEAD
-    User_Friend,
-=======
     ProfilePic,
->>>>>>> main
+    User_Friend,
   },
 };

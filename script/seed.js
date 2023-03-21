@@ -2,8 +2,16 @@
 
 const {
   db,
-  models: { User, Community, User_Community, Artifact, Comment, ProfilePic, User_Friend },
-} = require('../server/db');
+  models: {
+    User,
+    Community,
+    User_Community,
+    Artifact,
+    Comment,
+    ProfilePic,
+    User_Friend,
+  },
+} = require("../server/db");
 
 /**
  * seed - this function clears the database, updates tables to
@@ -21,9 +29,9 @@ async function seed() {
       firstName: "Cody",
       lastName: "Code",
       age: 27,
-      location: 'New York, NY',
-      bio: 'Hey man, my name is Cody.',
-      profilePic: 'grandpa.jpeg',
+      location: "New York, NY",
+      bio: "Hey man, my name is Cody.",
+      profilePic: "grandpa.jpeg",
     }),
     User.create({
       username: "murphy",
@@ -146,26 +154,26 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Uncle Jess & Aunt Tammy',
+      name: "Uncle Jess & Aunt Tammy",
       description:
-        'This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family',
-      fileName: 'bostonFamily.jpeg',
+        "This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family",
+      fileName: "bostonFamily.jpeg",
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Charity Race',
+      name: "Charity Race",
       description:
-        'We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!',
-      fileName: 'charityRace.jpg',
+        "We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!",
+      fileName: "charityRace.jpg",
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Grandpa George',
+      name: "Grandpa George",
       description:
         "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: 'grandpa.jpeg',
+      fileName: "grandpa.jpeg",
     }),
   ]);
 
@@ -196,7 +204,9 @@ async function seed() {
     }),
     User_Friend.create({
       userId: users[4].id,
-      friendId: users[1].id})]);
+      friendId: users[1].id,
+    }),
+  ]);
 
   // const artifact = await Promise.all([
   //   Artifact.create({
@@ -232,21 +242,11 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
-<<<<<<< HEAD
-=======
-
->>>>>>> main
     artifacts: {
       artifact1: artifacts[0],
       artifact2: artifacts[1],
       artifact3: artifacts[2],
     },
-<<<<<<< HEAD
-    comment: {
-      com1: comment[0],
-    },
-=======
->>>>>>> main
   };
 }
 
