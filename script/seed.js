@@ -31,7 +31,8 @@ async function seed() {
       age: 27,
       location: "New York, NY",
       bio: "Hey man, my name is Cody.",
-      profilePic: "grandpa.jpeg",
+      profilePic:
+        "https://media.istockphoto.com/id/1147289240/photo/portrait-of-a-smiling-student-at-the-city-street.jpg?s=612x612&w=0&k=20&c=9-L5boel1w6eQZsZJDXjXpLMTkCopgSue6vycZzP3r4=",
     }),
     User.create({
       username: "murphy",
