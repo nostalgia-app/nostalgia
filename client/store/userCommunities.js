@@ -56,6 +56,15 @@ export const addUserToCommunity =(commId,userId)=>{
     };
     };
 
+//remove user from community
+export const removeUserFromCommunity = (userCommId, history) => {
+  return async (dispatch) => {
+    const userComm = await axios.delete(`/api/userCommunity/${userCommId}`);
+    dispatch(_deleteUserCommunity(userComm));
+    history.push('/userCommunity');
+  };
+};
+
     export default function (state = [], action) {
         switch (action.type) {
         

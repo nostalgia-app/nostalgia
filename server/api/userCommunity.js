@@ -20,20 +20,36 @@ router.get('/:id', async (req, res, next) => {
 
 
 //Join a community
-router.post('/:communityId/:userId', async (req, res, next) => {
+// router.post('/:communityId/:userId', async (req, res, next) => {
+//     try {
+//         const data = {
+//             ...req.body,
+//             communityId: req.params.communityId,
+//             userId: req.params.userId
+//         };
+//         const newEntry = await User_Community.create(data);
+//         const newUser_CommunityJoined = await User_Community.findByPk(newEntry.id, {include: [User]})
+//       res.json(newUser_CommunityJoined);
+//     } catch (err) {
+//       res
+//         .status(500)
+//         .json({ message: 'Error Joining the Community', error: err.message });
+//     }
+//   });
+  router.post("/", async (req, res, next) => {
     try {
-        const data = {
-            ...req.body,
-            communityId: req.params.communityId,
-            userId: req.params.userId
-        };
-        const newEntry = await User_Community.create(data);
-        const newUser_CommunityJoined = await User_Community.findByPk(newEntry.id, {include: [User]})
-      res.json(newUser_CommunityJoined);
+      //console.log("userComm", req.body);
+      const data = {
+        ...req.body,
+        communityId: req.body.communityId,
+        userId: req.body.userId
+    };
+    console.log('communityId --> ', req.params.communityId)
+      console.log('this is userCommm', req.body)
+      res.status(201).send(await User_Community.create(data));
     } catch (err) {
-      res
-        .status(500)
-        .json({ message: 'Error Joining the Community', error: err.message });
+      res.json({message: "unable to join the comm", error: err.message})
+      next(err);
     }
   });
 
