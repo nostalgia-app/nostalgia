@@ -208,13 +208,13 @@ async function seed() {
     }),
   ]);
 
-  // const artifact = await Promise.all([
-  //   Artifact.create({
-  //     userId: users[0].id,
-  //     communityId: communities[1].id,
-  //     name: 'Samuel',
-  //   }),
-  // ]);
+  const artifact = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[1].id,
+      name: "Samuel",
+    }),
+  ]);
 
   // const comment = await Promise.all([
   //   Comment.create({
