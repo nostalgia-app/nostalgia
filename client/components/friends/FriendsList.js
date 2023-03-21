@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import FriendCard from "./FriendCard";
-import { fetchUsers, setFriends } from "../../store";
+import { setFriends } from "../../store";
 import {
   Container,
   Typography,
@@ -18,10 +19,6 @@ const FriendsList = () => {
   const { friends } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
-
-  useEffect(() => {
     dispatch(setFriends(auth.id));
   }, [auth]);
 
@@ -34,7 +31,7 @@ const FriendsList = () => {
   const handleChange = (e) => {
     const results = friends.filter((friend) => {
       if (e.target.value === "") return friends;
-      return friends.firstName
+      return friend.firstName
         .toLowerCase()
         .includes(e.target.value.toLowerCase());
     });
@@ -63,24 +60,20 @@ const FriendsList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? friends
-              ?.filter((friend) => friend.id !== auth.id)
-              .map((friend) => {
-                return (
-                  <Grid item zeroMinWidth key={friend.id}>
-                    <FriendCard key={friend.id} friend={friend} />
-                  </Grid>
-                );
-              })
-          : state.list
-              ?.filter((friend) => friend.id !== auth.id)
-              .map((friend) => {
-                return (
-                  <Grid item zeroMinWidth key={friend.id}>
-                    <FriendCard key={friend.id} friend={friend} />
-                  </Grid>
-                );
-              })}
+          ? friends?.map((friend) => {
+              return (
+                <Grid item zeroMinWidth key={friend.id}>
+                  <FriendCard key={friend.id} friend={friend} />
+                </Grid>
+              );
+            })
+          : state.list?.map((friend) => {
+              return (
+                <Grid item zeroMinWidth key={friend.id}>
+                  <FriendCard key={friend.id} friend={friend} />
+                </Grid>
+              );
+            })}
       </Grid>
     </Container>
   );

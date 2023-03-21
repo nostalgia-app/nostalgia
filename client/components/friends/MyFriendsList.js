@@ -43,7 +43,7 @@ const MyFriendsList = () => {
   return (
     <Container>
       <Typography align="center" variant="h3" component="h1" gutterBottom>
-        My Friends
+        Find Friends
       </Typography>
 
       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>

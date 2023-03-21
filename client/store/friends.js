@@ -46,7 +46,6 @@ export const addFriend = (newFriend) => {
     try {
       const res = await axios.post("/api/userfriends/", newFriend);
       const friend = res.data;
-      console.log("addFriend", friend);
       dispatch(_addFriend(friend));
     } catch (error) {
       console.log(error);

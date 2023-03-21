@@ -3,20 +3,6 @@ const {
   models: { User_Friend, User },
 } = require("../db");
 
-// GET /api/userfriends/user/:id
-// Retrieves all users with friend status for the current user
-router.get("/user/:id", async (req, res, next) => {
-  try {
-    const friends = await User_Friend.findAll({
-      where: { userId: req.params.id },
-      include: [{ model: User, attributes: { exclude: ["password"] } }],
-    });
-    res.json(friends);
-  } catch (err) {
-    next(err);
-  }
-});
-
 // GET /api/userfriends/:id
 // Retrieves a relationship between a user and friend based on the relationship Id
 router.get("/:id", async (req, res, next) => {
