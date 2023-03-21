@@ -216,13 +216,13 @@ async function seed() {
     }),
   ]);
 
-  // const comment = await Promise.all([
-  //   Comment.create({
-  //     artifactId: artifact[0].id,
-  //     userId: users[0].id,
-  //     comment: 'DEFAULT COMMENT YESSA',
-  //   }),
-  // ]);
+  const comment = await Promise.all([
+    Comment.create({
+      artifactId: artifact[0].id,
+      userId: users[0].id,
+      comment: "DEFAULT COMMENT YESSA",
+    }),
+  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
