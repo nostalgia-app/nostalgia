@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Navbar from './components/Navbar';
+import { useSelector } from 'react-redux';
 import Routes from './Routes';
 import { Container } from '@material-ui/core';
 import Layout from './Layout';
 import { createTheme, ThemeProvider } from '@material-ui/core';
 import { logout } from './store';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -42,7 +44,17 @@ const theme = createTheme({
 
 const App = () => {
   const dispatch = useDispatch();
-  const handleClick = () => {
+  const history = useHistory();
+  const { auth } = useSelector(state => state);
+  const handleMyAccount = () => {
+    if (auth.id) {
+      history.push(`/users/${auth.id}`);
+    } else {
+      history.push('/login');
+    }
+  };
+
+  const handleLogout = () => {
     dispatch(logout);
     console.log('client has been logged out');
   };
@@ -56,12 +68,12 @@ const App = () => {
         }}
       >
         <Link to="/">Home</Link>
-        <Link to="/users">Users</Link>
         <Link to="/communities">Communities</Link>
         <Link to="/create-user">Create Account</Link>
         <Link to="/artifacts">Artifacts</Link>
         <Link to="/login">Log in</Link>
-        <button onClick={handleClick}>Log out</button>
+        <button onClick={handleMyAccount}>My Account</button>
+        <button onClick={handleLogout}>Log out</button>
       </div>
 
       <ThemeProvider theme={theme}>
