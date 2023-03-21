@@ -16,6 +16,18 @@ export const setArtifacts = id => {
   };
 };
 
+export const setUserArtifacts = userId => {
+  return async dispatch => {
+    try {
+      const res = await axios.get(`/api/users/${userId}/artifacts`);
+      const artifacts = res.data;
+      dispatch({ type: 'SET_ARTIFACTS', artifacts });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 // SINGLE
 export const fetchArtifact = id => {
   return async dispatch => {

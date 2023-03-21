@@ -1,16 +1,31 @@
 const router = require("express").Router();
 const {
+
   db,
   models: { User, User_Friend, ProfilePic },
 } = require("../db");
 const path = require("path");
 const multer = require("multer");
 
+
+
 // GET ALL
 router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: { exclude: ["password"] },
+    });
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET ALL USER ARTIFACTS
+router.get('/:id/artifacts', async (req, res, next) => {
+  try {
+    const users = await Artifact.findAll({
+      where: { userId: req.params.id },
     });
     res.json(users);
   } catch (err) {
