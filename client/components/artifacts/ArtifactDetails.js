@@ -15,7 +15,7 @@ const ArtifactDetails = () => {
   }, []);
 
   const { artifacts } = useSelector(state => state);
-  const artifact = artifacts;
+  const artifact = artifacts.artifact;
 
   return (
     <Container>

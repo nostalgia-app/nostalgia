@@ -9,7 +9,9 @@ const ArtifactDetailsCard = ({ artifact }) => {
     dispatch(updateArtifact({ id: artifact.id, likes: artifact.likes + 1 }));
     window.location.reload();
   };
+
   return (
+    //
     <Card elevation={3} style={{ padding: 10 }}>
       {/* <CardHeader title={artifact.name} /> */}
       <CardMedia src={artifact.fileName}>
