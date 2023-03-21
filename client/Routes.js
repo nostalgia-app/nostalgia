@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -9,30 +8,14 @@ import CommunityList from "./components/communities/CommunityList";
 import CommunityDetails from "./components/communities/CommunityDetails";
 import CreateUser from "./components/users/CreateUSer";
 import UpdateUser from "./components/users/UpdateUser";
-import UserDetails from "./components/users/UserDetails";
+import UserProfile from "./components/users/UserProfile";
+import Success from "./components/users/Success";
+import ArtifactList from "./components/artifacts/ArtifactList";
+import ArtifactDetails from "./components/artifacts/ArtifactDetails";
 import FriendsList from "./components/friends/FriendsList";
 import MyFriendsList from "./components/friends/MyFriendsList";
 import FriendProfile from "./components/friends/FriendProfile";
-import ArtifactList from "./components/artifacts/ArtifactList";
-import ArtifactDetails from "./components/artifacts/ArtifactDetails";
-=======
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/users/Login';
-import { Home } from './components/Home';
-import { me } from './store';
-import CommunityList from './components/communities/CommunityList';
-import CommunityDetails from './components/communities/CommunityDetails';
-import CreateUser from './components/users/CreateUSer';
-import UpdateUser from './components/users/UpdateUser';
-import UserProfile from './components/users/UserProfile';
-import Success from './components/users/Success';
-import Users from './components/users/UsersList';
-import ArtifactList from './components/artifacts/ArtifactList';
-import ArtifactDetails from './components/artifacts/ArtifactDetails';
 
->>>>>>> main
 /**
  * COMPONENT
  */
@@ -47,16 +30,11 @@ class Routes extends Component {
     return (
       <div>
         <Route exact path="/" component={Home} />
-<<<<<<< HEAD
-        <Route exact path="/users/:id" component={UserDetails} />
+        <Route exact path="/users/:id" component={UserProfile} />
         <Route exact path="/myfriends" component={MyFriendsList} />
         <Route exact path="/findfriends" component={FriendsList} />
         <Route exact path="/friends" component={FriendsList} />
         <Route exact path="/friends/:id" component={FriendProfile} />
-=======
-        <Route exact path="/users" component={Users} />
-        <Route exact path="/users/:id" component={UserProfile} />
->>>>>>> main
         <Route exact path="/create-user" component={CreateUser} />
         <Route exact path="/users/:id/update-user" component={UpdateUser} />
         <Route exact path="/users-success" component={Success} />

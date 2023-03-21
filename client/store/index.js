@@ -34,7 +34,6 @@ export * from "./auth";
 export * from "./user";
 export * from "./communities";
 export * from "./community";
-export * from "./geographies";
 export * from "./comments";
 export * from "./artifacts";
 export * from "./profilePics";

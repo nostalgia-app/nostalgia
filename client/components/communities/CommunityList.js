@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { addCommunity, setCommunities, setGeography } from "../../store";
+import { addCommunity, setCommunities } from "../../store";
 import CommunityCard from "./CommunityCard";
-=======
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import { addCommunity, setCommunities, setGeography } from '../../store';
-import CommunityCard from './CommunityCard';
->>>>>>> main
 
 import {
   Box,
@@ -27,14 +19,10 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
 const CommunityList = () => {
-<<<<<<< HEAD
   const { communities, auth } = useSelector((state) => state);
-=======
-  const { communities, geographies, auth } = useSelector(state => state);
->>>>>>> main
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCommunities());
@@ -68,7 +56,6 @@ const CommunityList = () => {
   };
 
   // Filter Category
-<<<<<<< HEAD
   const [state, setstate] = useState({
     query: "",
     list: [],
@@ -87,16 +74,6 @@ const CommunityList = () => {
       query: e.target.value,
       list: results,
     });
-=======
-  const [location, setLocation] = React.useState('');
-
-  const handleChange = event => {
-    setLocation(event.target.value);
-  };
-
-  const resetValue = () => {
-    setLocation('');
->>>>>>> main
   };
 
   return (
@@ -123,22 +100,7 @@ const CommunityList = () => {
             type="search"
             label="Location"
             onChange={handleChange}
-<<<<<<< HEAD
           ></TextField>
-=======
-          >
-            {geographies.length > 0 ? (
-              geographies.map(geography => (
-                <MenuItem key={geography.state} value={geography.state}>
-                  {geography.state}
-                </MenuItem>
-              ))
-            ) : (
-              <MenuItem>No Items to Select</MenuItem>
-            )}
-          </Select>
-          <Button onClick={resetValue}>Clear Filter</Button>
->>>>>>> main
         </FormControl>
       </Box>
 
@@ -184,7 +146,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="name"
-              {...register('name')}
+              {...register("name")}
               label="Community Name"
               type="text"
               fullWidth
@@ -194,7 +156,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="bio"
-              {...register('bio')}
+              {...register("bio")}
               label="Bio"
               type="text"
               fullWidth
@@ -204,7 +166,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="address"
-              {...register('address')}
+              {...register("address")}
               label="Address"
               type="text"
               fullWidth
@@ -214,7 +176,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="city"
-              {...register('city')}
+              {...register("city")}
               label="City"
               type="text"
               fullWidth
@@ -224,7 +186,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="state"
-              {...register('state')}
+              {...register("state")}
               label="State"
               type="text"
               fullWidth
@@ -234,7 +196,7 @@ const CommunityList = () => {
               autoFocus
               margin="dense"
               name="zipCode"
-              {...register('zipCode')}
+              {...register("zipCode")}
               label="Zipcode"
               type="text"
               fullWidth
@@ -245,7 +207,7 @@ const CommunityList = () => {
               name="imageUrl"
               accept=".jpg, .jpeg, .png"
               variant="outlined"
-              onChange={e => {
+              onChange={(e) => {
                 const file = e.target.files[0];
                 setFile(file);
               }}
