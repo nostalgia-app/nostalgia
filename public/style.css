@@ -19,3 +19,8 @@ nav a {
   margin: 1em;
   display: inline-block;
 } */
+
+#profileImage {
+  width: 250px;
+  height: 300px;
+}

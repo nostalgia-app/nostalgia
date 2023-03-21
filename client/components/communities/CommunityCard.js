@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  Container,
   Card,
-  CardHeader,
   CardContent,
   CardMedia,
   Button,
-  Grid,
   CardActionArea,
   Typography,
   Box,
@@ -24,47 +21,45 @@ const CommunityCard = (props) => {
   };
 
   return (
-    <Grid item zeroMinWidth key={community.id}>
-      <Card
-        elevation={3}
-        style={{
-          color: "black",
-          padding: 10,
-          marginLeft: 20,
-          width: 350,
-          height: 350,
-        }}
-      >
-        <CardActionArea>
-          <Link to={`/communities/${community.id}`}>
-            <CardMedia
-              src={community.imageUrl}
-              component="img"
-              height="250"
-              width="250"
-              sx={{ padding: "1em 1em 0 1em" }}
-            />
-            <Typography align="center" style={{ overflowWrap: "break-word" }}>
-              {community.name}
-            </Typography>
-          </Link>
-        </CardActionArea>
-        <CardContent>
-          <Box display="flex" justifyContent="space-around" alignItems="center">
-            <Button variant="contained" sx={{ borderRadius: 50 }}>
-              Join
-            </Button>
-            <Button
-              variant="contained"
-              sx={{ borderRadius: 50 }}
-              onClick={routeChange}
-            >
-              Learn
-            </Button>
-          </Box>
-        </CardContent>
-      </Card>
-    </Grid>
+    <Card
+      elevation={3}
+      style={{
+        color: "black",
+        padding: 10,
+        marginLeft: 20,
+        width: 350,
+        height: 350,
+      }}
+    >
+      <CardActionArea>
+        <Link to={`/communities/${community.id}`}>
+          <CardMedia
+            src={community.imageUrl}
+            component="img"
+            height="250"
+            width="250"
+            sx={{ padding: "1em 1em 0 1em" }}
+          />
+          <Typography align="center" style={{ overflowWrap: "break-word" }}>
+            {community.name}
+          </Typography>
+        </Link>
+      </CardActionArea>
+      <CardContent>
+        <Box display="flex" justifyContent="space-around" alignItems="center">
+          <Button variant="contained" sx={{ borderRadius: 50 }}>
+            Join
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: 50 }}
+            onClick={routeChange}
+          >
+            Learn
+          </Button>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

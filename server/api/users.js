@@ -1,18 +1,19 @@
-const router = require('express').Router();
+const router = require("express").Router();
 const {
-  models: { User, ProfilePic, Artifact },
-} = require('../db');
-const path = require('path');
-const multer = require('multer');
+
+  db,
+  models: { User, User_Friend, ProfilePic },
+} = require("../db");
+const path = require("path");
+const multer = require("multer");
+
+
 
 // GET ALL
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'username'],
+      attributes: { exclude: ["password"] },
     });
     res.json(users);
   } catch (err) {
@@ -33,7 +34,7 @@ router.get('/:id/artifacts', async (req, res, next) => {
 });
 
 // GET SINGLE
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.json(user);
@@ -43,7 +44,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // CREATE USER
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     res.json(user);
@@ -53,7 +54,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // UPDATE USER
-router.put('/:id', async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
@@ -63,9 +64,24 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
+// GET USERS WITH RELATIONSHIP
+router.get("/userfriends/user/:id", async (req, res, next) => {
+  try {
+    const friends = await db.query(
+      `select users.*, "friendInd", "userFriendId" from users left join (select "friendId","id" as "userFriendId", 'Y' as "friendInd" from users_friends where users_friends."userId" = ?) as friends on users.id = friends."friendId" `,
+      {
+        replacements: [req.params.id],
+      }
+    );
+    res.json(friends);
+  } catch (err) {
+    next(err);
+  }
+});
+
 const storageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
-    cb(null, 'public/profilePicUploads');
+    cb(null, "public/profilePicUploads");
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
