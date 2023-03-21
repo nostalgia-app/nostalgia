@@ -30,17 +30,17 @@ const useStyles = makeStyles({
     display: 'flex',
     borderRadius: '.25rem',
     borderBottom: '2pt solid rgb(180, 180, 180)',
-    // border: '2pt solid orange',
+    border: '2pt solid orange',
   },
   userData: {
     backgroundColor: 'rgb(246, 246, 246)',
-    // border: '2pt solid blue',
+    border: '2pt solid blue',
   },
   middleRow: {
     display: 'flex',
     borderRadius: '.25rem',
     marginTop: 5,
-    // border: '2pt solid orange',
+    border: '2pt solid orange',
   },
   profilePic: {
     border: '2pt solid rgb(246, 246, 246)',
@@ -50,12 +50,12 @@ const useStyles = makeStyles({
     borderRadius: '.25rem',
     padding: 20,
     marginTop: 10,
-    // border: '2pt solid blue',
+    border: '2pt solid blue',
   },
   communitiesGrid: {
     padding: 10,
     marginTop: 5,
-    // border: '2pt solid red',
+    border: '2pt solid red',
   },
   artifactsGrid: {
     padding: 10,
@@ -95,12 +95,8 @@ const UserProfile = () => {
       <Container>
         {auth.id === id ? (
           <Grid>
-            <Typography variant="h4" align="center">
-              Hello {currentUser.firstName}
-            </Typography>
-            <Typography align="center">
-              Today is {format(new Date(), 'MMMM do, Y')}
-            </Typography>
+            <Typography variant="h5">Hello {currentUser.firstName}</Typography>
+            <Typography>Today is {format(new Date(), 'MMMM do, Y')}</Typography>
           </Grid>
         ) : (
           <span></span>

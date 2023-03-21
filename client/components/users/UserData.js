@@ -60,16 +60,19 @@ const UserData = ({ user, id }) => {
   return (
     <Container item className={classes.dataContainer}>
       <Grid className={classes.headings}>
+        <Typography variant="h4">
+          {user.firstName} {user.lastName}
+        </Typography>
+
+        <Grid className={classes.headings}>
+          <Typography variant="h6">{user.firstName}'s Age</Typography>
+          <Typography paragraph align="center">
+            {user.age ? user.age + ` years old` : <span></span>}
+          </Typography>
+        </Grid>
         <Typography variant="h6">{user.firstName}'s Location</Typography>
         <Typography paragraph align="center">
           {user.location}
-        </Typography>
-      </Grid>
-
-      <Grid className={classes.headings}>
-        <Typography variant="h6">{user.firstName}'s Age</Typography>
-        <Typography paragraph align="center">
-          {user.age ? user.age + ` years old` : <span></span>}
         </Typography>
       </Grid>
 
@@ -83,7 +86,7 @@ const UserData = ({ user, id }) => {
       </Grid>
 
       {/* ------------------------------------------------------------------------------ */}
-
+      {/* <Grid container spacing={2}> */}
       <Grid item className={classes.buttons} xs={12} sm={8} md={8}>
         {auth.id === id ? (
           <Link to={`/users/${user.id}/update-user`}>
@@ -129,6 +132,7 @@ const UserData = ({ user, id }) => {
           </Container>
         </Dialog>
       </Grid>
+      {/* </Grid> */}
     </Container>
   );
 };
