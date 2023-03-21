@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {
   db,
-  models: { User, User_Friend },
+  models: { User },
 } = require("../db");
 
 // GET ALL
@@ -42,25 +42,6 @@ router.put("/:id", async (req, res, next) => {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
     res.json(user);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// GET /api/users/userfriends/user/:id
-// Retrieves all users with friend status for the current user
-router.get("/userfriends/user/:id", async (req, res, next) => {
-  try {
-    const friends = await User.findAll({
-      include: [
-        {
-          model: User_Friend,
-          where: { userId: req.params.id },
-          required: false,
-        },
-      ],
-    });
-    res.json(friends);
   } catch (err) {
     next(err);
   }

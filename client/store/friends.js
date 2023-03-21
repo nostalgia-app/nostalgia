@@ -20,7 +20,7 @@ const _addFriend = (friend) => ({
   friend,
 });
 
-const _deleteFriend = (id) => ({
+const _deleteFriend = (friend) => ({
   type: DELETE_FRIEND,
   friend,
 });
@@ -44,19 +44,23 @@ export const setFriends = (id) => {
 export const addFriend = (newFriend) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post("/api/userfriends/", newFriend);
-      const friend = res.data;
-      dispatch(_addFriend(friend));
+      await axios
+        .post("/api/userfriends/", newFriend)
+        .then((res) => axios.get(`/api/userfriends/${res.data.id}`))
+        .then((res) => dispatch(_addFriend(res.data)));
     } catch (error) {
       console.log(error);
     }
   };
 };
 
-export const deleteFriend = (deleteFriend) => {
+export const deleteFriend = (userFriendId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.delete(`/api/userfriends/`, deleteFriend);
+      const res = await axios.delete(
+        `/api/userfriends/${userFriendId}`,
+        deleteFriend
+      );
       const friend = res.data;
       dispatch(_deleteFriend(friend));
     } catch (error) {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Card,
@@ -11,16 +11,17 @@ import {
 } from "@material-ui/core";
 import { addFriend, deleteFriend } from "../../store";
 
-const FriendCard = ({ user }) => {
+const FriendCard = ({ user, friend }) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const handleAddClick = (userId, friendId) => {
     dispatch(addFriend({ userId: userId, friendId: friendId }));
   };
 
-  const handleRemovelick = (userId, friendId) => {
-    dispatch(deleteFriend({ userId: userId, friendId: friendId }));
+  const handleRemovelick = (userFriendId) => {
+    dispatch(deleteFriend(userFriendId));
   };
 
   return (
@@ -49,20 +50,23 @@ const FriendCard = ({ user }) => {
         </Link>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => handleAddClick(auth.id, user.id)}
-        >
-          Add Friend
-        </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => handleRemovelick(auth.id, user.id)}
-        >
-          Remove Friend
-        </Button>
+        {pathname === "/myfriends" ? (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => handleRemovelick(friend.id)}
+          >
+            Remove Friend
+          </Button>
+        ) : (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => handleAddClick(auth.id, user.id)}
+          >
+            Add Friend
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

@@ -10,6 +10,7 @@ import CreateUser from "./components/users/CreateUSer";
 import UpdateUser from "./components/users/UpdateUser";
 import UserDetails from "./components/users/UserDetails";
 import FriendsList from "./components/friends/FriendsList";
+import MyFriendsList from "./components/friends/MyFriendsList";
 import FriendProfile from "./components/friends/FriendProfile";
 import ArtifactList from "./components/artifacts/ArtifactList";
 import ArtifactDetails from "./components/artifacts/ArtifactDetails";
@@ -28,7 +29,7 @@ class Routes extends Component {
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/users/:id" component={UserDetails} />
-        <Route exact path="/myfriends" component={FriendsList} />
+        <Route exact path="/myfriends" component={MyFriendsList} />
         <Route exact path="/findfriends" component={FriendsList} />
         <Route exact path="/friends" component={FriendsList} />
         <Route exact path="/friends/:id" component={FriendProfile} />
