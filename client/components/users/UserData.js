@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -43,8 +44,9 @@ const useStyles = makeStyles({
   },
 });
 
-const UserData = ({ user }) => {
+const UserData = ({ user, id }) => {
   const classes = useStyles();
+  const { auth } = useSelector(state => state);
 
   const [open, setOpen] = useState(false);
 
@@ -83,16 +85,20 @@ const UserData = ({ user }) => {
       {/* ------------------------------------------------------------------------------ */}
 
       <Grid item className={classes.buttons} xs={12} sm={8} md={8}>
-        <Link to={`/users/${user.id}/update-user`}>
-          <Button
-            className={classes.button}
-            variant="contained"
-            size="large"
-            color="secondary"
-          >
-            EDIT PROFILE
-          </Button>
-        </Link>
+        {auth.id === id ? (
+          <Link to={`/users/${user.id}/update-user`}>
+            <Button
+              className={classes.button}
+              variant="contained"
+              size="large"
+              color="secondary"
+            >
+              EDIT PROFILE
+            </Button>
+          </Link>
+        ) : (
+          <span></span>
+        )}
 
         <Button
           className={classes.button}
@@ -101,7 +107,7 @@ const UserData = ({ user }) => {
           color="secondary"
           onClick={displayFriends}
         >
-          MY FRIENDS
+          FRIENDS
         </Button>
 
         {/* ------------------------------------------------------------------------------ */}

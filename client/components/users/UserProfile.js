@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUser } from '../../store';
+import { fetchUser, setUserArtifacts } from '../../store';
 import { setCommunities } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -13,6 +13,8 @@ import {
   makeStyles,
   ImageList,
   ImageListItem,
+  ImageListItemBar,
+  Slide,
 } from '@material-ui/core';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
@@ -80,77 +82,84 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
+  useEffect(() => {
+    dispatch(setUserArtifacts(id));
+  }, []);
 
-  const { user, communities } = useSelector(state => state);
+  const { user, communities, artifacts } = useSelector(state => state);
   const currentUser = user.user;
+  const userArtifacts = artifacts.artifacts;
 
   return (
-    <div>
-      {auth.id === id ? (
-        <>
-          <Container>
+    <>
+      <Container>
+        {auth.id === id ? (
+          <Grid>
             <Typography variant="h4" align="center">
               Hello {currentUser.firstName}
             </Typography>
             <Typography align="center">
               Today is {format(new Date(), 'MMMM do, Y')}
             </Typography>
-            {!currentUser.age && !currentUser.location && !currentUser.bio ? (
-              <DialogBox user={user} />
-            ) : (
-              <span></span>
-            )}
-          </Container>
+          </Grid>
+        ) : (
+          <span></span>
+        )}
 
-          <Container className={classes.mainContainer}>
-            <Grid container spacing={2} className={classes.topRow}>
-              <Grid item className={classes.userData} xs={12} sm={8} md={8}>
-                <UserData user={currentUser} />
-              </Grid>
-              <Grid item className={classes.profilePic} xs={12} sm={4} md={4}>
-                <UserProfilePic user={currentUser} />
-              </Grid>
-            </Grid>
+        {auth.id === id &&
+        !currentUser.age &&
+        !currentUser.location &&
+        !currentUser.bio ? (
+          <DialogBox user={user} />
+        ) : (
+          <span></span>
+        )}
+      </Container>
 
-            <Grid container spacing={2} className={classes.middleRow}>
-              <Grid item xs={12} sm={8} md={8}>
-                <ImageList className={classes.artifactsGrid}>
-                  {communities.map(item => {
-                    return (
-                      <ImageListItem key={item.id}>
-                        <img src={`${item.imageUrl}`} loading="lazy"></img>
-                      </ImageListItem>
-                    );
-                  })}
-                </ImageList>
-              </Grid>
+      <Container className={classes.mainContainer}>
+        <Grid container spacing={2} className={classes.topRow}>
+          <Grid item className={classes.userData} xs={12} sm={8} md={8}>
+            <UserData user={currentUser} id={id} />
+          </Grid>
+          <Grid item className={classes.profilePic} xs={12} sm={4} md={4}>
+            <UserProfilePic user={currentUser} />
+          </Grid>
+        </Grid>
 
-              <Grid
-                item
-                className={classes.communitiesGrid}
-                xs={12}
-                sm={4}
-                md={4}
-              >
-                {currentUser.firstName}'s Communities
-                {communities.map(community => {
-                  return (
-                    <div key={community.id} className={classes.card}>
-                      <UserCommunities community={community} />
-                    </div>
-                  );
-                })}
-              </Grid>
-            </Grid>
-          </Container>
-        </>
-      ) : (
-        <Typography variant="h6">
-          Unauthorized access. Please <Link to="/login">login</Link> or{' '}
-          <Link to="/create-user">create an account</Link>
-        </Typography>
-      )}
-    </div>
+        <Grid container spacing={2} className={classes.middleRow}>
+          <Grid item xs={12} sm={8} md={8}>
+            <div>{currentUser.firstName}'s Artifacts</div>
+
+            <ImageList className={classes.artifactsGrid}>
+              {userArtifacts.map(artifact => {
+                return (
+                  <ImageListItem key={artifact.id}>
+                    <Link to={`/artifacts/${artifact.id}`}>
+                      <img
+                        src={`.././public/artifactUploads/${artifact.fileName}`}
+                      ></img>
+                    </Link>
+
+                    <ImageListItemBar title={artifact.name} />
+                  </ImageListItem>
+                );
+              })}
+            </ImageList>
+          </Grid>
+
+          <Grid item className={classes.communitiesGrid} xs={12} sm={4} md={4}>
+            {currentUser.firstName}'s Communities
+            {communities.map(community => {
+              return (
+                <div key={community.id} className={classes.card}>
+                  <UserCommunities community={community} />
+                </div>
+              );
+            })}
+          </Grid>
+        </Grid>
+      </Container>
+    </>
   );
 };
 

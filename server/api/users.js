@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User, ProfilePic },
+  models: { User, ProfilePic, Artifact },
 } = require('../db');
 const path = require('path');
 const multer = require('multer');
@@ -13,6 +13,18 @@ router.get('/', async (req, res, next) => {
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
       attributes: ['id', 'username'],
+    });
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET ALL USER ARTIFACTS
+router.get('/:id/artifacts', async (req, res, next) => {
+  try {
+    const users = await Artifact.findAll({
+      where: { userId: req.params.id },
     });
     res.json(users);
   } catch (err) {
