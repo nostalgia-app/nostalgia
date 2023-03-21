@@ -14,7 +14,6 @@ import { addFriend, deleteFriend } from "../../store";
 const FriendCard = ({ friend }) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
 
   const handleAddClick = (userId, friendId) => {
     dispatch(addFriend({ userId: userId, friendId: friendId }));
@@ -38,7 +37,7 @@ const FriendCard = ({ friend }) => {
       <CardActionArea>
         <Link to={`/friends/${friend.id}`}>
           <CardMedia
-            src={friend.imageUrl}
+            src={friend.profilePic}
             component="img"
             height="140"
             width="140"
