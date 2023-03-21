@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import { addFriend, deleteFriend } from "../../store";
 
-const FriendCard = ({ user, friend }) => {
+const FriendCard = ({ friend }) => {
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
@@ -36,25 +36,26 @@ const FriendCard = ({ user, friend }) => {
       }}
     >
       <CardActionArea>
-        <Link to={`/friends/${user.id}`}>
+        <Link to={`/friends/${friend.id}`}>
           <CardMedia
-            src={user.imageUrl}
+            src={friend.imageUrl}
             component="img"
-            height="150"
-            width="150"
+            height="140"
+            width="140"
             sx={{ padding: "1em 1em 0 1em" }}
           />
           <Typography align="center" style={{ overflowWrap: "break-word" }}>
-            {user.firstName + " " + user.lastName}
+            {friend.firstName + " " + friend.lastName}
           </Typography>
         </Link>
       </CardActionArea>
       <CardActions>
-        {pathname === "/myfriends" ? (
+        {friend.friendInd === "Y" ? (
           <Button
             size="small"
             color="primary"
-            onClick={() => handleRemovelick(friend.id)}
+            variant="outlined"
+            onClick={() => handleRemovelick(friend.userFriendId)}
           >
             Remove Friend
           </Button>
@@ -62,7 +63,8 @@ const FriendCard = ({ user, friend }) => {
           <Button
             size="small"
             color="primary"
-            onClick={() => handleAddClick(auth.id, user.id)}
+            variant="contained"
+            onClick={() => handleAddClick(auth.id, friend.id)}
           >
             Add Friend
           </Button>

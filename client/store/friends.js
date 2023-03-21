@@ -32,8 +32,8 @@ const _deleteFriend = (friend) => ({
 export const setFriends = (id) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/userfriends/user/${id}`);
-      const friends = res.data;
+      const res = await axios.get(`/api/users/userfriends/user/${id}`);
+      const friends = res.data[0];
       dispatch(_setFriends(friends));
     } catch (error) {
       console.log(error);
@@ -44,10 +44,10 @@ export const setFriends = (id) => {
 export const addFriend = (newFriend) => {
   return async (dispatch) => {
     try {
-      await axios
-        .post("/api/userfriends/", newFriend)
-        .then((postRes) => axios.get(`/api/userfriends/${postRes.data.id}`))
-        .then((getRes) => dispatch(_addFriend(getRes.data[0])));
+      const res = await axios.post("/api/userfriends/", newFriend);
+      const friend = res.data;
+      console.log("addFriend", friend);
+      dispatch(_addFriend(friend));
     } catch (error) {
       console.log(error);
     }
@@ -77,13 +77,25 @@ export default function (state = [], action) {
     case SET_FRIENDS:
       return action.friends;
     case ADD_FRIEND:
-      return [...state, action.friend];
+      const addFriends = [...state];
+      const addFriendsUpdated = addFriends.map((friend) => {
+        if (friend.id === action.friend.friendId) {
+          friend.friendInd = "Y";
+          friend.userFriendId = action.friend.id;
+        }
+        return friend;
+      });
+      return addFriendsUpdated;
     case DELETE_FRIEND:
-      const relationships = [...state];
-      const relationshipsUpdated = relationships.filter(
-        (relationship) => relationship.id !== action.friend.id
-      );
-      return relationshipsUpdated;
+      const removeFriends = [...state];
+      const removeFriendsUpdated = removeFriends.map((friend) => {
+        if (friend.id === action.friend.friendId) {
+          friend.friendInd = null;
+          friend.userFriendId = null;
+        }
+        return friend;
+      });
+      return removeFriendsUpdated;
     default:
       return state;
   }

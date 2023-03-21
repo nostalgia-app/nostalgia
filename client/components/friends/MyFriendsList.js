@@ -30,7 +30,7 @@ const MyFriendsList = () => {
   const handleChange = (e) => {
     const results = friends.filter((friend) => {
       if (e.target.value === "") return friends;
-      return friend.user.firstName
+      return friend.firstName
         .toLowerCase()
         .includes(e.target.value.toLowerCase());
     });
@@ -59,28 +59,24 @@ const MyFriendsList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? friends?.map((friend) => {
-              return (
-                <Grid item zeroMinWidth key={friend.id}>
-                  <FriendCard
-                    key={friend.id}
-                    user={friend.user}
-                    friend={friend}
-                  />
-                </Grid>
-              );
-            })
-          : state.list?.map((user) => {
-              return (
-                <Grid item zeroMinWidth key={friend.id}>
-                  <FriendCard
-                    key={friend.id}
-                    user={friend.user}
-                    friend={friend}
-                  />
-                </Grid>
-              );
-            })}
+          ? friends
+              ?.filter((friend) => friend.friendInd === "Y")
+              .map((friend) => {
+                return (
+                  <Grid item zeroMinWidth key={friend.id}>
+                    <FriendCard key={friend.id} friend={friend} />
+                  </Grid>
+                );
+              })
+          : state.list
+              ?.filter((friend) => friend.friendInd === "Y")
+              .map((friend) => {
+                return (
+                  <Grid item zeroMinWidth key={friend.id}>
+                    <FriendCard key={friend.id} friend={friend} />
+                  </Grid>
+                );
+              })}
       </Grid>
     </Container>
   );

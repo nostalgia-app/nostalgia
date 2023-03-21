@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import FriendCard from "./FriendCard";
 import { fetchUsers, setFriends } from "../../store";
 import {
@@ -15,8 +14,8 @@ import {
 
 const FriendsList = () => {
   const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.user);
   const { auth } = useSelector((state) => state);
+  const { friends } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(fetchUsers());
@@ -33,9 +32,9 @@ const FriendsList = () => {
   });
 
   const handleChange = (e) => {
-    const results = users.filter((user) => {
-      if (e.target.value === "") return users;
-      return user.firstName
+    const results = friends.filter((friend) => {
+      if (e.target.value === "") return friends;
+      return friends.firstName
         .toLowerCase()
         .includes(e.target.value.toLowerCase());
     });
@@ -64,21 +63,21 @@ const FriendsList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? users
-              ?.filter((user) => user.id !== auth.id)
-              .map((user) => {
+          ? friends
+              ?.filter((friend) => friend.id !== auth.id)
+              .map((friend) => {
                 return (
-                  <Grid item zeroMinWidth key={user.id}>
-                    <FriendCard key={user.id} user={user} />
+                  <Grid item zeroMinWidth key={friend.id}>
+                    <FriendCard key={friend.id} friend={friend} />
                   </Grid>
                 );
               })
           : state.list
-              ?.filter((user) => user.id !== auth.id)
-              .map((user) => {
+              ?.filter((friend) => friend.id !== auth.id)
+              .map((friend) => {
                 return (
-                  <Grid item zeroMinWidth key={user.id}>
-                    <FriendCard key={user.id} user={user} />
+                  <Grid item zeroMinWidth key={friend.id}>
+                    <FriendCard key={friend.id} friend={friend} />
                   </Grid>
                 );
               })}
