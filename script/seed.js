@@ -2,8 +2,8 @@
 
 const {
   db,
-  models: { User, Community, User_Community, Artifact, Comment, User_Friend },
-} = require("../server/db");
+  models: { User, Community, User_Community, Artifact, Comment, ProfilePic, User_Friend },
+} = require('../server/db');
 
 /**
  * seed - this function clears the database, updates tables to
@@ -21,10 +21,9 @@ async function seed() {
       firstName: "Cody",
       lastName: "Code",
       age: 27,
-      location: "New York, NY",
-      bio: "Hey man, my name is Cody.",
-      imageUrl:
-        "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?cs=srgb&dl=pexels-italo-melo-2379004.jpg&fm=jpg",
+      location: 'New York, NY',
+      bio: 'Hey man, my name is Cody.',
+      profilePic: 'grandpa.jpeg',
     }),
     User.create({
       username: "murphy",
@@ -34,7 +33,7 @@ async function seed() {
       age: 98,
       location: "Dublin, Ireland",
       bio: "I'm looking for a guy named Cody. Is he here?",
-      imageUrl:
+      profilePic:
         "https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=",
     }),
     User.create({
@@ -45,7 +44,7 @@ async function seed() {
       age: 50,
       location: "Raleigh, North Carolina",
       bio: "Hi, I'm Sally!",
-      imageUrl:
+      profilePic:
         "https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=",
     }),
     User.create({
@@ -56,7 +55,7 @@ async function seed() {
       age: 60,
       location: "Tampa, Florida",
       bio: "Hi, I'm Bob!",
-      imageUrl:
+      profilePic:
         "https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=",
     }),
     User.create({
@@ -67,7 +66,7 @@ async function seed() {
       age: 30,
       location: "Chicago, Illinois",
       bio: "Hi, I'm Mike!",
-      imageUrl:
+      profilePic:
         "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
     }),
     User.create({
@@ -78,7 +77,7 @@ async function seed() {
       age: 45,
       location: "Atlanta, Georgia",
       bio: "Hi, I'm Sarah!",
-      imageUrl:
+      profilePic:
         "https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg",
     }),
   ]);
@@ -147,51 +146,30 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: "Uncle & Aunt",
-      description: "description of image 1",
-      fileName: "bostonFamily.jpeg",
+      name: 'Uncle Jess & Aunt Tammy',
+      description:
+        'This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family',
+      fileName: 'bostonFamily.jpeg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: "Charity Race",
-      description: "description of image 2",
-      fileName: "charityRace.jpg",
+      name: 'Charity Race',
+      description:
+        'We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!',
+      fileName: 'charityRace.jpg',
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: "Grandpa",
-      description: "description of image 3",
-      fileName: "grandpa.jpeg",
-    }),
-  ]);
-
-  const comment = await Promise.all([
-    Comment.create({
-      artifactId: artifacts[0].id,
-      userId: users[0].id,
-      comment: "DEFAULT COMMENT YESSA",
+      name: 'Grandpa George',
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
+      fileName: 'grandpa.jpeg',
     }),
   ]);
 
   const users_friends = await Promise.all([
-    // User_Friend.create({
-    //   userId: users[0].id,
-    //   friendId: users[1].id,
-    // }),
-    // User_Friend.create({
-    //   userId: users[0].id,
-    //   friendId: users[2].id,
-    // }),
-    // User_Friend.create({
-    //   userId: users[0].id,
-    //   friendId: users[3].id,
-    // }),
-    // User_Friend.create({
-    //   userId: users[0].id,
-    //   friendId: users[4].id,
-    // }),
     User_Friend.create({
       userId: users[1].id,
       friendId: users[2].id,
@@ -218,9 +196,23 @@ async function seed() {
     }),
     User_Friend.create({
       userId: users[4].id,
-      friendId: users[1].id,
-    }),
-  ]);
+      friendId: users[1].id})]);
+
+  // const artifact = await Promise.all([
+  //   Artifact.create({
+  //     userId: users[0].id,
+  //     communityId: communities[1].id,
+  //     name: 'Samuel',
+  //   }),
+  // ]);
+
+  // const comment = await Promise.all([
+  //   Comment.create({
+  //     artifactId: artifact[0].id,
+  //     userId: users[0].id,
+  //     comment: 'DEFAULT COMMENT YESSA',
+  //   }),
+  // ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
@@ -240,14 +232,21 @@ async function seed() {
       comm2: communities[1],
       comm3: communities[2],
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
     artifacts: {
       artifact1: artifacts[0],
       artifact2: artifacts[1],
       artifact3: artifacts[2],
     },
+<<<<<<< HEAD
     comment: {
       com1: comment[0],
     },
+=======
+>>>>>>> main
   };
 }
 

@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const {
   db,
-  models: { User, User_Friend },
+  models: { User, User_Friend, ProfilePic },
 } = require("../db");
+const path = require("path");
+const multer = require("multer");
 
 // GET ALL
 router.get("/", async (req, res, next) => {
@@ -60,6 +62,20 @@ router.get("/userfriends/user/:id", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+});
+
+const storageEngine = multer.diskStorage({
+  destination: (req, res, cb) => {
+    cb(null, "public/profilePicUploads");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storageEngine,
+  limits: { fileSize: 10000000 },
 });
 
 module.exports = router;

@@ -1,11 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const { Artifact } = require('../db');
+const express = require('express');
+const router = express.Router();
+const {
+  models: { Artifact },
+} = require('../db');
 
 //Get all artifacts
 router.get('/', async (req, res, next) => {
   try {
-    const artifacts = await Artifact.findAll()
+    const artifacts = await Artifact.findAll();
     res.send(artifacts);
   } catch (err) {
     res.status(500).json({
@@ -52,19 +54,23 @@ router.put('/:id', async (req, res, next) => {
     const artifact = await Artifact.findByPk(req.params.id);
     res.json(artifact);
   } catch (err) {
-    res.status(500).json({ 
-      message: "Error updating artifact", 
-      error: err.message
+    res.status(500).json({
+      message: 'Error updating artifact',
+      error: err.message,
     });
   }
 });
 
-//Delete an Artifact
+//Delete an artifact
 router.delete('/:id', async (req, res, next) => {
   try {
-    const artifact = await Artifact.findByPk(req.params.id);
-    await artifact.destroy();
-    res.send(artifact);
+    const artifact = await Artifact.findAll({
+      where: {
+        id: req.params.id,
+      },
+    });
+    await Artifact.destroy({ where: { id: req.params.id } });
+    res.json(artifact[0]);
   } catch (err) {
     res.status(500).json({
       message: 'Error deleting the specified artifact',

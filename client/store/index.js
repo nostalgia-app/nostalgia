@@ -5,7 +5,9 @@ import auth from "./auth";
 import user from "./user";
 import communities from "./communities";
 import community from "./community";
+import comment from "./comments";
 import artifacts from "./artifacts";
+import profilePics from "./profilePics";
 import friends from "./friends";
 
 const reducer = combineReducers({
@@ -14,6 +16,8 @@ const reducer = combineReducers({
   communities,
   community,
   user,
+  comment,
+  profilePics,
   friends,
 });
 
@@ -30,5 +34,8 @@ export * from "./auth";
 export * from "./user";
 export * from "./communities";
 export * from "./community";
+export * from "./geographies";
+export * from "./comments";
 export * from "./artifacts";
+export * from "./profilePics";
 export * from "./friends";

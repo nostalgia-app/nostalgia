@@ -20,7 +20,7 @@ export const _fetchUsers = users => ({ type: FETCH_USERS, users });
 export const _updateUser = user => ({ type: UPDATE_USER, user });
 
 //THUNKS
-// SINGLE USER
+// CREATE USER
 export const createNewUser = credentials => {
   return async dispatch => {
     const { data: user } = await axios.post('/api/users', credentials);
@@ -28,6 +28,7 @@ export const createNewUser = credentials => {
   };
 };
 
+// FETCH SINGLE USER
 export const fetchUser = id => {
   return async dispatch => {
     const { data: user } = await axios.get(`/api/users/${id}`);

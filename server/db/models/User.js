@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 const Sequelize = require("sequelize");
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require("sequelize");
+=======
+const db = require('../db');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require('sequelize');
+>>>>>>> main
 
 const SALT_ROUNDS = 5;
 
@@ -40,12 +47,15 @@ const User = db.define("user", {
   bio: {
     type: TEXT,
   },
+<<<<<<< HEAD
   imageUrl: {
     type: TEXT,
+=======
+  profilePic: {
+    type: STRING,
+>>>>>>> main
   },
 });
-
-module.exports = User;
 
 /**
  * instanceMethods
@@ -74,11 +84,12 @@ User.authenticate = async function ({ username, password }) {
 
 User.findByToken = async function (token) {
   try {
-    const verify = await jwt.verify(token, process.env.JWT);
-    console.log(verify);
     const { id } = await jwt.verify(token, process.env.JWT);
     const user = await User.findByPk(id);
+<<<<<<< HEAD
     console.log("user", user);
+=======
+>>>>>>> main
     if (!user) {
       console.log("check....");
       throw "nooo";
@@ -103,4 +114,10 @@ const hashPassword = async (user) => {
 
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
+<<<<<<< HEAD
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
+=======
+User.beforeBulkCreate(users => Promise.all(users.map(hashPassword)));
+
+module.exports = User;
+>>>>>>> main
