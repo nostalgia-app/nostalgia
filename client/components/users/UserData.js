@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CommunityCard from '../communities/CommunityCard';
 import {
   Container,
   Typography,
@@ -16,35 +17,31 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 15,
+    backgroundColor: 'rgb(246, 246, 246)',
     borderRadius: '.5rem',
-    padding: 15,
+    padding: 10,
   },
-  headings: {
-    display: 'flex',
-    flexDirection: 'column',
-    color: 'black',
-    marginBottom: 15,
-  },
-  bio: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+  data: {
+    borderTop: '2pt solid grey',
+    marginTop: 10,
+    padding: 20,
   },
   buttons: {
     border: '2pt solid rgb(221, 221, 221)',
     borderRadius: '.25rem',
     padding: 10,
     display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     marginTop: 20,
   },
   button: {
+    width: '100%',
     margin: 5,
   },
 });
 
-const UserData = ({ user, id }) => {
+const UserData = ({ user, id, communities }) => {
   const classes = useStyles();
   const { auth } = useSelector(state => state);
 
@@ -59,22 +56,24 @@ const UserData = ({ user, id }) => {
 
   return (
     <Container item className={classes.dataContainer}>
-      <Grid className={classes.headings}>
-        <Typography variant="h6">{user.firstName}'s Location</Typography>
-        <Typography paragraph align="center">
-          {user.location}
-        </Typography>
-      </Grid>
+      <Typography variant="h2" align="center">
+        {user.firstName} {user.lastName}
+      </Typography>
 
-      <Grid className={classes.headings}>
-        <Typography variant="h6">{user.firstName}'s Age</Typography>
+      <Grid className={classes.data}>
+        <Typography variant="h6" align="center">
+          {user.firstName}'s Age
+        </Typography>
         <Typography paragraph align="center">
           {user.age ? user.age + ` years old` : <span></span>}
         </Typography>
-      </Grid>
-
-      <Grid className={classes.bio}>
-        <Typography variant="h6">
+        <Typography variant="h6" align="center">
+          {user.firstName}'s Location
+        </Typography>
+        <Typography paragraph align="center">
+          {user.location}
+        </Typography>
+        <Typography variant="h6" align="center">
           A little more about {user.firstName}
         </Typography>
         <Typography paragraph align="center">
@@ -82,35 +81,27 @@ const UserData = ({ user, id }) => {
         </Typography>
       </Grid>
 
-      {/* ------------------------------------------------------------------------------ */}
-
-      <Grid item className={classes.buttons} xs={12} sm={8} md={8}>
+      <Grid container spacing={2} className={classes.buttons}>
         {auth.id === id ? (
-          <Link to={`/users/${user.id}/update-user`}>
-            <Button
-              className={classes.button}
-              variant="contained"
-              size="large"
-              color="secondary"
-            >
-              EDIT PROFILE
-            </Button>
-          </Link>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
+            <Link to={`/users/${user.id}/update-user`}>
+              <Button className={classes.button} variant="contained">
+                EDIT PROFILE
+              </Button>
+            </Link>
+          </Grid>
         ) : (
           <span></span>
         )}
-
-        <Button
-          className={classes.button}
-          variant="contained"
-          size="large"
-          color="secondary"
-          onClick={displayFriends}
-        >
-          FRIENDS
-        </Button>
-
-        {/* ------------------------------------------------------------------------------ */}
+        <Grid item xs={12} sm={6} md={6} lg={6}>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={displayFriends}
+          >
+            FRIENDS
+          </Button>
+        </Grid>
 
         <Dialog open={open} user={user}>
           <Container className={classes.container}>
@@ -120,6 +111,21 @@ const UserData = ({ user, id }) => {
             <Typography className={classes.text} paragraph align="center">
               List of friends.
             </Typography>
+            <Grid
+              item
+              className={classes.communitiesGrid}
+              xs={12}
+              sm={4}
+              md={4}
+            >
+              {communities.map(community => {
+                return (
+                  <div key={community.id} className={classes.card}>
+                    <CommunityCard community={community} />
+                  </div>
+                );
+              })}
+            </Grid>
 
             <DialogActions className={classes.text}>
               <Button variant="outlined" onClick={closeFriends}>
