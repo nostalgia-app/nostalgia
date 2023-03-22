@@ -14,33 +14,30 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  Slide,
 } from '@material-ui/core';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
 
 const useStyles = makeStyles({
+  greeting: {
+    marginLeft: 20,
+    padding: 10,
+  },
   mainContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 20,
+    marginTop: 10,
   },
   topRow: {
     display: 'flex',
     borderRadius: '.25rem',
-    borderBottom: '2pt solid rgb(180, 180, 180)',
-    border: '2pt solid orange',
-  },
-  userData: {
-    backgroundColor: 'rgb(246, 246, 246)',
-    border: '2pt solid blue',
   },
   middleRow: {
     display: 'flex',
     borderRadius: '.25rem',
     marginTop: 5,
-    border: '2pt solid orange',
+    border: '2pt solid rgb(246, 246, 246)',
   },
   profilePic: {
     border: '2pt solid rgb(246, 246, 246)',
@@ -55,12 +52,11 @@ const useStyles = makeStyles({
   communitiesGrid: {
     padding: 10,
     marginTop: 5,
-    border: '2pt solid red',
+    // border: '2pt solid red',
   },
   artifactsGrid: {
     padding: 10,
     marginTop: 5,
-    border: '2pt solid rgb(246, 246, 246)',
     borderRadius: '.25rem',
   },
   card: {
@@ -92,16 +88,15 @@ const UserProfile = () => {
 
   return (
     <>
-      <Container>
+      <Grid>
         {auth.id === id ? (
-          <Grid>
+          <Grid className={classes.greeting}>
             <Typography variant="h5">Hello {currentUser.firstName}</Typography>
             <Typography>Today is {format(new Date(), 'MMMM do, Y')}</Typography>
           </Grid>
         ) : (
           <span></span>
         )}
-
         {auth.id === id &&
         !currentUser.age &&
         !currentUser.location &&
@@ -110,12 +105,11 @@ const UserProfile = () => {
         ) : (
           <span></span>
         )}
-      </Container>
-
+      </Grid>
       <Container className={classes.mainContainer}>
         <Grid container spacing={2} className={classes.topRow}>
-          <Grid item className={classes.userData} xs={12} sm={8} md={8}>
-            <UserData user={currentUser} id={id} />
+          <Grid item xs={12} sm={8} md={8}>
+            <UserData user={currentUser} id={id} communities={communities} />
           </Grid>
           <Grid item className={classes.profilePic} xs={12} sm={4} md={4}>
             <UserProfilePic user={currentUser} />
