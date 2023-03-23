@@ -1,43 +1,241 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import React, { useEffect, useState } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useForm } from 'react-hook-form';
+// import { addCommunity, setCommunities, setGeography } from '../../store';
+// import CommunityCard from './CommunityCard';
 
-import {
-  setCommunities,
-  setUserCommunities,
-  me,
-  addUserToCommunity,
-} from "../../store";
-import CommunityCard from "./CommunityCard";
+// import {
+//   Box,
+//   InputLabel,
+//   MenuItem,
+//   FormControl,
+//   Select,
+//   Grid,
+//   Button,
+//   TextField,
+//   Typography,
+//   Dialog,
+//   DialogActions,
+//   DialogContent,
+//   DialogContentText,
+//   DialogTitle,
+// } from '@material-ui/core';
+// import AddCommunity from './AddCommunity';
 
-import {
-  Box,
-  FormControl,
-  Grid,
-  Button,
-  Typography,
-  TextField,
-} from "@material-ui/core";
-import SportsBaseballIcon from "@material-ui/icons/SportsBaseball";
-import MusicNoteIcon from "@material-ui/icons/MusicNote";
-import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import ComputerIcon from "@material-ui/icons/Computer";
-import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
-import SchoolIcon from "@material-ui/icons/School";
-import AddCommunity from "./AddCommunity";
+// const CommunityList = () => {
+//   const { communities, geographies, auth } = useSelector(state => state);
+//   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     dispatch(setCommunities());
+//   }, []);
+
+//   useEffect(() => {
+//     dispatch(setGeography());
+//   }, []);
+
+//   // Add Community Dialog
+//   const [open, setOpen] = useState(false);
+//   // const [file, setFile] = useState();
+//   const handleClickOpen = () => {
+//     setOpen(true);
+//   };
+//   const handleClose = () => {
+//     setOpen(false);
+//   };
+
+//   // // Add Community Form
+//   // const {
+//   //   register,
+//   //   handleSubmit,
+//   //   reset,
+//   //   formState: { errors },
+//   // } = useForm();
+
+//   // const onSubmit = (data, event) => {
+//   //   event.preventDefault();
+//   //   // const imgFile = new FormData();
+//   //   // imgFile.append("file", file);
+//   //   const community = { ...data, adminId: auth.id, imageUrl: imgFile.path };
+//   //   dispatch(addCommunity(community));
+//   //   reset();
+//   // };
+
+//   // Filter Category
+//   const [location, setLocation] = React.useState('');
+
+//   const handleChange = event => {
+//     setLocation(event.target.value);
+//   };
+
+//   const resetValue = () => {
+//     setLocation('');
+//   };
+
+//   return (
+//     <div>
+//       <Box display="flex" justifyContent="space-between" alignItems="center">
+//         <Typography align="left" variant="h3" component="h1" gutterBottom>
+//           Find a Community!
+//         </Typography>
+//         {auth.id && (
+//           <Button
+//             variant="contained"
+//             sx={{ borderRadius: 50 }}
+//             onClick={handleClickOpen}
+//           >
+//             Add New Community
+//           </Button>
+//         )}
+//       </Box>
+
+//       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
+//         <FormControl fullWidth>
+//           <InputLabel>State</InputLabel>
+//           <Select
+//             value={location}
+//             label="State"
+//             defaultValue={location}
+//             onChange={handleChange}
+//           >
+//             {geographies.length > 0 ? (
+//               geographies.map(geography => (
+//                 <MenuItem key={geography.state} value={geography.state}>
+//                   {geography.state}
+//                 </MenuItem>
+//               ))
+//             ) : (
+//               <MenuItem>No Items to Select</MenuItem>
+//             )}
+//           </Select>
+//           <Button onClick={resetValue}>Clear Filter</Button>
+//         </FormControl>
+//       </Box>
+//       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+//         {communities.length > 0 &&
+//           (location
+//             ? communities
+//                 .filter(community => community.state.includes(location))
+//                 .map(community => (
+//                   <CommunityCard key={community.id} community={community} />
+//                 ))
+//             : communities.map(community => (
+//                 <CommunityCard key={community.id} community={community} />
+//               )))}
+//       </Grid>
+
+//       {/* <Dialog open={open} onClose={handleClose}>
+//         <form onSubmit={handleSubmit(onSubmit)}>
+//           <DialogTitle>Add Community</DialogTitle>
+//           <DialogContent>
+//             <DialogContentText>
+//               To add a new community, provide a bio, location, and upload an
+//               image.
+//             </DialogContentText>
+
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="name"
+//               {...register('name')}
+//               label="Community Name"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="bio"
+//               {...register('bio')}
+//               label="Bio"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="address"
+//               {...register('address')}
+//               label="Address"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="city"
+//               {...register('city')}
+//               label="City"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="state"
+//               {...register('state')}
+//               label="State"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               autoFocus
+//               margin="dense"
+//               name="zipCode"
+//               {...register('zipCode')}
+//               label="Zipcode"
+//               type="text"
+//               fullWidth
+//               variant="standard"
+//             />
+//             <TextField
+//               type="file"
+//               name="imageUrl"
+//               accept=".jpg, .jpeg, .png"
+//               variant="outlined"
+//               onChange={e => {
+//                 const file = e.target.files[0];
+//                 setFile(file);
+//               }}
+//             />
+//           </DialogContent>
+//           <DialogActions>
+//             <Button onClick={handleClose}>Cancel</Button>
+//             <Button onClick={handleClose} type="submit">
+//               Submit
+//             </Button>
+//           </DialogActions>
+//         </form>
+//       </Dialog> */}
+//       <AddCommunity open={open} onClose={handleClose} />
+//     </div>
+//   );
+// };
+
+// export default CommunityList;
+
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Box, FormControl, Grid, Button, Typography } from '@material-ui/core';
+import { setCommunities, setGeography } from '../../store';
+import CommunityCard from './CommunityCard';
+import AddCommunity from './AddCommunity';
 
 const CommunityList = () => {
-  const { communities, auth, userCommunities } = useSelector((state) => state);
+  const { communities, auth } = useSelector(state => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(me());
-  }, []);
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
 
   useEffect(() => {
-    dispatch(setUserCommunities(auth.id));
+    dispatch(setGeography());
   }, []);
 
   const [open, setOpen] = useState(false);
@@ -49,20 +247,11 @@ const CommunityList = () => {
     setOpen(false);
   };
 
-  // Add Community Form
-  const addUserCommunity = (comm, user) => {
-    dispatch(addUserToCommunity(comm, user));
-  };
+  const [location, setLocation] = useState('');
 
-  // Filter Category
-  const [state, setstate] = useState({
-    query: "",
-    list: [],
-  });
-
-  const handleChange = (e) => {
-    const results = communities.filter((community) => {
-      if (e.target.value === "") return community;
+  const handleChange = e => {
+    const results = communities.filter(community => {
+      if (e.target.value === '') return community;
       return (
         community.state.toLowerCase().includes(e.target.value.toLowerCase()) ||
         community.city.toLowerCase().includes(e.target.value.toLowerCase())
@@ -75,15 +264,15 @@ const CommunityList = () => {
     });
   };
 
-  const handleClick = (category) => {
+  const handleClick = category => {
     let communitiesFiltered;
     if (state.list > 0) {
       communitiesFiltered = state.list;
     } else {
       communitiesFiltered = communities;
     }
-    const results = communitiesFiltered.filter((community) => {
-      if (category === "" || category === "All") return community;
+    const results = communitiesFiltered.filter(community => {
+      if (category === '' || category === 'All') return community;
       return community.category === category;
     });
     setstate({
@@ -112,7 +301,7 @@ const CommunityList = () => {
         <Button
           variant="outlined"
           value={state.category}
-          onClick={() => handleClick("All")}
+          onClick={() => handleClick('All')}
         >
           All
         </Button>
@@ -120,7 +309,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<SportsBaseballIcon />}
-          onClick={() => handleClick("Fitness & Sports")}
+          onClick={() => handleClick('Fitness & Sports')}
         >
           Sports
         </Button>
@@ -128,7 +317,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<MusicNoteIcon />}
-          onClick={() => handleClick("Music & Audio")}
+          onClick={() => handleClick('Music & Audio')}
         >
           Music
         </Button>
@@ -136,7 +325,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<SchoolIcon />}
-          onClick={() => handleClick("Education")}
+          onClick={() => handleClick('Education')}
         >
           Education
         </Button>
@@ -144,7 +333,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<FastfoodRoundedIcon />}
-          onClick={() => handleClick("Food & Drink")}
+          onClick={() => handleClick('Food & Drink')}
         >
           Food & Drink
         </Button>
@@ -152,7 +341,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<ComputerIcon />}
-          onClick={() => handleClick("Science & Tech")}
+          onClick={() => handleClick('Science & Tech')}
         >
           Tech
         </Button>
@@ -160,7 +349,7 @@ const CommunityList = () => {
           variant="outlined"
           value={state.category}
           startIcon={<BusinessCenterIcon />}
-          onClick={() => handleClick("Business & Commerce")}
+          onClick={() => handleClick('Business & Commerce')}
         >
           Business
         </Button>
@@ -178,15 +367,15 @@ const CommunityList = () => {
       </Box>
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-        {state.query === ""
-          ? communities?.map((community) => {
+        {state.query === ''
+          ? communities.map(community => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })
-          : state.list?.map((community) => {
+          : state.list.map(community => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
