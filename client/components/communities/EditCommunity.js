@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateCommunity } from "../../store";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateCommunity } from '../../store';
 import {
   Button,
   TextField,
@@ -11,26 +11,25 @@ import {
   DialogTitle,
   Typography,
   Box,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const EditCommunity = ({ community, open, onClose }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({ community });
   const [file, setFile] = useState();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const communityId = data.id;
     const formData = new FormData();
-    Object.keys(data).forEach((key) => formData.append(key, data[key]));
-    formData.append("file", file);
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    formData.append('file', file);
     dispatch(updateCommunity(formData, communityId));
-    onClose();
   };
 
   useEffect(() => {
@@ -48,8 +47,8 @@ const EditCommunity = ({ community, open, onClose }) => {
             To update a community, please complete all fields: provide a bio, a
             location, and a profile image.
           </DialogContentText>
+
           <TextField
-            required
             autoFocus
             margin="dense"
             name="name"
@@ -61,7 +60,6 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
-            required
             autoFocus
             margin="dense"
             name="bio"
@@ -74,7 +72,6 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
-            required
             autoFocus
             margin="dense"
             name="address"
@@ -86,7 +83,6 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
-            required
             autoFocus
             margin="dense"
             name="city"
@@ -98,7 +94,6 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
-            required
             autoFocus
             margin="dense"
             name="state"
@@ -110,7 +105,6 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
-            required
             autoFocus
             margin="dense"
             name="zipCode"
@@ -132,7 +126,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             accept=".jpg, .jpeg, .png"
             variant="outlined"
             fullWidth
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files[0];
               setFile(file);
             }}
@@ -140,7 +134,9 @@ const EditCommunity = ({ community, open, onClose }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button type="submit">Submit</Button>
+          <Button onClick={onClose} type="submit">
+            Submit
+          </Button>
         </DialogActions>
       </form>
     </Dialog>

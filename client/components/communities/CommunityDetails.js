@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setArtifacts, addUserToCommunity, me } from "../../store";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setArtifacts } from '../../store';
 import {
   Container,
   Typography,
@@ -9,18 +9,19 @@ import {
   Card,
   CardMedia,
   Box,
-} from "@material-ui/core";
-import { setCommunity } from "../../store";
-import { useHistory } from "react-router-dom";
-import ArtifactList from "../artifacts/ArtifactList";
-import EditCommunity from "./EditCommunity";
+} from '@material-ui/core';
+import { setCommunity } from '../../store';
+import { useHistory } from 'react-router-dom';
+import ArtifactList from '../artifacts/ArtifactList';
+import EditCommunity from './EditCommunity';
 
 const CommunityDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { auth, artifacts, community } = useSelector(state => state);
   const [open, setOpen] = useState(false);
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -40,19 +41,13 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
-  useEffect(() => {
-    dispatch(me());
-  }, []);
-  const { artifacts, auth, community } = useSelector(state => state);
-  console.log(artifacts);
-  console.log('curr user', auth)
 
   return (
     <Container>
       <Card
         elevation={3}
         style={{
-          color: "black",
+          color: 'black',
           padding: 30,
         }}
       >
@@ -77,7 +72,7 @@ const CommunityDetails = () => {
               Edit Details
             </Button>
           ) : (
-            ""
+            ''
           )}
           <Button
             variant="contained"
