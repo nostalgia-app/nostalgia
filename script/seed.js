@@ -125,32 +125,8 @@ async function seed() {
   ]);
 
   console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
-
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded ${communities.length} communities`);
-  console.log(`seeded successfully`);
-
-  const artifact = await Promise.all([
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[1].id,
-      name: 'Samuel',
-    }),
-  ]);
-
-  // const comment = await Promise.all([
-  //   Comment.create({
-  //     artifactId: artifact[0].id,
-  //     userId: users[0].id,
-  //     comment: 'DEFAULT COMMENT YESSA',
-  //   }),
-  // ]);
-
-  console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded ${artifacts.length} artifacts`);
-  console.log(`seeded ${comment.length} comments`);
   console.log(`seeded successfully`);
 
   return {
