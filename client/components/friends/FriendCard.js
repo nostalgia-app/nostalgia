@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardMedia,
@@ -8,18 +8,18 @@ import {
   Button,
   Typography,
   CardActions,
-} from "@material-ui/core";
-import { addFriend, deleteFriend } from "../../store";
+} from '@material-ui/core';
+import { addFriend, deleteFriend } from '../../store';
 
 const FriendCard = ({ friend }) => {
-  const { auth } = useSelector((state) => state);
+  const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleAddClick = (userId, friendId) => {
     dispatch(addFriend({ userId: userId, friendId: friendId }));
   };
 
-  const handleRemovelick = (userFriendId) => {
+  const handleRemovelick = userFriendId => {
     dispatch(deleteFriend(userFriendId));
   };
 
@@ -27,7 +27,7 @@ const FriendCard = ({ friend }) => {
     <Card
       elevation={3}
       style={{
-        color: "black",
+        color: 'black',
         padding: 10,
         marginLeft: 20,
         width: 200,
@@ -35,21 +35,21 @@ const FriendCard = ({ friend }) => {
       }}
     >
       <CardActionArea>
-        <Link to={`/friends/${friend.id}`}>
+        <Link to={`/users/${friend.id}`}>
           <CardMedia
             src={friend.profilePic}
             component="img"
             height="140"
             width="140"
-            sx={{ padding: "1em 1em 0 1em" }}
+            sx={{ padding: '1em 1em 0 1em' }}
           />
-          <Typography align="center" style={{ overflowWrap: "break-word" }}>
-            {friend.firstName + " " + friend.lastName}
+          <Typography align="center" style={{ overflowWrap: 'break-word' }}>
+            {friend.firstName + ' ' + friend.lastName}
           </Typography>
         </Link>
       </CardActionArea>
       <CardActions>
-        {friend.friendInd === "Y" ? (
+        {friend.friendInd === 'Y' ? (
           <Button
             size="small"
             color="primary"

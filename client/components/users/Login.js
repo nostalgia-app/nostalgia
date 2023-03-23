@@ -49,7 +49,7 @@ const AuthForm = props => {
     <>
       <Container className={classes.container} style={{ margin: '10px' }}>
         <Typography variant="h5">
-          Please confirm your username and passowrd to login.
+          Please confirm your username and password to login.
         </Typography>
 
         <Grid item xs={12} sm={8} md={6}>
