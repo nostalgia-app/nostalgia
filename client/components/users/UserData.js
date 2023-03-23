@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommunityCard from '../communities/CommunityCard';
+import MyFriendsList from '../friends/MyFriendsList';
 import {
   Container,
   Typography,
@@ -39,9 +40,13 @@ const useStyles = makeStyles({
     width: '100%',
     margin: 5,
   },
+  friendscontainer: {
+    padding: 10,
+    width: 550,
+  },
 });
 
-const UserData = ({ user, id, communities }) => {
+const UserData = ({ user, id }) => {
   const classes = useStyles();
   const { auth } = useSelector(state => state);
 
@@ -56,7 +61,7 @@ const UserData = ({ user, id, communities }) => {
 
   return (
     <Container item className={classes.dataContainer}>
-      <Typography variant="h2" align="center">
+      <Typography variant="h3" align="center">
         {user.firstName} {user.lastName}
       </Typography>
 
@@ -104,27 +109,10 @@ const UserData = ({ user, id, communities }) => {
         </Grid>
 
         <Dialog open={open} user={user}>
-          <Container className={classes.container}>
-            <Typography className={classes.text} variant="h4" align="center">
-              {user.firstname} 's friends...'
-            </Typography>
-            <Typography className={classes.text} paragraph align="center">
-              List of friends.
-            </Typography>
-            <Grid
-              item
-              className={classes.communitiesGrid}
-              xs={12}
-              sm={4}
-              md={4}
-            >
-              {communities.map(community => {
-                return (
-                  <div key={community.id} className={classes.card}>
-                    <CommunityCard community={community} />
-                  </div>
-                );
-              })}
+          <Container className={classes.friendscontainer}>
+            <Typography className={classes.text} paragraph></Typography>
+            <Grid container spacing={2}>
+              <MyFriendsList />
             </Grid>
 
             <DialogActions className={classes.text}>

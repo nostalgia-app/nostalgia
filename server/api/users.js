@@ -1,19 +1,16 @@
-const router = require("express").Router();
+const router = require('express').Router();
 const {
-
   db,
-  models: { User, User_Friend, ProfilePic },
-} = require("../db");
-const path = require("path");
-const multer = require("multer");
-
-
+  models: { User, User_Friend, ProfilePic, Artifact },
+} = require('../db');
+const path = require('path');
+const multer = require('multer');
 
 // GET ALL
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: { exclude: ["password"] },
+      attributes: { exclude: ['password'] },
     });
     res.json(users);
   } catch (err) {
@@ -34,7 +31,7 @@ router.get('/:id/artifacts', async (req, res, next) => {
 });
 
 // GET SINGLE
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     res.json(user);
@@ -44,7 +41,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // CREATE USER
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     res.json(user);
@@ -54,7 +51,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // UPDATE USER
-router.put("/:id", async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
@@ -65,7 +62,7 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // GET USERS WITH RELATIONSHIP
-router.get("/userfriends/user/:id", async (req, res, next) => {
+router.get('/userfriends/user/:id', async (req, res, next) => {
   try {
     const friends = await db.query(
       `select users.*, "friendInd", "userFriendId" from users left join (select "friendId","id" as "userFriendId", 'Y' as "friendInd" from users_friends where users_friends."userId" = ?) as friends on users.id = friends."friendId" `,
@@ -81,7 +78,7 @@ router.get("/userfriends/user/:id", async (req, res, next) => {
 
 const storageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
-    cb(null, "public/profilePicUploads");
+    cb(null, 'public/profilePicUploads');
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));

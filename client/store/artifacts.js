@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const FETCH_ARTIFACT = 'FETCH_ARTIFACT';
+const SET_USER_ARTIFACTS = 'SET_USER_ARTIFACTS';
 
 export const _fetchArtifact = artifact => ({ type: FETCH_ARTIFACT, artifact });
 
@@ -21,7 +22,7 @@ export const setUserArtifacts = userId => {
     try {
       const res = await axios.get(`/api/users/${userId}/artifacts`);
       const artifacts = res.data;
-      dispatch({ type: 'SET_ARTIFACTS', artifacts });
+      dispatch({ type: SET_USER_ARTIFACTS, artifacts });
     } catch (error) {
       console.log(error);
     }
@@ -81,12 +82,15 @@ export const updateArtifact = data => {
 const initialState = {
   artifacts: [],
   artifact: {},
+  user_artifacts: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case 'SET_ARTIFACTS':
       return { ...state, artifacts: action.artifacts };
+    case SET_USER_ARTIFACTS:
+      return { ...state, user_artifacts: action.artifacts };
     case 'FETCH_ARTIFACT':
       return { ...state, artifact: action.artifact };
     case 'CREATE_ARTIFACT':

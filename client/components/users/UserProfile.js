@@ -18,6 +18,7 @@ import {
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
+import MyFriendsList from '../friends/MyFriendsList';
 
 const useStyles = makeStyles({
   greeting: {
@@ -78,13 +79,19 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
+
   useEffect(() => {
     dispatch(setUserArtifacts(id));
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(setUserArtifacts(id));
+  // }, [id]);
+
   const { user, communities, artifacts } = useSelector(state => state);
+
   const currentUser = user.user;
-  const userArtifacts = artifacts.artifacts;
+  const userArtifacts = artifacts.user_artifacts;
 
   return (
     <>
@@ -136,7 +143,6 @@ const UserProfile = () => {
               })}
             </ImageList>
           </Grid>
-
           <Grid item className={classes.communitiesGrid} xs={12} sm={4} md={4}>
             {currentUser.firstName}'s Communities
             {communities.map(community => {
@@ -147,6 +153,8 @@ const UserProfile = () => {
               );
             })}
           </Grid>
+          <Grid item xs={12} sm={12} md={12}></Grid>
+          <MyFriendsList />
         </Grid>
       </Container>
     </>
@@ -154,3 +162,16 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+// Click through seems to need a refresh to re-render component. Currently friend is just linked to URL but does not refresh.
+// need to add history and reload as well.
+
+// My Account example
+
+// onClick={clickThroughToFriend}
+
+// const clickThroughToFriend = () => {
+//   history.push(`/users/${friend.id}`);
+//   window.location.reload();
+//   console.log('clicked');
+// };
