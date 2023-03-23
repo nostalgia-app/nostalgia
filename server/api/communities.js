@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const sequelize = require('sequelize');
+const path = require('path');
+const multer = require('multer');
 const {
   models: { Community, User_Community, User, Artifact },
 } = require('../db');
-const path = require('path');
-const multer = require('multer');
 
 const artifactStorageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
@@ -15,11 +15,6 @@ const artifactStorageEngine = multer.diskStorage({
   },
 });
 
-const uploadArtifact = multer({
-  storage: artifactStorageEngine,
-  limits: { fileSize: 10000000 },
-});
-
 const communityStorageEngine = multer.diskStorage({
   destination: (req, res, cb) => {
     cb(null, 'public/communityUploads');
@@ -27,6 +22,11 @@ const communityStorageEngine = multer.diskStorage({
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
   },
+});
+
+const uploadArtifact = multer({
+  storage: artifactStorageEngine,
+  limits: { fileSize: 10000000 },
 });
 
 const uploadCommunityPic = multer({
@@ -67,10 +67,12 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // POST /api/communities
-router.post('/', async (req, res, next) => {
+router.post('/', uploadCommunityPic.single('file'), async (req, res, next) => {
   try {
-    console.log('comm', req.body);
-    res.status(201).send(await Community.create(req.body));
+    if (req.file) {
+      const imageUrl = `.././public/communityUploads/${req.file.filename}`;
+      res.send(await Community.create({...req.body, imageUrl }));
+    } 
   } catch (err) {
     next(err);
   }
