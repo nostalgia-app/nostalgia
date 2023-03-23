@@ -72,7 +72,7 @@ const CommunityList = () => {
   return (
     <div>
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography align="Left" variant="h3" component="h1" gutterBottom>
+        <Typography align="left" variant="h3" component="h1" gutterBottom>
           Find a Community!
         </Typography>
         {auth.id && (
