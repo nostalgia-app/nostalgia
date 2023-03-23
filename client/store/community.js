@@ -31,6 +31,18 @@ export const setCommunity = (id) => {
   };
 };
 
+export const updateCommunity = (data, id) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/communities/${id}`, data);
+      const community = res.data;
+      dispatch({ type: "SET_COMMUNITY", community });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
+
 /**
  * REDUCER
  */
