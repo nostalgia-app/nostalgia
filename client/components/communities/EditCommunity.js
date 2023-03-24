@@ -30,6 +30,7 @@ const EditCommunity = ({ community, open, onClose }) => {
     Object.keys(data).forEach(key => formData.append(key, data[key]));
     formData.append('file', file);
     dispatch(updateCommunity(formData, communityId));
+    onClose();
   };
 
   useEffect(() => {
@@ -47,8 +48,8 @@ const EditCommunity = ({ community, open, onClose }) => {
             To update a community, please complete all fields: provide a bio, a
             location, and a profile image.
           </DialogContentText>
-
           <TextField
+            required
             autoFocus
             margin="dense"
             name="name"
@@ -60,6 +61,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
+            required
             autoFocus
             margin="dense"
             name="bio"
@@ -72,6 +74,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
+            required
             autoFocus
             margin="dense"
             name="address"
@@ -83,6 +86,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
+            required
             autoFocus
             margin="dense"
             name="city"
@@ -94,6 +98,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
+            required
             autoFocus
             margin="dense"
             name="state"
@@ -105,6 +110,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             variant="standard"
           />
           <TextField
+            required
             autoFocus
             margin="dense"
             name="zipCode"
@@ -134,9 +140,7 @@ const EditCommunity = ({ community, open, onClose }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={onClose} type="submit">
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </DialogActions>
       </form>
     </Dialog>

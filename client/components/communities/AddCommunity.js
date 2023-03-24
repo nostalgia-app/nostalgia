@@ -38,6 +38,7 @@ const AddCommunity = ({ open, onClose }) => {
     formData.append('file', file);
     formData.append('adminId', auth.id);
     dispatch(addCommunity(formData));
+    onClose();
   };
 
   return (
@@ -49,7 +50,6 @@ const AddCommunity = ({ open, onClose }) => {
             To add a new community, provide a bio, location, and upload an
             image.
           </DialogContentText>
-
           <TextField
             required
             autoFocus
@@ -137,9 +137,7 @@ const AddCommunity = ({ open, onClose }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={onClose} type="submit">
-            Submit
-          </Button>
+          <Button type="submit">Submit</Button>
         </DialogActions>
       </form>
     </Dialog>
