@@ -24,10 +24,6 @@ const Community = db.define("community", {
   },
   address: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
   },
   city: {
     type: Sequelize.STRING,
@@ -45,10 +41,24 @@ const Community = db.define("community", {
   },
   zipCode: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+  },
+  category: {
+    type: Sequelize.ENUM(
+      "Music & Audio",
+      "Vehicle & Transportation",
+      "Performing Arts",
+      "Books & Literature",
+      "Photography",
+      "Fitness & Sports",
+      "Animals & Pets",
+      "Colleges & Universities",
+      "Food & Drink",
+      "Travel & Leisure",
+      "Education",
+      "Science & Tech",
+      "Home & Garden",
+      "Neighborhood"
+    ),
   },
   imageUrl: {
     type: Sequelize.TEXT,

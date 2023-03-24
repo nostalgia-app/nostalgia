@@ -2,15 +2,7 @@
 
 const {
   db,
-  models: {
-    User,
-    Community,
-    User_Community,
-    Artifact,
-    Comment,
-    ProfilePic,
-    User_Friend,
-  },
+  models: { User, Community, User_Community, Artifact, Comment, User_Friend },
 } = require("../server/db");
 
 /**
@@ -100,20 +92,10 @@ async function seed() {
       city: "Providence",
       state: "RI",
       zipCode: "02909",
+      category: "Neighborhood",
       imageUrl:
         "https://images.squarespace-cdn.com/content/v1/547486a6e4b081cfb2fbb049/1653424790873-H5ZT92BX336T2MRPK0JH/277988277_7237088149698005_7506566997549425627_n.jpg?format=1500w",
       adminId: users[0].id,
-    }),
-    Community.create({
-      name: "The Addams Family",
-      bio: "The Simpsons are a nuclear family consisting of married couple Homer and Marge and their three children, Bart, Lisa, and Maggie",
-      address: "21 Chester Place",
-      city: "Los Angeles",
-      state: "CA",
-      zipCode: "90007",
-      imageUrl:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Addams_Family_main_cast_1964.JPG/640px-Addams_Family_main_cast_1964.JPG",
-      adminId: users[1].id,
     }),
     Community.create({
       name: "University of Texas, Class of 2021",
@@ -122,9 +104,59 @@ async function seed() {
       city: "Austin",
       state: "TX",
       zipCode: "78705",
+      category: "Colleges & Universities",
       imageUrl:
         "https://news.utexas.edu/wp-content/uploads/2021/05/Senior_Stories_2021_Header_1500x543_SB-600x0-c-default.gif",
       adminId: users[1].id,
+    }),
+    Community.create({
+      name: "New York Nature and Wildlife Photography",
+      bio: "A group of nature enthusiasts - where you can share your love of birds and wildlife. Please share your backyard birds and wildlife.",
+      city: "Albany",
+      state: "NY",
+      category: "Photography",
+      imageUrl:
+        "https://cdn.thewirecutter.com/wp-content/media/2022/06/bird-photography-2048px-0263-2x1-1.jpg?auto=webp&quality=75&crop=2:1&width=1024",
+      adminId: users[2].id,
+    }),
+    Community.create({
+      name: "Philly Basketball",
+      city: "Philadelphia",
+      bio: "Pickup league of basketball in the greater Philadelphia area.",
+      state: "PA",
+      category: "Fitness & Sports",
+      imageUrl:
+        "https://philadelphiaweekly.com/wp-content/uploads/2019/12/Cannons1-Akil-Anderson-scaled.jpg",
+      adminId: users[3].id,
+    }),
+    Community.create({
+      name: "New England Craft Beer",
+      city: "Boston",
+      state: "MA",
+      category: "Food & Drink",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunIQvo8h-vE_8bjS46y_WLTAtzw2wTEMrCr6D_rL8VNf44pSpuWnTmZY8A8SkYwOB_Nw&usqp=CAU",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "New England Craft Beer",
+      bio: "Welcome to the New England Craft Beer Community. We talk about all craft beer.",
+      city: "Boston",
+      state: "MA",
+      category: "Food & Drink",
+      imageUrl:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunIQvo8h-vE_8bjS46y_WLTAtzw2wTEMrCr6D_rL8VNf44pSpuWnTmZY8A8SkYwOB_Nw&usqp=CAU",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Mariachi San Antonio",
+      bio: "Mariachi San Antonio, providing the very best in mariachi entertainment for Central and South Texas.",
+      city: "San Antonio",
+      state: "TX",
+      category: "Music & Audio",
+      imageUrl:
+        "https://nationaltoday.com/wp-content/uploads/2022/05/Mariachi-Day.jpg",
+      adminId: users[4].id,
     }),
   ]);
 
@@ -167,6 +199,39 @@ async function seed() {
       description:
         "We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!",
       fileName: "charityRace.jpg",
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[0].id,
+      name: "Grandpa George",
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
+      fileName: "grandpa.jpeg",
+    }),
+    // UT 2021
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[2].id,
+      name: "Grandpa George",
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
+      fileName: "grandpa.jpeg",
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[2].id,
+      name: "Grandpa George",
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
+      fileName: "grandpa.jpeg",
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[2].id,
+      name: "Grandpa George",
+      description:
+        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
+      fileName: "grandpa.jpeg",
     }),
     Artifact.create({
       userId: users[0].id,
