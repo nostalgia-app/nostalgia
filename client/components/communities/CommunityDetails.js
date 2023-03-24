@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setArtifacts } from "../../store";
+import { setArtifacts, addUserToCommunity, me } from "../../store";
 import {
   Container,
   Typography,
@@ -19,7 +19,6 @@ const CommunityDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { auth, artifacts, community } = useSelector((state) => state);
   const [open, setOpen] = useState(false);
   
   const handleClickOpen = () => {
@@ -41,6 +40,12 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+  const { artifacts, auth, community } = useSelector(state => state);
+  console.log(artifacts);
+  console.log('curr user', auth)
 
   return (
     <Container>

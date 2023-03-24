@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUser, setUserArtifacts } from '../../store';
-import { setCommunities } from '../../store';
+import { fetchUser, setUserArtifacts  } from '../../store';
+import { setCommunities, } from '../../store';
+import { setUserCommunities, removeUserFromCommunity, setSpecificUserCommunity } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DialogBox from './DialogueBox';
+
+import UserCommunities from './UserCommunities'
 import { setFriends } from '../../store';
 import {
   Container,
@@ -14,11 +17,11 @@ import {
   makeStyles,
   ImageList,
   ImageListItem,
+  Button,
   ImageListItemBar,
 } from '@material-ui/core';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
-import UserCommunities from './UserCommunities';
 import MyFriendsList from '../friends/MyFriendsList';
 
 const useStyles = makeStyles({
@@ -73,6 +76,8 @@ const UserProfile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const { user, communities,artifacts, userCommunity  } = useSelector(state => state);
+
   useEffect(() => {
     dispatch(fetchUser(id));
     dispatch(setUserArtifacts(id));
@@ -81,6 +86,8 @@ const UserProfile = () => {
   // useEffect(() => {
   //   dispatch(setFriends(auth.id));
   // }, [auth]);
+
+
 
   useEffect(() => {
     dispatch(setCommunities());
@@ -92,14 +99,30 @@ const UserProfile = () => {
   //   dispatch(setUserArtifacts(id));
   // }, [id]);
 
-  // useEffect(() => {
-  //   dispatch(setUserArtifacts(id));
-  // }, [id]);
 
-  const { user, communities, artifacts } = useSelector(state => state);
+  
+    useEffect(() => {
+      dispatch(setUserCommunities(auth.id));
+  }, [auth]);
 
+  useEffect(() =>{
+  dispatch(setUserArtifacts(id))
+  }, []);
   const currentUser = user.user;
   const userArtifacts = artifacts.user_artifacts;
+  
+  // const allOfAUsersCommunities = userCommunity.map((userComm)=>{
+  //   for(let comm  of communities){
+  //     if (comm.id == userComm.communityId){
+  //       console.log('yessss',userComm)
+  //       return comm
+  //     }
+  //   }
+  // })
+  const removeUserCommunity = async (comm, user)=>{
+    console.log('commmm', comm, user) 
+    dispatch(removeUserFromCommunity(comm, user))
+  }
 
   return (
     <>
@@ -153,13 +176,25 @@ const UserProfile = () => {
           </Grid>
           <Grid item className={classes.communitiesGrid} xs={12} sm={4} md={4}>
             {currentUser.firstName}'s Communities
-            {communities.map(community => {
-              return (
-                <div key={community.id} className={classes.card}>
-                  <UserCommunities community={community} />
-                </div>
-              );
-            })}
+            {userCommunity && userCommunity.length > 0 ? userCommunity.map(({community}) => {
+                  console.log('community : ', community)
+                  return (
+                    <div key={community.id} className={classes.card}>
+                      <UserCommunities community={community} />
+                      <Button
+                        className={classes.button}
+                        variant="contained"
+                        size="large"
+                        color="secondary"
+                        onClick={()=>removeUserCommunity(community.id , currentUser.id,)}
+                      >
+                        DELETE
+                    </Button>
+                    </div>  
+                  );
+                }) : ( <div> Add some communities </div>)
+
+                 } 
           </Grid>
         </Grid>
       </Container>

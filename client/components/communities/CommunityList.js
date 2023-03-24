@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import { Link, useParams } from 'react-router-dom';
+
+import {
+  addCommunity,
+  setCommunities,
+  setUserCommunities,
+  me,
+  createNewImage,
+  addUserToCommunity,
+} from "../../store";
+import CommunityCard from "./CommunityCard";
+
 import {
   Box,
   FormControl,
@@ -8,16 +21,24 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
-import { setCommunities } from "../../store";
-import CommunityCard from "./CommunityCard";
 import AddCommunity from "./AddCommunity";
 
 const CommunityList = () => {
-  const { communities, auth } = useSelector((state) => state);
+  const { communities, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
+  //const { auth.id } = useParams();//
+  console.log("this is id", auth.id)
+  console.log("this is usercommunities", userCommunities)
 
+  useEffect(()=>{
+    dispatch(me())
+  }, [])
   useEffect(() => {
     dispatch(setCommunities());
+  }, []);
+
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
   }, []);
 
   const [open, setOpen] = useState(false);
@@ -28,6 +49,19 @@ const CommunityList = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // Add Community Form
+  const addUserCommunity = (comm, user) => {
+   //event.preventDefault();
+    // const imgFile = new FormData();
+    // imgFile.append("file", file);
+    // dispatch(createNewImage(imgFile));
+    //const userComm = { ...data,  };
+    dispatch(addUserToCommunity(comm,user));
+    //reset();
+  };
+  console.log('adding the user object')
+  //addUserCommunity(communities[0], auth.id)
 
   // Filter Category
   const [state, setstate] = useState({
