@@ -35,7 +35,7 @@ const uploadCommunityPic = multer({
 });
 
 // GET /api/communities
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const communities = await Community.findAll();
     res.send(communities);
@@ -44,20 +44,8 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// GET /api/communities/geography
-router.get('/geography', async (req, res, next) => {
-  try {
-    const communities = await Community.findAll({
-      attributes: [[sequelize.fn('DISTINCT', sequelize.col('state')), 'state']],
-    });
-    res.send(communities);
-  } catch (err) {
-    next(err);
-  }
-});
-
 // GET /api/communities/:id
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const communities = await Community.findByPk(req.params.id);
     res.send(communities);
@@ -94,7 +82,7 @@ router.put('/:id', uploadCommunityPic.single('file'), async (req, res, next) => 
 });
 
 // DELETE /api/communities/:id
-router.delete('/:id', async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const community = await Community.findByPk(req.params.id);
     await community.destroy();
@@ -105,7 +93,7 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 // GET /api/communities/:id/users
-router.get('/:id/users', async (req, res, next) => {
+router.get("/:id/users", async (req, res, next) => {
   try {
     // Returns all users in a specific community
     const usersInCommunity = await Community.findAll({
@@ -119,7 +107,7 @@ router.get('/:id/users', async (req, res, next) => {
 });
 
 // GET /api/communities/:id/artifacts
-router.get('/:id/artifacts', async (req, res, next) => {
+router.get("/:id/artifacts", async (req, res, next) => {
   try {
     const artifacts = await Artifact.findAll({
       where: { communityId: req.params.id },

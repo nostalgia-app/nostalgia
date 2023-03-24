@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { fetchUser } from '../../store';
+import { Link } from 'react-router-dom';
+import { fetchUser, setUserArtifacts } from '../../store';
 import { setCommunities } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -12,32 +13,32 @@ import {
   makeStyles,
   ImageList,
   ImageListItem,
+  ImageListItemBar,
 } from '@material-ui/core';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
+import MyFriendsList from '../friends/MyFriendsList';
 
 const useStyles = makeStyles({
+  greeting: {
+    marginLeft: 20,
+    padding: 10,
+  },
   mainContainer: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 20,
+    marginTop: 10,
   },
   topRow: {
     display: 'flex',
     borderRadius: '.25rem',
-    borderBottom: '2pt solid rgb(180, 180, 180)',
-    // border: '2pt solid orange',
-  },
-  userData: {
-    backgroundColor: 'rgb(246, 246, 246)',
-    // border: '2pt solid blue',
   },
   middleRow: {
     display: 'flex',
     borderRadius: '.25rem',
     marginTop: 5,
-    // border: '2pt solid orange',
+    border: '2pt solid rgb(246, 246, 246)',
   },
   profilePic: {
     border: '2pt solid rgb(246, 246, 246)',
@@ -47,7 +48,7 @@ const useStyles = makeStyles({
     borderRadius: '.25rem',
     padding: 20,
     marginTop: 10,
-    // border: '2pt solid blue',
+    border: '2pt solid blue',
   },
   communitiesGrid: {
     padding: 10,
@@ -57,7 +58,6 @@ const useStyles = makeStyles({
   artifactsGrid: {
     padding: 10,
     marginTop: 5,
-    border: '2pt solid rgb(246, 246, 246)',
     borderRadius: '.25rem',
   },
   card: {
@@ -68,6 +68,7 @@ const useStyles = makeStyles({
 
 const UserProfile = () => {
   const classes = useStyles();
+  const { auth } = useSelector(state => state);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -79,50 +80,69 @@ const UserProfile = () => {
     dispatch(setCommunities());
   }, []);
 
-  const { user, communities } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(setUserArtifacts(id));
+  }, []);
+
+  // useEffect(() => {
+  //   dispatch(setUserArtifacts(id));
+  // }, [id]);
+
+  const { user, communities, artifacts } = useSelector(state => state);
+
   const currentUser = user.user;
+  const userArtifacts = artifacts.user_artifacts;
 
   return (
     <>
-      <Container>
-        <Typography variant="h4" align="center">
-          Hello {currentUser.firstName}
-        </Typography>
-        <Typography align="center">
-          Today is {format(new Date(), 'MMMM do, Y')}
-        </Typography>
-      </Container>
-
-      {!currentUser.age && !currentUser.location && !currentUser.bio ? (
-        <DialogBox user={user} />
-      ) : (
-        <span></span>
-      )}
-      {/* ------------------------------------------------------------------------------ */}
-
+      <Grid>
+        {auth.id === id ? (
+          <Grid className={classes.greeting}>
+            <Typography variant="h5">Hello {currentUser.firstName}</Typography>
+            <Typography>Today is {format(new Date(), 'MMMM do, Y')}</Typography>
+          </Grid>
+        ) : (
+          <span></span>
+        )}
+        {auth.id === id &&
+        !currentUser.age &&
+        !currentUser.location &&
+        !currentUser.bio ? (
+          <DialogBox user={user} />
+        ) : (
+          <span></span>
+        )}
+      </Grid>
       <Container className={classes.mainContainer}>
         <Grid container spacing={2} className={classes.topRow}>
-          <Grid item className={classes.userData} xs={12} sm={8} md={8}>
-            <UserData user={currentUser} />
+          <Grid item xs={12} sm={8} md={8}>
+            <UserData user={currentUser} id={id} communities={communities} />
           </Grid>
           <Grid item className={classes.profilePic} xs={12} sm={4} md={4}>
             <UserProfilePic user={currentUser} />
           </Grid>
         </Grid>
-        {/* ------------------------------------------------------------------------------ */}
+
         <Grid container spacing={2} className={classes.middleRow}>
           <Grid item xs={12} sm={8} md={8}>
+            <div>{currentUser.firstName}'s Artifacts</div>
+
             <ImageList className={classes.artifactsGrid}>
-              {communities.map(item => {
+              {userArtifacts.map(artifact => {
                 return (
-                  <ImageListItem key={item.id}>
-                    <img src={`${item.imageUrl}`} loading="lazy"></img>
+                  <ImageListItem key={artifact.id}>
+                    <Link to={`/artifacts/${artifact.id}`}>
+                      <img
+                        src={`.././public/artifactUploads/${artifact.fileName}`}
+                      ></img>
+                    </Link>
+
+                    <ImageListItemBar title={artifact.name} />
                   </ImageListItem>
                 );
               })}
             </ImageList>
           </Grid>
-
           <Grid item className={classes.communitiesGrid} xs={12} sm={4} md={4}>
             {currentUser.firstName}'s Communities
             {communities.map(community => {
@@ -133,6 +153,8 @@ const UserProfile = () => {
               );
             })}
           </Grid>
+          <Grid item xs={12} sm={12} md={12}></Grid>
+          <MyFriendsList />
         </Grid>
       </Container>
     </>
@@ -140,3 +162,16 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+// Click through seems to need a refresh to re-render component. Currently friend is just linked to URL but does not refresh.
+// need to add history and reload as well.
+
+// My Account example
+
+// onClick={clickThroughToFriend}
+
+// const clickThroughToFriend = () => {
+//   history.push(`/users/${friend.id}`);
+//   window.location.reload();
+//   console.log('clicked');
+// };

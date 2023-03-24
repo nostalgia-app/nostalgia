@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {
-  models: { User, ProfilePic },
+  db,
+  models: { User, User_Friend, ProfilePic, Artifact },
 } = require('../db');
 const path = require('path');
 const multer = require('multer');
@@ -9,10 +10,19 @@ const multer = require('multer');
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ['id', 'username'],
+      attributes: { exclude: ['password'] },
+    });
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET ALL USER ARTIFACTS
+router.get('/:id/artifacts', async (req, res, next) => {
+  try {
+    const users = await Artifact.findAll({
+      where: { userId: req.params.id },
     });
     res.json(users);
   } catch (err) {
@@ -46,6 +56,21 @@ router.put('/:id', async (req, res, next) => {
     const user = await User.findByPk(req.params.id);
     await user.update(req.body);
     res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET USERS WITH RELATIONSHIP
+router.get('/userfriends/user/:id', async (req, res, next) => {
+  try {
+    const friends = await db.query(
+      `select users.*, "friendInd", "userFriendId" from users left join (select "friendId","id" as "userFriendId", 'Y' as "friendInd" from users_friends where users_friends."userId" = ?) as friends on users.id = friends."friendId" `,
+      {
+        replacements: [req.params.id],
+      }
+    );
+    res.json(friends);
   } catch (err) {
     next(err);
   }

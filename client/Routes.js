@@ -10,9 +10,10 @@ import CreateUser from './components/users/CreateUSer';
 import UpdateUser from './components/users/UpdateUser';
 import UserProfile from './components/users/UserProfile';
 import Success from './components/users/Success';
-import Users from './components/users/UsersList';
 import ArtifactList from './components/artifacts/ArtifactList';
 import ArtifactDetails from './components/artifacts/ArtifactDetails';
+import FriendsList from './components/friends/FriendsList';
+import MyFriendsList from './components/friends/MyFriendsList';
 
 /**
  * COMPONENT
@@ -28,8 +29,10 @@ class Routes extends Component {
     return (
       <div>
         <Route exact path="/" component={Home} />
-        <Route exact path="/users" component={Users} />
         <Route exact path="/users/:id" component={UserProfile} />
+        <Route exact path="/myfriends" component={MyFriendsList} />
+        <Route exact path="/findfriends" component={FriendsList} />
+        <Route exact path="/friends" component={FriendsList} />
         <Route exact path="/create-user" component={CreateUser} />
         <Route exact path="/users/:id/update-user" component={UpdateUser} />
         <Route exact path="/users-success" component={Success} />
@@ -38,7 +41,6 @@ class Routes extends Component {
         <Route exact path="/artifacts" component={ArtifactList} />
         <Route exact path="/artifacts/:id" component={ArtifactDetails} />
 
-        {/* <Route exact path="/communities-details" component={CommunityDetails} /> */}
         <Route exact path="/login" component={Login} />
 
         {/* {isLoggedIn ? (

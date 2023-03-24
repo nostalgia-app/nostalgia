@@ -1,15 +1,15 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Container, Typography, Grid, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Container, Typography, Grid, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 // import { connect } from 'react-redux';
 // import CommunitiesGrid from "./CommunitiesGrid";
-import { fetchProfilePics } from '../store';
+import { fetchProfilePics } from "../store";
 
-export const Home = props => {
+export const Home = (props) => {
   const { username } = props;
 
-  const { auth } = useSelector(state => state);
+  const { auth } = useSelector((state) => state);
 
   return (
     <Container>
@@ -33,8 +33,8 @@ export const Home = props => {
 
       <div
         style={{
-          backgroundColor: 'rgb(241, 241, 241)',
-          borderRadius: '.25rem',
+          backgroundColor: "rgb(241, 241, 241)",
+          borderRadius: ".25rem",
           marginTop: 30,
         }}
       ></div>
