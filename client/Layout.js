@@ -28,8 +28,12 @@ const useStyles = makeStyles(theme => {
     },
     toolbar: theme.mixins.toolbar,
     title: {
+      border: '2pt solid orange',
       // fontFamily: 'Caveat, cursive',
       flexGrow: 1,
+    },
+    logo: {
+      border: '2pt solid red',
     },
     navRight: {
       display: 'flex',
@@ -54,6 +58,7 @@ const Layout = ({ children, auth }) => {
           <Typography variant="h3" className={classes.title}>
             NOSTALGIA
           </Typography>
+          <div className={classes.logo}>Test</div>
           <div className={classes.navRight}>
             <Typography>
               {/* <span className={classes.date}> */}
@@ -63,7 +68,7 @@ const Layout = ({ children, auth }) => {
             </Typography>
           </div>
         </Toolbar>
-        {/* <Navbar auth={auth} /> */}
+        <Navbar auth={auth} />
       </AppBar>
 
       <div className={classes.page}>

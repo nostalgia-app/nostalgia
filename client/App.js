@@ -64,13 +64,13 @@ const App = () => {
           marginTop: 80,
         }}
       >
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link>
         <Link to="/communities">Communities</Link>
         <Link to="/findfriends">Find Friends</Link>
         <Link to="/myfriends">My Friends</Link>
         <Link to="/create-user">Create Account</Link>
         <Link to="/artifacts">Artifacts</Link>
-        <Link to="/login">Log in</Link>
+        <Link to="/login">Log in</Link> */}
         <button onClick={handleMyAccount}>My Account</button>
         <button onClick={handleLogout}>Log out</button>
       </div>
