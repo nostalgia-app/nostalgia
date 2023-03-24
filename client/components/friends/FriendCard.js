@@ -23,6 +23,11 @@ const FriendCard = ({ friend }) => {
     dispatch(deleteFriend(userFriendId));
   };
 
+  const handleFriendClick = () => {
+    history.push(`/users/${friend.id}`);
+    window.location.reload();
+  };
+
   return (
     <Card
       elevation={3}

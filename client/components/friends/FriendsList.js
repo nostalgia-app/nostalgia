@@ -13,7 +13,7 @@ import {
   FormControl,
 } from '@material-ui/core';
 
-const FriendsList = ({ id }) => {
+const FriendsList = () => {
   const dispatch = useDispatch();
   const { auth } = useSelector(state => state);
   const { friends } = useSelector(state => state);
