@@ -9,6 +9,7 @@ import {
   Grid,
   Button,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { setCommunities, setGeography } from "../../store";
 import CommunityCard from "./CommunityCard";
