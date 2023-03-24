@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DialogBox from './DialogueBox';
+
 import UserCommunities from './UserCommunities'
+import { setFriends } from '../../store';
 import {
   Container,
   Typography,
@@ -70,7 +72,7 @@ const useStyles = makeStyles({
 
 const UserProfile = () => {
   const classes = useStyles();
-  const { auth } = useSelector(state => state);
+  const { auth, friends } = useSelector(state => state);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -78,12 +80,25 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(fetchUser(id));
-  }, []);
+    dispatch(setUserArtifacts(id));
+  }, [id]);
+
+  // useEffect(() => {
+  //   dispatch(setFriends(auth.id));
+  // }, [auth]);
+
 
 
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
+
+  // console.log('these are my friends...', friends);
+
+  // useEffect(() => {
+  //   dispatch(setUserArtifacts(id));
+  // }, [id]);
+
 
   
     useEffect(() => {
@@ -181,8 +196,6 @@ const UserProfile = () => {
 
                  } 
           </Grid>
-          <Grid item xs={12} sm={12} md={12}></Grid>
-          <MyFriendsList />
         </Grid>
       </Container>
     </>
@@ -190,15 +203,16 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+// currently the content behind does not always update. Sometimes the 'id' param updates but the actual content does not render. When we then refresh the page all works fine. Can we do all of this at once?
 
-// Click through seems to need a refresh to re-render component. Currently friend is just linked to URL but does not refresh.
-// need to add history and reload as well.
+// 1. Use history
+// 2. update the 'Link' on friendCard to an onClick={handleFriendClick}
+// 3. handleFriendClick - history.push => to that friend's page
+// 4. also reloads the window to close out dialog and render everything
 
-// My Account example
+// onClick={handleFriendClick}
 
-// onClick={clickThroughToFriend}
-
-// const clickThroughToFriend = () => {
+// const handleFriendClick = () => {
 //   history.push(`/users/${friend.id}`);
 //   window.location.reload();
 //   console.log('clicked');
