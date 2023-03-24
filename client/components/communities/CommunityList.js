@@ -6,6 +6,7 @@ import {
   Grid,
   Button,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { setCommunities } from "../../store";
 import CommunityCard from "./CommunityCard";
