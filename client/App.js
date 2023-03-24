@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import Navbar from './components/Navbar';
-import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Routes from './Routes';
-import { Container } from '@material-ui/core';
+import { Container, createTheme, ThemeProvider } from '@material-ui/core';
 import Layout from './Layout';
-import { createTheme, ThemeProvider } from '@material-ui/core';
 import { logout } from './store';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
@@ -49,6 +45,7 @@ const App = () => {
   const handleMyAccount = () => {
     if (auth.id) {
       history.push(`/users/${auth.id}`);
+      window.location.reload();
     } else {
       history.push('/login');
     }
@@ -69,6 +66,8 @@ const App = () => {
       >
         <Link to="/">Home</Link>
         <Link to="/communities">Communities</Link>
+        <Link to="/findfriends">Find Friends</Link>
+        <Link to="/myfriends">My Friends</Link>
         <Link to="/create-user">Create Account</Link>
         <Link to="/artifacts">Artifacts</Link>
         <Link to="/login">Log in</Link>
@@ -77,7 +76,7 @@ const App = () => {
       </div>
 
       <ThemeProvider theme={theme}>
-        <Layout>
+        <Layout auth={auth}>
           <Routes />
         </Layout>
       </ThemeProvider>

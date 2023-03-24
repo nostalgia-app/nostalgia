@@ -14,8 +14,164 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+nav a:hover {
+  background-color: white;
+}
 
 /* form div {
   margin: 1em;
   display: inline-block;
 } */
+
+#profileImage {
+  width: 250px;
+  height: 300px;
+}
+
+/* /////////////// Navbar ///////////////// */
+.nostalgia__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(226, 226, 226);
+
+  /* padding: 2rem 6rem; */
+  padding: 0.5rem 1.5rem;
+}
+
+.nostalgia__navbar-links {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.nostalgia__navbar-links_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.nostalgia__navbar-sign {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nostalgia__navbar-links_container p,
+.nostalgia__navbar-sign p,
+.nostalgia__navbar-menu_container p {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  text-transform: capitalize;
+
+  margin: 0 1rem;
+  cursor: pointer;
+}
+
+.nostalgia__navbar-menu {
+  margin-left: 1rem;
+
+  display: none;
+  position: relative;
+}
+
+.nostalgia__navbar-menu_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+
+  text-align: end;
+  /* background-color: #fff; */
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  margin-top: 1rem;
+  min-width: 210px;
+  border-radius: 5px;
+  box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
+}
+
+.nostalgia__navbar-menu_container p {
+  margin: 1rem 0;
+}
+.nostalgia__navbar-menu_container-links-sign {
+  display: none;
+}
+/* ----------------- animations ------------------- */
+.scale-up-center {
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.nostalgia__navbar-date {
+  color: white;
+  font-size: 16px;
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+/* ----------------- media for responsiveness ------------------- */
+@media screen and (max-width: 1050px) {
+  .nostalgia__navbar-links_container {
+    display: none;
+  }
+
+  .nostalgia__navbar-menu {
+    display: flex;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .nostalgia__navbar {
+    padding: 0.75rem 1rem;
+  }
+  .nostalgia__navbar-date {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .nostalgia__navbar {
+    padding: 1rem;
+  }
+  .nostalgia__navbar-sign {
+    display: none;
+  }
+
+  .nostalgia__navbar-menu_container {
+    top: 20px;
+  }
+
+  .nostalgia__navbar-menu_container-links-sign {
+    display: block;
+  }
+  .nostalgia__navbar-date {
+    font-size: 10px;
+  }
+} ;

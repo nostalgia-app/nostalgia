@@ -5,13 +5,10 @@ import { me } from '../../store';
 
 import { addUserToCommunity } from '../../store';
 import {
-  Container,
   Card,
-  CardHeader,
   CardContent,
   CardMedia,
   Button,
-  Grid,
   CardActionArea,
   Typography,
   Box,
@@ -37,7 +34,7 @@ const CommunityCard = (props) => {
 
   }
   return (
-    <Grid item zeroMinWidth key={community.id}>
+
       <Card
         elevation={3}
         style={{
@@ -77,7 +74,6 @@ const CommunityCard = (props) => {
           </Box>
         </CardContent>
       </Card>
-    </Grid>
   );
 };
 

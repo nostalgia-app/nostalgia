@@ -1,5 +1,4 @@
 import axios from "axios";
-import history from "../history";
 
 /**
  * ACTION TYPES
@@ -29,6 +28,18 @@ export const setCommunity = (id) => {
       console.log(error);
     }
   };
+};
+
+export const updateCommunity = (data, id) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/communities/${id}`, data);
+      const community = res.data;
+      dispatch({ type: "SET_COMMUNITY", community });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 /**

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts, addUserToCommunity, me } from '../../store';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setArtifacts, addUserToCommunity, me } from "../../store";
 import {
   Container,
   Typography,
@@ -9,24 +9,33 @@ import {
   Card,
   CardMedia,
   Box,
-} from '@material-ui/core';
-import { setCommunity } from '../../store';
-import { useHistory } from 'react-router-dom';
-import ArtifactList from '../artifacts/ArtifactList';
+} from "@material-ui/core";
+import { setCommunity } from "../../store";
+import { useHistory } from "react-router-dom";
+import ArtifactList from "../artifacts/ArtifactList";
+import EditCommunity from "./EditCommunity";
 
 const CommunityDetails = () => {
   const { id } = useParams();
-  const { community } = useSelector(state => state);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setCommunity(id));
-  }, [id]);
-  
   const history = useHistory();
+  const [open, setOpen] = useState(false);
+  
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const routeChange = () => {
     let path = `/communities/`;
     history.push(path);
   };
+
+  useEffect(() => {
+    dispatch(setCommunity(id));
+  }, [id]);
 
   useEffect(() => {
     dispatch(setArtifacts(id));
@@ -34,7 +43,7 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(me());
   }, []);
-  const { artifacts, auth } = useSelector(state => state);
+  const { artifacts, auth, community } = useSelector(state => state);
   console.log(artifacts);
   console.log('curr user', auth)
 
@@ -43,7 +52,7 @@ const CommunityDetails = () => {
       <Card
         elevation={3}
         style={{
-          color: 'black',
+          color: "black",
           padding: 30,
         }}
       >
@@ -59,6 +68,17 @@ const CommunityDetails = () => {
           <Button variant="contained" sx={{ borderRadius: 50 }}>
             Join
           </Button>
+          {auth.id === community.adminId ? (
+            <Button
+              variant="contained"
+              sx={{ borderRadius: 50 }}
+              onClick={handleClickOpen}
+            >
+              Edit Details
+            </Button>
+          ) : (
+            ""
+          )}
           <Button
             variant="contained"
             sx={{ borderRadius: 50 }}
@@ -79,6 +99,7 @@ const CommunityDetails = () => {
       <Box sx={{ mt: 5 }}>
         <ArtifactList artifacts={artifacts} />
       </Box>
+      <EditCommunity community={community} open={open} onClose={handleClose} />
     </Container>
   );
 };
