@@ -9,6 +9,7 @@ import Community from './community'
 const SET_USERCOMMUNITIES = "SET_USERCOMMUNITIES"
 const ADD_USERCOMMUNITY = "ADD_USERCOMMUNITY"
 const DELETE_USERCOMMUNITY = "DELETE_USERCOMMUNITY"
+const SET_SPECIFICUSERCOMMUNITY = "SET_SPECIFICUSERCOMMUNITY"
 
 //ACTION CREATORS
 // export const _setUserCommunity = userCommunity => ({
@@ -27,6 +28,10 @@ export const _deleteUserCommunity = userCommunities => ({
     type: DELETE_USERCOMMUNITY,
     userCommunities,
     });
+export const _setSpecificUserCommunity = userCommunity =>({
+  type: SET_SPECIFICUSERCOMMUNITY,
+  userCommunity
+})
 
 
 
@@ -43,11 +48,24 @@ export const setUserCommunities = (user) => {
     };
   };
 
+//get all of a user's communities
+export const setSpecificUserCommunity = (commId, userId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(`/api/userCommunity/${commId}/${userId}`);
+      const communities = res.data;
+      dispatch(_setUserCommunities(communities));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 //add user to a community
 export const addUserToCommunity =(commId,userId)=>{
     return async (dispatch) => {
         try {
-        const res = await axios.post(`/api/communities/${commId}${userId}` );
+        const res = await axios.post(`/api/userCommunity/${commId}/${userId}` );
         const community = res.data;
         dispatch(_addUserCommunity(community));
         } catch (error) {
@@ -57,11 +75,11 @@ export const addUserToCommunity =(commId,userId)=>{
     };
 
 //remove user from community
-export const removeUserFromCommunity = (userCommId, history) => {
+export const removeUserFromCommunity = (userCommId, userId) => {
   return async (dispatch) => {
-    const userComm = await axios.delete(`/api/userCommunity/${userCommId}`);
-    dispatch(_deleteUserCommunity(userComm));
-    history.push('/userCommunity');
+    const userComm = await axios.delete(`/api/userCommunity/${userCommId}/${userId}`);
+    dispatch(_deleteUserCommunity(userCommId));
+    //history.push('/userCommunity');
   };
 };
 
@@ -70,9 +88,16 @@ export const removeUserFromCommunity = (userCommId, history) => {
         
         case SET_USERCOMMUNITIES:
             return action.userCommunity;
-         case ADD_USERCOMMUNITY:
-             return [...state, action.userCommunity]
-          
+        case SET_SPECIFICUSERCOMMUNITY:
+            return action.userCommunity;
+        case ADD_USERCOMMUNITY:
+            return [...state, action.userCommunity]
+        case DELETE_USERCOMMUNITY:
+          console.log('heress state', state)
+         
+          return state.filter(
+              userCommunity => userCommunity.communityId !== action.userCommunities
+            )
           default:
             return state;
         }

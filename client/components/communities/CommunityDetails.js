@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts } from '../../store';
+import { setArtifacts, addUserToCommunity, me } from '../../store';
 import {
   Container,
   Typography,
@@ -31,8 +31,12 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
-  const { artifacts } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+  const { artifacts, auth } = useSelector(state => state);
   console.log(artifacts);
+  console.log('curr user', auth)
 
   return (
     <Container>

@@ -9,6 +9,7 @@ import geographies from './geographies';
 import userCommunity from './userCommunities'
 import comment from './comments';
 import artifacts from './artifacts';
+
 import profilePics from './profilePics';
 
 const reducer = combineReducers({
@@ -18,7 +19,7 @@ const reducer = combineReducers({
   community,
   geographies,
   user,
-  image,
+  // image,
   userCommunity
 });
 

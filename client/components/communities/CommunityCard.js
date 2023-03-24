@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
+import { me } from '../../store';
+
+import { addUserToCommunity } from '../../store';
 import {
   Container,
   Card,
@@ -15,6 +19,7 @@ import {
 import { useHistory } from "react-router-dom";
 
 const CommunityCard = (props) => {
+  const dispatch = useDispatch()
   const { community } = props;
 
   const history = useHistory();
@@ -22,7 +27,15 @@ const CommunityCard = (props) => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
+  useEffect(() => {
+    dispatch(me());
+  }, []);
+  const { auth } = useSelector(state => state);
 
+  const addCommunity =(comm, user)=>{
+    dispatch(addUserToCommunity(comm, user))
+
+  }
   return (
     <Grid item zeroMinWidth key={community.id}>
       <Card
@@ -51,7 +64,7 @@ const CommunityCard = (props) => {
         </CardActionArea>
         <CardContent>
           <Box display="flex" justifyContent="space-around" alignItems="center">
-            <Button variant="contained" sx={{ borderRadius: 50 }}>
+            <Button variant="contained" sx={{ borderRadius: 50 }} onClick ={()=>addCommunity(community.id,auth.id)} >
               Join
             </Button>
             <Button

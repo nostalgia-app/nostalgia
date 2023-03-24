@@ -16,6 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+
 // GET /api/communities/geography
 router.get('/geography', async (req, res, next) => {
   try {

@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUser } from '../../store';
-import { setCommunities } from '../../store';
+import { fetchUser,  } from '../../store';
+import { setCommunities, } from '../../store';
+import { setUserCommunities, removeUserFromCommunity, setSpecificUserCommunity } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import DialogBox from './DialogueBox';
+import UserCommunities from './UserCommunities'
 import {
   Container,
   Typography,
@@ -13,10 +15,11 @@ import {
   makeStyles,
   ImageList,
   ImageListItem,
+  Button
 } from '@material-ui/core';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
-import UserCommunities from './UserCommunities';
+
 
 const useStyles = makeStyles({
   mainContainer: {
@@ -73,16 +76,47 @@ const UserProfile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const { user, communities, userCommunity  } = useSelector(state => state);
+
   useEffect(() => {
     dispatch(fetchUser(id));
   }, []);
+
 
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
 
-  const { user, communities } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
+  }, []);
+ 
   const currentUser = user.user;
+  //const allCommunities = communities
+  console.log('user cimmunity updateddd!!!', userCommunity)
+ // console.log('all of the communititesss', communities)
+  const allOfAUsersCommunities = userCommunity.map((userComm)=>{
+    for(let comm  of communities){
+      if (comm.id == userComm.communityId){
+        console.log('yessss',userComm)
+        return comm
+      }
+    }
+  })
+  console.log('allOFUSERCOMMUNITIES ----',allOfAUsersCommunities)
+  //const single = allOfAUsersCommunities[0]
+  //console.log('comm id',(single.id))
+      //const UserCommIdRemove =  setSpecificUserCommunity('354b8ae1-0d97-49ed-a10b-a2ae638e2be8', currentUser.id)
+      //console.log('yerrrrrrrr',UserCommIdRemove)
+  const removeUserCommunity = async (comm, user)=>{
+    console.log('commmm', comm, user) 
+    //console.log('commmm', comm) 
+    dispatch(removeUserFromCommunity(comm, user))
+    //console.log('here it iss', UserCommIdRemove)
+    //removeUserCommunity(UserCommIdRemove)
+  }
+  //removeUserFromCommunity(currentUser.id, '185d1cc3-7a43-48e0-9eea-fa4cf1396d36')
+  //console.log('all users comms', allOfAUsersCommunities)
 
   return (
     <div>
@@ -133,13 +167,27 @@ const UserProfile = () => {
                 md={4}
               >
                 {currentUser.firstName}'s Communities
-                {communities.map(community => {
+                {/* {all} */}
+                {userCommunity && userCommunity.length > 0 ? userCommunity.map(({community}) => {
+                  console.log('community : ', community)
                   return (
                     <div key={community.id} className={classes.card}>
                       <UserCommunities community={community} />
-                    </div>
+                      <Button
+                        className={classes.button}
+                        variant="contained"
+                        size="large"
+                        color="secondary"
+                        onClick={()=>removeUserCommunity(community.id , currentUser.id,)}
+                      >
+                        DELETE
+                    </Button>
+                    </div>  
                   );
-                })}
+                }) : ( <div> Add some communities </div>)
+
+                 } 
+
               </Grid>
             </Grid>
           </Container>

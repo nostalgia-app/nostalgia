@@ -79,22 +79,22 @@ async function seed() {
       userId: users[0].id,
       communityId: communities[0].id,
     }),
-    // User_Community.create({
-    //   userId: users[1].id,
-    //   communityId: communities[0].id,
-    // }),
-    // User_Community.create({
-    //   userId: users[0].id,
-    //   communityId: communities[1].id,
-    // }),
-    // User_Community.create({
-    //   userId: users[1].id,
-    //   communityId: communities[1].id,
-    // }),
-    // User_Community.create({
-    //   userId: users[1].id,
-    //   communityId: communities[2].id,
-    // }),
+    User_Community.create({
+      userId: users[1].id,
+      communityId: communities[0].id,
+    }),
+    User_Community.create({
+      userId: users[0].id,
+      communityId: communities[1].id,
+    }),
+    User_Community.create({
+      userId: users[1].id,
+      communityId: communities[1].id,
+    }),
+    User_Community.create({
+      userId: users[1].id,
+      communityId: communities[2].id,
+    }),
   ]);
 
   const artifacts = await Promise.all([
@@ -150,7 +150,7 @@ async function seed() {
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded ${artifacts.length} artifacts`);
-  console.log(`seeded ${comment.length} comments`);
+  //console.log(`seeded ${comment.length} comments`);
   console.log(`seeded successfully`);
 
   return {
