@@ -7,7 +7,6 @@ import {
   addCommunity,
   setCommunities,
   setUserCommunities,
-  setGeography,
   me,
   createNewImage,
   addUserToCommunity,
@@ -25,7 +24,7 @@ import {
 import AddCommunity from "./AddCommunity";
 
 const CommunityList = () => {
-  const { communities, geographies, auth, userCommunities } = useSelector((state) => state);
+  const { communities, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
   //const { auth.id } = useParams();//
   console.log("this is id", auth.id)
@@ -37,9 +36,7 @@ const CommunityList = () => {
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
-  useEffect(() => {
-    dispatch(setGeography());
-  }, []);
+
   useEffect(() => {
     dispatch(setUserCommunities(auth.id));
   }, []);

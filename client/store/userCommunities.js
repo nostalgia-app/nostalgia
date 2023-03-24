@@ -20,9 +20,9 @@ export const _setUserCommunities = userCommunity => ({
     type: SET_USERCOMMUNITIES,
     userCommunity,        
     });
-export const _addUserCommunity = userCommunities => ({
+export const _addUserCommunity = userCommunity => ({
     type: ADD_USERCOMMUNITY,
-    userCommunities,
+    userCommunity,
     });
 export const _deleteUserCommunity = userCommunities => ({
     type: DELETE_USERCOMMUNITY,
@@ -67,6 +67,7 @@ export const addUserToCommunity =(commId,userId)=>{
         try {
         const res = await axios.post(`/api/userCommunity/${commId}/${userId}` );
         const community = res.data;
+        console.log('this is community', community)
         dispatch(_addUserCommunity(community));
         } catch (error) {
         console.log(error);

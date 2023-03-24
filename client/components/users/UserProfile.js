@@ -15,6 +15,7 @@ import {
   makeStyles,
   ImageList,
   ImageListItem,
+  Button,
   ImageListItemBar,
 } from '@material-ui/core';
 import UserData from './UserData';
@@ -87,7 +88,7 @@ const UserProfile = () => {
   
     useEffect(() => {
       dispatch(setUserCommunities(auth.id));
-  }, []);
+  }, [auth]);
 
   useEffect(() =>{
   dispatch(setUserArtifacts(id))
@@ -95,14 +96,14 @@ const UserProfile = () => {
   const currentUser = user.user;
   const userArtifacts = artifacts.user_artifacts;
   
-  const allOfAUsersCommunities = userCommunity.map((userComm)=>{
-    for(let comm  of communities){
-      if (comm.id == userComm.communityId){
-        console.log('yessss',userComm)
-        return comm
-      }
-    }
-  })
+  // const allOfAUsersCommunities = userCommunity.map((userComm)=>{
+  //   for(let comm  of communities){
+  //     if (comm.id == userComm.communityId){
+  //       console.log('yessss',userComm)
+  //       return comm
+  //     }
+  //   }
+  // })
   const removeUserCommunity = async (comm, user)=>{
     console.log('commmm', comm, user) 
     dispatch(removeUserFromCommunity(comm, user))
