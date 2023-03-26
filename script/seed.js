@@ -2,15 +2,7 @@
 
 const {
   db,
-  models: {
-    User,
-    Community,
-    User_Community,
-    Artifact,
-    Comment,
-    ProfilePic,
-    User_Friend,
-  },
+  models: { User, Community, User_Community, Artifact, Comment, User_Friend },
 } = require("../server/db");
 
 /**
