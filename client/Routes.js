@@ -1,19 +1,19 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Signup } from './components/users/Login';
-import { Home } from './components/Home';
-import { me } from './store';
-import CommunityList from './components/communities/CommunityList';
-import CommunityDetails from './components/communities/CommunityDetails';
-import CreateUser from './components/users/CreateUSer';
-import UpdateUser from './components/users/UpdateUser';
-import UserProfile from './components/users/UserProfile';
-import Success from './components/users/Success';
-import ArtifactList from './components/artifacts/ArtifactList';
-import ArtifactDetails from './components/artifacts/ArtifactDetails';
-import FriendsList from './components/friends/FriendsList';
-import MyFriendsList from './components/friends/MyFriendsList';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter, Route } from "react-router-dom";
+import { Login } from "./components/users/Login";
+import { Home } from "./components/Home";
+import { me } from "./store";
+import CommunityList from "./components/communities/CommunityList";
+import CommunityDetails from "./components/communities/CommunityDetails";
+import CreateUser from "./components/users/CreateUser";
+import UpdateUser from "./components/users/UpdateUser";
+import UserProfile from "./components/users/UserProfile";
+import Success from "./components/users/Success";
+import ArtifactList from "./components/artifacts/ArtifactList";
+import ArtifactDetails from "./components/artifacts/ArtifactDetails";
+import FriendsList from "./components/friends/FriendsList";
+import MyFriendsList from "./components/friends/MyFriendsList";
 
 /**
  * COMPONENT
@@ -67,7 +67,7 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
@@ -75,7 +75,7 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me());
