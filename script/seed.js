@@ -351,8 +351,6 @@ async function seed() {
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded ${users_communities.length} users communities`);
   console.log(`seeded ${artifacts.length} artifacts`);
-  console.log(`seeded ${comment.length} comments`);
-  console.log(`seeded ${users_friends.length} users friends`);
   console.log(`seeded successfully`);
 
   return {

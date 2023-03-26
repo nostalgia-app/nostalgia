@@ -1,36 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { addCommunity, setCommunities } from "../../store";
+import { Link, useParams } from 'react-router-dom';
+
+import {
+  addCommunity,
+  setCommunities,
+  setUserCommunities,
+  me,
+  createNewImage,
+  addUserToCommunity,
+} from "../../store";
 import CommunityCard from "./CommunityCard";
 
 import {
   Box,
-  InputLabel,
-  MenuItem,
   FormControl,
-  Select,
   Grid,
   Button,
-  TextField,
   Typography,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
+  TextField,
 } from "@material-ui/core";
+import AddCommunity from "./AddCommunity";
 
 const CommunityList = () => {
-  const { communities, auth } = useSelector((state) => state);
+  const { communities, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
+  //const { auth.id } = useParams();//
+  console.log("this is id", auth.id)
+  console.log("this is usercommunities", userCommunities)
+
+  useEffect(()=>{
+    dispatch(me())
+  }, [])
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
 
-  // Add Community Dialog
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
+  }, []);
+
   const [open, setOpen] = useState(false);
-  const [file, setFile] = useState();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -39,21 +51,17 @@ const CommunityList = () => {
   };
 
   // Add Community Form
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data, event) => {
-    event.preventDefault();
+  const addUserCommunity = (comm, user) => {
+   //event.preventDefault();
     // const imgFile = new FormData();
     // imgFile.append("file", file);
-    const community = { ...data, adminId: auth.id, imageUrl: imgFile.path };
-    dispatch(addCommunity(community));
-    reset();
+    // dispatch(createNewImage(imgFile));
+    //const userComm = { ...data,  };
+    dispatch(addUserToCommunity(comm,user));
+    //reset();
   };
+  console.log('adding the user object')
+  //addUserCommunity(communities[0], auth.id)
 
   // Filter Category
   const [state, setstate] = useState({
@@ -79,7 +87,7 @@ const CommunityList = () => {
   return (
     <div>
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Typography align="Left" variant="h3" component="h1" gutterBottom>
+        <Typography align="left" variant="h3" component="h1" gutterBottom>
           Find a Community!
         </Typography>
         {auth.id && (
@@ -124,103 +132,15 @@ const CommunityList = () => {
         {/* {communities.length > 0 &&
           (location
             ? communities
-                .filter(community => community.state.includes(location))
-                .map(community => (
+                .filter((community) => community.state.includes(location))
+                .map((community) => (
                   <CommunityCard key={community.id} community={community} />
                 ))
-            : communities.map(community => (
+            : communities.map((community) => (
                 <CommunityCard key={community.id} community={community} />
               )))} */}
       </Grid>
-
-      <Dialog open={open} onClose={handleClose}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle>Add Community</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To add a new community, provide a bio, location, and upload an
-              image.
-            </DialogContentText>
-
-            <TextField
-              autoFocus
-              margin="dense"
-              name="name"
-              {...register("name")}
-              label="Community Name"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="bio"
-              {...register("bio")}
-              label="Bio"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="address"
-              {...register("address")}
-              label="Address"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="city"
-              {...register("city")}
-              label="City"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="state"
-              {...register("state")}
-              label="State"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              name="zipCode"
-              {...register("zipCode")}
-              label="Zipcode"
-              type="text"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              type="file"
-              name="imageUrl"
-              accept=".jpg, .jpeg, .png"
-              variant="outlined"
-              onChange={(e) => {
-                const file = e.target.files[0];
-                setFile(file);
-              }}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose} type="submit">
-              Submit
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
+      <AddCommunity open={open} onClose={handleClose} />
     </div>
   );
 };

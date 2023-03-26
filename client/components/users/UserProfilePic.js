@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Card, Grid, makeStyles } from '@material-ui/core';
+import { Container, Card, Grid, Button, makeStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   mediaContainer: {
@@ -17,6 +18,13 @@ const useStyles = makeStyles({
     borderRadius: '.25rem',
     padding: 10,
     marginTop: 20,
+  },
+  edit: {
+    marginTop: 5,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -39,6 +47,13 @@ const UserProfilePic = ({ user }) => {
           )}
         </Grid>
       </Card>
+      <div className={classes.edit}>
+        <Link to={`/users/${user.id}/update-user`}>
+          <Button className={classes.button} variant="contained">
+            EDIT PROFILE
+          </Button>
+        </Link>
+      </div>
     </Container>
   );
 };
