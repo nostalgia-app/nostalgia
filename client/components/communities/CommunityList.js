@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from "react-router-dom";
 
 import {
   addCommunity,
@@ -20,19 +20,23 @@ import {
   Button,
   Typography,
   TextField,
+  Avatar,
 } from "@material-ui/core";
+import SportsBaseballIcon from "@material-ui/icons/SportsBaseball";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
+import ComputerIcon from "@material-ui/icons/Computer";
+import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
+import SchoolIcon from "@material-ui/icons/School";
 import AddCommunity from "./AddCommunity";
 
 const CommunityList = () => {
   const { communities, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
-  //const { auth.id } = useParams();//
-  console.log("this is id", auth.id)
-  console.log("this is usercommunities", userCommunities)
 
-  useEffect(()=>{
-    dispatch(me())
-  }, [])
+  useEffect(() => {
+    dispatch(me());
+  }, []);
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
@@ -52,16 +56,8 @@ const CommunityList = () => {
 
   // Add Community Form
   const addUserCommunity = (comm, user) => {
-   //event.preventDefault();
-    // const imgFile = new FormData();
-    // imgFile.append("file", file);
-    // dispatch(createNewImage(imgFile));
-    //const userComm = { ...data,  };
-    dispatch(addUserToCommunity(comm,user));
-    //reset();
+    dispatch(addUserToCommunity(comm, user));
   };
-  console.log('adding the user object')
-  //addUserCommunity(communities[0], auth.id)
 
   // Filter Category
   const [state, setstate] = useState({
@@ -70,6 +66,7 @@ const CommunityList = () => {
   });
 
   const handleChange = (e) => {
+    console.log(e.target.value, state.query);
     const results = communities.filter((community) => {
       if (e.target.value === "") return community;
       return (
@@ -83,6 +80,17 @@ const CommunityList = () => {
       list: results,
     });
   };
+
+  // const handleClick = (category) => {
+  //   const results = communities.filter((community) => {
+  //     if (category === "") return community;
+  //     return community.category === category;
+  //   });
+  //   setstate({
+  //     category: category,
+  //     list: results,
+  //   });
+  // };
 
   return (
     <div>
@@ -100,6 +108,56 @@ const CommunityList = () => {
           </Button>
         )}
       </Box>
+      {/* <Box display="flex" justifyContent="space-between" sx={{ mt: 5, mb: 5 }}>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<SportsBaseballIcon />}
+          onClick={() => handleClick("Fitness & Sports")}
+        >
+          Sports
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<MusicNoteIcon />}
+          onClick={() => handleClick("Music & Audio")}
+        >
+          Music
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<SchoolIcon />}
+          onClick={() => handleClick("Education")}
+        >
+          Education
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<FastfoodRoundedIcon />}
+          onClick={() => handleClick("Food & Drink")}
+        >
+          Food & Drink
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<ComputerIcon />}
+          onClick={() => handleClick("Science & Tech")}
+        >
+          Tech
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<BusinessCenterIcon />}
+          onClick={() => handleClick("Business & Commerce")}
+        >
+          Business
+        </Button>
+      </Box> */}
 
       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
         <FormControl fullWidth>

@@ -104,7 +104,7 @@ async function seed() {
       city: "Austin",
       state: "TX",
       zipCode: "78705",
-      category: "Colleges & Universities",
+      category: "Education",
       imageUrl:
         "https://news.utexas.edu/wp-content/uploads/2021/05/Senior_Stories_2021_Header_1500x543_SB-600x0-c-default.gif",
       adminId: users[1].id,
