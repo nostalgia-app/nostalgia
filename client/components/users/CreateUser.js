@@ -17,10 +17,23 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    height: '90vh',
+    width: '100vw',
+    paddingTop: 50,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  input: {
+    backgroundColor: 'white',
+    borderRadius: '.25rem',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCf1',
+    marginTop: 5,
+    color: 'white',
   },
 });
 
@@ -56,30 +69,38 @@ const CreateUser = () => {
         <Grid item xs={12} sm={12} md={12}>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
+              className={classes.input}
               onChange={e => setFirstName(e.target.value)}
               label="First Name"
               margin="normal"
               variant="outlined"
             />
             <TextField
+              className={classes.input}
               onChange={e => setLastName(e.target.value)}
               label="Last Name"
               margin="normal"
               variant="outlined"
             />
             <TextField
+              className={classes.input}
               onChange={e => setUserName(e.target.value)}
               label="Username"
               margin="normal"
               variant="outlined"
             />
             <TextField
+              className={classes.input}
               onChange={e => setPassword(e.target.value)}
               label="Password"
               margin="normal"
               variant="outlined"
             />
-            <Button type="submit" variant="contained" color="primary">
+            <Button
+              className={classes.button}
+              type="submit"
+              variant="contained"
+            >
               Submit
             </Button>
           </form>

@@ -17,23 +17,20 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
     },
     page: {
-      marginTop: 80,
-      background: 'white',
-      width: '100%',
-      // padding: theme.spacing(3),
+      marginTop: 50,
     },
     appbar: {
-      backgroundColor: theme.primary,
+      backgroundColor: '#0B0C10',
       display: 'flex',
+      paddingTop: 10,
+      fontFamily: 'Exo 2, sans-serif',
     },
-    toolbar: theme.mixins.toolbar,
     title: {
-      border: '2pt solid orange',
-      // fontFamily: 'Caveat, cursive',
+      fontFamily: 'Righteous, cursive',
+      fontSize: '20pt',
+      color: '#66FCf1',
       flexGrow: 1,
-    },
-    logo: {
-      border: '2pt solid red',
+      marginBottom: 10,
     },
     navRight: {
       display: 'flex',
@@ -58,7 +55,7 @@ const Layout = ({ children, auth }) => {
           <Typography variant="h3" className={classes.title}>
             NOSTALGIA
           </Typography>
-          <div className={classes.logo}>Test</div>
+
           <div className={classes.navRight}>
             <Typography>
               {/* <span className={classes.date}> */}

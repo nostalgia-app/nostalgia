@@ -23,71 +23,191 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
+    // User.create({
+    //   username: 'cody',
+    //   password: '123',
+    //   firstName: 'Cody',
+    //   lastName: 'Code',
+    //   age: 27,
+    //   location: 'New York, NY',
+    //   bio: 'Hey man, my name is Cody.',
+    //   profilePic:
+    //     'https://media.istockphoto.com/id/1147289240/photo/portrait-of-a-smiling-student-at-the-city-street.jpg?s=612x612&w=0&k=20&c=9-L5boel1w6eQZsZJDXjXpLMTkCopgSue6vycZzP3r4=',
+    // }),
+    // User.create({
+    //   username: 'murphy',
+    //   password: '123',
+    //   firstName: 'Murphy',
+    //   lastName: 'McMurphy',
+    //   age: 98,
+    //   location: 'Dublin, Ireland',
+    //   bio: "I'm looking for a guy named Cody. Is he here?",
+    //   profilePic:
+    //     'https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=',
+    // }),
+    // User.create({
+    //   username: 'sally',
+    //   password: '123',
+    //   firstName: 'Sally',
+    //   lastName: 'Johnson',
+    //   age: 50,
+    //   location: 'Raleigh, North Carolina',
+    //   bio: "Hi, I'm Sally!",
+    //   profilePic:
+    //     'https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=',
+    // }),
+    // User.create({
+    //   username: 'bob',
+    //   password: '123',
+    //   firstName: 'Bob',
+    //   lastName: 'Smith',
+    //   age: 60,
+    //   location: 'Tampa, Florida',
+    //   bio: "Hi, I'm Bob!",
+    //   profilePic:
+    //     'https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=',
+    // }),
+    // User.create({
+    //   username: 'mike',
+    //   password: '123',
+    //   firstName: 'Mike',
+    //   lastName: 'White',
+    //   age: 30,
+    //   location: 'Chicago, Illinois',
+    //   bio: "Hi, I'm Mike!",
+    //   profilePic:
+    //     'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    // }),
+    // User.create({
+    //   username: 'sarah',
+    //   password: '123',
+    //   firstName: 'Sarah',
+    //   lastName: 'Stevens',
+    //   age: 45,
+    //   location: 'Atlanta, Georgia',
+    //   bio: "Hi, I'm Sarah!",
+    //   profilePic:
+    //     'https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg',
+
     User.create({
-      username: 'cody',
+      username: 'hBoyardee',
       password: '123',
-      firstName: 'Cody',
-      lastName: 'Code',
-      age: 27,
+      firstName: 'Hector',
+      lastName: 'Boyardee',
+      age: 64,
       location: 'New York, NY',
-      bio: 'Hey man, my name is Cody.',
-      profilePic:
-        'https://media.istockphoto.com/id/1147289240/photo/portrait-of-a-smiling-student-at-the-city-street.jpg?s=612x612&w=0&k=20&c=9-L5boel1w6eQZsZJDXjXpLMTkCopgSue6vycZzP3r4=',
+      bio: 'I love all things food. I create and I eat! I joined nostalgia to share my experiences and connect with people who love what I love!',
+      profilePic: 'pexels-alena-darmel-7322232.jpeg',
     }),
     User.create({
-      username: 'murphy',
+      username: 'aCollins',
       password: '123',
-      firstName: 'Murphy',
-      lastName: 'McMurphy',
-      age: 98,
-      location: 'Dublin, Ireland',
-      bio: "I'm looking for a guy named Cody. Is he here?",
-      profilePic:
-        'https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=',
+      firstName: 'Alicia',
+      lastName: 'Collins',
+      age: 28,
+      location: 'Ann Arbor, MI',
+      bio: "Michigan Grad. I'm a fasion designer by day, a wine connoisseur in the evenings. I joined nostalgia to be inspired and make some inspriing people.",
+      profilePic: 'pexels-masha-raymers-2726111.jpeg',
     }),
     User.create({
-      username: 'sally',
+      username: 'aYankovich',
       password: '123',
-      firstName: 'Sally',
+      firstName: 'Al',
+      lastName: 'Yankovich',
+      age: 68,
+      location: 'Boston, MA',
+      bio: "What can I say? I'm a weird guy but I love to learn about the diversity of our workd and all that each culture has to offer. Been a world traveler my whole life. Joined nastalgia to meet others who may have crossed my many paths.",
+      profilePic: 'pexels-arthouse-studio-4571943.jpeg',
+    }),
+    User.create({
+      username: 'mSimmons',
+      password: '123',
+      firstName: 'Mandy',
+      lastName: 'Simmons',
+      age: 22,
+      location: 'Philadelphia, PA',
+      bio: 'I recently moved to Phila and I love it! Originally from FL and Graduated from NYU last year. Looking to connect with good people who enjoy art, music and some nightlife!',
+      profilePic: 'pexels-miriam-alonso-7585607.jpeg',
+    }),
+    User.create({
+      username: 'sYin',
+      password: '123',
+      firstName: 'Steve',
+      lastName: 'Yin',
+      age: 26,
+      location: 'Los Angeles, CA',
+      bio: "I love to skate and I live to draw. I'm a passionate artist who works primarily with canvas oil paints, as well as urban graffiti art. I love all things west coast but looking to connect with good poeple and fellow artists who can inspire me with their life experience!",
+      profilePic: 'pexels-monstera-5384429.jpeg',
+    }),
+    User.create({
+      username: 'jLewis',
+      password: '123',
+      firstName: 'Jalen',
+      lastName: 'Lewis',
+      age: 31,
+      location: 'Kansas City, MO',
+      bio: "I'm an aspiring writer and avid traveler. Hoping nostalgia will inspire me by learning about others culture and passions. I've got great stories to tell and I'd love to hear yours!",
+      profilePic: 'pexels-philip-boakye-2698918.jpeg',
+    }),
+    User.create({
+      username: 'tHipp',
+      password: '123',
+      firstName: 'Tim',
+      lastName: 'Hipp',
+      age: 32,
+      location: 'Des Moines, IA',
+      bio: "I'm a software developer and baseball enthusiast. I've lived in the midwest my whole life but love to travel. I joined nostalgia to learn about cool places and experiences to check out when I'm on the road.",
+      profilePic: 'pexels-pixabay-220453.jpeg',
+    }),
+    User.create({
+      username: 'hFalcone',
+      password: '123',
+      firstName: 'Helen',
+      lastName: 'Falcone',
+      age: 71,
+      location: 'San Francisco, CA',
+      bio: "I taught art history at UC Santa Barbara for 33 years. My grandson told me about nostalgia and I'd love to contrubute to sharing fun life expreience. We can always be inspried by someone who has traveled a different path. Hoping to read great stories and always appreciate sharing wonderful art!",
+      profilePic: 'pexels-rodnae-productions-7020543.jpeg',
+    }),
+    User.create({
+      username: 'tNguyen',
+      password: '123',
+      firstName: 'Travis',
+      lastName: 'Nguyen',
+      age: 26,
+      location: 'Phoenix, AZ',
+      bio: "Born and raised in the desert. ASU class of 2018. I love outdoor music festivals, good food and craft beers. I travel a lot so always down to learn the 'must see' places wherever I'm at.",
+      profilePic: 'pexels-ron-lach-8159657.jpeg',
+    }),
+    User.create({
+      username: 'oNeilson',
+      password: '123',
+      firstName: 'Olrich',
+      lastName: 'Neilson',
+      age: 28,
+      location: 'Boston, MA',
+      bio: 'Originally from Berlin. I studied music at Columbia. I currently live in Boston and love the music scene. Hoping to meet some great people, share some German culture and make great music!',
+      profilePic: 'pexels-sinitta-leunen-6652928.jpeg',
+    }),
+    User.create({
+      username: 'tJohnson',
+      password: '123',
+      firstName: 'Tamara',
       lastName: 'Johnson',
-      age: 50,
-      location: 'Raleigh, North Carolina',
-      bio: "Hi, I'm Sally!",
-      profilePic:
-        'https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=',
+      age: 27,
+      location: 'St. Louis, MO',
+      bio: 'Mizzou class of 2018. I currently work as nurse but hoping to go to PA school next fall. I love the theatre and live shows. I joined nostalgia to share some stories and meet interesting people.',
+      profilePic: 'pexels-stephen-chabala-3774071.jpeg',
     }),
     User.create({
-      username: 'bob',
+      username: 'aBergman',
       password: '123',
-      firstName: 'Bob',
-      lastName: 'Smith',
-      age: 60,
-      location: 'Tampa, Florida',
-      bio: "Hi, I'm Bob!",
-      profilePic:
-        'https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=',
-    }),
-    User.create({
-      username: 'mike',
-      password: '123',
-      firstName: 'Mike',
-      lastName: 'White',
-      age: 30,
-      location: 'Chicago, Illinois',
-      bio: "Hi, I'm Mike!",
-      profilePic:
-        'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    }),
-    User.create({
-      username: 'sarah',
-      password: '123',
-      firstName: 'Sarah',
-      lastName: 'Stevens',
-      age: 45,
-      location: 'Atlanta, Georgia',
-      bio: "Hi, I'm Sarah!",
-      profilePic:
-        'https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg',
+      firstName: 'Abby',
+      lastName: 'Bergman',
+      age: 24,
+      location: 'Austin, TX',
+      bio: "UT grad. Aspiring chef. I love to cook and learn tricks of the trade from other passionate foodies. I joined nostalgia to inspire and be inspired. Tell me about your recipes and let's eat!",
+      profilePic: 'pexels-tim-douglas-6205509.jpeg',
     }),
   ]);
 
@@ -178,6 +298,53 @@ async function seed() {
     }),
   ]);
 
+  // const users_friends = await Promise.all([
+  //   User_Friend.create({
+  //     userId: users[1].id,
+  //     friendId: users[2].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[1].id,
+  //     friendId: users[4].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[4].id,
+  //     friendId: users[3].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[5].id,
+  //     friendId: users[1].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[1].id,
+  //     friendId: users[5].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[5].id,
+  //     friendId: users[2].id,
+  //   }),
+  //   User_Friend.create({
+  //     userId: users[4].id,
+  //     friendId: users[1].id,
+  //   }),
+  // ]);
+
+  const artifact = await Promise.all([
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[1].id,
+      name: 'Samuel',
+    }),
+  ]);
+
+  const comment = await Promise.all([
+    Comment.create({
+      artifactId: artifact[0].id,
+      userId: users[0].id,
+      comment: 'DEFAULT COMMENT YESSA',
+    }),
+  ]);
+
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded ${users_communities.length} users communities`);
@@ -186,8 +353,18 @@ async function seed() {
 
   return {
     users: {
-      cody: users[0],
-      murphy: users[1],
+      hBoyardee: users[0],
+      aCollins: users[1],
+      aYankovich: users[2],
+      mSimmons: users[3],
+      sYin: users[4],
+      jLewis: users[5],
+      tHipp: users[6],
+      hFalcone: users[7],
+      tNguyen: users[8],
+      oNeilson: users[9],
+      tJohnson: users[10],
+      aBergman: users[11],
     },
     communities: {
       comm1: communities[0],

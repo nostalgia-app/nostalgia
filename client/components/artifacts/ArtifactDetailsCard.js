@@ -1,9 +1,32 @@
 import React from 'react';
 import { updateArtifact } from '../../store';
 import { useDispatch } from 'react-redux';
-import { Card, CardMedia, CardContent, Button } from '@material-ui/core';
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Button,
+  makeStyles,
+} from '@material-ui/core';
+
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '40vh',
+    width: '100vw',
+    paddingTop: 50,
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    marginTop: 5,
+    color: 'white',
+  },
+});
 
 const ArtifactDetailsCard = ({ artifact }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(updateArtifact({ id: artifact.id, likes: artifact.likes + 1 }));
@@ -25,7 +48,12 @@ const ArtifactDetailsCard = ({ artifact }) => {
       <CardContent>
         {artifact.description}
         <div style={{ marginTop: 10 }}>
-          <Button onClick={handleClick} variant="contained" color="primary">
+          <Button
+            className={classes.button}
+            onClick={handleClick}
+            variant="contained"
+            color="primary"
+          >
             Like
           </Button>
           <span style={{ fontSize: 20, marginLeft: 10 }}>{artifact.likes}</span>

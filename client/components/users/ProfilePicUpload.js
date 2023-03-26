@@ -3,24 +3,34 @@ import { useDispatch } from 'react-redux';
 import { createProfilePic, updateUser } from '../../store';
 import { useHistory } from 'react-router-dom';
 import {
+  Container,
   Typography,
   TextField,
-  Button,
   Grid,
+  Button,
   makeStyles,
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
   mainContainer: {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderLeft: '2pt solid red',
   },
   form: {
-    padding: 20,
-    margin: 10,
-    marginLeft: 0,
     display: 'flex',
     flexDirection: 'column',
-    width: '80%',
+  },
+  input: {
+    backgroundColor: 'white',
+    borderRadius: '.25rem',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCf1',
+    marginTop: 5,
+    color: 'white',
   },
 });
 
@@ -42,26 +52,34 @@ const ProfilePicUpload = ({ user }) => {
     history.push(`/users/${user.id}`);
   };
   return (
-    <>
-      <form className={classes.form} onSubmit={handleSubmit}>
-        <Typography variant="h6" gutterBottom>
-          Profile pic upload.
-        </Typography>
-        <TextField
-          type="file"
-          accept=".jpg, .jpeg, .png"
-          variant="outlined"
-          onChange={e => {
-            const file = e.target.files[0];
-            setFile(file);
-          }}
-        />
+    <Container className={classes.mainContainer}>
+      <Grid>
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <Typography variant="h6" gutterBottom>
+            Profile pic upload.
+          </Typography>
+          <TextField
+            className={classes.input}
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            variant="outlined"
+            onChange={e => {
+              const file = e.target.files[0];
+              setFile(file);
+            }}
+          />
 
-        <Button type="submit" variant="contained" color="primary">
-          Upload
-        </Button>
-      </form>
-    </>
+          <Button
+            type="submit"
+            className={classes.button}
+            variant="contained"
+            color="primary"
+          >
+            Upload
+          </Button>
+        </form>
+      </Grid>
+    </Container>
   );
 };
 

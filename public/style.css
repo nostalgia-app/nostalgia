@@ -1,9 +1,20 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Exo 2', sans-serif;
+  background-image: url('/public/pexels-jakub-novacek-924824.jpg');
+  /* background-image: url('/public/pexels-adrien-olichon-2387793.jpg'); */
+  /* background-image: url('/public/pexels-instawalli-176851 (1).jpg'); */
+  /* background-image: url('/public/blue-shining-fiber-optic-2022-12-15-22-34-32-utc.jpg'); */
+
+  background-color: #0d1217c8;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
 }
 
 a {
   text-decoration: none;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
 }
 
 label {
@@ -14,14 +25,6 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-nav a:hover {
-  background-color: white;
-}
-
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 #profileImage {
   width: 250px;
@@ -33,7 +36,7 @@ nav a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(226, 226, 226);
+  background-color: #1f2833;
 
   /* padding: 2rem 6rem; */
   padding: 0.5rem 1.5rem;
@@ -60,7 +63,7 @@ nav a:hover {
 .nostalgia__navbar-links_container p,
 .nostalgia__navbar-sign p,
 .nostalgia__navbar-menu_container p {
-  color: black;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -73,7 +76,6 @@ nav a:hover {
 
 .nostalgia__navbar-menu {
   margin-left: 1rem;
-
   display: none;
   position: relative;
 }
@@ -86,7 +88,7 @@ nav a:hover {
 
   text-align: end;
   /* background-color: #fff; */
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(188, 188, 188);
   padding: 2rem;
   position: absolute;
   top: 40px;
@@ -152,7 +154,7 @@ nav a:hover {
     padding: 0.75rem 1rem;
   }
   .nostalgia__navbar-date {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
@@ -172,6 +174,6 @@ nav a:hover {
     display: block;
   }
   .nostalgia__navbar-date {
-    font-size: 10px;
+    font-size: 12px;
   }
 } ;

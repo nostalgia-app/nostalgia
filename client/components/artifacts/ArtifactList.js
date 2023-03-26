@@ -1,42 +1,92 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Typography, Grid, Container, TextField } from '@material-ui/core';
+import {
+  Typography,
+  Grid,
+  Container,
+  Button,
+  makeStyles,
+  Dialog,
+  DialogActions,
+} from '@material-ui/core';
 import { setArtifacts } from '../../store';
 import ArtifactCard from './ArtifactCard';
 import ArtifactUpload from './ArtifactUpload';
 
-// IMAGES DATA HAS BEEN USED FOR TESTING UPLOADS - REPLACE WITH ARTIFACT DATA
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '90vh',
+    width: '100vw',
+    paddingTop: 50,
+  },
+  uploadButton: {
+    width: '25%',
+    margin: 5,
+    backgroundColor: '#1f2833',
+    color: 'white',
+    fontFamily: 'Exo 2, sans-serif',
+  },
+  cardsGrid: {
+    marginTop: 20,
+    marginBottom: 50,
+  },
+});
 
 const ArtifactList = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
   const { auth } = useSelector(state => state);
-  const { artifacts } = useSelector((state) => state.artifacts);
+  const { artifacts } = useSelector(state => state.artifacts);
 
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
+
+  const [open, setOpen] = useState(false);
+
+  const openUploadArtifact = () => {
+    setOpen(true);
+  };
+  const closeUploadArtifact = () => {
+    setOpen(false);
+  };
   return (
-    // Page is wrapp in a container - clean spacing
-    <Container>
+    <Container className={classes.container}>
+      {/* ////////// */}
       {auth.id ? (
-        <Grid>
-          <ArtifactUpload />
-        </Grid>
+        <Button className={classes.uploadButton} onClick={openUploadArtifact}>
+          Upload A New Artifact
+        </Button>
       ) : (
-        <span>'You must be logged in to create an artifact'</span>
+        <span>Please login if you wold like to create an artifact.</span>
       )}
 
-      {/* Set Grid and Map through the data - use card component to render */}
-      <Grid
-        container
-        spacing={2}
-        style={{
-          borderRadius: '.25rem',
-          marginTop: 20,
-        }}
-      >
+      <Dialog open={open}>
+        <Container className={classes.uploadscontainer}>
+          <Typography className={classes.text} paragraph></Typography>
+          <Grid container spacing={2}>
+            <ArtifactUpload />
+          </Grid>
+
+          <DialogActions>
+            <Button
+              className={classes.uploadsButton}
+              variant="outlined"
+              onClick={closeUploadArtifact}
+            >
+              Close
+            </Button>
+          </DialogActions>
+        </Container>
+      </Dialog>
+      {/* //////// */}
+
+      <Grid className={classes.cardsGrid} container spacing={2}>
         {artifacts.map(artifact => {
           return (
             <Grid item key={artifact.id} xs={12} md={4}>
