@@ -57,6 +57,7 @@ const Community = db.define("community", {
       "Education",
       "Science & Tech",
       "Home & Garden",
+      "Business & Commerce",
       "Neighborhood"
     ),
   },

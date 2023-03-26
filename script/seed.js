@@ -131,6 +131,7 @@ async function seed() {
     }),
     Community.create({
       name: "New England Craft Beer",
+      bio: "Welcome to the New England Craft Beer Community. We talk about all craft beer.",
       city: "Boston",
       state: "MA",
       category: "Food & Drink",
@@ -139,13 +140,13 @@ async function seed() {
       adminId: users[4].id,
     }),
     Community.create({
-      name: "New England Craft Beer",
-      bio: "Welcome to the New England Craft Beer Community. We talk about all craft beer.",
-      city: "Boston",
-      state: "MA",
-      category: "Food & Drink",
+      name: "Atlanta Small Business Network",
+      bio: "This group is created to help small businesses to advertise and network other small businesses that is being shadow by they big competitors. By starting this group we hope to reach consumers in all area in and out of Atlanta.",
+      city: "Atlanta",
+      state: "GA",
+      category: "Business & Commerce",
       imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTunIQvo8h-vE_8bjS46y_WLTAtzw2wTEMrCr6D_rL8VNf44pSpuWnTmZY8A8SkYwOB_Nw&usqp=CAU",
+        "https://assets3.thrillist.com/v1/image/3124195/1200x630/flatten;crop_down;webp=auto;jpeg_quality=70",
       adminId: users[4].id,
     }),
     Community.create({
@@ -156,6 +157,95 @@ async function seed() {
       category: "Music & Audio",
       imageUrl:
         "https://nationaltoday.com/wp-content/uploads/2022/05/Mariachi-Day.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Pickup Soccer Los Angeles",
+      bio: "We offer daily matches, so that you can enjoy the game and meet other people in our community who are passionate about soccer.",
+      city: "Los Angeles",
+      state: "CA",
+      category: "Fitness & Sports",
+      imageUrl:
+        "https://soccerhandbook.com/wp-content/uploads/2020/06/pickup-soccer-outdoor.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Hiking Club of Smoky Mountains",
+      bio: "Our Club members are passionate about hiking! Our missions also include education about the outdoors and advocacy for crucial conservation issues. In addition, we proudly maintain 102 miles of Appalachian Trail in the Smokies and Nantahala National Forest.",
+      city: "Knoxville",
+      state: "TN",
+      category: "Travel & Leisure",
+      imageUrl:
+        "https://content.active.com/Assets/Active.com+Content+Site+Digital+Assets/Article+Image+Update/Outdoors/Smoky+Mountain+Hike/article.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Bike Utah",
+      bio: "We envision a Utah where complete networks of bike lanes, paths, and trails contribute to livable, healthy communities, allowing everyone to ride regardless of age, ability, race, or income.",
+      city: "Salt Lake City",
+      state: "UT",
+      category: "Fitness & Sports",
+      imageUrl:
+        "https://s3.amazonaws.com/images.gearjunkie.com/uploads/2021/10/MTB-1.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Classic Cars Michigan",
+      bio: "The Classic Car Group Management is designed as a forum for all those interested in classic and modern sport cars and for questions and comments related to classic and modern super cars.",
+      city: "Oxford",
+      state: "MI",
+      category: "Vehicle & Transportation",
+      imageUrl:
+        "https://www.originalair.com/Content/Images/uploaded/FIRST-PHOTO-CARS.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "New Orleans Jazz Society",
+      bio: "Unofficial fan based group for Information / discussion / anything related to the New Orleans Jazz and Heritage Festival.",
+      city: "New Orleas",
+      state: "LA",
+      category: "Music & Audio",
+      imageUrl:
+        "https://cdn.britannica.com/32/74832-050-A85038D4/Preservation-Hall-Jazz-Band-Dixieland-New-Orleans.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Seattle Parks & Rec",
+      bio: "Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ",
+      city: "Seattle",
+      state: "WA",
+      category: "Neighborhood",
+      imageUrl:
+        "https://res.cloudinary.com/sagacity/image/upload/c_crop,h_379,w_570,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/0712-parks-seward3_vzluwv.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Geocaching of Washington DC",
+      bio: "Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ",
+      city: "Washington",
+      state: "DC",
+      category: "Science & Tech",
+      imageUrl: "https://www.geocaching.com/play/Content/images/preview-lg.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Savannah Backyard Gardenders",
+      bio: "Hey guys I know gardening can get expensive I'm creating a group for gardeners to share tips and tricks on how to save a few penny’s please feel free to share all your up cycled garden box’s or any tips and tricks you have for growing anything!! A big example Did you know you can grow vegetables fruits and even some flowers from store bought produce scraps and cuttings?? ",
+      city: "Savannah",
+      state: "GA",
+      category: "Home & Garden",
+      imageUrl:
+        "https://previews.123rf.com/images/rawpixel/rawpixel1706/rawpixel170619182/80200378-group-of-people-gardening-backyard-together.jpg",
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: "Antique Furniture Restoration",
+      bio: "I started this group because no other group out there is dedicated to the restoration of antique furniture of all kinds. This group will encompass the true art of restoration. To take a piece that has seen better days, that would be thrown away by most any other, that would be ruined by chalk paint, that would be distressed, and that no one wants, and to bring it back to life.",
+      city: "Chicago",
+      state: "IL",
+      category: "Home & Garden",
+      imageUrl:
+        "https://images.squarespace-cdn.com/content/v1/577c1cd7c534a5bc311dc2ef/1608078649453-30RJPQ2FXQKT3X7D68JS/1920+Tudor+Buffet+before+and+after.jpg?format=1000w",
       adminId: users[4].id,
     }),
   ]);
@@ -199,39 +289,6 @@ async function seed() {
       description:
         "We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!",
       fileName: "charityRace.jpg",
-    }),
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[0].id,
-      name: "Grandpa George",
-      description:
-        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: "grandpa.jpeg",
-    }),
-    // UT 2021
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[2].id,
-      name: "Grandpa George",
-      description:
-        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: "grandpa.jpeg",
-    }),
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[2].id,
-      name: "Grandpa George",
-      description:
-        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: "grandpa.jpeg",
-    }),
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[2].id,
-      name: "Grandpa George",
-      description:
-        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: "grandpa.jpeg",
     }),
     Artifact.create({
       userId: users[0].id,
