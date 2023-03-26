@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { Link, useParams } from 'react-router-dom';
 
 import {
-  addCommunity,
   setCommunities,
   setUserCommunities,
   me,
-  createNewImage,
   addUserToCommunity,
 } from "../../store";
 import CommunityCard from "./CommunityCard";
@@ -21,18 +17,21 @@ import {
   Typography,
   TextField,
 } from "@material-ui/core";
+import SportsBaseballIcon from "@material-ui/icons/SportsBaseball";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
+import ComputerIcon from "@material-ui/icons/Computer";
+import FastfoodRoundedIcon from "@material-ui/icons/FastfoodRounded";
+import SchoolIcon from "@material-ui/icons/School";
 import AddCommunity from "./AddCommunity";
 
 const CommunityList = () => {
   const { communities, auth, userCommunities } = useSelector((state) => state);
   const dispatch = useDispatch();
-  //const { auth.id } = useParams();//
-  console.log("this is id", auth.id)
-  console.log("this is usercommunities", userCommunities)
 
-  useEffect(()=>{
-    dispatch(me())
-  }, [])
+  useEffect(() => {
+    dispatch(me());
+  }, []);
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
@@ -52,16 +51,8 @@ const CommunityList = () => {
 
   // Add Community Form
   const addUserCommunity = (comm, user) => {
-   //event.preventDefault();
-    // const imgFile = new FormData();
-    // imgFile.append("file", file);
-    // dispatch(createNewImage(imgFile));
-    //const userComm = { ...data,  };
-    dispatch(addUserToCommunity(comm,user));
-    //reset();
+    dispatch(addUserToCommunity(comm, user));
   };
-  console.log('adding the user object')
-  //addUserCommunity(communities[0], auth.id)
 
   // Filter Category
   const [state, setstate] = useState({
@@ -74,12 +65,29 @@ const CommunityList = () => {
       if (e.target.value === "") return community;
       return (
         community.state.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        community.city.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        community.address.toLowerCase().includes(e.target.value.toLowerCase())
+        community.city.toLowerCase().includes(e.target.value.toLowerCase())
       );
     });
     setstate({
+      category: e.currentTarget.name,
       query: e.target.value,
+      list: results,
+    });
+  };
+
+  const handleClick = (category) => {
+    let communitiesFiltered;
+    if (state.list > 0) {
+      communitiesFiltered = state.list;
+    } else {
+      communitiesFiltered = communities;
+    }
+    const results = communitiesFiltered.filter((community) => {
+      if (category === "" || category === "All") return community;
+      return community.category === category;
+    });
+    setstate({
+      category: category,
       list: results,
     });
   };
@@ -100,8 +108,65 @@ const CommunityList = () => {
           </Button>
         )}
       </Box>
+      <Box display="flex" justifyContent="space-between" sx={{ mt: 5, mb: 5 }}>
+        <Button
+          variant="outlined"
+          value={state.category}
+          onClick={() => handleClick("All")}
+        >
+          All
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<SportsBaseballIcon />}
+          onClick={() => handleClick("Fitness & Sports")}
+        >
+          Sports
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<MusicNoteIcon />}
+          onClick={() => handleClick("Music & Audio")}
+        >
+          Music
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<SchoolIcon />}
+          onClick={() => handleClick("Education")}
+        >
+          Education
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<FastfoodRoundedIcon />}
+          onClick={() => handleClick("Food & Drink")}
+        >
+          Food & Drink
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<ComputerIcon />}
+          onClick={() => handleClick("Science & Tech")}
+        >
+          Tech
+        </Button>
+        <Button
+          variant="outlined"
+          value={state.category}
+          startIcon={<BusinessCenterIcon />}
+          onClick={() => handleClick("Business & Commerce")}
+        >
+          Business
+        </Button>
+      </Box>
 
-      <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
+      <Box sx={{ minWidth: 200, mt: 5, mb: 5 }}>
         <FormControl fullWidth>
           <TextField
             value={state.query}
@@ -114,31 +179,20 @@ const CommunityList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? communities.map((community) => {
+          ? communities?.map((community) => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })
-          : state.list.map((community) => {
+          : state.list?.map((community) => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })}
-
-        {/* {communities.length > 0 &&
-          (location
-            ? communities
-                .filter((community) => community.state.includes(location))
-                .map((community) => (
-                  <CommunityCard key={community.id} community={community} />
-                ))
-            : communities.map((community) => (
-                <CommunityCard key={community.id} community={community} />
-              )))} */}
       </Grid>
       <AddCommunity open={open} onClose={handleClose} />
     </div>
