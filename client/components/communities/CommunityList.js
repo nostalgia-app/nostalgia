@@ -66,31 +66,36 @@ const CommunityList = () => {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value, state.query);
     const results = communities.filter((community) => {
       if (e.target.value === "") return community;
       return (
         community.state.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        community.city.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        community.address.toLowerCase().includes(e.target.value.toLowerCase())
+        community.city.toLowerCase().includes(e.target.value.toLowerCase())
       );
     });
     setstate({
+      category: e.currentTarget.name,
       query: e.target.value,
       list: results,
     });
   };
 
-  // const handleClick = (category) => {
-  //   const results = communities.filter((community) => {
-  //     if (category === "") return community;
-  //     return community.category === category;
-  //   });
-  //   setstate({
-  //     category: category,
-  //     list: results,
-  //   });
-  // };
+  const handleClick = (category) => {
+    let communitiesFiltered;
+    if (state.list > 0) {
+      communitiesFiltered = state.list;
+    } else {
+      communitiesFiltered = communities;
+    }
+    const results = communitiesFiltered.filter((community) => {
+      if (category === "" || category === "All") return community;
+      return community.category === category;
+    });
+    setstate({
+      category: category,
+      list: results,
+    });
+  };
 
   return (
     <div>
@@ -108,7 +113,14 @@ const CommunityList = () => {
           </Button>
         )}
       </Box>
-      {/* <Box display="flex" justifyContent="space-between" sx={{ mt: 5, mb: 5 }}>
+      <Box display="flex" justifyContent="space-between" sx={{ mt: 5, mb: 5 }}>
+        <Button
+          variant="outlined"
+          value={state.category}
+          onClick={() => handleClick("All")}
+        >
+          All
+        </Button>
         <Button
           variant="outlined"
           value={state.category}
@@ -157,9 +169,9 @@ const CommunityList = () => {
         >
           Business
         </Button>
-      </Box> */}
+      </Box>
 
-      <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
+      <Box sx={{ minWidth: 200, mt: 5, mb: 5 }}>
         <FormControl fullWidth>
           <TextField
             value={state.query}
@@ -172,31 +184,20 @@ const CommunityList = () => {
 
       <Grid container spacing={2} sx={{ flexGrow: 1 }}>
         {state.query === ""
-          ? communities.map((community) => {
+          ? communities?.map((community) => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })
-          : state.list.map((community) => {
+          : state.list?.map((community) => {
               return (
                 <Grid item zeroMinWidth key={community.id}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })}
-
-        {/* {communities.length > 0 &&
-          (location
-            ? communities
-                .filter((community) => community.state.includes(location))
-                .map((community) => (
-                  <CommunityCard key={community.id} community={community} />
-                ))
-            : communities.map((community) => (
-                <CommunityCard key={community.id} community={community} />
-              )))} */}
       </Grid>
       <AddCommunity open={open} onClose={handleClose} />
     </div>

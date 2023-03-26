@@ -51,7 +51,6 @@ const Community = db.define("community", {
       "Photography",
       "Fitness & Sports",
       "Animals & Pets",
-      "Colleges & Universities",
       "Food & Drink",
       "Travel & Leisure",
       "Education",
