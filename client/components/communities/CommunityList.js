@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
-import { Link, useParams } from "react-router-dom";
 
 import {
-  addCommunity,
   setCommunities,
   setUserCommunities,
   me,
-  createNewImage,
   addUserToCommunity,
 } from "../../store";
 import CommunityCard from "./CommunityCard";
@@ -20,7 +16,6 @@ import {
   Button,
   Typography,
   TextField,
-  Avatar,
 } from "@material-ui/core";
 import SportsBaseballIcon from "@material-ui/icons/SportsBaseball";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
