@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import { me } from "./store";
 import { Login } from "./components/users/Login";
 import { Home } from "./components/Home";
-import { me } from "./store";
 import CommunityList from "./components/communities/CommunityList";
 import CommunityDetails from "./components/communities/CommunityDetails";
 import CreateUser from "./components/users/CreateUser";
@@ -15,19 +15,19 @@ import ArtifactDetails from "./components/artifacts/ArtifactDetails";
 import FriendsList from "./components/friends/FriendsList";
 import MyFriendsList from "./components/friends/MyFriendsList";
 
-/**
- * COMPONENT
- */
-class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData();
-  }
+function Routes() {
+  const dispatch = useDispatch();
+  const { auth } = useSelector((state) => state);
+  const loadInitialData = () => dispatch(me());
+  const isLoggedIn = !!auth.id;
 
-  render() {
-    const { isLoggedIn } = this.props;
+  useEffect(() => {
+    loadInitialData();
+  }, []);
 
-    return (
-      <div>
+  return (
+    <div>
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/users/:id" component={UserProfile} />
         <Route exact path="/myfriends" component={MyFriendsList} />
@@ -40,49 +40,10 @@ class Routes extends Component {
         <Route exact path="/communities/:id" component={CommunityDetails} />
         <Route exact path="/artifacts" component={ArtifactList} />
         <Route exact path="/artifacts/:id" component={ArtifactDetails} />
-
         <Route exact path="/login" component={Login} />
-
-        {/* {isLoggedIn ? (
-          <Switch>
-            <Route path="/home" component={Home} />
-            <Route exact path="/communities" element={CommunitiesGrid} />
-            <Route path="/communities/:id" component={CommunityPage} />
-            <Redirect to="/home" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route exact path="/communities" component={CommunitiesGrid} />
-            <Route path="/communities/:id" component={CommunityPage} />
-          </Switch>
-        )} */}
-      </div>
-    );
-  }
+      </Switch>
+    </div>
+  );
 }
 
-/**
- * CONTAINER
- */
-const mapState = (state) => {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id,
-  };
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    loadInitialData() {
-      dispatch(me());
-    },
-  };
-};
-
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes));
+export default Routes;
