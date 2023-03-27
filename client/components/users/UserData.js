@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MyFriendsList from '../friends/MyFriendsList';
+import { setFriends } from '../../store';
 import {
   Container,
   Typography,
@@ -48,8 +49,18 @@ const useStyles = makeStyles({
     fontFamily: 'Exo 2, sans-serif',
   },
   friendscontainer: {
-    backgroundColor: '#0B0C10',
+    // backgroundColor: '#0B0C10',
+    backgroundColor: 'rgb(189, 189, 189)',
     padding: 10,
+    width: 700,
+  },
+  closeButton: {
+    width: '50%',
+    margin: 5,
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCF1',
+    color: 'white',
+    fontFamily: 'Exo 2, sans-serif',
   },
   // freindsButton: {
   //   backgroundColor: '#1f2833',
@@ -60,7 +71,12 @@ const useStyles = makeStyles({
 
 const UserData = ({ user, id }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { auth } = useSelector(state => state);
+
+  // useEffect(() => {
+  //   dispatch(setFriends(id));
+  // }, [id]);
 
   const [open, setOpen] = useState(false);
 
@@ -122,7 +138,7 @@ const UserData = ({ user, id }) => {
 
             <DialogActions>
               <Button
-                className={classes.button}
+                className={classes.closeButton}
                 variant="outlined"
                 onClick={closeFriends}
               >

@@ -12,11 +12,10 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  mainContainer: {
+  container: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    borderLeft: '2pt solid red',
   },
   form: {
     display: 'flex',
@@ -50,12 +49,13 @@ const ProfilePicUpload = ({ user }) => {
     dispatch(createProfilePic(data, user.id));
     dispatch(updateUser({ id: user.id, profilePic: file.name }));
     history.push(`/users/${user.id}`);
+    window.location.reload();
   };
   return (
-    <Container className={classes.mainContainer}>
+    <Container className={classes.container}>
       <Grid>
         <form className={classes.form} onSubmit={handleSubmit}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom align="center">
             Profile pic upload.
           </Typography>
           <TextField

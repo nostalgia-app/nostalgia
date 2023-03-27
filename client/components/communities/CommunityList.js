@@ -21,6 +21,7 @@ const useStyles = makeStyles({
   container: {
     height: '100%',
     width: '100%',
+    paddingTop: 30,
     paddingBottom: 50,
   },
   input: {
@@ -33,10 +34,12 @@ const useStyles = makeStyles({
     border: '2pt solid #66FCf1',
     marginTop: 5,
     color: 'white',
+    marginLeft: 40,
   },
   search: {
     marginTop: 20,
     marginBottom: 20,
+    marginLeft: 40,
   },
   communitiesGrid: {},
 });
@@ -146,14 +149,14 @@ const CommunityList = () => {
         {state.query === ''
           ? communities.map(community => {
               return (
-                <Grid item key={community.id} xs={12} sm={4} md={4}>
+                <Grid item key={community.id} xs={12} sm={6} md={4}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );
             })
           : state.list.map(community => {
               return (
-                <Grid item key={community.id} xs={12} sm={4} md={4}>
+                <Grid item key={community.id} xs={12} sm={6} md={4}>
                   <CommunityCard key={community.id} community={community} />
                 </Grid>
               );

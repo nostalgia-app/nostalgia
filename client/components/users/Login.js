@@ -18,8 +18,8 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '90vh',
-    width: '100vw',
+    height: '100vh',
+    width: '100%',
     paddingTop: 50,
   },
   form: {
@@ -57,7 +57,7 @@ const AuthForm = props => {
 
   return (
     <>
-      <Container className={classes.container} style={{ margin: '10px' }}>
+      <Container className={classes.container}>
         <Typography variant="h5">
           Please confirm your username and password to login.
         </Typography>
@@ -69,20 +69,16 @@ const AuthForm = props => {
               onChange={e => setUserName(e.target.value)}
               label="Username"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
             <TextField
               className={classes.input}
               onChange={e => setPassword(e.target.value)}
               label="Password"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
-            <Button
-              className={classes.button}
-              type="submit"
-              variant="contained"
-            >
+            <Button className={classes.button} type="submit" variant="outlined">
               Submit
             </Button>
             {error && error.response && <div> {error.response.data} </div>}

@@ -26,9 +26,6 @@ const Menu = () => (
     <p>
       <a href="/findfriends">Find Friends</a>
     </p>
-    {/* <p>
-      <a href="myfriends">My Friends</a>
-    </p> */}
   </>
 );
 

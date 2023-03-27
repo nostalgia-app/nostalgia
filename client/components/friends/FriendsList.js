@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     marginTop: 10,
     height: '100%',
     width: '100%',
+    paddingTop: 30,
     paddingBottom: 50,
   },
   input: {
@@ -34,6 +35,7 @@ const useStyles = makeStyles({
   search: {
     marginTop: 20,
     marginBottom: 20,
+    marginLeft: 40,
   },
 });
 
@@ -72,13 +74,11 @@ const FriendsList = () => {
       <Typography align="center" variant="h3" component="h1" gutterBottom>
         Find Friends
       </Typography>
-
-      {/* <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}> */}
-
       <Grid className={classes.search}>
         <FormControl fullWidth>
           <TextField
             className={classes.input}
+            margin="normal"
             value={state.query}
             type="search"
             label="Name"
@@ -86,19 +86,18 @@ const FriendsList = () => {
           ></TextField>
         </FormControl>
       </Grid>
-      {/* </Box> */}
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {state.query === ''
           ? friends?.map(friend => {
               return (
-                <Grid item key={friend.id} xs={12} sm={4} md={4}>
+                <Grid item key={friend.id} xs={12} sm={6} md={3}>
                   <FriendCard key={friend.id} friend={friend} />
                 </Grid>
               );
             })
           : state.list?.map(friend => {
               return (
-                <Grid item key={friend.id} xs={12} sm={4} md={4}>
+                <Grid item key={friend.id} xs={12} sm={6} md={3}>
                   <FriendCard key={friend.id} friend={friend} />
                 </Grid>
               );

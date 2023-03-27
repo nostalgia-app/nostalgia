@@ -1,11 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Grid, Typography, makeStyles } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  Typography,
+  makeStyles,
+  styled,
+} from '@material-ui/core';
+
+const Responsive = styled('div')(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    color: 'green'[500],
+  },
+}));
 
 const useStyles = makeStyles({
   container: {
     height: '100vh',
-    width: '100vw',
+    width: '100%',
   },
   heading: {
     fontSize: '120pt',
@@ -16,50 +28,93 @@ const useStyles = makeStyles({
     fontSize: '30',
     fontFamily: 'Exo 2, sans-serif',
   },
-  body: {
-    marginBottom: 200,
+  topRow: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: 50,
   },
   bodyFont: {
     fontFamily: 'Exo 2, sans-serif',
     marginBottom: 10,
   },
+  bottomRow: {
+    backgroundColor: 'rgba(0, 0, 0, 0.865)',
+    padding: 20,
+    marginBottom: 50,
+    borderRadius: '.5rem',
+  },
+  subTitle: {
+    color: '#66FCf1',
+  },
+  features: {
+    borderLeft: '2pt solid white',
+  },
 });
 
-export const Home = props => {
+export const Home = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.mainContainer}>
-      <Grid className={classes.body}>
-        <Typography className={classes.heading} align="center">
-          NOSTALGIA
-        </Typography>
-        <Typography
-          className={classes.title}
-          variant="h4"
-          component="h1"
-          align="center"
-          gutterBottom
-        >
-          nost•tal•gia -
-        </Typography>
-        <Typography
-          className={classes.bodyFont}
-          variant="h6"
-          component="h1"
-          gutterBottom
-        >
-          a wistful desire to return in thought or in fact to a former time in
-          one's life, to one's home or homeland, or to one's family and friends:
-          a sentimental yearning for the happiness of a former place or time:
-        </Typography>
-        <br></br>
+    <Container className={classes.container}>
+      <Grid className={classes.topRow} container spacing={0}>
+        <Grid item xs={12} sm={12} md={12}>
+          <Responsive>
+            <Typography variant="h1" className={classes.heading} align="center">
+              NOSTALGIA
+            </Typography>
+          </Responsive>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12}>
+          <Typography
+            className={classes.bodyFont}
+            variant="h6"
+            component="h1"
+            gutterBottom
+          >
+            <strong style={{ color: '#66FCf1' }}>nost•tal•gia</strong> - a
+            wistful desire to return in thought or in fact to a former time in
+            one's life, to one's home or homeland, or to one's family and
+            friends: a sentimental yearning for the happiness of a former place
+            or time:
+          </Typography>
+          <br></br>
 
-        <Typography className={classes.bodyFont} variant="h6">
-          Nostalgia builds community by creating a platform where families and
-          friends can stitch together artifacts, stories, and connections to
-          create memories.
-        </Typography>
+          <Typography className={classes.bodyFont} variant="h6">
+            Nostalgia builds community by creating a platform where families and
+            friends can stitch together artifacts, stories, and connections to
+            create memories.
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid className={classes.bottomRow} container spacing={2}>
+        <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <Typography className={classes.subTitle} variant="h5">
+            Explore
+          </Typography>
+          <Typography paragraph>
+            Unique communities pertaining to geography, school experience,
+            hobbies, clube etc.
+          </Typography>
+        </Grid>
+        <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <Typography className={classes.subTitle} variant="h5">
+            Connect
+          </Typography>
+          <Typography paragraph>
+            Join members to build communities around lived experience, stories,
+            life and love.
+          </Typography>
+        </Grid>
+        <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <Typography className={classes.subTitle} variant="h5">
+            Share
+          </Typography>
+          <Typography paragraph>
+            Post and share artifacts, media, images and fun stories to enrich
+            your community.
+          </Typography>
+        </Grid>
       </Grid>
     </Container>
   );

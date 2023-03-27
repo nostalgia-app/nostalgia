@@ -17,8 +17,8 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '90vh',
-    width: '100vw',
+    height: '100vh',
+    width: '100%',
     paddingTop: 50,
   },
   form: {
@@ -73,34 +73,30 @@ const CreateUser = () => {
               onChange={e => setFirstName(e.target.value)}
               label="First Name"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
             <TextField
               className={classes.input}
               onChange={e => setLastName(e.target.value)}
               label="Last Name"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
             <TextField
               className={classes.input}
               onChange={e => setUserName(e.target.value)}
               label="Username"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
             <TextField
               className={classes.input}
               onChange={e => setPassword(e.target.value)}
               label="Password"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
-            <Button
-              className={classes.button}
-              type="submit"
-              variant="contained"
-            >
+            <Button className={classes.button} type="submit" variant="outlined">
               Submit
             </Button>
           </form>

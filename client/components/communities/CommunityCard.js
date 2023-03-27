@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Container,
   Card,
   CardContent,
   CardMedia,
@@ -13,12 +14,25 @@ import {
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   card: {
     color: 'black',
     padding: 10,
     marginLeft: 20,
     width: 300,
-    height: 300,
+    height: 375,
+  },
+  title: {
+    color: 'black',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    marginTop: 5,
+    color: 'white',
   },
 });
 
@@ -40,36 +54,38 @@ const CommunityCard = props => {
     dispatch(addUserToCommunity(comm, user));
   };
   return (
-    <Card elevation={3} className={classes.card}>
-      <CardActionArea>
-        <Link to={`/communities/${community.id}`}>
-          <CardMedia
-            src={community.imageUrl}
-            component="img"
-            height="250"
-            width="250"
-            sx={{ padding: '1em 1em 0 1em' }}
-          />
-          <Typography align="center" style={{ overflowWrap: 'break-word' }}>
-            {community.name}
-          </Typography>
-        </Link>
-      </CardActionArea>
-      <CardContent>
-        <Box display="flex" justifyContent="space-around" alignItems="center">
-          <Button variant="contained" sx={{ borderRadius: 50 }}>
-            Join
-          </Button>
-          <Button
-            variant="contained"
-            sx={{ borderRadius: 50 }}
-            onClick={routeChange}
-          >
-            Learn
-          </Button>
-        </Box>
-      </CardContent>
-    </Card>
+    <Container className={classes.container}>
+      <Card elevation={3} className={classes.card}>
+        <CardActionArea>
+          <Link to={`/communities/${community.id}`}>
+            <CardMedia
+              src={community.imageUrl}
+              component="img"
+              height="250"
+              width="250"
+              sx={{ padding: '1em 1em 0 1em' }}
+            />
+            <Typography className={classes.title} align="center">
+              {community.name}
+            </Typography>
+          </Link>
+        </CardActionArea>
+        <CardContent>
+          <Box display="flex" justifyContent="space-around" alignItems="center">
+            <Button className={classes.button} variant="contained">
+              Join
+            </Button>
+            <Button
+              className={classes.button}
+              variant="contained"
+              onClick={routeChange}
+            >
+              Learn
+            </Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Container>
   );
 };
 

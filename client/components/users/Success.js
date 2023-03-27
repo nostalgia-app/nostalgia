@@ -14,8 +14,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '90vw',
-    width: '100vw',
+    height: '100vh',
+    width: '100%',
+    marginTop: 50,
+    border: '2pt solid red',
   },
   buttons: {
     borderRadius: '.25rem',

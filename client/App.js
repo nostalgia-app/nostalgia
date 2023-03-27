@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Routes from './Routes';
 import {
@@ -9,7 +8,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import Layout from './Layout';
-// import { logout } from './store';
 import Footer from './components/Footer';
 
 const theme = createTheme({
@@ -47,16 +45,15 @@ const theme = createTheme({
 const useStyles = makeStyles({
   mainContainer: {
     background: '#0a1017c0;',
-    height: '100vh',
+    height: '100%',
     width: '100%',
     marginTop: 80,
-    // border: '2pt solid yellow',
+    border: '2pt solid yellow',
   },
 });
 
 const App = () => {
   const classes = useStyles();
-  const history = useHistory();
   const { auth } = useSelector(state => state);
 
   return (

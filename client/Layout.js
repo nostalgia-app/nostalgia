@@ -5,6 +5,7 @@ import {
   makeStyles,
   Toolbar,
   AppBar,
+  Avatar,
 } from '@material-ui/core';
 import { format } from 'date-fns';
 import Navbar from './components/navbar/Navbar';
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => {
   return {
     root: {
       display: 'flex',
+      flexDirection: 'column',
     },
     page: {
       marginTop: 50,
@@ -22,7 +24,8 @@ const useStyles = makeStyles(theme => {
     appbar: {
       backgroundColor: '#0B0C10',
       display: 'flex',
-      paddingTop: 10,
+      paddingTop: 5,
+      paddingBottom: 5,
       fontFamily: 'Exo 2, sans-serif',
     },
     title: {
@@ -34,18 +37,29 @@ const useStyles = makeStyles(theme => {
     },
     navRight: {
       display: 'flex',
-      flexDirection: 'column',
       margin: 5,
       padding: '5px',
     },
+    avatarDiv: {
+      display: 'flex',
+      paddingLeft: 10,
+    },
+    text: {
+      paddingTop: 7,
+    },
+    avatar: {
+      marginLeft: 10,
+    },
     date: {
-      color: 'white',
+      marginTop: 5,
+      fontSize: '9pt',
     },
   };
 });
 
 const Layout = ({ children, auth }) => {
   const classes = useStyles();
+  console.log(auth.firstName);
 
   return (
     <div className={classes.root}>
@@ -56,14 +70,28 @@ const Layout = ({ children, auth }) => {
             NOSTALGIA
           </Typography>
 
-          <div className={classes.navRight}>
-            <Typography>
-              {/* <span className={classes.date}> */}
-              <span className="nostalgia__navbar-date">
-                Today is {format(new Date(), 'MMMM do, Y')}
-              </span>
-            </Typography>
-          </div>
+          <Grid className={classes.navRight}>
+            {auth.id ? (
+              <Grid>
+                <Grid className={classes.avatarDiv}>
+                  <Typography className={classes.text}>
+                    Hello {auth.firstName}
+                  </Typography>
+                  <Avatar
+                    className={classes.avatar}
+                    src={`.././public/profilePicUploads/${auth.profilePic}`}
+                  />
+                </Grid>
+                <Grid>
+                  <Typography className={classes.date}>
+                    Today is {format(new Date(), 'MMMM do, Y')}
+                  </Typography>
+                </Grid>
+              </Grid>
+            ) : (
+              <span></span>
+            )}
+          </Grid>
         </Toolbar>
         <Navbar auth={auth} />
       </AppBar>

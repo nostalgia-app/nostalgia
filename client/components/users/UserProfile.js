@@ -113,14 +113,14 @@ const UserProfile = () => {
   return (
     <>
       <Grid>
-        {auth.id === id ? (
+        {/* {auth.id === id ? (
           <Grid className={classes.greeting}>
             <Typography variant="h5">Hello {currentUser.firstName}</Typography>
             <Typography>Today is {format(new Date(), 'MMMM do, Y')}</Typography>
           </Grid>
         ) : (
           <span></span>
-        )}
+        )} */}
         {auth.id === id &&
         !currentUser.age &&
         !currentUser.location &&
