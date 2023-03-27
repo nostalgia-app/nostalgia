@@ -44,8 +44,6 @@ const CommunityDetails = () => {
     dispatch(me());
   }, []);
   const { artifacts, auth, community } = useSelector(state => state);
-  console.log(artifacts);
-  console.log('curr user', auth)
 
   return (
     <Container>

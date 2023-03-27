@@ -1,16 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Container, Typography, Grid, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
-// import { connect } from 'react-redux';
-// import CommunitiesGrid from "./CommunitiesGrid";
-import { fetchProfilePics } from "../store";
+import { Container, Typography } from "@material-ui/core";
 
-export const Home = (props) => {
-  const { username } = props;
-
-  const { auth } = useSelector((state) => state);
-
+const Home = () => {
   return (
     <Container>
       <Typography variant="h4" component="h1" gutterBottom>
@@ -22,9 +13,6 @@ export const Home = (props) => {
         sentimental yearning for the happiness of a former place or time:
       </Typography>
       <br></br>
-      {/* <Typography align="center" gutterBottom>
-        Welcome {username}
-      </Typography> */}
       <Typography variant="h6">
         Nostalgia builds community by creating a platform where families and
         friends can stitch together artifacts, stories, and connections to
@@ -41,11 +29,5 @@ export const Home = (props) => {
     </Container>
   );
 };
-//////////////////////////////////
-// mapState = state => {
-//   return {
-//     username: state.auth.username,
-//   };
-// };
 
-// export default Home;
+export default Home;

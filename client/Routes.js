@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { me } from "./store";
 import { Login } from "./components/users/Login";
-import { Home } from "./components/Home";
+import Home from "./components/Home";
 import CommunityList from "./components/communities/CommunityList";
 import CommunityDetails from "./components/communities/CommunityDetails";
 import CreateUser from "./components/users/CreateUser";
