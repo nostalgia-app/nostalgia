@@ -34,12 +34,12 @@ const useStyles = makeStyles({
     border: '2pt solid #66FCf1',
     marginTop: 5,
     color: 'white',
-    marginLeft: 40,
+    marginLeft: 10,
   },
   search: {
     marginTop: 20,
     marginBottom: 20,
-    marginLeft: 40,
+    marginLeft: 10,
   },
   communitiesGrid: {},
 });

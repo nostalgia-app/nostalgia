@@ -10,9 +10,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '90vh',
-    width: '90vw',
+    height: '100%',
     paddingTop: 50,
+    marginBottom: 50,
   },
 });
 

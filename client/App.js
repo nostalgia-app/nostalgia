@@ -48,7 +48,7 @@ const useStyles = makeStyles({
     height: '100%',
     width: '100%',
     marginTop: 80,
-    border: '2pt solid yellow',
+    border: '2pt solid green',
   },
 });
 
@@ -61,7 +61,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Layout auth={auth}>
           <Routes />
-          <Footer />
+          {/* <Footer /> */}
         </Layout>
       </ThemeProvider>
     </Container>

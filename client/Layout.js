@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Container,
   Typography,
   Grid,
   makeStyles,
@@ -9,14 +10,14 @@ import {
 } from '@material-ui/core';
 import { format } from 'date-fns';
 import Navbar from './components/navbar/Navbar';
-
-const drawerWidth = 240;
+import Footer from './components/Footer';
 
 const useStyles = makeStyles(theme => {
   return {
     root: {
       display: 'flex',
       flexDirection: 'column',
+      border: '2pt solid red',
     },
     page: {
       marginTop: 50,
@@ -62,9 +63,8 @@ const Layout = ({ children, auth }) => {
   console.log(auth.firstName);
 
   return (
-    <div className={classes.root}>
+    <Container className={classes.root}>
       <AppBar className={classes.appbar} elevation={3}>
-        <Grid></Grid>
         <Toolbar>
           <Typography variant="h3" className={classes.title}>
             NOSTALGIA
@@ -98,8 +98,9 @@ const Layout = ({ children, auth }) => {
 
       <div className={classes.page}>
         <div className={classes.toolbar}>{children}</div>
+        <Footer />
       </div>
-    </div>
+    </Container>
   );
 };
 

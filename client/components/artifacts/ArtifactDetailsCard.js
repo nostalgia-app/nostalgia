@@ -3,11 +3,13 @@ import { updateArtifact } from '../../store';
 import { useDispatch } from 'react-redux';
 import {
   Card,
+  Grid,
   CardMedia,
   CardContent,
   Button,
   makeStyles,
 } from '@material-ui/core';
+import { ThumbUp } from '@mui/icons-material';
 
 const useStyles = makeStyles({
   container: {
@@ -18,10 +20,23 @@ const useStyles = makeStyles({
     width: '100vw',
     paddingTop: 50,
   },
+  like: {
+    paddingTop: 10,
+    display: 'flex',
+  },
+  likes: {
+    paddingLeft: 10,
+    paddingTop: 10,
+    fontSize: '16pt',
+  },
+  icon: {
+    padding: 10,
+  },
   button: {
     backgroundColor: '#1f2833',
     marginTop: 5,
     color: 'white',
+    marginLeft: 10,
   },
 });
 
@@ -34,9 +49,7 @@ const ArtifactDetailsCard = ({ artifact }) => {
   };
 
   return (
-    //
     <Card elevation={3} style={{ padding: 10 }}>
-      {/* <CardHeader title={artifact.name} /> */}
       <CardMedia src={artifact.fileName}>
         <div>
           <img
@@ -45,9 +58,9 @@ const ArtifactDetailsCard = ({ artifact }) => {
           ></img>
         </div>
       </CardMedia>
-      <CardContent>
+      <CardContent className={classes.content}>
         {artifact.description}
-        <div style={{ marginTop: 10 }}>
+        <Grid className={classes.like}>
           <Button
             className={classes.button}
             onClick={handleClick}
@@ -56,8 +69,11 @@ const ArtifactDetailsCard = ({ artifact }) => {
           >
             Like
           </Button>
-          <span style={{ fontSize: 20, marginLeft: 10 }}>{artifact.likes}</span>
-        </div>
+          <Grid className={classes.likes}>{artifact.likes}</Grid>
+          <Grid className={classes.icon}>
+            <ThumbUp color="#1f2833" />
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );

@@ -41,10 +41,14 @@ const useStyles = makeStyles({
     color: 'white',
     fontFamily: 'Exo 2, sans-serif',
   },
+  bio: {
+    fontSize: '12pt',
+    color: 'black',
+  },
   artifactList: {
     marginTop: 20,
     marginBottom: 20,
-    border: '2pt solid red',
+    width: '100%',
   },
 });
 
@@ -119,7 +123,9 @@ const CommunityDetails = () => {
             component="img"
             style={{ maxHeight: 250 }}
           />
-          <Typography variant="h6">{community.bio}</Typography>
+          <Typography className={classes.bio} paragraph>
+            {community.bio}
+          </Typography>
         </Card>
       </Grid>
 

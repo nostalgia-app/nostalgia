@@ -20,13 +20,10 @@ import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
 
 const useStyles = makeStyles({
-  greeting: {
-    padding: 10,
-  },
   container: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: 10,
+    marginTop: 30,
     height: '100%',
     width: '100%',
   },
@@ -113,14 +110,6 @@ const UserProfile = () => {
   return (
     <>
       <Grid>
-        {/* {auth.id === id ? (
-          <Grid className={classes.greeting}>
-            <Typography variant="h5">Hello {currentUser.firstName}</Typography>
-            <Typography>Today is {format(new Date(), 'MMMM do, Y')}</Typography>
-          </Grid>
-        ) : (
-          <span></span>
-        )} */}
         {auth.id === id &&
         !currentUser.age &&
         !currentUser.location &&

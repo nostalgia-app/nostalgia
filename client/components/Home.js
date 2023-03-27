@@ -7,7 +7,7 @@ import {
   makeStyles,
   styled,
 } from '@material-ui/core';
-
+import { TravelExplore, Handshake, AddToPhotos } from '@mui/icons-material';
 const Responsive = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     color: 'green'[500],
@@ -89,15 +89,17 @@ export const Home = () => {
       </Grid>
       <Grid className={classes.bottomRow} container spacing={2}>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <TravelExplore color="white" />
           <Typography className={classes.subTitle} variant="h5">
             Explore
           </Typography>
           <Typography paragraph>
-            Unique communities pertaining to geography, school experience,
-            hobbies, clube etc.
+            Unique communities based on geography, school experience, hobbies,
+            clube etc.
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <Handshake color="white" />
           <Typography className={classes.subTitle} variant="h5">
             Connect
           </Typography>
@@ -107,6 +109,7 @@ export const Home = () => {
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
+          <AddToPhotos color="white" />
           <Typography className={classes.subTitle} variant="h5">
             Share
           </Typography>

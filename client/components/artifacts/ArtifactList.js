@@ -57,7 +57,6 @@ const ArtifactList = () => {
   };
   return (
     <Container className={classes.container}>
-      {/* ////////// */}
       {auth.id ? (
         <Button className={classes.uploadButton} onClick={openUploadArtifact}>
           Upload A New Artifact

@@ -298,36 +298,36 @@ async function seed() {
     }),
   ]);
 
-  // const users_friends = await Promise.all([
-  //   User_Friend.create({
-  //     userId: users[1].id,
-  //     friendId: users[2].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[1].id,
-  //     friendId: users[4].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[4].id,
-  //     friendId: users[3].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[5].id,
-  //     friendId: users[1].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[1].id,
-  //     friendId: users[5].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[5].id,
-  //     friendId: users[2].id,
-  //   }),
-  //   User_Friend.create({
-  //     userId: users[4].id,
-  //     friendId: users[1].id,
-  //   }),
-  // ]);
+  const users_friends = await Promise.all([
+    User_Friend.create({
+      userId: users[1].id,
+      friendId: users[2].id,
+    }),
+    User_Friend.create({
+      userId: users[1].id,
+      friendId: users[4].id,
+    }),
+    User_Friend.create({
+      userId: users[4].id,
+      friendId: users[3].id,
+    }),
+    User_Friend.create({
+      userId: users[5].id,
+      friendId: users[1].id,
+    }),
+    User_Friend.create({
+      userId: users[1].id,
+      friendId: users[5].id,
+    }),
+    User_Friend.create({
+      userId: users[5].id,
+      friendId: users[2].id,
+    }),
+    User_Friend.create({
+      userId: users[4].id,
+      friendId: users[1].id,
+    }),
+  ]);
 
   const artifact = await Promise.all([
     Artifact.create({

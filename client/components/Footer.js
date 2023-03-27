@@ -7,7 +7,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    width: '100%',
     padding: 20,
+    border: '2pt solid orange',
   },
   footerTitle: {
     fontFamily: 'Righteous, cursive',

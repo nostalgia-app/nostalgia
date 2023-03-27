@@ -17,7 +17,6 @@ const useStyles = makeStyles({
     height: '100vh',
     width: '100%',
     marginTop: 50,
-    border: '2pt solid red',
   },
   buttons: {
     borderRadius: '.25rem',
@@ -35,6 +34,7 @@ const useStyles = makeStyles({
     border: '2pt solid #66FCF1',
     color: 'white',
     fontFamily: 'Exo 2, sans-serif',
+    marginTop: 10,
   },
 });
 
