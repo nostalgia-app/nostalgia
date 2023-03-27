@@ -1,36 +1,39 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Routes from './Routes';
-import { Container, createTheme, ThemeProvider } from '@material-ui/core';
+import {
+  Container,
+  createTheme,
+  ThemeProvider,
+  makeStyles,
+} from '@material-ui/core';
 import Layout from './Layout';
-import { logout } from './store';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#212121',
+      main: '#0B0c10',
     },
     secondary: {
-      main: '#424242',
+      main: '#1F2833',
     },
   },
   typography: {
-    fontFamily: 'Poppins, sans-serif;',
+    fontFamily: 'Exo 2, sans-serif',
     h1: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h2: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h4: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h5: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     body1: {
-      color: '#424242',
+      color: '#C5C6C7',
     },
     body2: {
       color: 'white',
@@ -38,46 +41,25 @@ const theme = createTheme({
   },
 });
 
+const useStyles = makeStyles({
+  mainContainer: {
+    background: '#0a1017c0;',
+    height: '100%',
+    width: '100%',
+    marginTop: 80,
+  },
+});
+
 const App = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  const classes = useStyles();
   const { auth } = useSelector(state => state);
-  const handleMyAccount = () => {
-    if (auth.id) {
-      history.push(`/users/${auth.id}`);
-      window.location.reload();
-    } else {
-      history.push('/login');
-    }
-  };
 
-  const handleLogout = () => {
-    dispatch(logout);
-    console.log('client has been logged out');
-  };
   return (
-    <Container>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          marginTop: 80,
-        }}
-      >
-        {/* <Link to="/">Home</Link>
-        <Link to="/communities">Communities</Link>
-        <Link to="/findfriends">Find Friends</Link>
-        <Link to="/myfriends">My Friends</Link>
-        <Link to="/create-user">Create Account</Link>
-        <Link to="/artifacts">Artifacts</Link>
-        <Link to="/login">Log in</Link> */}
-        <button onClick={handleMyAccount}>My Account</button>
-        <button onClick={handleLogout}>Log out</button>
-      </div>
-
+    <Container className={classes.mainContainer}>
       <ThemeProvider theme={theme}>
         <Layout auth={auth}>
           <Routes />
+          {/* <Footer /> */}
         </Layout>
       </ThemeProvider>
     </Container>

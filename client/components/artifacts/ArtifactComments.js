@@ -2,10 +2,36 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchComments, createComment } from '../../store';
 import CommentsCard from './CommentsCard';
+import { Card, Button, TextField, makeStyles } from '@material-ui/core';
 
-import { Card, Button, TextField } from '@material-ui/core';
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '40vh',
+    width: '100vw',
+    paddingTop: 50,
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  input: {
+    backgroundColor: 'white',
+    borderRadius: '.25rem',
+    width: '100%',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    marginTop: 5,
+    marginBottom: 20,
+    color: 'white',
+  },
+});
 
 const ArtifactComments = ({ id }) => {
+  const classes = useStyles();
   const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
 
@@ -38,14 +64,11 @@ const ArtifactComments = ({ id }) => {
       }}
     >
       <div>
-        <form onSubmit={postComment}>
-          <div
-            style={{
-              marginBottom: 10,
-            }}
-          >
+        <form className={classes.form} onSubmit={postComment}>
+          <div>
             <TextField
-              style={{ backgroundColor: 'white', width: '100%' }}
+              className={classes.input}
+              // style={{ backgroundColor: 'white', width: '100%' }}
               onChange={e => setCommentContent(e.target.value)}
               label="post a comment"
               margin="normal"
@@ -53,7 +76,12 @@ const ArtifactComments = ({ id }) => {
               multiline
               minRows={4}
             />
-            <Button onClick={postComment} variant="contained" color="primary">
+            <Button
+              className={classes.button}
+              onClick={postComment}
+              variant="contained"
+              color="primary"
+            >
               POST
             </Button>
           </div>

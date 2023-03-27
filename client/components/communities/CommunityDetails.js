@@ -1,26 +1,65 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setArtifacts, addUserToCommunity, me } from "../../store";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setArtifacts } from '../../store';
 import {
   Container,
   Typography,
   Button,
   Card,
   CardMedia,
-  Box,
-} from "@material-ui/core";
-import { setCommunity } from "../../store";
-import { useHistory } from "react-router-dom";
-import ArtifactList from "../artifacts/ArtifactList";
-import EditCommunity from "./EditCommunity";
+  Grid,
+  makeStyles,
+} from '@material-ui/core';
+import { setCommunity } from '../../store';
+import { useHistory } from 'react-router-dom';
+import ArtifactList from '../artifacts/ArtifactList';
+import EditCommunity from './EditCommunity';
+
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100%',
+    width: '100%',
+    paddingTop: 50,
+  },
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  button: {
+    width: '25%',
+    margin: 5,
+    backgroundColor: '#1f2833',
+    color: 'white',
+    fontFamily: 'Exo 2, sans-serif',
+  },
+  bio: {
+    fontSize: '12pt',
+    color: 'black',
+  },
+  artifactList: {
+    marginTop: 20,
+    marginBottom: 20,
+    width: '100%',
+  },
+});
 
 const CommunityDetails = () => {
+  const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const { auth, artifacts, community } = useSelector(state => state);
   const [open, setOpen] = useState(false);
-  
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -40,65 +79,60 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
-  useEffect(() => {
-    dispatch(me());
-  }, []);
-  const { artifacts, auth, community } = useSelector(state => state);
-  console.log(artifacts);
-  console.log('curr user', auth)
 
   return (
-    <Container>
-      <Card
-        elevation={3}
-        style={{
-          color: "black",
-          padding: 30,
-        }}
-      >
-        <Typography align="center" variant="h4" component="h1" gutterBottom>
-          {community.name}
-        </Typography>
-        <Box
-          display="flex"
-          justifyContent="space-around"
-          alignItems="center"
-          style={{ padding: 10 }}
+    <Container className={classes.container}>
+      <Grid className={classes.cardContainer}>
+        <Card
+          elevation={1}
+          style={{
+            color: 'black',
+            padding: 10,
+            width: '70%',
+          }}
         >
-          <Button variant="contained" sx={{ borderRadius: 50 }}>
-            Join
-          </Button>
-          {auth.id === community.adminId ? (
-            <Button
-              variant="contained"
-              sx={{ borderRadius: 50 }}
-              onClick={handleClickOpen}
-            >
-              Edit Details
-            </Button>
-          ) : (
-            ""
-          )}
-          <Button
-            variant="contained"
-            sx={{ borderRadius: 50 }}
-            onClick={routeChange}
-          >
-            Back
-          </Button>
-        </Box>
+          <Typography align="center" variant="h4" component="h1" gutterBottom>
+            {community.name}
+          </Typography>
 
-        <CardMedia
-          src={community.imageUrl}
-          component="img"
-          style={{ maxHeight: 500 }}
-        />
-        <Typography variant="h5" gutterBottom></Typography>
-        <Typography variant="h6">{community.bio}</Typography>
-      </Card>
-      <Box sx={{ mt: 5 }}>
+          <Grid className={classes.buttons}>
+            <Button className={classes.button} variant="contained">
+              Join
+            </Button>
+            {auth.id === community.adminId ? (
+              <Button
+                className={classes.button}
+                variant="contained"
+                onClick={handleClickOpen}
+              >
+                Edit Details
+              </Button>
+            ) : (
+              ''
+            )}
+            <Button
+              className={classes.button}
+              variant="contained"
+              onClick={routeChange}
+            >
+              Back
+            </Button>
+          </Grid>
+          <CardMedia
+            src={community.imageUrl}
+            component="img"
+            style={{ maxHeight: 250 }}
+          />
+          <Typography className={classes.bio} paragraph>
+            {community.bio}
+          </Typography>
+        </Card>
+      </Grid>
+
+      <Grid className={classes.artifactList}>
         <ArtifactList artifacts={artifacts} />
-      </Box>
+      </Grid>
+
       <EditCommunity community={community} open={open} onClose={handleClose} />
     </Container>
   );

@@ -35,7 +35,7 @@ const uploadCommunityPic = multer({
 });
 
 // GET /api/communities
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const communities = await Community.findAll();
     res.send(communities);
@@ -45,7 +45,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // GET /api/communities/:id
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const communities = await Community.findByPk(req.params.id);
     res.send(communities);
@@ -67,22 +67,26 @@ router.post('/', uploadCommunityPic.single('file'), async (req, res, next) => {
 });
 
 // PUT /api/communities/:id
-router.put('/:id', uploadCommunityPic.single('file'), async (req, res, next) => {
-  try {
-    const communityToUpdate = await Community.findByPk(req.params.id);
-    if (req.file) {
-      const imageUrl = `.././public/communityUploads/${req.file.filename}`;
-      res.send(await communityToUpdate.update({...req.body, imageUrl }));
-    } else {
-      res.send(await communityToUpdate.update(req.body));
+router.put(
+  '/:id',
+  uploadCommunityPic.single('file'),
+  async (req, res, next) => {
+    try {
+      const communityToUpdate = await Community.findByPk(req.params.id);
+      if (req.file) {
+        const imageUrl = `.././public/communityUploads/${req.file.filename}`;
+        res.send(await communityToUpdate.update({ ...req.body, imageUrl }));
+      } else {
+        res.send(await communityToUpdate.update(req.body));
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
   }
-});
+);
 
 // DELETE /api/communities/:id
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const community = await Community.findByPk(req.params.id);
     await community.destroy();
@@ -93,7 +97,7 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 // GET /api/communities/:id/users
-router.get("/:id/users", async (req, res, next) => {
+router.get('/:id/users', async (req, res, next) => {
   try {
     // Returns all users in a specific community
     const usersInCommunity = await Community.findAll({
@@ -107,7 +111,7 @@ router.get("/:id/users", async (req, res, next) => {
 });
 
 // GET /api/communities/:id/artifacts
-router.get("/:id/artifacts", async (req, res, next) => {
+router.get('/:id/artifacts', async (req, res, next) => {
   try {
     const artifacts = await Artifact.findAll({
       where: { communityId: req.params.id },
@@ -118,20 +122,24 @@ router.get("/:id/artifacts", async (req, res, next) => {
   }
 });
 
-router.post('/:id/artifacts', uploadArtifact.single('file'), async (req, res, next) => {
-  try {
-    const community = await Community.findByPk(req.params.id);
-    const artifact = await Artifact.create({
-      name: req.body.name,
-      description: req.body.description,
-      fileName: req.file.filename,
-      communityId: community.id,
-      userId: req.body.userId,
-    });
-    res.send(artifact);
-  } catch (err) {
-    next(err);
+router.post(
+  '/:id/artifacts',
+  uploadArtifact.single('file'),
+  async (req, res, next) => {
+    try {
+      const community = await Community.findByPk(req.params.id);
+      const artifact = await Artifact.create({
+        name: req.body.name,
+        description: req.body.description,
+        fileName: req.file.filename,
+        communityId: community.id,
+        userId: req.body.userId,
+      });
+      res.send(artifact);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 module.exports = router;

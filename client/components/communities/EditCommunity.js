@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateCommunity } from "../../store";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateCommunity } from '../../store';
 import {
   Button,
   TextField,
@@ -11,24 +11,24 @@ import {
   DialogTitle,
   Typography,
   Box,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const EditCommunity = ({ community, open, onClose }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({ community });
   const [file, setFile] = useState();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const communityId = data.id;
     const formData = new FormData();
-    Object.keys(data).forEach((key) => formData.append(key, data[key]));
-    formData.append("file", file);
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    formData.append('file', file);
     dispatch(updateCommunity(formData, communityId));
     onClose();
   };
@@ -132,7 +132,7 @@ const EditCommunity = ({ community, open, onClose }) => {
             accept=".jpg, .jpeg, .png"
             variant="outlined"
             fullWidth
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files[0];
               setFile(file);
             }}
