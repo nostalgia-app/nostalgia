@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUser, setUserArtifacts, setCommunities } from '../../store';
+import {
+  fetchUser,
+  setUserArtifacts,
+  setUserCommunities,
+  removeUserFromCommunity,
+} from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { format } from 'date-fns';
 import DialogBox from './DialogueBox';
 import {
   Container,
@@ -75,7 +79,7 @@ const UserProfile = () => {
   // }, [auth]);
 
   useEffect(() => {
-    dispatch(setCommunities());
+    dispatch(setUserCommunities());
   }, []);
 
   // console.log('these are my friends...', friends);

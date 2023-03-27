@@ -20,7 +20,6 @@ const useStyles = makeStyles({
     width: '100%',
   },
   heading: {
-    fontSize: '120pt',
     fontFamily: 'Righteous, cursive',
     color: '#66FCf1',
   },
@@ -32,14 +31,15 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 50,
+    paddingTop: 30,
+    marginBottom: 70,
   },
   bodyFont: {
     fontFamily: 'Exo 2, sans-serif',
     marginBottom: 10,
   },
   bottomRow: {
-    backgroundColor: 'rgba(0, 0, 0, 0.865)',
+    backgroundColor: '#0b0c10d6',
     padding: 20,
     marginBottom: 50,
     borderRadius: '.5rem',
@@ -49,6 +49,14 @@ const useStyles = makeStyles({
   },
   features: {
     borderLeft: '2pt solid white',
+    paddingLeft: 30,
+  },
+  titleIcon: {
+    display: 'flex',
+  },
+  icon: {
+    paddingLeft: 12,
+    paddingTop: 5,
   },
 });
 
@@ -89,30 +97,37 @@ export const Home = () => {
       </Grid>
       <Grid className={classes.bottomRow} container spacing={2}>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
-          <TravelExplore color="white" />
-          <Typography className={classes.subTitle} variant="h5">
-            Explore
-          </Typography>
+          <Grid className={classes.titleIcon}>
+            <Typography className={classes.subTitle} variant="h5">
+              Explore
+            </Typography>
+            <TravelExplore className={classes.icon} color="white" />
+          </Grid>
+
           <Typography paragraph>
             Unique communities based on geography, school experience, hobbies,
             clube etc.
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
-          <Handshake color="white" />
-          <Typography className={classes.subTitle} variant="h5">
-            Connect
-          </Typography>
+          <Grid className={classes.titleIcon}>
+            <Typography className={classes.subTitle} variant="h5">
+              Connect
+            </Typography>
+            <Handshake className={classes.icon} color="white" />
+          </Grid>
           <Typography paragraph>
             Join members to build communities around lived experience, stories,
             life and love.
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
-          <AddToPhotos color="white" />
-          <Typography className={classes.subTitle} variant="h5">
-            Share
-          </Typography>
+          <Grid className={classes.titleIcon}>
+            <Typography className={classes.subTitle} variant="h5">
+              Share
+            </Typography>
+            <AddToPhotos className={classes.icon} color="white" />
+          </Grid>
           <Typography paragraph>
             Post and share artifacts, media, images and fun stories to enrich
             your community.

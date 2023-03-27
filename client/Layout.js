@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => {
     root: {
       display: 'flex',
       flexDirection: 'column',
-      border: '2pt solid red',
     },
     page: {
       marginTop: 50,
@@ -98,8 +97,8 @@ const Layout = ({ children, auth }) => {
 
       <div className={classes.page}>
         <div className={classes.toolbar}>{children}</div>
-        <Footer />
       </div>
+      <Footer />
     </Container>
   );
 };

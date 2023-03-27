@@ -21,10 +21,6 @@ const useStyles = makeStyles({
     borderRadius: '.5rem',
     padding: 10,
   },
-  // title: {
-  //   fontFamily: 'Exo 2, sans-serif',
-  //   color: 'white',
-  // },
   specs: {
     color: '#66FCf1',
   },
@@ -49,10 +45,8 @@ const useStyles = makeStyles({
     fontFamily: 'Exo 2, sans-serif',
   },
   friendscontainer: {
-    // backgroundColor: '#0B0C10',
-    backgroundColor: 'rgb(189, 189, 189)',
+    backgroundColor: '#0b0c10ef',
     padding: 10,
-    width: 700,
   },
   closeButton: {
     width: '50%',
@@ -62,21 +56,11 @@ const useStyles = makeStyles({
     color: 'white',
     fontFamily: 'Exo 2, sans-serif',
   },
-  // freindsButton: {
-  //   backgroundColor: '#1f2833',
-  //   border: '2pt solid #66FCF1',
-  //   color: 'white',
-  // },
 });
 
 const UserData = ({ user, id }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { auth } = useSelector(state => state);
-
-  // useEffect(() => {
-  //   dispatch(setFriends(id));
-  // }, [id]);
 
   const [open, setOpen] = useState(false);
 
@@ -111,7 +95,6 @@ const UserData = ({ user, id }) => {
       <Typography className={classes.data} paragraph align="center">
         {user.bio}
       </Typography>
-      {/* </Grid> */}
 
       <Grid container spacing={2} className={classes.buttons}>
         {auth.id === id ? (

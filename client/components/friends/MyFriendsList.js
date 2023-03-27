@@ -79,6 +79,7 @@ const MyFriendsList = () => {
       <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}>
         <FormControl fullWidth>
           <TextField
+            variant="filled"
             className={classes.input}
             value={state.query}
             type="search"

@@ -77,6 +77,7 @@ const FriendsList = () => {
       <Grid className={classes.search}>
         <FormControl fullWidth>
           <TextField
+            variant="filled"
             className={classes.input}
             margin="normal"
             value={state.query}
@@ -90,14 +91,14 @@ const FriendsList = () => {
         {state.query === ''
           ? friends?.map(friend => {
               return (
-                <Grid item key={friend.id} xs={12} sm={6} md={3}>
+                <Grid item key={friend.id} xs={12} sm={4} md={3}>
                   <FriendCard key={friend.id} friend={friend} />
                 </Grid>
               );
             })
           : state.list?.map(friend => {
               return (
-                <Grid item key={friend.id} xs={12} sm={6} md={3}>
+                <Grid item key={friend.id} xs={12} sm={4} md={3}>
                   <FriendCard key={friend.id} friend={friend} />
                 </Grid>
               );

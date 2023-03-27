@@ -26,6 +26,9 @@ const useStyles = makeStyles({
     width: 200,
     height: 300,
   },
+  remove: {
+    border: '2pt solid #66FCf1',
+  },
 });
 
 const FriendCard = ({ friend }) => {
@@ -67,6 +70,7 @@ const FriendCard = ({ friend }) => {
         <CardActions>
           {friend.friendInd === 'Y' ? (
             <Button
+              className={classes.remove}
               size="small"
               color="primary"
               variant="outlined"

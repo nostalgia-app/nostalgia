@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -38,6 +39,7 @@ const useStyles = makeStyles({
 
 const CommunityCard = props => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { community } = props;
 
   const history = useHistory();
@@ -45,9 +47,9 @@ const CommunityCard = props => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
-  useEffect(() => {
-    dispatch(me());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(me());
+  // }, []);
   const { auth } = useSelector(state => state);
 
   const addCommunity = (comm, user) => {
@@ -72,7 +74,11 @@ const CommunityCard = props => {
         </CardActionArea>
         <CardContent>
           <Box display="flex" justifyContent="space-around" alignItems="center">
-            <Button className={classes.button} variant="contained">
+            <Button
+              className={classes.button}
+              variant="contained"
+              onClick={() => addCommunity(community.id, auth.id)}
+            >
               Join
             </Button>
             <Button

@@ -1,9 +1,6 @@
 body {
   font-family: 'Exo 2', sans-serif;
   background-image: url('/public/pexels-jakub-novacek-924824.jpg');
-  /* background-image: url('/public/pexels-adrien-olichon-2387793.jpg'); */
-  /* background-image: url('/public/pexels-instawalli-176851 (1).jpg'); */
-  /* background-image: url('/public/blue-shining-fiber-optic-2022-12-15-22-34-32-utc.jpg'); */
 
   background-color: #0d1217c8;
   background-size: cover;
@@ -37,8 +34,6 @@ nav a {
   justify-content: space-between;
   align-items: center;
   background-color: #1f2833;
-
-  /* padding: 2rem 6rem; */
   padding: 0.5rem 1.5rem;
 }
 
@@ -85,11 +80,8 @@ nav a {
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
-
   text-align: end;
-  /* background-color: #fff; */
-  background-color: #0b0c10e2;
-  /* background-color: #1f2833e4; */
+  background-color: #0b0c10ef;
   padding: 2rem;
   position: absolute;
   top: 40px;
@@ -106,7 +98,6 @@ nav a {
   padding: 10px 0;
 }
 .nostalgia__navbar-menu_container p:hover {
-  /* transition: 0.3s ease; */
   border-bottom: 4px solid #66fcf1;
   padding: 10px 0;
   margin: 1rem 0;

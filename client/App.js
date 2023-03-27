@@ -8,7 +8,6 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import Layout from './Layout';
-import Footer from './components/Footer';
 
 const theme = createTheme({
   palette: {
@@ -48,7 +47,6 @@ const useStyles = makeStyles({
     height: '100%',
     width: '100%',
     marginTop: 80,
-    border: '2pt solid green',
   },
 });
 

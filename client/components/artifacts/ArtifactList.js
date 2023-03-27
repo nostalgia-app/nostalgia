@@ -88,7 +88,7 @@ const ArtifactList = () => {
       <Grid className={classes.cardsGrid} container spacing={2}>
         {artifacts.map(artifact => {
           return (
-            <Grid item key={artifact.id} xs={12} md={4}>
+            <Grid item key={artifact.id} xs={12} sm={6} md={6}>
               <ArtifactCard artifact={artifact} />
             </Grid>
           );

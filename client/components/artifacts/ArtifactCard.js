@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeArtifact, updateArtifact } from '../../store';
 
 const useStyles = makeStyles({
-  mainContainer: {
+  container: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: 10,
@@ -27,6 +27,9 @@ const useStyles = makeStyles({
     maxHeight: 500,
   },
   header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     paddingLeft: 10,
     paddingBottom: 0,
   },
@@ -34,9 +37,7 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    // maxHeight: 50,
     padding: '1em 1em 0 1em',
-    // objectFit: 'contain',
   },
   image: {
     maxHeight: '250px',
@@ -65,8 +66,8 @@ const ArtifactCard = ({ artifact }) => {
   };
 
   return (
-    <Container className={classes.mainContainer}>
-      <Card className={classes.card} elevation={3}>
+    <Container className={classes.container}>
+      <Card className={classes.card} elevation={2}>
         {editMode ? (
           <TextField
             onChange={e => setData({ ...data, name: e.target.value })}

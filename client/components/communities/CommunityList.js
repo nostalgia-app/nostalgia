@@ -41,21 +41,24 @@ const useStyles = makeStyles({
     marginBottom: 20,
     marginLeft: 10,
   },
-  communitiesGrid: {},
+  communitiesGrid: {
+    marginTop: 30,
+    marginBottom: 50,
+  },
 });
 
 const CommunityList = () => {
   const classes = useStyles();
-  const { communities, auth } = useSelector(state => state);
+  const { communities, auth, geographies } = useSelector(state => state);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCommunities());
   }, []);
 
-  useEffect(() => {
-    dispatch(setGeography());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setGeography());
+  // }, []);
 
   const [open, setOpen] = useState(false);
 
@@ -118,7 +121,7 @@ const CommunityList = () => {
       {/* </Box> */}
 
       {/* <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}> */}
-      <Grid className={classes.search}>
+      {/* <Grid className={classes.search}>
         <FormControl fullWidth>
           <TextField
             className={classes.input}
@@ -129,7 +132,7 @@ const CommunityList = () => {
             onChange={handleChange}
           >
             {geographies.length > 0 ? (
-              geographies.map((geography) => (
+              geographies.map(geography => (
                 <MenuItem key={geography.state} value={geography.state}>
                   {geography.state}
                 </MenuItem>
@@ -137,15 +140,15 @@ const CommunityList = () => {
             ) : (
               <MenuItem>No Items to Select</MenuItem>
             )}
-          </Select>
+          </TextField>
           <Button onClick={resetValue}>Clear Filter</Button>
         </FormControl>
-      </Grid>
+      </Grid> */}
 
       {/* </Box> */}
 
       {/* // Modified version */}
-      <Grid container spacing={3}>
+      <Grid className={classes.communitiesGrid} container spacing={3}>
         {state.query === ''
           ? communities.map(community => {
               return (

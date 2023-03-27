@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     alignItems: 'center',
     width: '100%',
     padding: 20,
-    border: '2pt solid orange',
   },
   footerTitle: {
     fontFamily: 'Righteous, cursive',
@@ -22,12 +21,12 @@ const Footer = () => {
   const today = new Date();
 
   return (
-    <footer className={classes.footer}>
+    <Container className={classes.footer}>
       <Typography className={classes.footerTitle}>NOSTALGIA</Typography>
       <Typography paragraph align="center">
         Copyright &copy; {today.getFullYear()}
       </Typography>
-    </footer>
+    </Container>
   );
 };
 
