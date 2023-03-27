@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNewUser, fetchUsers } from '../../store';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createNewUser } from '../../store';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -17,9 +17,6 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '100vh',
-    width: '100%',
-    paddingTop: 50,
   },
   form: {
     display: 'flex',
