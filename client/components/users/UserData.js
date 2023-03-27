@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MyFriendsList from '../friends/MyFriendsList';
@@ -60,7 +60,15 @@ const useStyles = makeStyles({
 
 const UserData = ({ user, id }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { auth } = useSelector(state => state);
+  const { friends } = useSelector(state => state);
+  useEffect(() => {
+    dispatch(setFriends(id));
+  }, []);
+
+  console.log('this is the current params id...', id);
+  console.log('this is the frineds by params id...', friends);
 
   const [open, setOpen] = useState(false);
 

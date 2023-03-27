@@ -79,16 +79,6 @@ const UserProfile = () => {
   // }, [auth]);
 
   useEffect(() => {
-    dispatch(setUserCommunities());
-  }, []);
-
-  // console.log('these are my friends...', friends);
-
-  // useEffect(() => {
-  //   dispatch(setUserArtifacts(id));
-  // }, [id]);
-
-  useEffect(() => {
     dispatch(setUserCommunities(auth.id));
   }, [auth]);
 

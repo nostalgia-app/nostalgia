@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route } from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import { Login } from './components/users/Login';
 import { Home } from './components/Home';
 import { me } from './store';
@@ -14,6 +14,7 @@ import ArtifactList from './components/artifacts/ArtifactList';
 import ArtifactDetails from './components/artifacts/ArtifactDetails';
 import FriendsList from './components/friends/FriendsList';
 import MyFriendsList from './components/friends/MyFriendsList';
+import NotFound from './components/NotFound';
 
 /**
  * COMPONENT

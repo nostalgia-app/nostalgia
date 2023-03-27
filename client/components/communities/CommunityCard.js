@@ -13,6 +13,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { addUserToCommunity } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -47,9 +48,7 @@ const CommunityCard = props => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
-  // useEffect(() => {
-  //   dispatch(me());
-  // }, []);
+
   const { auth } = useSelector(state => state);
 
   const addCommunity = (comm, user) => {

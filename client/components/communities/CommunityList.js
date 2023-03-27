@@ -109,7 +109,6 @@ const CommunityList = () => {
 
   return (
     <Container className={classes.container}>
-      {/* <Box display="flex" justifyContent="space-between" alignItems="center"> */}
       <Typography align="center" variant="h3" component="h1" gutterBottom>
         Find a Community!
       </Typography>
@@ -118,36 +117,7 @@ const CommunityList = () => {
           Add New Community
         </Button>
       )}
-      {/* </Box> */}
 
-      {/* <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}> */}
-      {/* <Grid className={classes.search}>
-        <FormControl fullWidth>
-          <TextField
-            className={classes.input}
-            variant="outlined"
-            value={state.query}
-            type="search"
-            label="Location"
-            onChange={handleChange}
-          >
-            {geographies.length > 0 ? (
-              geographies.map(geography => (
-                <MenuItem key={geography.state} value={geography.state}>
-                  {geography.state}
-                </MenuItem>
-              ))
-            ) : (
-              <MenuItem>No Items to Select</MenuItem>
-            )}
-          </TextField>
-          <Button onClick={resetValue}>Clear Filter</Button>
-        </FormControl>
-      </Grid> */}
-
-      {/* </Box> */}
-
-      {/* // Modified version */}
       <Grid className={classes.communitiesGrid} container spacing={3}>
         {state.query === ''
           ? communities.map(community => {
