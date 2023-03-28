@@ -11,76 +11,9 @@ const {
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log('db synced!');
 
   // Creating Users
   const users = await Promise.all([
-    // User.create({
-    //   username: 'cody',
-    //   password: '123',
-    //   firstName: 'Cody',
-    //   lastName: 'Code',
-    //   age: 27,
-    //   location: 'New York, NY',
-    //   bio: 'Hey man, my name is Cody.',
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/1147289240/photo/portrait-of-a-smiling-student-at-the-city-street.jpg?s=612x612&w=0&k=20&c=9-L5boel1w6eQZsZJDXjXpLMTkCopgSue6vycZzP3r4=',
-    // }),
-    // User.create({
-    //   username: 'murphy',
-    //   password: '123',
-    //   firstName: 'Murphy',
-    //   lastName: 'McMurphy',
-    //   age: 98,
-    //   location: 'Dublin, Ireland',
-    //   bio: "I'm looking for a guy named Cody. Is he here?",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=',
-    // }),
-    // User.create({
-    //   username: 'sally',
-    //   password: '123',
-    //   firstName: 'Sally',
-    //   lastName: 'Johnson',
-    //   age: 50,
-    //   location: 'Raleigh, North Carolina',
-    //   bio: "Hi, I'm Sally!",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=',
-    // }),
-    // User.create({
-    //   username: 'bob',
-    //   password: '123',
-    //   firstName: 'Bob',
-    //   lastName: 'Smith',
-    //   age: 60,
-    //   location: 'Tampa, Florida',
-    //   bio: "Hi, I'm Bob!",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=',
-    // }),
-    // User.create({
-    //   username: 'mike',
-    //   password: '123',
-    //   firstName: 'Mike',
-    //   lastName: 'White',
-    //   age: 30,
-    //   location: 'Chicago, Illinois',
-    //   bio: "Hi, I'm Mike!",
-    //   profilePic:
-    //     'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    // }),
-    // User.create({
-    //   username: 'sarah',
-    //   password: '123',
-    //   firstName: 'Sarah',
-    //   lastName: 'Stevens',
-    //   age: 45,
-    //   location: 'Atlanta, Georgia',
-    //   bio: "Hi, I'm Sarah!",
-    //   profilePic:
-    //     'https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg',
-
     User.create({
       username: 'hBoyardee',
       password: '123',
@@ -501,11 +434,6 @@ async function seed() {
   };
 }
 
-/*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
 async function runSeed() {
   console.log('seeding...');
   try {
@@ -520,14 +448,8 @@ async function runSeed() {
   }
 }
 
-/*
-  Execute the `seed` function, IF we ran this module directly (`node seed`).
-  `Async` functions always return a promise, so we can use `catch` to handle
-  any errors that might occur inside of `seed`.
-*/
 if (module === require.main) {
   runSeed();
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

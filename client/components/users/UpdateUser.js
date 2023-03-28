@@ -82,7 +82,7 @@ const UpdateUser = () => {
       <Typography className={classes.backButton}>
         <Link to={`/users/${user.id}`}>Back to my profile</Link>
       </Typography>
-      <Container className={classes.container} alignItems="center">
+      <Container className={classes.container}>
         <Grid className={classes.updateForm}>
           <form className={classes.form} onSubmit={handleSubmit}>
             <Typography variant="h6" align="center">

@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => {
 
 const Layout = ({ children, auth }) => {
   const classes = useStyles();
-  console.log(auth.firstName);
 
   return (
     <Container className={classes.root}>
