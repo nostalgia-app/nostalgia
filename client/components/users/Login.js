@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { authenticate } from "../../store";
-import { useHistory } from "react-router-dom";
 
 import {
   Button,
@@ -51,7 +50,6 @@ const AuthForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authenticate(userName, password, "login"));
-    history.push("/");
   };
 
   return (

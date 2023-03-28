@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { Login } from "./components/users/Login";
-import { Home } from "./components/Home";
+import Home from "./components/Home";
 import { me } from "./store";
 import CommunityList from "./components/communities/CommunityList";
 import CommunityDetails from "./components/communities/CommunityDetails";
