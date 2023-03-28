@@ -1,34 +1,39 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Routes from './Routes';
-import { Container, createTheme, ThemeProvider } from '@material-ui/core';
+import {
+  Container,
+  createTheme,
+  ThemeProvider,
+  makeStyles,
+} from '@material-ui/core';
 import Layout from './Layout';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#212121',
+      main: '#0B0c10',
     },
     secondary: {
-      main: '#424242',
+      main: '#1F2833',
     },
   },
   typography: {
-    fontFamily: 'Poppins, sans-serif;',
+    fontFamily: 'Exo 2, sans-serif',
     h1: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h2: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h4: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     h5: {
-      fontFamily: 'Orbitron, sans-serif',
+      fontFamily: 'Exo 2, sans-serif',
     },
     body1: {
-      color: '#424242',
+      color: '#C5C6C7',
     },
     body2: {
       color: 'white',
@@ -36,15 +41,25 @@ const theme = createTheme({
   },
 });
 
+const useStyles = makeStyles({
+  mainContainer: {
+    background: '#0a1017c0;',
+    height: '100%',
+    width: '100%',
+    marginTop: 80,
+  },
+});
+
 const App = () => {
+  const classes = useStyles();
   const { auth } = useSelector(state => state);
 
   return (
-    <Container>
-      <div style={{ marginTop: 80 }} />
+    <Container className={classes.mainContainer}>
       <ThemeProvider theme={theme}>
         <Layout auth={auth}>
           <Routes />
+          {/* <Footer /> */}
         </Layout>
       </ThemeProvider>
     </Container>

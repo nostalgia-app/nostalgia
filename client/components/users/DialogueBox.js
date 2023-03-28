@@ -11,11 +11,15 @@ import {
 const useStyles = makeStyles({
   container: {
     padding: 30,
-    border: '5pt solid rgb(246, 246, 246)',
   },
   text: {
     padding: 10,
     margin: 10,
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCF1',
+    color: 'white',
   },
 });
 
@@ -35,8 +39,8 @@ const DialogBox = ({ user }) => {
             <Typography className={classes.text} variant="h4" align="center">
               Welcome to your account portal!
             </Typography>
-            <Typography className={classes.text} paragraph align="center">
-              Please take a moment and click the "EDIT PROFILE" button..
+            <Typography className={classes.text} variant="h6" align="center">
+              Please click the "EDIT PROFILE" button.
             </Typography>
             <Typography className={classes.text} variant="h6" align="center">
               1. Populate your account info with the form.
@@ -46,7 +50,11 @@ const DialogBox = ({ user }) => {
             </Typography>
 
             <DialogActions className={classes.text}>
-              <Button variant="outlined" onClick={closeDialog}>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                onClick={closeDialog}
+              >
                 Close
               </Button>
             </DialogActions>

@@ -1,9 +1,17 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Exo 2', sans-serif;
+  background-image: url('/public/pexels-jakub-novacek-924824.jpg');
+
+  background-color: #0d1217c8;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  color: white;
 }
 
 a {
   text-decoration: none;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
 }
 
 label {
@@ -14,14 +22,6 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
-nav a:hover {
-  background-color: white;
-}
-
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
 
 #profileImage {
   width: 250px;
@@ -33,9 +33,7 @@ nav a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(226, 226, 226);
-
-  /* padding: 2rem 6rem; */
+  background-color: #1f2833;
   padding: 0.5rem 1.5rem;
 }
 
@@ -60,7 +58,7 @@ nav a:hover {
 .nostalgia__navbar-links_container p,
 .nostalgia__navbar-sign p,
 .nostalgia__navbar-menu_container p {
-  color: black;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 18px;
@@ -73,7 +71,6 @@ nav a:hover {
 
 .nostalgia__navbar-menu {
   margin-left: 1rem;
-
   display: none;
   position: relative;
 }
@@ -83,10 +80,8 @@ nav a:hover {
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
-
   text-align: end;
-  /* background-color: #fff; */
-  background-color: rgb(255, 255, 255);
+  background-color: #0b0c10ef;
   padding: 2rem;
   position: absolute;
   top: 40px;
@@ -98,6 +93,13 @@ nav a:hover {
 }
 
 .nostalgia__navbar-menu_container p {
+  transition: 0.1s ease;
+  margin: 1rem 0;
+  padding: 10px 0;
+}
+.nostalgia__navbar-menu_container p:hover {
+  border-bottom: 4px solid #66fcf1;
+  padding: 10px 0;
   margin: 1rem 0;
 }
 .nostalgia__navbar-menu_container-links-sign {
@@ -108,11 +110,6 @@ nav a:hover {
   -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
     both;
   animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
-.nostalgia__navbar-date {
-  color: white;
-  font-size: 16px;
 }
 
 @-webkit-keyframes scale-up-center {
@@ -151,9 +148,9 @@ nav a:hover {
   .nostalgia__navbar {
     padding: 0.75rem 1rem;
   }
-  .nostalgia__navbar-date {
-    font-size: 12px;
-  }
+  /* .nostalgia__navbar-date {
+    font-size: 14px;
+  } */
 }
 
 @media screen and (max-width: 550px) {
@@ -171,7 +168,7 @@ nav a:hover {
   .nostalgia__navbar-menu_container-links-sign {
     display: block;
   }
-  .nostalgia__navbar-date {
-    font-size: 10px;
-  }
+  /* .nostalgia__navbar-date {
+    font-size: 12px;
+  } */
 } ;

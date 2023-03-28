@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-import { me } from "./store";
-import { Login } from "./components/users/Login";
-import Home from "./components/Home";
-import CommunityList from "./components/communities/CommunityList";
-import CommunityDetails from "./components/communities/CommunityDetails";
-import CreateUser from "./components/users/CreateUser";
-import UpdateUser from "./components/users/UpdateUser";
-import UserProfile from "./components/users/UserProfile";
-import Success from "./components/users/Success";
-import ArtifactList from "./components/artifacts/ArtifactList";
-import ArtifactDetails from "./components/artifacts/ArtifactDetails";
-import FriendsList from "./components/friends/FriendsList";
-import MyFriendsList from "./components/friends/MyFriendsList";
+import React, { useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { me } from './store';
+import { Login } from './components/users/Login';
+import Home from './components/Home';
+import CommunityList from './components/communities/CommunityList';
+import CommunityDetails from './components/communities/CommunityDetails';
+import CreateUser from './components/users/CreateUser';
+import UpdateUser from './components/users/UpdateUser';
+import UserProfile from './components/users/UserProfile';
+import Success from './components/users/Success';
+import ArtifactList from './components/artifacts/ArtifactList';
+import ArtifactDetails from './components/artifacts/ArtifactDetails';
+import FriendsList from './components/friends/FriendsList';
+import MyFriendsList from './components/friends/MyFriendsList';
+import NotFound from './components/NotFound';
 
 function Routes() {
   const dispatch = useDispatch();
@@ -41,6 +41,7 @@ function Routes() {
         <Route exact path="/artifacts" component={ArtifactList} />
         <Route exact path="/artifacts/:id" component={ArtifactDetails} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/*" component={NotFound} />
       </Switch>
     </div>
   );

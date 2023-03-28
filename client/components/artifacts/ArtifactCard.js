@@ -10,13 +10,49 @@ import {
   CardActions,
   Button,
   TextField,
+  makeStyles,
 } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeArtifact, updateArtifact } from '../../store';
 
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: 10,
+  },
+  card: {
+    marginTop: 5,
+    marginBottom: 5,
+    maxHeight: 500,
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingLeft: 10,
+    paddingBottom: 0,
+  },
+  cardMedia: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: '1em 1em 0 1em',
+  },
+  image: {
+    maxHeight: '250px',
+    height: 200,
+    objectFit: 'contain',
+  },
+  cardContent: {
+    height: 100,
+  },
+});
+
 const ArtifactCard = ({ artifact }) => {
+  const classes = useStyles();
   const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
+  const { auth } = useSelector(state => state);
   const [data, setData] = useState(artifact);
   const [editMode, setEditMode] = useState(false);
 
@@ -30,14 +66,11 @@ const ArtifactCard = ({ artifact }) => {
   };
 
   return (
-    <Container style={{ display: "flex", flexDirection: "column" }}>
-      <Card
-        elevation={3}
-        style={{ color: "black", padding: 10, marginLeft: 20, width: "95%" }}
-      >
+    <Container className={classes.container}>
+      <Card className={classes.card} elevation={2}>
         {editMode ? (
           <TextField
-            onChange={(e) => setData({ ...data, name: e.target.value })}
+            onChange={e => setData({ ...data, name: e.target.value })}
             required
             fullWidth
             variant="outlined"
@@ -47,19 +80,20 @@ const ArtifactCard = ({ artifact }) => {
             defaultValue={data.name}
           />
         ) : (
-          <CardHeader title={artifact.name} />
+          <CardHeader className={classes.header} title={artifact.name} />
         )}
         <Link to={`/artifacts/${artifact.id}`}>
-          <CardMedia style={{ display: "flex", justifyContent: "center" }}>
-            <img src={`.././public/artifactUploads/${artifact.fileName}`}></img>
+          <CardMedia className={classes.cardMedia}>
+            <img
+              className={classes.image}
+              src={`.././public/artifactUploads/${artifact.fileName}`}
+            ></img>
           </CardMedia>
         </Link>
         {editMode ? (
           <Box sx={{ mt: 2 }}>
             <TextField
-              onChange={(e) =>
-                setData({ ...data, description: e.target.value })
-              }
+              onChange={e => setData({ ...data, description: e.target.value })}
               fullWidth
               variant="outlined"
               id="description"
@@ -69,8 +103,8 @@ const ArtifactCard = ({ artifact }) => {
             />
           </Box>
         ) : (
-          <CardContent>
-            {artifact.description ? artifact.description : ""}
+          <CardContent className={classes.cardContent}>
+            {artifact.description ? artifact.description : ''}
           </CardContent>
         )}
         {artifact.userId === auth.id ? (
@@ -91,7 +125,7 @@ const ArtifactCard = ({ artifact }) => {
             )}
           </CardActions>
         ) : (
-          ""
+          ''
         )}
       </Card>
     </Container>

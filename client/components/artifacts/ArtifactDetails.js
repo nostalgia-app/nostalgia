@@ -4,9 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchArtifact } from '../../store';
 import ArtifactDetailsCard from './ArtifactDetailsCard';
 import ArtifactComments from './ArtifactComments';
-import { Container, Typography, Grid } from '@material-ui/core';
+import { Container, Typography, Grid, makeStyles } from '@material-ui/core';
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    height: '100%',
+    paddingTop: 50,
+    marginBottom: 50,
+  },
+});
 
 const ArtifactDetails = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -18,7 +29,7 @@ const ArtifactDetails = () => {
   const artifact = artifacts.artifact;
 
   return (
-    <Container>
+    <Container className={classes.container}>
       <Typography variant="h3" component="h1" gutterBottom>
         {artifact.name}
       </Typography>

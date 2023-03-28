@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
-import { me } from '../../store';
-
-import { addUserToCommunity } from '../../store';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
+  Container,
   Card,
   CardContent,
   CardMedia,
@@ -12,11 +10,37 @@ import {
   CardActionArea,
   Typography,
   Box,
-} from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+  makeStyles,
+} from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { addUserToCommunity } from '../../store';
 
-const CommunityCard = (props) => {
-  const dispatch = useDispatch()
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  card: {
+    color: 'black',
+    padding: 10,
+    marginLeft: 20,
+    width: 300,
+    height: 375,
+  },
+  title: {
+    color: 'black',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    marginTop: 5,
+    color: 'white',
+  },
+});
+
+const CommunityCard = props => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
   const { community } = props;
 
   const history = useHistory();
@@ -24,27 +48,15 @@ const CommunityCard = (props) => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
-  useEffect(() => {
-    dispatch(me());
-  }, []);
+
   const { auth } = useSelector(state => state);
 
-  const addCommunity =(comm, user)=>{
-    dispatch(addUserToCommunity(comm, user))
-
-  }
+  const addCommunity = (comm, user) => {
+    dispatch(addUserToCommunity(comm, user));
+  };
   return (
-
-      <Card
-        elevation={3}
-        style={{
-          color: "black",
-          padding: 10,
-          marginLeft: 20,
-          width: 350,
-          height: 350,
-        }}
-      >
+    <Container className={classes.container}>
+      <Card elevation={3} className={classes.card}>
         <CardActionArea>
           <Link to={`/communities/${community.id}`}>
             <CardMedia
@@ -52,21 +64,25 @@ const CommunityCard = (props) => {
               component="img"
               height="250"
               width="250"
-              sx={{ padding: "1em 1em 0 1em" }}
+              sx={{ padding: '1em 1em 0 1em' }}
             />
-            <Typography align="center" style={{ overflowWrap: "break-word" }}>
+            <Typography className={classes.title} align="center">
               {community.name}
             </Typography>
           </Link>
         </CardActionArea>
         <CardContent>
           <Box display="flex" justifyContent="space-around" alignItems="center">
-            <Button variant="contained" sx={{ borderRadius: 50 }} onClick ={()=>addCommunity(community.id,auth.id)} >
+            <Button
+              className={classes.button}
+              variant="contained"
+              onClick={() => addCommunity(community.id, auth.id)}
+            >
               Join
             </Button>
             <Button
+              className={classes.button}
               variant="contained"
-              sx={{ borderRadius: 50 }}
               onClick={routeChange}
             >
               Learn
@@ -74,6 +90,7 @@ const CommunityCard = (props) => {
           </Box>
         </CardContent>
       </Card>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addCommunity } from "../../store";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCommunity } from '../../store';
 import {
   Button,
   TextField,
@@ -11,32 +11,32 @@ import {
   DialogTitle,
   Typography,
   Box,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const AddCommunity = ({ open, onClose }) => {
-  const { auth } = useSelector((state) => state);
+  const { auth } = useSelector(state => state);
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    name: "",
-    bio: "",
-    address: "",
-    city: "",
-    state: "",
-    zipCode: "",
+    name: '',
+    bio: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
   });
   const [file, setFile] = useState();
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const formData = new FormData();
-    Object.keys(data).forEach((key) => formData.append(key, data[key]));
-    formData.append("file", file);
-    formData.append("adminId", auth.id);
+    Object.keys(data).forEach(key => formData.append(key, data[key]));
+    formData.append('file', file);
+    formData.append('adminId', auth.id);
     dispatch(addCommunity(formData));
     onClose();
   };
@@ -129,7 +129,7 @@ const AddCommunity = ({ open, onClose }) => {
             accept=".jpg, .jpeg, .png"
             variant="outlined"
             fullWidth
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files[0];
               setFile(file);
             }}

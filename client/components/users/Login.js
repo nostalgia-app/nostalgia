@@ -18,16 +18,26 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    height: '100vh',
+    width: '100%',
+    paddingTop: 50,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
   },
+  input: {
+    backgroundColor: 'white',
+    borderRadius: '.25rem',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCf1',
+    marginTop: 5,
+    color: 'white',
+  },
 });
 
-/**
- * COMPONENT
- */
 const AuthForm = props => {
   const classes = useStyles();
   const history = useHistory();
@@ -47,7 +57,7 @@ const AuthForm = props => {
 
   return (
     <>
-      <Container className={classes.container} style={{ margin: '10px' }}>
+      <Container className={classes.container}>
         <Typography variant="h5">
           Please confirm your username and password to login.
         </Typography>
@@ -55,18 +65,20 @@ const AuthForm = props => {
         <Grid item xs={12} sm={8} md={6}>
           <form className={classes.form} onSubmit={handleSubmit} name={name}>
             <TextField
+              className={classes.input}
               onChange={e => setUserName(e.target.value)}
               label="Username"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
             <TextField
+              className={classes.input}
               onChange={e => setPassword(e.target.value)}
               label="Password"
               margin="normal"
-              variant="outlined"
+              variant="filled"
             />
-            <Button type="submit" variant="contained" color="primary">
+            <Button className={classes.button} type="submit" variant="outlined">
               Submit
             </Button>
             {error && error.response && <div> {error.response.data} </div>}

@@ -7,7 +7,6 @@ const useStyles = makeStyles({
     backgroundColor: 'rgb(234, 234, 234)',
     display: 'flex',
     height: '50px',
-
     padding: 5,
     '&:hover': {
       backgroundColor: 'white',
