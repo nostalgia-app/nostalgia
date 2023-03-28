@@ -1,58 +1,58 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
 import {
   Container,
   Grid,
   Typography,
   makeStyles,
   styled,
-} from '@material-ui/core';
-import { TravelExplore, Handshake, AddToPhotos } from '@mui/icons-material';
-const Responsive = styled('div')(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    color: 'green'[500],
+  Link,
+} from "@material-ui/core";
+import { TravelExplore, Handshake, AddToPhotos } from "@mui/icons-material";
+const Responsive = styled("div")(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    color: "green"[500],
   },
 }));
 
 const useStyles = makeStyles({
   container: {
-    height: '100vh',
-    width: '100%',
+    height: "100vh",
+    width: "100%",
   },
   heading: {
-    fontFamily: 'Righteous, cursive',
-    color: '#66FCf1',
+    fontFamily: "Righteous, cursive",
+    color: "#66FCf1",
   },
   title: {
-    fontSize: '30',
-    fontFamily: 'Exo 2, sans-serif',
+    fontSize: "30",
+    fontFamily: "Exo 2, sans-serif",
   },
   topRow: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     paddingTop: 30,
     marginBottom: 70,
   },
   bodyFont: {
-    fontFamily: 'Exo 2, sans-serif',
+    fontFamily: "Exo 2, sans-serif",
     marginBottom: 10,
   },
   bottomRow: {
-    backgroundColor: '#0b0c10d6',
+    backgroundColor: "#0b0c10d6",
     padding: 20,
     marginBottom: 50,
-    borderRadius: '.5rem',
+    borderRadius: ".5rem",
   },
   subTitle: {
-    color: '#66FCf1',
+    color: "#66FCf1",
   },
   features: {
-    borderLeft: '2pt solid white',
+    borderLeft: "2pt solid white",
     paddingLeft: 30,
   },
   titleIcon: {
-    display: 'flex',
+    display: "flex",
   },
   icon: {
     paddingLeft: 12,
@@ -80,7 +80,7 @@ export const Home = () => {
             component="h1"
             gutterBottom
           >
-            <strong style={{ color: '#66FCf1' }}>nost•tal•gia</strong> - a
+            <strong style={{ color: "#66FCf1" }}>nost•tal•gia</strong> - a
             wistful desire to return in thought or in fact to a former time in
             one's life, to one's home or homeland, or to one's family and
             friends: a sentimental yearning for the happiness of a former place
@@ -98,9 +98,9 @@ export const Home = () => {
       <Grid className={classes.bottomRow} container spacing={2}>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
           <Grid className={classes.titleIcon}>
-            <Typography className={classes.subTitle} variant="h5">
+            <Link href="/communities" className={classes.subTitle} variant="h5">
               Explore
-            </Typography>
+            </Link>
             <TravelExplore className={classes.icon} color="white" />
           </Grid>
 
@@ -111,9 +111,9 @@ export const Home = () => {
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
           <Grid className={classes.titleIcon}>
-            <Typography className={classes.subTitle} variant="h5">
+            <Link href="/findfriends" className={classes.subTitle} variant="h5">
               Connect
-            </Typography>
+            </Link>
             <Handshake className={classes.icon} color="white" />
           </Grid>
           <Typography paragraph>
@@ -123,9 +123,9 @@ export const Home = () => {
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
           <Grid className={classes.titleIcon}>
-            <Typography className={classes.subTitle} variant="h5">
+            <Link href="/artifacts" className={classes.subTitle} variant="h5">
               Share
-            </Typography>
+            </Link>
             <AddToPhotos className={classes.icon} color="white" />
           </Grid>
           <Typography paragraph>
