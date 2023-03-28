@@ -67,7 +67,6 @@ export const addUserToCommunity =(commId,userId)=>{
         try {
         const res = await axios.post(`/api/userCommunity/${commId}/${userId}` );
         const community = res.data;
-        console.log('this is community', community)
         dispatch(_addUserCommunity(community));
         } catch (error) {
         console.log(error);

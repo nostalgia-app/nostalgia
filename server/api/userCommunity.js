@@ -45,14 +45,11 @@ router.get('/:commId/:userId', async (req, res, next) => {
 
 router.post('/:communityId/:userId', async (req, res, next) => {
   try {
-    //console.log("userComm", req.body);
     const data = {
       ...req.params,
       communityId: req.params.communityId,
       userId: req.params.userId,
     };
-    console.log('communityId --> ', req.params.communityId);
-    console.log('this is userCommm', req.params);
     await User_Community.create(data);
     res.status(201).send(
       await User_Community.findOne({

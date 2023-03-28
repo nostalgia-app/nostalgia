@@ -51,7 +51,6 @@ const upload = multer({
 router.post('/', upload.single('file'), async (req, res, next) => {
   try {
     const file = req.file;
-    console.log('this is the API', file);
     const profilePic = await ProfilePic.create({
       fileName: req.file.filename,
       // fileName: req.body.fileName,

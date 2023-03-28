@@ -9,7 +9,6 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
   try {
     const comment = await Comment.findAll();
-    //console.log("this is comment", Comment)
     res.json(comment);
   } catch (err) {
     res
@@ -35,16 +34,9 @@ router.get('/:id', async (req, res, next) => {
 //create comment **works
 router.post('/', async (req, res, next) => {
   try {
-    // console.log(typeof req.params.artifactId);
-    console.log(req.body);
     const data = {
-      // comment: req.body.
       ...req.body,
-
-      // artifactId: req.params.artifactId,
-      // userId: req.params.userId,
     };
-    console.log('this is the api data', data);
     const newEntry = await Comment.create(data);
     const newComment = await Comment.findByPk(newEntry.id, { include: [User] });
     res.send(newComment);
