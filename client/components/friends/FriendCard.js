@@ -10,6 +10,7 @@ import {
   Typography,
   CardActions,
   makeStyles,
+  CardHeader,
 } from '@material-ui/core';
 import { addFriend, deleteFriend } from '../../store';
 
@@ -24,8 +25,20 @@ const useStyles = makeStyles({
     padding: 10,
     marginLeft: 20,
     width: 200,
-    height: 300,
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#1f2833',
+    color: 'white',
+  },
+  actions: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+
   remove: {
     border: '2pt solid #66FCf1',
   },
@@ -53,8 +66,12 @@ const FriendCard = ({ friend }) => {
   return (
     <Container className={classes.container}>
       <Card className={classes.card} elevation={3}>
+        <CardHeader
+          className={classes.header}
+          title={friend.firstName + ' ' + friend.lastName}
+          titleTypographyProps={{ variant: 'h6' }}
+        ></CardHeader>
         <CardActionArea>
-          {/* <Link to={`/users/${friend.id}`}> */}
           <CardMedia
             onClick={handleFriendClick}
             src={`.././public/profilePicUploads/${friend.profilePic}`}
@@ -62,12 +79,8 @@ const FriendCard = ({ friend }) => {
             height="220"
             width="140"
           />
-          <Typography align="center">
-            {friend.firstName + ' ' + friend.lastName}
-          </Typography>
-          {/* </Link> */}
         </CardActionArea>
-        <CardActions>
+        <CardActions className={classes.actions}>
           {friend.friendInd === 'Y' ? (
             <Button
               className={classes.remove}

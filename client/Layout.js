@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   Typography,
@@ -8,41 +8,41 @@ import {
   AppBar,
   Avatar,
   Link,
-} from "@material-ui/core";
-import { format } from "date-fns";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/Footer";
+} from '@material-ui/core';
+import { format } from 'date-fns';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/Footer';
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(theme => {
   return {
     root: {
-      display: "flex",
-      flexDirection: "column",
+      display: 'flex',
+      flexDirection: 'column',
     },
     page: {
       marginTop: 50,
     },
     appbar: {
-      backgroundColor: "#0B0C10",
-      display: "flex",
+      backgroundColor: '#0B0C10',
+      display: 'flex',
       paddingTop: 5,
       paddingBottom: 5,
-      fontFamily: "Exo 2, sans-serif",
+      fontFamily: 'Exo 2, sans-serif',
     },
     title: {
-      fontFamily: "Righteous, cursive",
-      fontSize: "20pt",
-      color: "#66FCf1",
+      fontFamily: 'Righteous, cursive',
+      fontSize: '20pt',
+      color: '#66FCf1',
       flexGrow: 1,
       marginBottom: 10,
     },
     navRight: {
-      display: "flex",
+      display: 'flex',
       margin: 5,
-      padding: "5px",
+      padding: '5px',
     },
     avatarDiv: {
-      display: "flex",
+      display: 'flex',
       paddingLeft: 10,
     },
     text: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => {
     },
     date: {
       marginTop: 5,
-      fontSize: "9pt",
+      fontSize: '9pt',
     },
   };
 });
@@ -82,7 +82,10 @@ const Layout = ({ children, auth }) => {
                 </Grid>
                 <Grid>
                   <Typography className={classes.date}>
-                    Today is {format(new Date(), "MMMM do, Y")}
+                    Today is{' '}
+                    <span style={{ color: '#66FCf1' }}>
+                      {format(new Date(), 'MMMM do, Y')}
+                    </span>
                   </Typography>
                 </Grid>
               </Grid>

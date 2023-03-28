@@ -68,7 +68,6 @@ const ArtifactComments = ({ id }) => {
           <div>
             <TextField
               className={classes.input}
-              // style={{ backgroundColor: 'white', width: '100%' }}
               onChange={e => setCommentContent(e.target.value)}
               label="post a comment"
               margin="normal"

@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  fetchUser,
-  setUserArtifacts,
-  setUserCommunities,
-  removeUserFromCommunity,
-} from '../../store';
+import { fetchUser, setUserArtifacts, setUserCommunities } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import DialogBox from './DialogueBox';
@@ -84,12 +79,6 @@ const UserProfile = () => {
   const currentUser = user.user;
   const userArtifacts = artifacts.user_artifacts;
 
-  const removeUserCommunity = async (comm, user) => {
-    console.log('commmm', comm, user);
-    dispatch(removeUserFromCommunity(comm, user));
-  };
-  console.log('this is the community...', userCommunity);
-
   return (
     <>
       <Grid>
@@ -150,17 +139,6 @@ const UserProfile = () => {
                       auth={auth}
                       user={currentUser}
                     />
-                    {/* <Button
-                      className={classes.button}
-                      variant="contained"
-                      size="large"
-                      color="secondary"
-                      onClick={() =>
-                        removeUserCommunity(community.id, currentUser.id)
-                      }
-                    >
-                      DELETE
-                    </Button> */}
                   </div>
                 );
               })
