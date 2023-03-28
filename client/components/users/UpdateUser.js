@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser, fetchUser, createProfilePic } from '../../store';
 import { useParams, useHistory } from 'react-router-dom';
-import ProfilePicUpload from './ProfilePicUpload';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -12,6 +10,8 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
+import ProfilePicUpload from './ProfilePicUpload';
+import { updateUser, fetchUser, createProfilePic } from '../../store';
 
 const useStyles = makeStyles({
   container: {

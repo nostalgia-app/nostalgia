@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateCommunity } from '../../store';
 import {
   Button,
   TextField,
@@ -12,6 +11,7 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
+import { updateCommunity } from '../../store';
 
 const EditCommunity = ({ community, open, onClose }) => {
   const dispatch = useDispatch();

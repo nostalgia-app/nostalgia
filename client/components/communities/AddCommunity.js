@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCommunity } from '../../store';
 import {
   Button,
   TextField,
@@ -12,6 +11,7 @@ import {
   Typography,
   Box,
 } from '@material-ui/core';
+import { addCommunity } from '../../store';
 
 const AddCommunity = ({ open, onClose }) => {
   const { auth } = useSelector(state => state);

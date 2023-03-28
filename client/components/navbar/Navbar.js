@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { Button, makeStyles } from '@material-ui/core';
 import { logout } from '../../store';
-import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   button: {

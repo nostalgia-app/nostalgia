@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Container,
   Box,
@@ -12,7 +13,6 @@ import {
   TextField,
   makeStyles,
 } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
 import { removeArtifact, updateArtifact } from '../../store';
 
 const useStyles = makeStyles({

@@ -1,7 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Container, Card, CardContent, CardActions } from '@material-ui/core';
 import { updateComment } from '../../store';
-import { useDispatch } from 'react-redux';
 
 const CommentsCard = ({ comment }) => {
   const dispatch = useDispatch();

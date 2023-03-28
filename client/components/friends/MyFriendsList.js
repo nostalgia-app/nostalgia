@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FriendCard from './FriendCard';
-import { setFriends } from '../../store';
 import {
   Container,
   Typography,
@@ -12,6 +10,8 @@ import {
   FormControl,
   makeStyles,
 } from '@material-ui/core';
+import { setFriends } from '../../store';
+import FriendCard from './FriendCard';
 
 const useStyles = makeStyles({
   container: {

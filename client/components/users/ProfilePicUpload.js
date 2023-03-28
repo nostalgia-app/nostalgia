@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createProfilePic, updateUser } from '../../store';
 import { useHistory } from 'react-router-dom';
 import {
   Container,
@@ -10,6 +9,7 @@ import {
   Button,
   makeStyles,
 } from '@material-ui/core';
+import { createProfilePic, updateUser } from '../../store';
 
 const useStyles = makeStyles({
   container: {

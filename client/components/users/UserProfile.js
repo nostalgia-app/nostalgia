@@ -1,14 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  fetchUser,
-  setUserArtifacts,
-  setUserCommunities,
-  removeUserFromCommunity,
-} from '../../store';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import DialogBox from './DialogueBox';
 import {
   Container,
   Typography,
@@ -19,9 +11,16 @@ import {
   Button,
   ImageListItemBar,
 } from '@material-ui/core';
+import DialogBox from './DialogueBox';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
+import {
+  fetchUser,
+  setUserArtifacts,
+  setUserCommunities,
+  removeUserFromCommunity,
+} from '../../store';
 
 const useStyles = makeStyles({
   container: {

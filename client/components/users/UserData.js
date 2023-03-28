@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import MyFriendsList from '../friends/MyFriendsList';
-import { setFriends } from '../../store';
 import {
   Container,
   Typography,
@@ -12,6 +10,8 @@ import {
   DialogActions,
   makeStyles,
 } from '@material-ui/core';
+import MyFriendsList from '../friends/MyFriendsList';
+import { setFriends } from '../../store';
 
 const useStyles = makeStyles({
   container: {

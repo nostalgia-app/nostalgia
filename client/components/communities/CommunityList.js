@@ -56,10 +56,6 @@ const CommunityList = () => {
     dispatch(setCommunities());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(setGeography());
-  // }, []);
-
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
