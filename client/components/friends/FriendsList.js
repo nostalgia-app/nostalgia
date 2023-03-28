@@ -1,32 +1,31 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import FriendCard from "./FriendCard";
+import { setFriends } from "../../store";
 import {
   Container,
   Typography,
   Grid,
   TextField,
-  Box,
   FormControl,
   makeStyles,
-} from '@material-ui/core';
-import { setFriends } from '../../store';
-import FriendCard from './FriendCard';
+} from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     marginTop: 10,
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     paddingTop: 30,
     paddingBottom: 50,
   },
   input: {
-    backgroundColor: 'white',
-    borderRadius: '.25rem',
-    width: '30%',
+    backgroundColor: "white",
+    borderRadius: ".25rem",
+    width: "30%",
   },
   friendsContainer: {
     marginTop: 30,
@@ -41,8 +40,8 @@ const useStyles = makeStyles({
 const FriendsList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { auth } = useSelector(state => state);
-  const { friends } = useSelector(state => state);
+  const { auth } = useSelector((state) => state);
+  const { friends } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(setFriends(auth.id));
@@ -50,13 +49,13 @@ const FriendsList = () => {
 
   // Filter friends
   const [state, setstate] = useState({
-    query: '',
+    query: "",
     list: [],
   });
 
-  const handleChange = e => {
-    const results = friends.filter(friend => {
-      if (e.target.value === '') return friends;
+  const handleChange = (e) => {
+    const results = friends.filter((friend) => {
+      if (e.target.value === "") return friends;
       return friend.firstName
         .toLowerCase()
         .includes(e.target.value.toLowerCase());
@@ -86,15 +85,15 @@ const FriendsList = () => {
         </FormControl>
       </Grid>
       <Grid container spacing={2}>
-        {state.query === ''
-          ? friends?.map(friend => {
+        {state.query === ""
+          ? friends?.map((friend) => {
               return (
                 <Grid item key={friend.id} xs={12} sm={4} md={3}>
                   <FriendCard key={friend.id} friend={friend} />
                 </Grid>
               );
             })
-          : state.list?.map(friend => {
+          : state.list?.map((friend) => {
               return (
                 <Grid item key={friend.id} xs={12} sm={4} md={3}>
                   <FriendCard key={friend.id} friend={friend} />

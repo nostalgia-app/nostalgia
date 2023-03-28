@@ -1,26 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { me } from './store';
-import { Login } from './components/users/Login';
-import Home from './components/Home';
-import CommunityList from './components/communities/CommunityList';
-import CommunityDetails from './components/communities/CommunityDetails';
-import CreateUser from './components/users/CreateUser';
-import UpdateUser from './components/users/UpdateUser';
-import UserProfile from './components/users/UserProfile';
-import Success from './components/users/Success';
-import ArtifactList from './components/artifacts/ArtifactList';
-import ArtifactDetails from './components/artifacts/ArtifactDetails';
-import FriendsList from './components/friends/FriendsList';
-import MyFriendsList from './components/friends/MyFriendsList';
-import NotFound from './components/NotFound';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import { Login } from "./components/users/Login";
+import { Home } from "./components/Home";
+import { me } from "./store";
+import CommunityList from "./components/communities/CommunityList";
+import CommunityDetails from "./components/communities/CommunityDetails";
+import CreateUser from "./components/users/CreateUser";
+import UpdateUser from "./components/users/UpdateUser";
+import UserProfile from "./components/users/UserProfile";
+import Success from "./components/users/Success";
+import ArtifactList from "./components/artifacts/ArtifactList";
+import ArtifactDetails from "./components/artifacts/ArtifactDetails";
+import FriendsList from "./components/friends/FriendsList";
+import MyFriendsList from "./components/friends/MyFriendsList";
+import NotFound from "./components/NotFound";
 
 function Routes() {
   const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
   const loadInitialData = () => dispatch(me());
-  const isLoggedIn = !!auth.id;
 
   useEffect(() => {
     loadInitialData();
