@@ -94,8 +94,6 @@ export const removeUserFromCommunity = (userCommId, userId) => {
         case ADD_USERCOMMUNITY:
             return [...state, action.userCommunity]
         case DELETE_USERCOMMUNITY:
-          console.log('heress state', state)
-         
           return state.filter(
               userCommunity => userCommunity.communityId !== action.userCommunities
             )

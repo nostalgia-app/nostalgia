@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Card,
@@ -12,7 +12,6 @@ import {
   Box,
   makeStyles,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
 import { addUserToCommunity } from '../../store';
 
 const useStyles = makeStyles({
@@ -41,19 +40,19 @@ const useStyles = makeStyles({
 const CommunityCard = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { auth } = useSelector(state => state);
   const { community } = props;
 
-  const history = useHistory();
   const routeChange = () => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
 
-  const { auth } = useSelector(state => state);
-
   const addCommunity = (comm, user) => {
     dispatch(addUserToCommunity(comm, user));
   };
+
   return (
     <Container className={classes.container}>
       <Card elevation={3} className={classes.card}>

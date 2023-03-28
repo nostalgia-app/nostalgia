@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Card, Button, TextField, makeStyles } from '@material-ui/core';
 import { fetchComments, createComment } from '../../store';
 import CommentsCard from './CommentsCard';
-import { Card, Button, TextField, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   container: {
@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 const ArtifactComments = ({ id }) => {
   const classes = useStyles();
   const { auth } = useSelector(state => state);
+  const { comments } = useSelector(state => state.comment);
   const dispatch = useDispatch();
 
   const [commentContent, setCommentContent] = useState('');
@@ -40,7 +41,6 @@ const ArtifactComments = ({ id }) => {
   useEffect(() => {
     dispatch(fetchComments(id));
   }, []);
-  const { comments } = useSelector(state => state.comment);
 
   const postComment = e => {
     e.preventDefault();

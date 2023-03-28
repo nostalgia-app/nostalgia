@@ -62,13 +62,10 @@ const UserData = ({ user, id }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { auth } = useSelector(state => state);
-  const { friends } = useSelector(state => state);
+
   useEffect(() => {
     dispatch(setFriends(id));
   }, []);
-
-  console.log('this is the current params id...', id);
-  console.log('this is the frineds by params id...', friends);
 
   const [open, setOpen] = useState(false);
 

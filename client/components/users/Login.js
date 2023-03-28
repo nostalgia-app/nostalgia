@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { connect } from 'react-redux';
-import { authenticate } from '../../store';
-import { useHistory } from 'react-router-dom';
-
 import {
   Button,
   Container,
@@ -12,6 +9,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
+import { authenticate } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -40,11 +38,10 @@ const useStyles = makeStyles({
 
 const AuthForm = props => {
   const classes = useStyles();
-  const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const { name, displayName, error } = props;
+  const { name, error } = props;
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
@@ -52,7 +49,6 @@ const AuthForm = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authenticate(userName, password, 'login'));
-    history.push('/users-success');
   };
 
   return (

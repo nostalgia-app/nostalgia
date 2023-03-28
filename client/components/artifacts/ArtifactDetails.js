@@ -5,6 +5,7 @@ import { fetchArtifact } from '../../store';
 import ArtifactDetailsCard from './ArtifactDetailsCard';
 import ArtifactComments from './ArtifactComments';
 import { Container, Typography, Grid, makeStyles } from '@material-ui/core';
+
 const useStyles = makeStyles({
   container: {
     display: 'flex',
@@ -21,12 +22,12 @@ const ArtifactDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  const { artifacts } = useSelector(state => state);
+  const artifact = artifacts.artifact;
+
   useEffect(() => {
     dispatch(fetchArtifact(id));
   }, []);
-
-  const { artifacts } = useSelector(state => state);
-  const artifact = artifacts.artifact;
 
   return (
     <Container className={classes.container}>

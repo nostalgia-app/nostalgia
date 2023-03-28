@@ -1,5 +1,4 @@
 import React from 'react';
-import { updateArtifact } from '../../store';
 import { useDispatch } from 'react-redux';
 import {
   Card,
@@ -10,6 +9,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { ThumbUp } from '@mui/icons-material';
+import { updateArtifact } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -43,6 +43,7 @@ const useStyles = makeStyles({
 const ArtifactDetailsCard = ({ artifact }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  
   const handleClick = () => {
     dispatch(updateArtifact({ id: artifact.id, likes: artifact.likes + 1 }));
     window.location.reload();

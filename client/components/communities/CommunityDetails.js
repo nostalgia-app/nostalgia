@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts } from '../../store';
 import {
   Container,
   Typography,
@@ -11,8 +10,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import { setCommunity } from '../../store';
-import { useHistory } from 'react-router-dom';
+import { setArtifacts, setCommunity } from '../../store';
 import ArtifactList from '../artifacts/ArtifactList';
 import EditCommunity from './EditCommunity';
 
