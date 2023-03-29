@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts, addUserToCommunity } from '../../store';
+import { setArtifacts, setUserCommunities } from '../../store';
 import {
   Container,
   Typography,
@@ -98,17 +98,17 @@ const CommunityDetails = () => {
   const { auth, artifacts, community } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
   const handleClose = () => {
     setOpen(false);
   };
 
-  const routeChange = () => {
-    let path = `/communities/`;
-    history.push(path);
-  };
+  // const routeChange = () => {
+  //   let path = `/communities/`;
+  //   history.push(path);
+  // };
 
   useEffect(() => {
     dispatch(setCommunity(id));
@@ -117,10 +117,19 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
+  }, [auth.id]);
 
-  const addCommunity = (comm, user) => {
-    dispatch(addUserToCommunity(comm, user));
-  };
+  // const addCommunity = (comm, user, userComms) => {
+  //   for (let i of userComms) {
+  //     if (i.communityId === comm) {
+  //       alert('You are already part of this Community');
+  //     } else {
+  //       dispatch(addUserToCommunity(comm, user));
+  //     }
+  //   }
+  // };
 
   return (
     <Container className={classes.container}>
@@ -149,7 +158,7 @@ const CommunityDetails = () => {
             <Button
               className={classes.button2}
               variant="contained"
-              onClick={() => addCommunity(community.id, auth.id)}
+              // onClick={() => addCommunity(community.id, auth.id)}
             >
               Join
             </Button>
@@ -162,53 +171,8 @@ const CommunityDetails = () => {
           </Grid>
         </Grid>
       </Grid>
-      {/* ---------------------------- */}
-      <Grid className={classes.cardContainer}>
-        {/* <Card
-          elevation={1}
-          style={{
-            color: 'black',
-            padding: 10,
-            width: '70%',
-          }}
-        >
-          <Typography align="center" variant="h4" component="h1" gutterBottom>
-            {community.name}
-          </Typography>
 
-          <Grid className={classes.buttons}>
-            <Button className={classes.button} variant="contained">
-              Join
-            </Button>
-            {auth.id === community.adminId ? (
-              <Button
-                className={classes.button}
-                variant="contained"
-                onClick={handleClickOpen}
-              >
-                Edit Details
-              </Button>
-            ) : (
-              ''
-            )}
-            <Button
-              className={classes.button}
-              variant="contained"
-              onClick={routeChange}
-            >
-              Back
-            </Button>
-          </Grid>
-          <CardMedia
-            src={community.imageUrl}
-            component="img"
-            style={{ maxHeight: 250 }}
-          />
-          <Typography className={classes.bio} paragraph>
-            {community.bio}
-          </Typography>
-        </Card> */}
-      </Grid>
+      <Grid className={classes.cardContainer}></Grid>
 
       <Grid className={classes.artifactList}>
         <ArtifactList artifacts={artifacts} />

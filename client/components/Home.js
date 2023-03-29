@@ -71,7 +71,7 @@ export const Home = () => {
             component="h1"
             gutterBottom
           >
-            <strong style={{ color: '#66FCf1' }}>nost•tal•gia</strong> - a
+            <strong style={{ color: '#66FCf1' }}>nos•tal•gia</strong> - a
             wistful desire to return in thought or in fact to a former time in
             one's life, to one's home or homeland, or to one's family and
             friends: a sentimental yearning for the happiness of a former place
@@ -96,8 +96,7 @@ export const Home = () => {
           </Grid>
 
           <Typography paragraph>
-            Unique communities based on geography, school experience, hobbies,
-            clube etc.
+            Unique communities based on geography, alma maters, hobbies, clubs.
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>

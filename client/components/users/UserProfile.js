@@ -67,8 +67,8 @@ const UserProfile = () => {
   }, [id]);
 
   useEffect(() => {
-    dispatch(setUserCommunities(auth.id));
-  }, [auth]);
+    dispatch(setUserCommunities(id));
+  }, [id]);
 
   useEffect(() => {
     dispatch(setUserArtifacts(id));

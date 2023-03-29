@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     display: 'flex',
     height: '90%',
     width: '95%',
+    border: '2pt solid red',
   },
   cardRight: {
     display: 'flex',
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
     margin: 'auto',
     width: '20%',
     color: '#1f2833',
+    border: '2pt solid red',
   },
   image: {
     margin: 'auto',

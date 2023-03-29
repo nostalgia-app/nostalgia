@@ -24,15 +24,19 @@ const useStyles = makeStyles({
   card: {
     color: 'black',
     padding: 10,
-    maxHeight: 700,
+    height: 400,
+    width: 300,
+    // maxHeight: 700,
   },
   header: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
     margin: 'auto',
     backgroundColor: '#1f2833',
     color: 'white',
+    height: 80,
   },
   title: {
     color: 'black',
@@ -75,13 +79,6 @@ const CommunityCard = props => {
         </Link>
         <CardContent>
           <Box display="flex" justifyContent="space-around" alignItems="center">
-            {/* <Button
-              className={classes.button}
-              variant="contained"
-              onClick={() => addCommunity(community.id, auth.id)}
-            >
-              Join
-            </Button> */}
             <Button
               className={classes.button}
               variant="contained"

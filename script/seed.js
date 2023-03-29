@@ -139,7 +139,7 @@ async function seed() {
   // Creating Communities
   const communities = await Promise.all([
     Community.create({
-      name: 'University of Texas, Current and Former Students',
+      name: 'University of Texas',
       bio: 'Alumni from class of 2021',
       address: '110 Inner Campus Drive',
       city: 'Austin',
@@ -262,46 +262,46 @@ async function seed() {
         'https://res.cloudinary.com/sagacity/image/upload/c_crop,h_379,w_570,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/0712-parks-seward3_vzluwv.jpg',
       adminId: users[4].id,
     }),
-    // Community.create({
-    //   name: 'New Orleans Jazz Society',
-    //   bio: 'Unofficial fan based group for Information / discussion / anything related to the New Orleans Jazz and Heritage Festival.',
-    //   city: 'New Orleas',
-    //   state: 'LA',
-    //   category: 'Music & Audio',
-    //   imageUrl:
-    //     'https://cdn.britannica.com/32/74832-050-A85038D4/Preservation-Hall-Jazz-Band-Dixieland-New-Orleans.jpg',
-    //   adminId: users[4].id,
-    // }),
+    Community.create({
+      name: 'New Orleans Jazz Society',
+      bio: 'Unofficial fan based group for Information / discussion / anything related to the New Orleans Jazz and Heritage Festival.',
+      city: 'New Orleas',
+      state: 'LA',
+      category: 'Music & Audio',
+      imageUrl:
+        'https://cdn.britannica.com/32/74832-050-A85038D4/Preservation-Hall-Jazz-Band-Dixieland-New-Orleans.jpg',
+      adminId: users[4].id,
+    }),
 
-    // Community.create({
-    //   name: 'Geocaching of Washington DC',
-    //   bio: 'Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ',
-    //   city: 'Washington',
-    //   state: 'DC',
-    //   category: 'Science & Tech',
-    //   imageUrl: 'https://www.geocaching.com/play/Content/images/preview-lg.jpg',
-    //   adminId: users[4].id,
-    // }),
-    // Community.create({
-    //   name: 'Savannah Backyard Gardenders',
-    //   bio: "Hey guys I know gardening can get expensive I'm creating a group for gardeners to share tips and tricks on how to save a few penny’s please feel free to share all your up cycled garden box’s or any tips and tricks you have for growing anything!! A big example Did you know you can grow vegetables fruits and even some flowers from store bought produce scraps and cuttings?? ",
-    //   city: 'Savannah',
-    //   state: 'GA',
-    //   category: 'Home & Garden',
-    //   imageUrl:
-    //     'https://previews.123rf.com/images/rawpixel/rawpixel1706/rawpixel170619182/80200378-group-of-people-gardening-backyard-together.jpg',
-    //   adminId: users[4].id,
-    // }),
-    // Community.create({
-    //   name: 'Antique Furniture Restoration',
-    //   bio: 'I started this group because no other group out there is dedicated to the restoration of antique furniture of all kinds. This group will encompass the true art of restoration. To take a piece that has seen better days, that would be thrown away by most any other, that would be ruined by chalk paint, that would be distressed, and that no one wants, and to bring it back to life.',
-    //   city: 'Chicago',
-    //   state: 'IL',
-    //   category: 'Home & Garden',
-    //   imageUrl:
-    //     'https://images.squarespace-cdn.com/content/v1/577c1cd7c534a5bc311dc2ef/1608078649453-30RJPQ2FXQKT3X7D68JS/1920+Tudor+Buffet+before+and+after.jpg?format=1000w',
-    //   adminId: users[4].id,
-    // }),
+    Community.create({
+      name: 'Geocaching of Washington DC',
+      bio: 'Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ',
+      city: 'Washington',
+      state: 'DC',
+      category: 'Science & Tech',
+      imageUrl: 'https://www.geocaching.com/play/Content/images/preview-lg.jpg',
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: 'Savannah Backyard Gardenders',
+      bio: "Hey guys I know gardening can get expensive I'm creating a group for gardeners to share tips and tricks on how to save a few penny’s please feel free to share all your up cycled garden box’s or any tips and tricks you have for growing anything!! A big example Did you know you can grow vegetables fruits and even some flowers from store bought produce scraps and cuttings?? ",
+      city: 'Savannah',
+      state: 'GA',
+      category: 'Home & Garden',
+      imageUrl:
+        'https://previews.123rf.com/images/rawpixel/rawpixel1706/rawpixel170619182/80200378-group-of-people-gardening-backyard-together.jpg',
+      adminId: users[4].id,
+    }),
+    Community.create({
+      name: 'Antique Furniture Restoration',
+      bio: 'I started this group because no other group out there is dedicated to the restoration of antique furniture of all kinds. This group will encompass the true art of restoration. To take a piece that has seen better days, that would be thrown away by most any other, that would be ruined by chalk paint, that would be distressed, and that no one wants, and to bring it back to life.',
+      city: 'Chicago',
+      state: 'IL',
+      category: 'Home & Garden',
+      imageUrl:
+        'https://images.squarespace-cdn.com/content/v1/577c1cd7c534a5bc311dc2ef/1608078649453-30RJPQ2FXQKT3X7D68JS/1920+Tudor+Buffet+before+and+after.jpg?format=1000w',
+      adminId: users[4].id,
+    }),
   ]);
 
   const users_communities = await Promise.all([
