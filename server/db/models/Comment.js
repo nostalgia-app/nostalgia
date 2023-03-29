@@ -14,15 +14,13 @@ const Comment = db.define('comment', {
       notEmpty: true,
     },
   },
-  // artifactId: {
-  //   type: Sequelize.STRING,
-  // },
-  // userId: {
-  //   type: Sequelize.STRING,
-  // },
   likes: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
+    validate: {
+      isNumeric: true,
+      min: 0,
+    },
   },
 });
 

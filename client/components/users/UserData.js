@@ -50,11 +50,13 @@ const useStyles = makeStyles({
     backgroundColor: '#0B0C10',
     padding: 10,
   },
-  closeButton: {
+  dialogFooter: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    width: '70%',
+    justifyContent: 'center',
+  },
+  closeButton: {
+    width: '200px',
     marginTop: 20,
   },
 });
@@ -120,14 +122,16 @@ const UserData = ({ user, id }) => {
               <MyFriendsList userId={id} />
             </Grid>
 
-            <DialogActions className={classes.closeButton}>
-              <Button
-                className={classes.button}
-                variant="outlined"
-                onClick={closeFriends}
-              >
-                Close
-              </Button>
+            <DialogActions className={classes.dialogFooter}>
+              <Grid className={classes.closeButton}>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  onClick={closeFriends}
+                >
+                  Close
+                </Button>
+              </Grid>
             </DialogActions>
           </Container>
         </Dialog>

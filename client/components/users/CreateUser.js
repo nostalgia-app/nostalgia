@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    height: '100vh',
+    width: '100%',
+    paddingTop: 50,
   },
   form: {
     display: 'flex',

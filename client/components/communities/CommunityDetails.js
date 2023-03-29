@@ -25,14 +25,41 @@ const useStyles = makeStyles({
     width: '100%',
     paddingTop: 50,
   },
+  title: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  banner: {
+    display: 'flex',
+    marginBottom: 20,
+    background: '#0d1217ea;',
+    paddingBottom: 20,
+    borderBottom: '4pt solid white',
+  },
+  card: {
+    marginBottom: 10,
+  },
   cardContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
-  buttons: {
+  bio2: {
+    padding: 5,
+    paddingBottom: 20,
+    color: 'white',
+  },
+  buttons2: {
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  button2: {
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCf1',
+    marginTop: 5,
+    color: 'white',
+    width: '90%',
   },
   button: {
     width: '25%',
@@ -41,9 +68,17 @@ const useStyles = makeStyles({
     color: 'white',
     fontFamily: 'Exo 2, sans-serif',
   },
+  members: {
+    marginTop: 15,
+    marginLeft: 15,
+  },
   bio: {
     fontSize: '12pt',
     color: 'black',
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   artifactList: {
     marginTop: 20,
@@ -82,8 +117,43 @@ const CommunityDetails = () => {
 
   return (
     <Container className={classes.container}>
+      <Grid className={classes.title}>
+        <Typography align="center" variant="h4" component="h1" gutterBottom>
+          {community.name}
+        </Typography>
+      </Grid>
+      <Grid className={classes.banner} container spacing={1}>
+        <Grid className={classes.leftTop} item={12} sm={8} md={8}>
+          <Card className={classes.card} elevation={2}>
+            <CardMedia
+              src={community.imageUrl}
+              component="img"
+              height="400"
+              width="250"
+              sx={{ padding: '1em 1em 0 1em' }}
+            />
+          </Card>
+        </Grid>
+        <Grid className={classes.rightTop} item={12} sm={4} md={4}>
+          <Typography className={classes.bio2} paragraph>
+            {community.bio}
+          </Typography>
+          <Grid className={classes.buttons2}>
+            <Button className={classes.button2} variant="contained">
+              Join
+            </Button>
+          </Grid>
+          <Grid className={classes.members}>
+            <img
+              src={`.././public/communityUploads/people.png`}
+              style={{ height: '27px' }}
+            ></img>
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* ---------------------------- */}
       <Grid className={classes.cardContainer}>
-        <Card
+        {/* <Card
           elevation={1}
           style={{
             color: 'black',
@@ -126,7 +196,7 @@ const CommunityDetails = () => {
           <Typography className={classes.bio} paragraph>
             {community.bio}
           </Typography>
-        </Card>
+        </Card> */}
       </Grid>
 
       <Grid className={classes.artifactList}>

@@ -5,11 +5,9 @@ const {
 } = require('../db');
 module.exports = router;
 
-//get all comments from our entire database just for testing **works
 router.get('/', async (req, res, next) => {
   try {
     const comment = await Comment.findAll();
-    //console.log("this is comment", Comment)
     res.json(comment);
   } catch (err) {
     res
@@ -17,7 +15,7 @@ router.get('/', async (req, res, next) => {
       .json({ message: 'Error getting the comment', error: err.message });
   }
 });
-//get all comments for a specific artifact **works
+
 router.get('/:id', async (req, res, next) => {
   try {
     const comment = await Comment.findAll({
@@ -32,17 +30,11 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-//create comment **works
 router.post('/', async (req, res, next) => {
   try {
-    // console.log(typeof req.params.artifactId);
     console.log(req.body);
     const data = {
-      // comment: req.body.
       ...req.body,
-
-      // artifactId: req.params.artifactId,
-      // userId: req.params.userId,
     };
     console.log('this is the api data', data);
     const newEntry = await Comment.create(data);
@@ -55,7 +47,7 @@ router.post('/', async (req, res, next) => {
     });
   }
 });
-//edit a comment
+
 router.put('/:id', async (req, res, next) => {
   try {
     await Comment.update(req.body, {
@@ -63,7 +55,7 @@ router.put('/:id', async (req, res, next) => {
         id: req.params.id,
       },
     });
-    newComment = Comment.findByPk(req.params.id);
+    let newComment = Comment.findByPk(req.params.id);
     res.send(newComment);
   } catch (error) {
     res.status(500).json({
@@ -73,7 +65,6 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-//delete a commment
 router.delete('/:id', async (req, res, next) => {
   try {
     const deletedComment = await Comment.findByPk(req.params.id);

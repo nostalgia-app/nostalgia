@@ -38,10 +38,6 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     justifyContent: 'center',
   },
-
-  remove: {
-    border: '2pt solid #66FCf1',
-  },
 });
 
 const FriendCard = ({ friend }) => {

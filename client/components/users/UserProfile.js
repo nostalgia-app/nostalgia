@@ -6,12 +6,10 @@ import { useParams } from 'react-router-dom';
 import DialogBox from './DialogueBox';
 import {
   Container,
-  Typography,
   Grid,
   makeStyles,
   ImageList,
   ImageListItem,
-  Button,
   ImageListItemBar,
 } from '@material-ui/core';
 import UserData from './UserData';
@@ -29,14 +27,13 @@ const useStyles = makeStyles({
   topRow: {
     display: 'flex',
     borderRadius: '.25rem',
-    background: '#0a1017c0;',
-    width: '100%',
+    background: '#0d1217ea;',
   },
   middleRow: {
     padding: 10,
     display: 'flex',
     borderRadius: '.25rem',
-    marginBottom: 20,
+    marginBottom: 50,
     background: '#0a1017c0;',
   },
   artifactsGrid: {

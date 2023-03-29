@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => {
     root: {
       display: 'flex',
       flexDirection: 'column',
+      background: '#0a1017c0;',
+      height: '100%',
+      width: '100%',
+      marginTop: 80,
     },
     page: {
       marginTop: 50,

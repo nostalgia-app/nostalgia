@@ -4,15 +4,9 @@ import {
   Grid,
   Typography,
   makeStyles,
-  styled,
   Link,
 } from '@material-ui/core';
 import { TravelExplore, Handshake, AddToPhotos } from '@mui/icons-material';
-const Responsive = styled('div')(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    color: 'green'[500],
-  },
-}));
 
 const useStyles = makeStyles({
   container: {
@@ -22,6 +16,7 @@ const useStyles = makeStyles({
   heading: {
     fontFamily: 'Righteous, cursive',
     color: '#66FCf1',
+    paddingBottom: 30,
   },
   title: {
     fontSize: '30',
@@ -67,13 +62,9 @@ export const Home = () => {
     <Container className={classes.container}>
       <Grid className={classes.topRow} container spacing={0}>
         <Grid item xs={12} sm={12} md={12}>
-          <Responsive>
-            <Typography variant="h1" className={classes.heading} align="center">
-              NOSTALGIA
-            </Typography>
-          </Responsive>
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
+          <Typography variant="h1" className={classes.heading} align="center">
+            NOSTALGIA
+          </Typography>
           <Typography
             className={classes.bodyFont}
             variant="h6"

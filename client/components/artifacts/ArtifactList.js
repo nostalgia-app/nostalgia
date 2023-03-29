@@ -25,10 +25,14 @@ const useStyles = makeStyles({
   },
   uploadButton: {
     width: '50%',
-    backgroundColor: '#1f2833',
-    border: '2pt solid #66FCf1',
+    backgroundColor: 'rgb(115, 115, 115)',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#1f2833',
+    },
     marginTop: 5,
     color: 'white',
+    fontWeight: 800,
   },
   cardsGrid: {
     marginTop: 20,

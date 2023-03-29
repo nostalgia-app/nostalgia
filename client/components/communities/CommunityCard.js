@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import {
   Container,
   Card,
+  CardHeader,
   CardContent,
   CardMedia,
   Button,
-  CardActionArea,
   Typography,
   Box,
   makeStyles,
@@ -24,9 +24,15 @@ const useStyles = makeStyles({
   card: {
     color: 'black',
     padding: 10,
-    marginLeft: 20,
-    width: 300,
-    height: 375,
+    maxHeight: 700,
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 'auto',
+    backgroundColor: '#1f2833',
+    color: 'white',
   },
   title: {
     color: 'black',
@@ -57,35 +63,31 @@ const CommunityCard = props => {
   return (
     <Container className={classes.container}>
       <Card elevation={3} className={classes.card}>
-        <CardActionArea>
-          <Link to={`/communities/${community.id}`}>
-            <CardMedia
-              src={community.imageUrl}
-              component="img"
-              height="250"
-              width="250"
-              sx={{ padding: '1em 1em 0 1em' }}
-            />
-            <Typography className={classes.title} align="center">
-              {community.name}
-            </Typography>
-          </Link>
-        </CardActionArea>
+        <Link to={`/communities/${community.id}`}>
+          <CardHeader className={classes.header} title={community.name} />
+          <CardMedia
+            src={community.imageUrl}
+            component="img"
+            height="200"
+            width="250"
+            sx={{ padding: '1em 1em 0 1em' }}
+          />
+        </Link>
         <CardContent>
           <Box display="flex" justifyContent="space-around" alignItems="center">
-            <Button
+            {/* <Button
               className={classes.button}
               variant="contained"
               onClick={() => addCommunity(community.id, auth.id)}
             >
               Join
-            </Button>
+            </Button> */}
             <Button
               className={classes.button}
               variant="contained"
               onClick={routeChange}
             >
-              Learn
+              Learn More
             </Button>
           </Box>
         </CardContent>

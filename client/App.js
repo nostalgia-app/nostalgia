@@ -55,14 +55,13 @@ const App = () => {
   const { auth } = useSelector(state => state);
 
   return (
-    <Container className={classes.mainContainer}>
-      <ThemeProvider theme={theme}>
-        <Layout auth={auth}>
-          <Routes />
-          {/* <Footer /> */}
-        </Layout>
-      </ThemeProvider>
-    </Container>
+    // <Container className={classes.mainContainer}>
+    <ThemeProvider theme={theme}>
+      <Layout auth={auth}>
+        <Routes />
+      </Layout>
+    </ThemeProvider>
+    // </Container>
   );
 };
 
