@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts } from '../../store';
+import { setArtifacts, addUserToCommunity } from '../../store';
 import {
   Container,
   Typography,
@@ -52,14 +52,18 @@ const useStyles = makeStyles({
   buttons2: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
   },
   button2: {
-    backgroundColor: '#1f2833',
-    border: '2pt solid #66FCf1',
+    width: '60%',
+    marginLeft: 7,
+    backgroundColor: 'rgb(115, 115, 115)',
+    '&:hover': {
+      backgroundColor: 'white',
+      color: '#1f2833',
+    },
     marginTop: 5,
     color: 'white',
-    width: '90%',
+    fontWeight: 800,
   },
   button: {
     width: '25%',
@@ -70,7 +74,7 @@ const useStyles = makeStyles({
   },
   members: {
     marginTop: 15,
-    marginLeft: 15,
+    marginLeft: 10,
   },
   bio: {
     fontSize: '12pt',
@@ -81,8 +85,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
   },
   artifactList: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 50,
     width: '100%',
   },
 });
@@ -115,6 +118,10 @@ const CommunityDetails = () => {
     dispatch(setArtifacts(id));
   }, []);
 
+  const addCommunity = (comm, user) => {
+    dispatch(addUserToCommunity(comm, user));
+  };
+
   return (
     <Container className={classes.container}>
       <Grid className={classes.title}>
@@ -139,7 +146,11 @@ const CommunityDetails = () => {
             {community.bio}
           </Typography>
           <Grid className={classes.buttons2}>
-            <Button className={classes.button2} variant="contained">
+            <Button
+              className={classes.button2}
+              variant="contained"
+              onClick={() => addCommunity(community.id, auth.id)}
+            >
               Join
             </Button>
           </Grid>

@@ -61,14 +61,6 @@ const ArtifactList = () => {
   };
   return (
     <Container className={classes.container}>
-      {auth.id ? (
-        <Button className={classes.uploadButton} onClick={openUploadArtifact}>
-          Upload A New Artifact
-        </Button>
-      ) : (
-        <span>Please login if you wold like to create an artifact.</span>
-      )}
-
       <Dialog open={open}>
         <Container className={classes.uploadscontainer}>
           <Typography className={classes.text} paragraph></Typography>
@@ -87,7 +79,6 @@ const ArtifactList = () => {
           </DialogActions>
         </Container>
       </Dialog>
-      {/* //////// */}
 
       <Grid className={classes.cardsGrid} container spacing={2}>
         {artifacts.map(artifact => {
@@ -98,6 +89,13 @@ const ArtifactList = () => {
           );
         })}
       </Grid>
+      {auth.id ? (
+        <Button className={classes.uploadButton} onClick={openUploadArtifact}>
+          Upload A New Artifact
+        </Button>
+      ) : (
+        <span>Please login if you wold like to create an artifact.</span>
+      )}
     </Container>
   );
 };
