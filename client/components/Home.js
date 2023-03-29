@@ -1,58 +1,53 @@
-import React from "react";
+import React from 'react';
 import {
   Container,
   Grid,
   Typography,
   makeStyles,
-  styled,
   Link,
-} from "@material-ui/core";
-import { TravelExplore, Handshake, AddToPhotos } from "@mui/icons-material";
-const Responsive = styled("div")(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    color: "green"[500],
-  },
-}));
+} from '@material-ui/core';
+import { TravelExplore, Handshake, AddToPhotos } from '@mui/icons-material';
 
 const useStyles = makeStyles({
   container: {
-    height: "100vh",
-    width: "100%",
+    height: '100vh',
+    width: '100%',
   },
   heading: {
-    fontFamily: "Righteous, cursive",
-    color: "#66FCf1",
+    fontFamily: 'Righteous, cursive',
+    color: '#66FCf1',
+    paddingBottom: 30,
   },
   title: {
-    fontSize: "30",
-    fontFamily: "Exo 2, sans-serif",
+    fontSize: '30',
+    fontFamily: 'Exo 2, sans-serif',
   },
   topRow: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     paddingTop: 30,
     marginBottom: 70,
   },
   bodyFont: {
-    fontFamily: "Exo 2, sans-serif",
+    fontFamily: 'Exo 2, sans-serif',
     marginBottom: 10,
   },
   bottomRow: {
-    backgroundColor: "#0b0c10d6",
+    backgroundColor: '#0b0c10d6',
     padding: 20,
     marginBottom: 50,
-    borderRadius: ".5rem",
+    borderRadius: '.5rem',
   },
   subTitle: {
-    color: "#66FCf1",
+    color: '#66FCf1',
   },
   features: {
-    borderLeft: "2pt solid white",
+    borderLeft: '2pt solid white',
     paddingLeft: 30,
   },
   titleIcon: {
-    display: "flex",
+    display: 'flex',
   },
   icon: {
     paddingLeft: 12,
@@ -67,20 +62,16 @@ export const Home = () => {
     <Container className={classes.container}>
       <Grid className={classes.topRow} container spacing={0}>
         <Grid item xs={12} sm={12} md={12}>
-          <Responsive>
-            <Typography variant="h1" className={classes.heading} align="center">
-              NOSTALGIA
-            </Typography>
-          </Responsive>
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
+          <Typography variant="h1" className={classes.heading} align="center">
+            NOSTALGIA
+          </Typography>
           <Typography
             className={classes.bodyFont}
             variant="h6"
             component="h1"
             gutterBottom
           >
-            <strong style={{ color: "#66FCf1" }}>nost•tal•gia</strong> - a
+            <strong style={{ color: '#66FCf1' }}>nos•tal•gia</strong> - a
             wistful desire to return in thought or in fact to a former time in
             one's life, to one's home or homeland, or to one's family and
             friends: a sentimental yearning for the happiness of a former place
@@ -105,8 +96,7 @@ export const Home = () => {
           </Grid>
 
           <Typography paragraph>
-            Unique communities based on geography, school experience, hobbies,
-            clube etc.
+            Unique communities based on geography, alma maters, hobbies, clubs.
           </Typography>
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>

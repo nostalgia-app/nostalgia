@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import MyFriendsList from "../friends/MyFriendsList";
-import { setFriends } from "../../store";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import MyFriendsList from '../friends/MyFriendsList';
 import {
   Container,
   Typography,
@@ -11,57 +10,60 @@ import {
   Dialog,
   DialogActions,
   makeStyles,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const useStyles = makeStyles({
   container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    borderRadius: ".5rem",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderRadius: '.5rem',
     padding: 10,
   },
   specs: {
-    color: "#66FCf1",
+    color: '#66FCf1',
   },
   data: {
-    color: "white",
-    fontSize: "16pt",
+    color: 'white',
+    fontSize: '16pt',
   },
   buttons: {
-    borderRadius: ".25rem",
+    borderRadius: '.25rem',
     padding: 10,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20,
   },
   button: {
-    width: "100%",
+    width: '100%',
     margin: 5,
-    backgroundColor: "#1f2833",
-    border: "2pt solid #66FCF1",
-    color: "white",
-    fontFamily: "Exo 2, sans-serif",
+    backgroundColor: '#1f2833',
+    border: '2pt solid #66FCF1',
+    color: 'white',
+    fontFamily: 'Exo 2, sans-serif',
   },
-  friendscontainer: {
-    backgroundColor: "#0b0c10ef",
+  friendsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#0B0C10',
     padding: 10,
   },
+  dialogFooter: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   closeButton: {
-    width: "50%",
-    margin: 5,
-    backgroundColor: "#1f2833",
-    border: "2pt solid #66FCF1",
-    color: "white",
-    fontFamily: "Exo 2, sans-serif",
+    width: '200px',
+    marginTop: 20,
   },
 });
 
 const UserData = ({ user, id }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const { auth } = useSelector((state) => state);
+  const { auth } = useSelector(state => state);
 
   const [open, setOpen] = useState(false);
 
@@ -114,20 +116,22 @@ const UserData = ({ user, id }) => {
         </Grid>
 
         <Dialog open={open} user={user}>
-          <Container className={classes.friendscontainer}>
+          <Container className={classes.friendsContainer}>
             <Typography className={classes.text} paragraph></Typography>
             <Grid container spacing={2}>
               <MyFriendsList userId={id} />
             </Grid>
 
-            <DialogActions>
-              <Button
-                className={classes.closeButton}
-                variant="outlined"
-                onClick={closeFriends}
-              >
-                Close
-              </Button>
+            <DialogActions className={classes.dialogFooter}>
+              <Grid className={classes.closeButton}>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  onClick={closeFriends}
+                >
+                  Close
+                </Button>
+              </Grid>
             </DialogActions>
           </Container>
         </Dialog>

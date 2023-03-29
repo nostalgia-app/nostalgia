@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  fetchUser,
-  setUserArtifacts,
-  setUserCommunities,
-  removeUserFromCommunity,
-} from '../../store';
+import { fetchUser, setUserArtifacts, setUserCommunities } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import DialogBox from './DialogueBox';
 import {
   Container,
-  Typography,
   Grid,
   makeStyles,
   ImageList,
   ImageListItem,
-  Button,
   ImageListItemBar,
 } from '@material-ui/core';
 import UserData from './UserData';
@@ -34,14 +27,13 @@ const useStyles = makeStyles({
   topRow: {
     display: 'flex',
     borderRadius: '.25rem',
-    background: '#0a1017c0;',
-    width: '100%',
+    background: '#0d1217ea;',
   },
   middleRow: {
     padding: 10,
     display: 'flex',
     borderRadius: '.25rem',
-    marginBottom: 20,
+    marginBottom: 50,
     background: '#0a1017c0;',
   },
   artifactsGrid: {
@@ -74,32 +66,15 @@ const UserProfile = () => {
     dispatch(setUserArtifacts(id));
   }, [id]);
 
-  // useEffect(() => {
-  //   dispatch(setFriends(auth.id));
-  // }, [auth]);
-
   useEffect(() => {
-    dispatch(setUserCommunities(auth.id));
-  }, [auth]);
+    dispatch(setUserCommunities(id));
+  }, [id]);
 
   useEffect(() => {
     dispatch(setUserArtifacts(id));
   }, []);
   const currentUser = user.user;
   const userArtifacts = artifacts.user_artifacts;
-
-  // const allOfAUsersCommunities = userCommunity.map((userComm)=>{
-  //   for(let comm  of communities){
-  //     if (comm.id == userComm.communityId){
-  //       console.log('yessss',userComm)
-  //       return comm
-  //     }
-  //   }
-  // })
-  const removeUserCommunity = async (comm, user) => {
-    console.log('commmm', comm, user);
-    dispatch(removeUserFromCommunity(comm, user));
-  };
 
   return (
     <>
@@ -154,21 +129,13 @@ const UserProfile = () => {
             {currentUser.firstName}'s Communities
             {userCommunity && userCommunity.length > 0 ? (
               userCommunity.map(({ community }) => {
-                console.log('community : ', community);
                 return (
                   <div key={community.id} className={classes.card}>
-                    <UserCommunities community={community} />
-                    <Button
-                      className={classes.button}
-                      variant="contained"
-                      size="large"
-                      color="secondary"
-                      onClick={() =>
-                        removeUserCommunity(community.id, currentUser.id)
-                      }
-                    >
-                      DELETE
-                    </Button>
+                    <UserCommunities
+                      community={community}
+                      auth={auth}
+                      user={currentUser}
+                    />
                   </div>
                 );
               })
@@ -183,17 +150,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-// currently the content behind does not always update. Sometimes the 'id' param updates but the actual content does not render. When we then refresh the page all works fine. Can we do all of this at once?
-
-// 1. Use history
-// 2. update the 'Link' on friendCard to an onClick={handleFriendClick}
-// 3. handleFriendClick - history.push => to that friend's page
-// 4. also reloads the window to close out dialog and render everything
-
-// onClick={handleFriendClick}
-
-// const handleFriendClick = () => {
-//   history.push(`/users/${friend.id}`);
-//   window.location.reload();
-//   console.log('clicked');
-// };

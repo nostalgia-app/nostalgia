@@ -11,76 +11,9 @@ const {
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log('db synced!');
 
   // Creating Users
   const users = await Promise.all([
-    // User.create({
-    //   username: 'cody',
-    //   password: '123',
-    //   firstName: 'Cody',
-    //   lastName: 'Code',
-    //   age: 27,
-    //   location: 'New York, NY',
-    //   bio: 'Hey man, my name is Cody.',
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/1147289240/photo/portrait-of-a-smiling-student-at-the-city-street.jpg?s=612x612&w=0&k=20&c=9-L5boel1w6eQZsZJDXjXpLMTkCopgSue6vycZzP3r4=',
-    // }),
-    // User.create({
-    //   username: 'murphy',
-    //   password: '123',
-    //   firstName: 'Murphy',
-    //   lastName: 'McMurphy',
-    //   age: 98,
-    //   location: 'Dublin, Ireland',
-    //   bio: "I'm looking for a guy named Cody. Is he here?",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/912073272/photo/happy-senior-man-sitting-at-home.jpg?s=612x612&w=0&k=20&c=O_e4_qWJJNvrRzU9pRvI3TiDbxpPUbHQxtA3D6eWZNs=',
-    // }),
-    // User.create({
-    //   username: 'sally',
-    //   password: '123',
-    //   firstName: 'Sally',
-    //   lastName: 'Johnson',
-    //   age: 50,
-    //   location: 'Raleigh, North Carolina',
-    //   bio: "Hi, I'm Sally!",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/1199107152/photo/senior-african-american-woman-with-unique-style.jpg?s=612x612&w=0&k=20&c=xcwuBR5QSdbHe5IbDLbfZKBhTegk-4_h0KC4y9prQ-I=',
-    // }),
-    // User.create({
-    //   username: 'bob',
-    //   password: '123',
-    //   firstName: 'Bob',
-    //   lastName: 'Smith',
-    //   age: 60,
-    //   location: 'Tampa, Florida',
-    //   bio: "Hi, I'm Bob!",
-    //   profilePic:
-    //     'https://media.istockphoto.com/id/915675094/photo/worker-taking-a-selfie.jpg?s=612x612&w=0&k=20&c=lqPtmkqVXbdgE7Hp89G4TL1iFj0iUP_7xqWD30P1keE=',
-    // }),
-    // User.create({
-    //   username: 'mike',
-    //   password: '123',
-    //   firstName: 'Mike',
-    //   lastName: 'White',
-    //   age: 30,
-    //   location: 'Chicago, Illinois',
-    //   bio: "Hi, I'm Mike!",
-    //   profilePic:
-    //     'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    // }),
-    // User.create({
-    //   username: 'sarah',
-    //   password: '123',
-    //   firstName: 'Sarah',
-    //   lastName: 'Stevens',
-    //   age: 45,
-    //   location: 'Atlanta, Georgia',
-    //   bio: "Hi, I'm Sarah!",
-    //   profilePic:
-    //     'https://shotkit.com/wp-content/uploads/2021/06/cool-profile-pic-matheus-ferrero.jpeg',
-
     User.create({
       username: 'hBoyardee',
       password: '123',
@@ -206,6 +139,18 @@ async function seed() {
   // Creating Communities
   const communities = await Promise.all([
     Community.create({
+      name: 'University of Texas',
+      bio: 'Alumni from class of 2021',
+      address: '110 Inner Campus Drive',
+      city: 'Austin',
+      state: 'TX',
+      zipCode: '78705',
+      category: 'Education',
+      imageUrl:
+        'https://news.utexas.edu/wp-content/uploads/2021/05/Senior_Stories_2021_Header_1500x543_SB-600x0-c-default.gif',
+      adminId: users[1].id,
+    }),
+    Community.create({
       name: 'West Broadway Neighborhood Association',
       bio: 'West Broadway Neighborhood Association organizes neighbors and businesses on the West Side of Providence to preserve and promote our diverse, historic, urban community as a safe, vibrant, and sustainable place to be SWELL (Shop, Work, Eat, Live, and Learn locally).',
       address: '1560 Westminster St',
@@ -216,18 +161,6 @@ async function seed() {
       imageUrl:
         'https://images.squarespace-cdn.com/content/v1/547486a6e4b081cfb2fbb049/1653424790873-H5ZT92BX336T2MRPK0JH/277988277_7237088149698005_7506566997549425627_n.jpg?format=1500w',
       adminId: users[0].id,
-    }),
-    Community.create({
-      name: 'University of Texas, Class of 2021',
-      bio: 'Alumni from class of 2021',
-      address: '110 Inner Campus Drive',
-      city: 'Austin',
-      state: 'TX',
-      zipCode: '78705',
-      category: 'Education',
-      imageUrl:
-        'https://news.utexas.edu/wp-content/uploads/2021/05/Senior_Stories_2021_Header_1500x543_SB-600x0-c-default.gif',
-      adminId: users[1].id,
     }),
     Community.create({
       name: 'New York Nature and Wildlife Photography',
@@ -320,16 +253,6 @@ async function seed() {
       adminId: users[4].id,
     }),
     Community.create({
-      name: 'New Orleans Jazz Society',
-      bio: 'Unofficial fan based group for Information / discussion / anything related to the New Orleans Jazz and Heritage Festival.',
-      city: 'New Orleas',
-      state: 'LA',
-      category: 'Music & Audio',
-      imageUrl:
-        'https://cdn.britannica.com/32/74832-050-A85038D4/Preservation-Hall-Jazz-Band-Dixieland-New-Orleans.jpg',
-      adminId: users[4].id,
-    }),
-    Community.create({
       name: 'Seattle Parks & Rec',
       bio: 'Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ',
       city: 'Seattle',
@@ -339,6 +262,17 @@ async function seed() {
         'https://res.cloudinary.com/sagacity/image/upload/c_crop,h_379,w_570,x_0,y_0/c_limit,dpr_auto,f_auto,fl_lossy,q_80,w_1080/0712-parks-seward3_vzluwv.jpg',
       adminId: users[4].id,
     }),
+    Community.create({
+      name: 'New Orleans Jazz Society',
+      bio: 'Unofficial fan based group for Information / discussion / anything related to the New Orleans Jazz and Heritage Festival.',
+      city: 'New Orleas',
+      state: 'LA',
+      category: 'Music & Audio',
+      imageUrl:
+        'https://cdn.britannica.com/32/74832-050-A85038D4/Preservation-Hall-Jazz-Band-Dixieland-New-Orleans.jpg',
+      adminId: users[4].id,
+    }),
+
     Community.create({
       name: 'Geocaching of Washington DC',
       bio: 'Seattle Parks and Recreation provides welcoming and safe opportunities to play, learn, contemplate and build community, and promotes responsible stewardship of the land. We promote healthy people, a healthy environment, and strong communities. ',
@@ -397,26 +331,137 @@ async function seed() {
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Uncle Jess & Aunt Tammy',
+      name: "Fall Festival 22'",
       description:
-        'This is my uncle Jess and aunt Tammy, with their dog Gigi. They moved into their first home in the fall of 1957. This was their first Chirstmas as a family',
-      fileName: 'bostonFamily.jpeg',
+        "An unreal weekend! 10 bands in 3 nights. Our biggest turnout since the festival started. Thanks to all who came out. Get some rest! We'll see you back in class after fall break!",
+      fileName: 'concert.jpeg',
+      likes: 311,
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Charity Race',
+      name: 'Poetry 305 Club',
       description:
-        'We completed the breast cancer race last weekend! Had so much fun and it was for a great cause. If you want to join us next year please contact me!',
-      fileName: 'charityRace.jpg',
+        "If you're interested in collaborting, or would like to share your work, we'd love to have you! We meet every Saturday on the hill at 3pm. Great way to meet new friends!",
+      fileName: 'pexels-keira-burton-6146971.jpeg',
+      likes: 13,
     }),
     Artifact.create({
       userId: users[0].id,
       communityId: communities[0].id,
-      name: 'Grandpa George',
+      name: 'UT Class of 2021',
       description:
-        "My grandpa George was an amazingly creative musician. He could write a song on the spot while he played the piano. I cherished Sunday's as a kid becuase we'd have a home cooked meal and he would entertain us all afternoon.",
-      fileName: 'grandpa.jpeg',
+        "HOOK EM HORNS! Congradulations to the class of 2021! We all did this togehter! Keep in touch with classemates and faculty. Let us know what's next on your journey!",
+      fileName: 'pexels-stanley-morales-3186386 (1).jpeg',
+      likes: 156,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[8].id,
+      name: 'Spring Hike',
+      description:
+        'I went out the weekend of 4/11/22 and got some epic pictures. I love the east meadow this time of year. Teeming with new life and the perfect getaway from the city.',
+      fileName: 'pexels-eberhard-grossgasteiger-568236.jpeg',
+      likes: 6,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[4].id,
+      name: 'Bouleverdia 2021',
+      description:
+        "Such a great festival! We'll be back next year for sure! We've heard about it for years but finally got out there and it did not disappoint!",
+      fileName: 'pexels-elevate-1267351.jpeg',
+      likes: 71,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[4].id,
+      name: "Summer BearFest 22'",
+      description:
+        'Another great time in the heat with some of the best local breweries! Thanks to all the vendors who make this such a great event!',
+      fileName: 'pexels-jose-antonio-gallego-vázquez-2453312.jpeg',
+      likes: 53,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[9].id,
+      name: 'Weekend Getaway',
+      description:
+        "My wife and I love getting up to Canyonland Plateau on long weekends. And my dog Mahomes doesn't mind it either!",
+      fileName: 'pexels-jenny-uhling-6332531.jpeg',
+      likes: 13,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[9].id,
+      name: "Devil's Backbone Open",
+      description:
+        "One of the more dangerous races in Utah, but if you can brave it, you will be rewarded. Going on our 7th year now. 23' registration starts 5/11!",
+      fileName: 'pexels-pixabay-71104.jpeg',
+      likes: 42,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[6].id,
+      name: 'San Antonio Cinco De Mayo',
+      description:
+        "Come out and join us for Cinco De Mayo on the riverwalk! Tickets on sale now. You've only got 6 weeks! See you there!",
+      fileName: 'pexels-los-muertos-crew-7772333.jpeg',
+      likes: 17,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[10].id,
+      name: "Henderson's 21' T3",
+      description:
+        "Doug Henderson's 1921 Ford T3. A real showstopper. Won first place in Ann Arbor last year. You can't miss that Orange!",
+      fileName: 'pexels-pixabay-163677.jpeg',
+      likes: 17,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[10].id,
+      name: 'Mercedes Night',
+      description:
+        "If you'd like to come out and show off your classic Benz, this year's show begins on 4/23. Contact Doug Henderson for details.",
+      fileName: 'pexels-vitali-adutskevich-14065118.jpeg',
+      likes: 39,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[3].id,
+      name: "Open Play Saturday's",
+      description:
+        'Come out and ball if you got what it takes. Open saturdays welcomes all 3 on 3 teams, and singles looking to join the league.',
+      fileName: 'pexels-pnw-production-8980684.jpeg',
+      likes: 17,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[5].id,
+      name: "Henderson's Artifact's",
+      description:
+        "Owner Doug Henderson has curated a great collection of books, stamps and collectables. Come see what all the fun is about the next time you're in the Henderson District.",
+      fileName: 'pexels-rachel-claire-5490916.jpeg',
+      likes: 112,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[11].id,
+      name: 'Fall Hikes',
+      description:
+        'Fall just might be the best time to be out here. Come join us! We have hiking groups on Satuday mornings, and the Audubon society on Sunday. Email seattleParksClub@gmail.com for more info.',
+      fileName: 'pexels-władysław-starzec-14180230.jpeg',
+      likes: 87,
+    }),
+    Artifact.create({
+      userId: users[0].id,
+      communityId: communities[11].id,
+      name: 'Hadley Pass',
+      description:
+        "There's many picturesque spots on the East Inlet trail. The Hadley Pass is a popular one among phtographers.",
+      fileName: 'pexels-zhengdong-hu-14194280.jpeg',
+      likes: 72,
     }),
   ]);
 
@@ -451,22 +496,6 @@ async function seed() {
     }),
   ]);
 
-  const artifact = await Promise.all([
-    Artifact.create({
-      userId: users[0].id,
-      communityId: communities[1].id,
-      name: 'Samuel',
-    }),
-  ]);
-
-  const comment = await Promise.all([
-    Comment.create({
-      artifactId: artifact[0].id,
-      userId: users[0].id,
-      comment: 'DEFAULT COMMENT YESSA',
-    }),
-  ]);
-
   console.log(`seeded ${users.length} users`);
   console.log(`seeded ${communities.length} communities`);
   console.log(`seeded ${users_communities.length} users communities`);
@@ -489,23 +518,39 @@ async function seed() {
       aBergman: users[11],
     },
     communities: {
-      comm1: communities[0],
-      comm2: communities[1],
-      comm3: communities[2],
+      UT: communities[0],
+      WBNA: communities[1],
+      NYNWP: communities[2],
+      PB: communities[3],
+      NECB: communities[4],
+      ASBN: communities[5],
+      MSA: communities[6],
+      PSLA: communities[7],
+      HCSM: communities[8],
+      BU: communities[9],
+      CCM: communities[10],
+      SPR: communities[11],
     },
     artifacts: {
       artifact1: artifacts[0],
       artifact2: artifacts[1],
       artifact3: artifacts[2],
+      artifact3: artifacts[3],
+      artifact3: artifacts[4],
+      artifact3: artifacts[5],
+      artifact3: artifacts[6],
+      artifact3: artifacts[7],
+      artifact3: artifacts[8],
+      artifact3: artifacts[9],
+      artifact3: artifacts[10],
+      artifact3: artifacts[11],
+      artifact3: artifacts[12],
+      artifact3: artifacts[13],
+      artifact3: artifacts[14],
     },
   };
 }
 
-/*
- We've separated the `seed` function from the `runSeed` function.
- This way we can isolate the error handling and exit trapping.
- The `seed` function is concerned only with modifying the database.
-*/
 async function runSeed() {
   console.log('seeding...');
   try {
@@ -520,14 +565,8 @@ async function runSeed() {
   }
 }
 
-/*
-  Execute the `seed` function, IF we ran this module directly (`node seed`).
-  `Async` functions always return a promise, so we can use `catch` to handle
-  any errors that might occur inside of `seed`.
-*/
 if (module === require.main) {
   runSeed();
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed;

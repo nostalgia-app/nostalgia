@@ -10,7 +10,7 @@ import {
 
 const useStyles = makeStyles({
   container: {
-    padding: 30,
+    padding: 10,
   },
   text: {
     padding: 10,

@@ -4,7 +4,6 @@ body {
 
   background-color: #0d1217c8;
   background-size: cover;
-  /* background-repeat: no-repeat; */
   color: white;
 }
 
@@ -168,7 +167,4 @@ nav a {
   .nostalgia__navbar-menu_container-links-sign {
     display: block;
   }
-  /* .nostalgia__navbar-date {
-    font-size: 12px;
-  } */
 } ;

@@ -70,7 +70,7 @@ const Navbar = ({ auth }) => {
             My Account
           </Button>
         ) : (
-          <Link to="create-user">
+          <Link to="register">
             <Button className={classes.button} variant="outlined">
               Sign Up
             </Button>

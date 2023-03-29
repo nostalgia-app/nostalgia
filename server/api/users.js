@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const {
   db,
-  models: { User, User_Friend, ProfilePic, Artifact },
+  models: { User, Artifact },
 } = require('../db');
 const path = require('path');
 const multer = require('multer');
 
-// GET ALL
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -18,7 +17,6 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// GET ALL USER ARTIFACTS
 router.get('/:id/artifacts', async (req, res, next) => {
   try {
     const users = await Artifact.findAll({
@@ -30,7 +28,6 @@ router.get('/:id/artifacts', async (req, res, next) => {
   }
 });
 
-// GET SINGLE
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -40,7 +37,6 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// CREATE USER
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.create(req.body);
@@ -50,7 +46,16 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// UPDATE USER
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    await user.destroy();
+    res.json(user);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.put('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -61,7 +66,6 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// GET USERS WITH RELATIONSHIP
 router.get('/userfriends/user/:id', async (req, res, next) => {
   try {
     const friends = await db.query(

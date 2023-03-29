@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Container,
-  Box,
   Card,
+  Grid,
   CardHeader,
   CardMedia,
   CardContent,
@@ -24,28 +24,50 @@ const useStyles = makeStyles({
   card: {
     marginTop: 5,
     marginBottom: 5,
-    maxHeight: 500,
+    maxHeight: 700,
+    borderRadius: '.5rem',
   },
   header: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingLeft: 10,
-    paddingBottom: 0,
+    margin: 'auto',
+    backgroundColor: '#1f2833',
+    color: 'white',
   },
   cardMedia: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    padding: '1em 1em 0 1em',
+    paddingTop: 10,
   },
   image: {
     maxHeight: '250px',
     height: 200,
     objectFit: 'contain',
   },
-  cardContent: {
-    height: 100,
+  lowerContent: {
+    display: 'flex',
+    paddingLeft: 15,
+    marginBottom: 10,
+  },
+  likeIcon: {
+    marginTop: 7,
+  },
+  likes: {
+    marginTop: 7,
+    marginLeft: 5,
+  },
+  learnButton: {
+    display: 'flex',
+    justifyContent: 'right',
+    width: '80%',
+    margin: 'auto',
+  },
+  button: {
+    backgroundColor: '#1f2833',
+    color: 'white',
+    fontFamily: 'Exo 2, sans-serif',
   },
 });
 
@@ -82,30 +104,39 @@ const ArtifactCard = ({ artifact }) => {
         ) : (
           <CardHeader className={classes.header} title={artifact.name} />
         )}
-        <Link to={`/artifacts/${artifact.id}`}>
-          <CardMedia className={classes.cardMedia}>
-            <img
-              className={classes.image}
-              src={`.././public/artifactUploads/${artifact.fileName}`}
-            ></img>
-          </CardMedia>
-        </Link>
+        <CardMedia className={classes.cardMedia}>
+          <img
+            className={classes.image}
+            src={`.././public/artifactUploads/${artifact.fileName}`}
+          ></img>
+        </CardMedia>
         {editMode ? (
-          <Box sx={{ mt: 2 }}>
-            <TextField
-              onChange={e => setData({ ...data, description: e.target.value })}
-              fullWidth
-              variant="outlined"
-              id="description"
-              label="Description"
-              name="description"
-              defaultValue={data.description}
-            />
-          </Box>
+          <TextField
+            onChange={e => setData({ ...data, description: e.target.value })}
+            fullWidth
+            variant="outlined"
+            id="description"
+            label="Description"
+            name="description"
+            defaultValue={data.description}
+          />
         ) : (
-          <CardContent className={classes.cardContent}>
-            {artifact.description ? artifact.description : ''}
-          </CardContent>
+          <Grid className={classes.cardContent}>
+            <CardContent>
+              {artifact.description ? artifact.description : ''}
+            </CardContent>
+            <Grid className={classes.lowerContent}>
+              <Grid className={classes.likeIcon}>Likes</Grid>
+              <Grid className={classes.likes}>{artifact.likes}</Grid>
+              <Grid className={classes.learnButton}>
+                <Link to={`/artifacts/${artifact.id}`}>
+                  <Button className={classes.button} variant="contained">
+                    Learn More
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
+          </Grid>
         )}
         {artifact.userId === auth.id ? (
           <CardActions>
@@ -115,11 +146,19 @@ const ArtifactCard = ({ artifact }) => {
             >
               Remove
             </Button>
-            <Button size="small" onClick={() => editArtifact()}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => editArtifact()}
+            >
               Edit
             </Button>
             {editMode && (
-              <Button size="small" onClick={() => saveArtifact()}>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => saveArtifact()}
+              >
                 Save
               </Button>
             )}

@@ -5,22 +5,19 @@ const initialState = {
   user: {},
 };
 
-// ACTION TYPE
 const CREATE_USER = 'CREATE_USER';
 const FETCH_USER = 'FETCH_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const DELETE_USER = 'DELETE_USER';
 
-// FETCH ALL
 const FETCH_USERS = 'FETCH_USERS';
 
-// ACTION CREATOR
 export const _createNewUser = user => ({ type: CREATE_USER, user });
 export const _fetchUser = user => ({ type: FETCH_USER, user });
 export const _fetchUsers = users => ({ type: FETCH_USERS, users });
 export const _updateUser = user => ({ type: UPDATE_USER, user });
+export const _deleteUser = user => ({ type: DELETE_USER, user });
 
-//THUNKS
-// CREATE USER
 export const createNewUser = credentials => {
   return async dispatch => {
     const { data: user } = await axios.post('/api/users', credentials);
@@ -28,14 +25,20 @@ export const createNewUser = credentials => {
   };
 };
 
-// FETCH SINGLE USER
 export const fetchUser = id => {
   return async dispatch => {
     const { data: user } = await axios.get(`/api/users/${id}`);
     dispatch(_fetchUser(user));
   };
 };
-// updating in the reducer involves returning state, and then mapping through users to match the id, then reset with updates
+
+export const deleteUser = id => {
+  return async dispatch => {
+    const { data: deleted } = await axios.delete(`/api/users/${id}`);
+    dispatch(_deleteUser(deleted));
+  };
+};
+
 export const updateUser = user => {
   return async dispatch => {
     const { data: updated } = await axios.put(`/api/users/${user.id}`, user);
@@ -43,7 +46,6 @@ export const updateUser = user => {
   };
 };
 
-// ALL USERS
 export const fetchUsers = () => {
   return async dispatch => {
     const { data: users } = await axios.get('/api/users');
@@ -51,7 +53,6 @@ export const fetchUsers = () => {
   };
 };
 
-// REDUCER
 const user = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERS:
@@ -63,6 +64,11 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         users: [...state.users, action.user],
+      };
+    case DELETE_USER:
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== action.user.id),
       };
     case FETCH_USER:
       return {

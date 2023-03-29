@@ -6,7 +6,6 @@ import {
   Grid,
   CardMedia,
   CardContent,
-  Button,
   makeStyles,
 } from '@material-ui/core';
 import { ThumbUp } from '@mui/icons-material';
@@ -16,16 +15,21 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '40vh',
-    width: '100vw',
-    paddingTop: 50,
+    height: '100%',
+    width: '100%',
+    paddingTop: 30,
   },
-  like: {
-    paddingTop: 10,
+  cardMedia: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  lowerRow: {
+    paddingTop: 5,
     display: 'flex',
   },
   likes: {
-    paddingLeft: 10,
+    paddingLeft: 7,
     paddingTop: 10,
     fontSize: '16pt',
   },
@@ -50,7 +54,7 @@ const ArtifactDetailsCard = ({ artifact }) => {
 
   return (
     <Card elevation={3} style={{ padding: 10 }}>
-      <CardMedia src={artifact.fileName}>
+      <CardMedia className={classes.cardMedia} src={artifact.fileName}>
         <div>
           <img
             src={`.././public/artifactUploads/${artifact.fileName}`}
@@ -60,19 +64,11 @@ const ArtifactDetailsCard = ({ artifact }) => {
       </CardMedia>
       <CardContent className={classes.content}>
         {artifact.description}
-        <Grid className={classes.like}>
-          <Button
-            className={classes.button}
-            onClick={handleClick}
-            variant="contained"
-            color="primary"
-          >
-            Like
-          </Button>
-          <Grid className={classes.likes}>{artifact.likes}</Grid>
+        <Grid className={classes.lowerRow}>
           <Grid className={classes.icon}>
-            <ThumbUp color="#1f2833" />
+            <ThumbUp onClick={handleClick} />
           </Grid>
+          <Grid className={classes.likes}>{artifact.likes}</Grid>
         </Grid>
       </CardContent>
     </Card>
