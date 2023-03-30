@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -8,12 +8,11 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Typography,
   Box,
   makeStyles,
 } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import { addUserToCommunity } from '../../store';
+import { addUserToCommunity, setUserCommunities } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -30,9 +29,7 @@ const useStyles = makeStyles({
   },
   header: {
     display: 'flex',
-    flexDirection: 'column',
     textAlign: 'center',
-    justifyContent: 'center',
     margin: 'auto',
     backgroundColor: '#1f2833',
     color: 'white',
@@ -59,10 +56,20 @@ const CommunityCard = props => {
     history.push(path);
   };
 
-  const { auth } = useSelector(state => state);
+  const { auth, userCommunity } = useSelector(state => state);
 
-  const addCommunity = (comm, user) => {
-    dispatch(addUserToCommunity(comm, user));
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
+  }, [auth.id]);
+
+  const addCommunity = (comm, user, userComms) => {
+    for (let i of userComms) {
+      if (i.communityId === comm) {
+        alert('You are already part of this Community');
+      } else {
+        dispatch(addUserToCommunity(comm, user));
+      }
+    }
   };
   return (
     <Container className={classes.container}>

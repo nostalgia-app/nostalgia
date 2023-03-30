@@ -16,9 +16,6 @@ import FriendsList from './components/friends/FriendsList';
 import MyFriendsList from './components/friends/MyFriendsList';
 import NotFound from './components/NotFound';
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
@@ -50,9 +47,6 @@ class Routes extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     isLoggedIn: !!state.auth.id,
