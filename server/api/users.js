@@ -80,18 +80,4 @@ router.get('/userfriends/user/:id', async (req, res, next) => {
   }
 });
 
-const storageEngine = multer.diskStorage({
-  destination: (req, res, cb) => {
-    cb(null, 'public/profilePicUploads');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({
-  storage: storageEngine,
-  limits: { fileSize: 10000000 },
-});
-
 module.exports = router;

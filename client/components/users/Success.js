@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Container,
@@ -40,7 +40,6 @@ const useStyles = makeStyles({
 
 const Success = () => {
   const classes = useStyles();
-
   const { auth } = useSelector(state => state);
 
   return (

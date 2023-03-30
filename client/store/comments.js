@@ -31,13 +31,11 @@ export const fetchComment = id => {
 
 export const createComment = ({ data, artifactId, userId }) => {
   return async dispatch => {
-    console.log('before thunk', artifactId, userId);
     const { data: comment } = await axios.post(`/api/comment`, {
       comment: data,
       artifactId: artifactId,
       userId: userId,
     });
-    console.log('after thunk');
     dispatch(_createComment(comment));
   };
 };

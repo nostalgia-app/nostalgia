@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchUser, setUserArtifacts, setUserCommunities } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import DialogBox from './DialogueBox';
+import { Link, useParams } from 'react-router-dom';
 import {
   Container,
   Grid,
@@ -12,6 +9,8 @@ import {
   ImageListItem,
   ImageListItemBar,
 } from '@material-ui/core';
+import { fetchUser, setUserArtifacts, setUserCommunities } from '../../store';
+import DialogBox from './DialogueBox';
 import UserData from './UserData';
 import UserProfilePic from './UserProfilePic';
 import UserCommunities from './UserCommunities';
@@ -64,15 +63,13 @@ const UserProfile = () => {
   useEffect(() => {
     dispatch(fetchUser(id));
     dispatch(setUserArtifacts(id));
-  }, [id]);
-
-  useEffect(() => {
     dispatch(setUserCommunities(id));
   }, [id]);
 
   useEffect(() => {
     dispatch(setUserArtifacts(id));
   }, []);
+  
   const currentUser = user.user;
   const userArtifacts = artifacts.user_artifacts;
 
@@ -129,7 +126,6 @@ const UserProfile = () => {
             {currentUser.firstName}'s Communities
             {userCommunity && userCommunity.length > 0 ? (
               userCommunity.map(({ community }) => {
-                console.log('usercommunity', userCommunity)
                 return (
                   <div key={community.id} className={classes.card}>
                     <UserCommunities

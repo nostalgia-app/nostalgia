@@ -3,9 +3,7 @@ const router = express.Router();
 const {
   models: { User_Community, Community },
 } = require('../db');
-module.exports = router;
 
-//20cd5978-2105-4c23-a115-16ab44162f39 - cody
 //Find a all of a User's Communities
 router.get('/:id', async (req, res, next) => {
   try {
@@ -23,6 +21,7 @@ router.get('/:id', async (req, res, next) => {
       });
   }
 });
+
 //Find a specific userCommunity id
 router.get('/:commId/:userId', async (req, res, next) => {
   try {
@@ -45,14 +44,11 @@ router.get('/:commId/:userId', async (req, res, next) => {
 
 router.post('/:communityId/:userId', async (req, res, next) => {
   try {
-    //console.log("userComm", req.body);
     const data = {
       ...req.params,
       communityId: req.params.communityId,
       userId: req.params.userId,
     };
-    console.log('communityId --> ', req.params.communityId);
-    console.log('this is userCommm', req.params);
     await User_Community.create(data);
     res.status(201).send(
       await User_Community.findOne({
@@ -89,3 +85,5 @@ router.delete('/:commId/:userId', async (req, res, next) => {
       });
   }
 });
+
+module.exports = router;

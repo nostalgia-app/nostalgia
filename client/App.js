@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Routes from './Routes';
 import {
-  Container,
   createTheme,
   ThemeProvider,
   makeStyles,
 } from '@material-ui/core';
+import Routes from './Routes';
 import Layout from './Layout';
 
 const theme = createTheme({
@@ -41,17 +40,7 @@ const theme = createTheme({
   },
 });
 
-const useStyles = makeStyles({
-  mainContainer: {
-    background: '#0a1017c0;',
-    height: '100%',
-    width: '100%',
-    marginTop: 80,
-  },
-});
-
 const App = () => {
-  const classes = useStyles();
   const { auth } = useSelector(state => state);
 
   return (

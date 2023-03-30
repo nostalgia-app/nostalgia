@@ -1,5 +1,5 @@
 const db = require('../db');
-const { UUID, UUIDV4, STRING, INTEGER, TEXT } = require('sequelize');
+const { UUID, UUIDV4, STRING } = require('sequelize');
 
 const ProfilePic = db.define('profilePic', {
   id: {

@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Card, Grid, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserCommunities, removeUserFromCommunity } from '../../store';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { setUserCommunities, removeUserFromCommunity } from '../../store';
 
 const useStyles = makeStyles({
   communityCard: {

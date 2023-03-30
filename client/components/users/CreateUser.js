@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createNewUser } from '../../store';
 import { useHistory } from 'react-router-dom';
-
 import {
   Container,
   Button,
@@ -11,6 +9,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
+import { createNewUser } from '../../store';
 
 const useStyles = makeStyles({
   container: {

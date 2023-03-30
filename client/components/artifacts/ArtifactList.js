@@ -56,9 +56,11 @@ const ArtifactList = () => {
   const openUploadArtifact = () => {
     setOpen(true);
   };
+
   const closeUploadArtifact = () => {
     setOpen(false);
   };
+
   return (
     <Container className={classes.container}>
       <Dialog open={open}>
@@ -101,14 +103,3 @@ const ArtifactList = () => {
 };
 
 export default ArtifactList;
-
-// // set a search & searchResults state
-// const [search, setSearch] = useState('');
-// const [searchResults, setSearchResults] = useState([]);
-// // filter the data based on textFiled input
-// useEffect(() => {
-//   const filteredArtifacts = images.filter(artifact =>
-//     artifact.title.toLowerCase().includes(search.toLocaleLowerCase())
-//   );
-//   setSearchResults(filteredArtifacts);
-// }, [images, search]);

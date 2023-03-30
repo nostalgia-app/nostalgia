@@ -1,5 +1,3 @@
-//this is the access point for all things database related!
-
 const db = require("./db");
 
 const User = require("./models/User");
@@ -10,7 +8,6 @@ const Comment = require("./models/Comment");
 const ProfilePic = require("./models/ProfilePic");
 const User_Friend = require("./models/User_Friend");
 
-//associations could go here!
 Community.belongsTo(User, { foreignKey: "adminId" });
 Community.belongsToMany(User, { through: User_Community });
 User.belongsToMany(Community, { through: User_Community });
@@ -35,12 +32,15 @@ User.belongsToMany(User, {
   as: "user",
   foreignKey: "userId",
 });
+
 User.belongsToMany(User, {
   through: User_Friend,
   as: "friend",
   foreignKey: "friendId",
 });
+
 User.hasMany(User_Friend);
+
 User_Friend.belongsTo(User, { foreignKey: "friendId" });
 
 module.exports = {

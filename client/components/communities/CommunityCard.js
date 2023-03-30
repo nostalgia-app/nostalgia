@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Card,
@@ -11,8 +11,7 @@ import {
   Box,
   makeStyles,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { addUserToCommunity, setUserCommunities } from '../../store';
+import { setUserCommunities } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -25,7 +24,6 @@ const useStyles = makeStyles({
     padding: 10,
     height: 400,
     width: 300,
-    // maxHeight: 700,
   },
   header: {
     display: 'flex',
@@ -46,8 +44,9 @@ const useStyles = makeStyles({
 });
 
 const CommunityCard = props => {
-  const classes = useStyles();
   const dispatch = useDispatch();
+  const classes = useStyles();
+  const { auth } = useSelector(state => state);
   const { community } = props;
 
   const history = useHistory();
@@ -56,21 +55,10 @@ const CommunityCard = props => {
     history.push(path);
   };
 
-  const { auth, userCommunity } = useSelector(state => state);
-
   useEffect(() => {
     dispatch(setUserCommunities(auth.id));
   }, [auth.id]);
 
-  const addCommunity = (comm, user, userComms) => {
-    for (let i of userComms) {
-      if (i.communityId === comm) {
-        alert('You are already part of this Community');
-      } else {
-        dispatch(addUserToCommunity(comm, user));
-      }
-    }
-  };
   return (
     <Container className={classes.container}>
       <Card elevation={3} className={classes.card}>

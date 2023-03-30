@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   models: { Comment, User },
 } = require('../db');
-module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -32,11 +31,9 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log(req.body);
     const data = {
       ...req.body,
     };
-    console.log('this is the api data', data);
     const newEntry = await Comment.create(data);
     const newComment = await Comment.findByPk(newEntry.id, { include: [User] });
     res.send(newComment);
@@ -76,3 +73,5 @@ router.delete('/:id', async (req, res, next) => {
       .json({ message: 'Error deleting the comment', error: err.message });
   }
 });
+
+module.exports = router;

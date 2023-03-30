@@ -13,7 +13,9 @@ export const _fetchUserPics = pics => ({
   type: FETCH_USER_PICS,
   pics,
 });
+
 export const _fetchUserPic = pic => ({ type: FETCH_USER_PIC, pic });
+
 export const _createUserPic = pic => ({
   type: CREATE_USER_PIC,
   pic,

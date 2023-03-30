@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts, setUserCommunities, addUserToCommunity, me } from '../../store';
 import {
   Container,
   Typography,
@@ -11,8 +10,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import { setCommunity } from '../../store';
-import { useHistory } from 'react-router-dom';
+import { setArtifacts, setCommunity, setUserCommunities, addUserToCommunity, me } from '../../store';
 import ArtifactList from '../artifacts/ArtifactList';
 import EditCommunity from './EditCommunity';
 
@@ -94,32 +92,26 @@ const CommunityDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { auth, artifacts,community, userCommunity } = useSelector(state => state);
+  const { auth, artifacts, community, userCommunity } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  // const routeChange = () => {
-  //   let path = `/communities/`;
-  //   history.push(path);
-  // };
-
   useEffect(() => {
     dispatch(setCommunity(id));
   }, [id]);
-  useEffect(() => {
-    dispatch(me());
-  }, []);
 
   useEffect(() => {
+    dispatch(me());
     dispatch(setArtifacts(id));
   }, []);
+
   useEffect(() => {
     dispatch(setUserCommunities(auth.id));
   }, [auth.id]);
@@ -165,6 +157,17 @@ const CommunityDetails = () => {
             >
               Join
             </Button>
+            {auth.id === community.adminId ? (
+            <Button
+              className={classes.button2}
+              variant="contained"
+              onClick={handleClickOpen}
+            >
+              Edit Details
+            </Button>
+            ) : (
+              ""
+            )}
           </Grid>
           <Grid className={classes.members}>
             <img

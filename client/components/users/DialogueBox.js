@@ -25,12 +25,12 @@ const useStyles = makeStyles({
 
 const DialogBox = ({ user }) => {
   const classes = useStyles();
-
   const [dialog, setDialog] = useState(true);
 
   const closeDialog = () => {
     setDialog(false);
   };
+
   return (
     <>
       {!user.age || !user.location || !user.bio ? (
