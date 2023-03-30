@@ -64,7 +64,7 @@ router.post('/:communityId/:userId', async (req, res, next) => {
       })
     );
   } catch (err) {
-    res.json({ message: 'unable to join the comm', error: err.message });
+    res.status(500).json({ message: 'unable to join the comm', error: err.message });
     next(err);
   }
 });
