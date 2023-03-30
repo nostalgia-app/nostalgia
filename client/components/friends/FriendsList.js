@@ -44,7 +44,9 @@ const FriendsList = () => {
   const { friends } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(setFriends(auth.id));
+    if (auth.id) {
+      dispatch(setFriends(auth.id)); 
+    }
   }, [auth]);
 
   // Filter friends
