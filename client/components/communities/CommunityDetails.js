@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts, setUserCommunities } from '../../store';
+import { setArtifacts, setUserCommunities, addUserToCommunity, me } from '../../store';
 import {
   Container,
   Typography,
@@ -95,7 +95,7 @@ const CommunityDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { auth, artifacts, community } = useSelector(state => state);
+  const { auth, artifacts,community, userCommunity } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
   // const handleClickOpen = () => {
@@ -113,6 +113,9 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setCommunity(id));
   }, [id]);
+  useEffect(() => {
+    dispatch(me());
+  }, []);
 
   useEffect(() => {
     dispatch(setArtifacts(id));
@@ -121,15 +124,15 @@ const CommunityDetails = () => {
     dispatch(setUserCommunities(auth.id));
   }, [auth.id]);
 
-  // const addCommunity = (comm, user, userComms) => {
-  //   for (let i of userComms) {
-  //     if (i.communityId === comm) {
-  //       alert('You are already part of this Community');
-  //     } else {
-  //       dispatch(addUserToCommunity(comm, user));
-  //     }
-  //   }
-  // };
+  const addCommunity = (comm, user, userComms) => {
+    for (let i of userComms) {
+      if (i.communityId === comm) {
+        alert('You are already part of this Community');
+      } else {
+        dispatch(addUserToCommunity(comm, user));
+      }
+    }
+  };
 
   return (
     <Container className={classes.container}>
@@ -158,7 +161,7 @@ const CommunityDetails = () => {
             <Button
               className={classes.button2}
               variant="contained"
-              // onClick={() => addCommunity(community.id, auth.id)}
+               onClick={() => addCommunity(community.id, auth.id, userCommunity)}
             >
               Join
             </Button>
