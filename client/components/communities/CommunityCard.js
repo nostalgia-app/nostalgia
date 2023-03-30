@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
@@ -10,6 +11,7 @@ import {
   Box,
   makeStyles,
 } from '@material-ui/core';
+import { setUserCommunities } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -25,9 +27,7 @@ const useStyles = makeStyles({
   },
   header: {
     display: 'flex',
-    flexDirection: 'column',
     textAlign: 'center',
-    justifyContent: 'center',
     margin: 'auto',
     backgroundColor: '#1f2833',
     color: 'white',
@@ -45,6 +45,7 @@ const useStyles = makeStyles({
 
 const CommunityCard = props => {
   const classes = useStyles();
+  const { auth } = useSelector(state => state);
   const { community } = props;
 
   const history = useHistory();
@@ -52,6 +53,10 @@ const CommunityCard = props => {
     let path = `/communities/${community.id}`;
     history.push(path);
   };
+
+  useEffect(() => {
+    dispatch(setUserCommunities(auth.id));
+  }, [auth.id]);
 
   return (
     <Container className={classes.container}>

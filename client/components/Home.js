@@ -113,7 +113,7 @@ export const Home = () => {
         </Grid>
         <Grid className={classes.features} item xs={12} sm={12} md={4}>
           <Grid className={classes.titleIcon}>
-            <Link href="/artifacts" className={classes.subTitle} variant="h5">
+            <Link href="/communities" className={classes.subTitle} variant="h5">
               Share
             </Link>
             <AddToPhotos className={classes.icon} color="white" />
