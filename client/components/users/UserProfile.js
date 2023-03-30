@@ -126,7 +126,6 @@ const UserProfile = () => {
             {currentUser.firstName}'s Communities
             {userCommunity && userCommunity.length > 0 ? (
               userCommunity.map(({ community }) => {
-                console.log('usercommunity', userCommunity)
                 return (
                   <div key={community.id} className={classes.card}>
                     <UserCommunities
