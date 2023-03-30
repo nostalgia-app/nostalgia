@@ -92,7 +92,7 @@ const CommunityDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { auth, artifacts,community, userCommunity } = useSelector(state => state);
+  const { auth, artifacts, community, userCommunity } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
