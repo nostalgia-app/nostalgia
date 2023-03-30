@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { connect } from "react-redux";
-import { authenticate } from "../../store";
+import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import {
   Button,
   Container,
@@ -12,6 +9,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import TextField from "@mui/material/TextField";
+import { authenticate } from "../../store";
 
 const useStyles = makeStyles({
   container: {
@@ -44,7 +42,7 @@ const AuthForm = (props) => {
 
   const dispatch = useDispatch();
 
-  const { name, displayName, error } = props;
+  const { name, error } = props;
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -89,13 +87,6 @@ const AuthForm = (props) => {
   );
 };
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
 const mapLogin = (state) => {
   return {
     name: "login",

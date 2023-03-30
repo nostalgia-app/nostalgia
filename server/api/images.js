@@ -43,8 +43,6 @@ const upload = multer({
 // CREATE NEW
 router.post('/single', upload.single('file'), async (req, res, next) => {
   try {
-    const file = req.file;
-    console.log(file);
     const image = await Image.create({
       title: req.body.title,
       description: req.body.description,

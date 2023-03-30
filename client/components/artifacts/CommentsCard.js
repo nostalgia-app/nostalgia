@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Card, CardContent, CardActions } from '@material-ui/core';
 import { updateComment } from '../../store';
 import { useDispatch } from 'react-redux';
-import { removeArtifact } from '../../store';
 
 const CommentsCard = ({ comment }) => {
   const dispatch = useDispatch();
@@ -11,6 +10,7 @@ const CommentsCard = ({ comment }) => {
     dispatch(updateComment({ id: comment.id, likes: comment.likes + 1 }));
     window.location.reload();
   };
+  
   return (
     <Container
       style={{

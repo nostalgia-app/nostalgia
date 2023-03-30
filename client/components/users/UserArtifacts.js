@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, Grid, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { Card, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   artifactCard: {
@@ -25,7 +25,6 @@ const UserArtifacts = ({ community }) => {
       <Link to={`/communities/${community.id}`}>
         <Grid className={classes.artifactCard}>
           <img src={community.imageUrl} className={classes.image}></img>
-          {/* <div className={classes.name}>{community.name}</div> */}
         </Grid>
       </Link>
     </Card>

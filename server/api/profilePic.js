@@ -3,7 +3,6 @@ const router = express.Router();
 const {
   models: { ProfilePic },
 } = require('../db');
-const path = require('path');
 const multer = require('multer');
 
 //FETCH ALL
@@ -37,7 +36,6 @@ const storageEngine = multer.diskStorage({
     cb(null, 'public/profilePicUploads');
   },
   filename: (req, file, cb) => {
-    // cb(null, Date.now() + path.extname(file.originalname));
     cb(null, file.originalname);
   },
 });
@@ -50,11 +48,8 @@ const upload = multer({
 //Create an profile Pic
 router.post('/', upload.single('file'), async (req, res, next) => {
   try {
-    const file = req.file;
-    console.log('this is the API', file);
     const profilePic = await ProfilePic.create({
       fileName: req.file.filename,
-      // fileName: req.body.fileName,
       userId: req.body.userId,
     });
     res.send(profilePic);

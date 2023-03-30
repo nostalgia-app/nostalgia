@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { setArtifacts, setUserCommunities } from '../../store';
 import {
   Container,
   Typography,
@@ -11,8 +10,7 @@ import {
   Grid,
   makeStyles,
 } from '@material-ui/core';
-import { setCommunity } from '../../store';
-import { useHistory } from 'react-router-dom';
+import { setArtifacts, setCommunity, setUserCommunities } from '../../store';
 import ArtifactList from '../artifacts/ArtifactList';
 import EditCommunity from './EditCommunity';
 
@@ -94,21 +92,12 @@ const CommunityDetails = () => {
   const classes = useStyles();
   const { id } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
   const { auth, artifacts, community } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
   const handleClose = () => {
     setOpen(false);
   };
-
-  // const routeChange = () => {
-  //   let path = `/communities/`;
-  //   history.push(path);
-  // };
 
   useEffect(() => {
     dispatch(setCommunity(id));
@@ -117,19 +106,10 @@ const CommunityDetails = () => {
   useEffect(() => {
     dispatch(setArtifacts(id));
   }, []);
+
   useEffect(() => {
     dispatch(setUserCommunities(auth.id));
   }, [auth.id]);
-
-  // const addCommunity = (comm, user, userComms) => {
-  //   for (let i of userComms) {
-  //     if (i.communityId === comm) {
-  //       alert('You are already part of this Community');
-  //     } else {
-  //       dispatch(addUserToCommunity(comm, user));
-  //     }
-  //   }
-  // };
 
   return (
     <Container className={classes.container}>

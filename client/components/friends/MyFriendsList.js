@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FriendCard from './FriendCard';
-import { setFriends } from '../../store';
 import {
   Container,
   Typography,
   Grid,
   TextField,
-  Box,
-  FormControl,
   makeStyles,
 } from '@material-ui/core';
+import { setFriends } from '../../store';
+import FriendCard from './FriendCard';
 
 const useStyles = makeStyles({
   container: {
@@ -77,7 +75,6 @@ const MyFriendsList = ({ userId }) => {
         Find Friends
       </Typography>
 
-      {/* <Box sx={{ minWidth: 200, mt: 10, mb: 10 }}> */}
       <Grid className={classes.search}>
         <TextField
           variant="filled"
@@ -89,16 +86,12 @@ const MyFriendsList = ({ userId }) => {
         ></TextField>
       </Grid>
 
-      {/* </Box> */}
-
-      {/* <Grid container spacing={2} sx={{ flexGrow: 1 }}> */}
       <Grid container spacing={2}>
         {state.query === ''
           ? friends
               ?.filter(friend => friend.friendInd === 'Y')
               .map(friend => {
                 return (
-                  // <Grid item zeroMinWidth key={friend.id}>
                   <Grid item key={friend.id} xs={12} sm={12} md={6}>
                     <FriendCard key={friend.id} friend={friend} />
                   </Grid>
@@ -108,7 +101,6 @@ const MyFriendsList = ({ userId }) => {
               ?.filter(friend => friend.friendInd === 'Y')
               .map(friend => {
                 return (
-                  // <Grid item zeroMinWidth key={friend.id}>
                   <Grid item key={friend.id} xs={12} sm={12} md={6}>
                     <FriendCard key={friend.id} friend={friend} />
                   </Grid>

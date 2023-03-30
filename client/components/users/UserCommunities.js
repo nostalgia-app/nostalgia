@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Card, Grid, Button, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserCommunities, removeUserFromCommunity } from '../../store';
+import { Card, Grid, makeStyles } from '@material-ui/core';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { setUserCommunities, removeUserFromCommunity } from '../../store';
 
 const useStyles = makeStyles({
   communityCard: {
@@ -65,7 +65,6 @@ const UserMediaCommunity = ({ community, auth, user }) => {
 
   return (
     <Card key={community.id} elevation={2}>
-      {/* <Link to={`/communities/${community.id}`}> */}
       <Grid className={classes.communityCard}>
         <Link to={`/communities/${community.id}`}>
           <Grid className={classes.cardLeft}>
@@ -73,8 +72,6 @@ const UserMediaCommunity = ({ community, auth, user }) => {
             <Grid className={classes.name}>{community.name}</Grid>
           </Grid>
         </Link>
-        {/* <img src={community.imageUrl} className={classes.image}></img>
-          <div className={classes.name}>{community.name}</div> */}
         <Grid className={classes.cardRight}>
           <DeleteForeverIcon
             onClick={() => removeUserCommunity(community.id, user.id)}

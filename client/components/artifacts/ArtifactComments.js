@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Card, Button, TextField, makeStyles } from '@material-ui/core';
 import { fetchComments, createComment } from '../../store';
 import CommentsCard from './CommentsCard';
-import { Card, Button, TextField, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles({
   container: {

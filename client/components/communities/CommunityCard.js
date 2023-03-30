@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Card,
@@ -8,12 +7,9 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Typography,
   Box,
   makeStyles,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
-import { addUserToCommunity } from '../../store';
 
 const useStyles = makeStyles({
   container: {
@@ -26,7 +22,6 @@ const useStyles = makeStyles({
     padding: 10,
     height: 400,
     width: 300,
-    // maxHeight: 700,
   },
   header: {
     display: 'flex',
@@ -50,7 +45,6 @@ const useStyles = makeStyles({
 
 const CommunityCard = props => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { community } = props;
 
   const history = useHistory();
@@ -59,11 +53,6 @@ const CommunityCard = props => {
     history.push(path);
   };
 
-  const { auth } = useSelector(state => state);
-
-  const addCommunity = (comm, user) => {
-    dispatch(addUserToCommunity(comm, user));
-  };
   return (
     <Container className={classes.container}>
       <Card elevation={3} className={classes.card}>

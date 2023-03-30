@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import MyFriendsList from '../friends/MyFriendsList';
 import {
   Container,
   Typography,
@@ -11,6 +10,7 @@ import {
   DialogActions,
   makeStyles,
 } from '@material-ui/core';
+import MyFriendsList from '../friends/MyFriendsList';
 
 const useStyles = makeStyles({
   container: {
@@ -64,7 +64,6 @@ const useStyles = makeStyles({
 const UserData = ({ user, id }) => {
   const classes = useStyles();
   const { auth } = useSelector(state => state);
-
   const [open, setOpen] = useState(false);
 
   const displayFriends = () => {

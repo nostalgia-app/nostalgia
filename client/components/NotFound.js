@@ -17,8 +17,8 @@ const NotFound = () => {
   const classes = useStyles();
   return (
     <Container className={classes.mainContainer}>
-      <Typography>Sorry. Page you are looking for does not Exist.</Typography>
-      <Link to="/">Return to Home.</Link>
+      <Typography>Sorry. The page you are looking for does not exist.</Typography>
+      <Link to="/">Return to Home</Link>
     </Container>
   );
 };

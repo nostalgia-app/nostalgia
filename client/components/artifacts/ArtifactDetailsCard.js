@@ -1,5 +1,4 @@
 import React from 'react';
-import { updateArtifact } from '../../store';
 import { useDispatch } from 'react-redux';
 import {
   Card,
@@ -9,6 +8,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { ThumbUp } from '@mui/icons-material';
+import { updateArtifact } from '../../store';
 
 const useStyles = makeStyles({
   container: {
