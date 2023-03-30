@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
@@ -44,6 +44,7 @@ const useStyles = makeStyles({
 });
 
 const CommunityCard = props => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const { auth } = useSelector(state => state);
   const { community } = props;

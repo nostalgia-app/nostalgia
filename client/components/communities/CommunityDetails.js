@@ -95,6 +95,10 @@ const CommunityDetails = () => {
   const { auth, artifacts, community, userCommunity } = useSelector(state => state);
   const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -153,6 +157,17 @@ const CommunityDetails = () => {
             >
               Join
             </Button>
+            {auth.id === community.adminId ? (
+            <Button
+              className={classes.button2}
+              variant="contained"
+              onClick={handleClickOpen}
+            >
+              Edit Details
+            </Button>
+            ) : (
+              ""
+            )}
           </Grid>
           <Grid className={classes.members}>
             <img
